@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO Sorbmetrics — Recruitment Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+  .badge-purple { background: #EEEDFE; color: #534AB7; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.red { color: #A32D2D; }
+  .metric-value.purple { color: #534AB7; }
+  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
+  .metric-sub.neutral { color: #888780; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #888780; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
+
+  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
+  .action-row:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .action-label { font-size: 12px; color: #888780; flex: 1; }
+  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .action-pct { font-size: 11px; color: #b4b2a9; min-width: 32px; text-align: right; }
+
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
+  .progress-seg { height: 6px; border-radius: 3px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .stage-col { margin-bottom: 16px; }
+  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
+  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
+
+  .cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+  .cand-card.dropped { opacity: 0.5; }
+  .cand-card.signed { border-color: #9FE1CB; background: #f7fdf9; }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+  .cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
+  .cand-role { font-size: 10px; color: #888780; }
+  .stage-pill { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .pill-new { background: #f5f4f0; color: #888780; }
+  .pill-app { background: #FAEEDA; color: #BA7517; }
+  .pill-short { background: #EEEDFE; color: #534AB7; }
+  .pill-interview { background: #E6F1FB; color: #185FA5; }
+  .pill-talent { background: #EAF3DE; color: #3B6D11; }
+  .pill-signed { background: #1D9E75; color: #fff; }
+  .pill-dropped { background: #FCEBEB; color: #A32D2D; }
+
+  .signed-banner { background: #EAF3DE; border: 0.5px solid #9FE1CB; border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .signed-icon { width: 36px; height: 36px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .signed-icon svg { width: 18px; height: 18px; }
+  .signed-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .signed-sub { font-size: 11px; color: #3B6D11; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>CEO Sorbmetrics — Recruitment Dashboard</h1>
+      <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge badge-purple">Jan — Mar 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- Signed banner -->
+  <div class="signed-banner">
+    <div class="signed-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <div>
+      <div class="signed-title">Fernando Matías Canale — Signed Final Rules for Participation</div>
+      <div class="signed-sub">Chef de File de España · Sommet des deux Rives · Universidad de Split · This role has been successfully filled.</div>
+    </div>
+  </div>
+
+  <!-- Outreach KPIs -->
+  <p class="section-label">Outreach — Dripify campaign</p>
+  <div class="metric-grid-4">
+    <div class="metric-card">
+      <p class="metric-label">Invites sent</p>
+      <p class="metric-value">22</p>
+      <p class="metric-sub neutral">Jan — Mar 2026</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Accepted</p>
+      <p class="metric-value">15</p>
+      <p class="metric-sub">68% acceptance rate</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Messaged</p>
+      <p class="metric-value">6</p>
+      <p class="metric-sub neutral">Follow-ups sent</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Replies received</p>
+      <p class="metric-value">15</p>
+      <p class="metric-sub">100% reply rate</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#378ADD;"></div></div>
+        <span class="funnel-num">22</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:68%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">15</span>
+        <span class="funnel-pct">68%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:27%; background:#378ADD;"></div></div>
+        <span class="funnel-num">6</span>
+        <span class="funnel-pct">27%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:68%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">15</span>
+        <span class="funnel-pct">68%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:41%; background:#888780;"></div></div>
+        <span class="funnel-num">9</span>
+        <span class="funnel-pct">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Lead actions breakdown</p>
+      <div class="action-row">
+        <div class="action-dot" style="background:#378ADD;"></div>
+        <span class="action-label">Connection requests</span>
+        <span class="action-num">11</span>
+        <span class="action-pct">50%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#888780;"></div>
+        <span class="action-label">Profiles viewed</span>
+        <span class="action-num">8</span>
+        <span class="action-pct">36%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#1D9E75;"></div>
+        <span class="action-label">Messages sent</span>
+        <span class="action-num">3</span>
+        <span class="action-pct">14%</span>
+      </div>
+
+      <div style="border-top:0.5px solid #f0ede6; margin-top:14px; padding-top:14px;">
+        <p class="section-label" style="margin-bottom:10px;">Total leads sourced</p>
+        <p style="font-size:28px; font-weight:600; color:#1a1a18; line-height:1;">22</p>
+        <p style="font-size:11px; color:#888780; margin-top:4px;">LinkedIn Recruiter — materials, cleantech & sustainability focus</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Pipeline -->
+  <p class="section-label">Candidate pipeline — CEO Sorbmetrics</p>
+
+  <div class="metric-grid-4" style="margin-bottom:16px;">
+    <div class="metric-card">
+      <p class="metric-label">Total candidates</p>
+      <p class="metric-value">48</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Active pipeline</p>
+      <p class="metric-value blue">12</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Disruptive talent</p>
+      <p class="metric-value green">3</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Signed</p>
+      <p class="metric-value purple">1</p>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-seg" style="background:#888780; flex:2;"></div>
+    <div class="progress-seg" style="background:#BA7517; flex:4;"></div>
+    <div class="progress-seg" style="background:#534AB7; flex:2;"></div>
+    <div class="progress-seg" style="background:#378ADD; flex:2;"></div>
+    <div class="progress-seg" style="background:#1D9E75; flex:3;"></div>
+    <div class="progress-seg" style="background:#0F6E56; flex:1;"></div>
+    <div class="progress-seg" style="background:#E24B4A; flex:36;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:20px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full application</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#534AB7;"></div>Shortlisted</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0F6E56;"></div>Signed</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (36)</div>
+  </div>
+
+  <!-- Signed -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#0F6E56;"></div>
+      <span class="stage-title">Stage 11 — Signed final rules</span>
+      <span class="stage-count">1 candidate</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card signed">
+        <div class="avatar" style="background:#1D9E75; color:#fff;">FC</div>
+        <div>
+          <div class="cand-name">Fernando Matías Canale</div>
+          <div class="cand-role">Chef de File España — Sommet des deux Rives</div>
+        </div>
+        <span class="stage-pill pill-signed">Signed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 5 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 5 — Disruptive talent META</span>
+      <span class="stage-count">3 candidates</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">DM</div>
+        <div>
+          <div class="cand-name">David Luis Milia Garrote</div>
+          <div class="cand-role">Chairman/CEO — Canadian Energy & Climate Nexus</div>
+        </div>
+        <span class="stage-pill pill-talent">Talent</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
+        <div>
+          <div class="cand-name">Hugo Macedo</div>
+          <div class="cand-role">People & Operations Lead — Complear · Imperial College</div>
+        </div>
+        <span class="stage-pill pill-talent">Talent</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AM</div>
+        <div>
+          <div class="cand-name">Alvaro Montero Bockos</div>
+          <div class="cand-role">Growth Consultant — GrantTree London · UAB</div>
+        </div>
+        <span class="stage-pill pill-talent">Talent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#378ADD;"></div>
+      <span class="stage-title">Stage 4 — Interview with staff</span>
+      <span class="stage-count">2 candidates</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DB</div>
+        <div>
+          <div class="cand-name">Dana Bernhardt</div>
+          <div class="cand-role">Senior Research Scientist — Pack2Earth · UBA</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">SR</div>
+        <div>
+          <div class="cand-name">Sami Rtimi Sboui</div>
+          <div class="cand-role">Lead Consultant — DROP Innovations · ESADE</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 3 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#534AB7;"></div>
+      <span class="stage-title">Stage 3 — Shortlisted / first call</span>
+      <span class="stage-count">1 active · 5 dropped</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#EEEDFE; color:#534AB7;">GM</div>
+        <div>
+          <div class="cand-name">Gonzaga Mestre Galofré</div>
+          <div class="cand-role">CEO — Technotex · University of Barcelona</div>
+        </div>
+        <span class="stage-pill pill-short">Shortlisted</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">RL</div>
+        <div>
+          <div class="cand-name">Ronen Lamdan</div>
+          <div class="cand-role">CEO / Managing Director · Hebrew University</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">DF</div>
+        <div>
+          <div class="cand-name">Dara Forouzan</div>
+          <div class="cand-role">Market Analyst — SDi · Univ. Tübingen</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">GT</div>
+        <div>
+          <div class="cand-name">Ganna Tymko</div>
+          <div class="cand-role">Founder & CEO — Stealth Startup · CDL</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">PQ</div>
+        <div>
+          <div class="cand-name">Pablo Quintero</div>
+          <div class="cand-role">Senior PM — Qualifyze · AGSM UNSW</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">DD</div>
+        <div>
+          <div class="cand-name">Deniss Davodov</div>
+          <div class="cand-role">CEO — DENERGI OÜ · Tallinn Tech</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#BA7517;"></div>
+      <span class="stage-title">Stage 2 — Full application</span>
+      <span class="stage-count">4 candidates</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">LG</div>
+        <div>
+          <div class="cand-name">Lakshay Garg</div>
+          <div class="cand-role">CEO Office Growth — Square Panda · TU Dortmund</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">AA</div>
+        <div>
+          <div class="cand-name">Arian Avato</div>
+          <div class="cand-role">CEO — Smart.e startup · UPC</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">LG</div>
+        <div>
+          <div class="cand-name">Laura Garcia Laguna</div>
+          <div class="cand-role">Co-Founder & Legal Advisor — Hansel Digital</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">GB</div>
+        <div>
+          <div class="cand-name">Guillaume Belhaj</div>
+          <div class="cand-role">CEO/Co-Founder — Bayer Co.Lab</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 1 active -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#888780;"></div>
+      <span class="stage-title">Stage 1 — New candidates (active)</span>
+      <span class="stage-count">2 active · 30 dropped</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">SM</div>
+        <div>
+          <div class="cand-name">Salvador Moreno</div>
+          <div class="cand-role">CEO & Founder — UEPFLY · ESADE</div>
+        </div>
+        <span class="stage-pill pill-new">New</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">RL</div>
+        <div>
+          <div class="cand-name">Roma Llambes Oliveras</div>
+          <div class="cand-role">Executive Advisor — Global · ESADE</div>
+        </div>
+        <span class="stage-pill pill-new">New</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Generated March 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

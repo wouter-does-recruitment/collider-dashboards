@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO TarGlio — Recruitment Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #FBEAF0; color: #993556; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.red { color: #A32D2D; }
+  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
+  .metric-sub.neutral { color: #888780; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #888780; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
+
+  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
+  .action-row:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .action-label { font-size: 12px; color: #888780; flex: 1; }
+  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .action-pct { font-size: 11px; color: #b4b2a9; min-width: 32px; text-align: right; }
+
+  .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
+  .progress-seg { height: 6px; border-radius: 3px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .stage-col { margin-bottom: 16px; }
+  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
+  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
+
+  .cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+  .cand-card.dropped { opacity: 0.5; }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+  .cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
+  .cand-role { font-size: 10px; color: #888780; }
+  .stage-pill { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .pill-new { background: #f5f4f0; color: #888780; }
+  .pill-app { background: #FAEEDA; color: #BA7517; }
+  .pill-interview { background: #E6F1FB; color: #185FA5; }
+  .pill-talent { background: #EAF3DE; color: #3B6D11; }
+  .pill-dropped { background: #FCEBEB; color: #A32D2D; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>CEO TarGlio — Recruitment Dashboard</h1>
+      <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">Feb — Mar 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- Outreach KPIs -->
+  <p class="section-label">Outreach — Dripify campaign</p>
+  <div class="metric-grid-4">
+    <div class="metric-card">
+      <p class="metric-label">Invites sent</p>
+      <p class="metric-value">65</p>
+      <p class="metric-sub neutral">Feb — Mar 2026</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Accepted</p>
+      <p class="metric-value">45</p>
+      <p class="metric-sub">69% acceptance rate</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Messaged</p>
+      <p class="metric-value">40</p>
+      <p class="metric-sub neutral">Follow-ups sent</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Replies received</p>
+      <p class="metric-value">32</p>
+      <p class="metric-sub">71% reply rate</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#378ADD;"></div></div>
+        <span class="funnel-num">65</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:69%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">45</span>
+        <span class="funnel-pct">69%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:62%; background:#378ADD;"></div></div>
+        <span class="funnel-num">40</span>
+        <span class="funnel-pct">62%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:71%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">32</span>
+        <span class="funnel-pct">71%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:45%; background:#888780;"></div></div>
+        <span class="funnel-num">29</span>
+        <span class="funnel-pct">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Lead actions breakdown</p>
+      <div class="action-row">
+        <div class="action-dot" style="background:#888780;"></div>
+        <span class="action-label">Profiles viewed</span>
+        <span class="action-num">24</span>
+        <span class="action-pct">36%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#1D9E75;"></div>
+        <span class="action-label">Messages sent</span>
+        <span class="action-num">25</span>
+        <span class="action-pct">38%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#378ADD;"></div>
+        <span class="action-label">Connection requests</span>
+        <span class="action-num">16</span>
+        <span class="action-pct">24%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#EF9F27;"></div>
+        <span class="action-label">Profiles followed</span>
+        <span class="action-num">1</span>
+        <span class="action-pct">2%</span>
+      </div>
+
+      <div style="border-top:0.5px solid #f0ede6; margin-top:14px; padding-top:14px;">
+        <p class="section-label" style="margin-bottom:6px;">Total leads sourced</p>
+        <p style="font-size:28px; font-weight:600; color:#1a1a18; line-height:1;">66</p>
+        <p style="font-size:11px; color:#888780; margin-top:4px;">LinkedIn Recruiter — oncology, biotech & pharma focus</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Pipeline -->
+  <p class="section-label">Candidate pipeline — CEO TarGlio</p>
+
+  <div class="metric-grid-4" style="margin-bottom:16px;">
+    <div class="metric-card">
+      <p class="metric-label">Total candidates</p>
+      <p class="metric-value">8</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Active pipeline</p>
+      <p class="metric-value blue">7</p>
+      <p class="metric-sub">88% active rate</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Disruptive talent</p>
+      <p class="metric-value green">1</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Dropped</p>
+      <p class="metric-value red">1</p>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-seg" style="background:#888780; flex:2;"></div>
+    <div class="progress-seg" style="background:#BA7517; flex:1;"></div>
+    <div class="progress-seg" style="background:#378ADD; flex:4;"></div>
+    <div class="progress-seg" style="background:#1D9E75; flex:1;"></div>
+    <div class="progress-seg" style="background:#E24B4A; flex:1;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:20px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New candidates</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full application</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview with staff</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped</div>
+  </div>
+
+  <!-- Stage 5 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 5 — Disruptive talent META</span>
+      <span class="stage-count">1 candidate</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
+        <div>
+          <div class="cand-name">Hugo Macedo</div>
+          <div class="cand-role">People & Ops Lead — Complear · Imperial College London</div>
+        </div>
+        <span class="stage-pill pill-talent">Talent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#378ADD;"></div>
+      <span class="stage-title">Stage 4 — Interview with staff</span>
+      <span class="stage-count">4 candidates</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AP</div>
+        <div>
+          <div class="cand-name">Antonio Manuel Puertas</div>
+          <div class="cand-role">Business Manager — Bioflow SUR · Univ. Granada</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
+        <div>
+          <div class="cand-name">Josselin Caradec</div>
+          <div class="cand-role">Board Observer — Curlew Bio · Vancouver Prostate Centre</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AS</div>
+        <div>
+          <div class="cand-name">Alessandro Scandurra</div>
+          <div class="cand-role">BD Manager — Sequentia Biotech · UPM</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JP</div>
+        <div>
+          <div class="cand-name">Juan J. Pérez Villar</div>
+          <div class="cand-role">CEO — QABY Biotech · UAM Immunology</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#BA7517;"></div>
+      <span class="stage-title">Stage 2 — Full application</span>
+      <span class="stage-count">1 candidate</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">AO</div>
+        <div>
+          <div class="cand-name">Alessandro Oliveri</div>
+          <div class="cand-role">Founder & Co-CEO — The Algaemist · MIP Politecnico Milano</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 1 -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#888780;"></div>
+      <span class="stage-title">Stage 1 — New candidates</span>
+      <span class="stage-count">1 active · 1 dropped</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">MM</div>
+        <div>
+          <div class="cand-name">Maria Chiara Maffia</div>
+          <div class="cand-role">Junior Postdoctoral Researcher — IRCCS San Raffaele</div>
+        </div>
+        <span class="stage-pill pill-new">New</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">AG</div>
+        <div>
+          <div class="cand-name">Andre Luis Gottardi Marcal</div>
+          <div class="cand-role">Senior Delivery Manager — COMPASS UOL</div>
+        </div>
+        <span class="stage-pill pill-dropped">Not qualified</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Generated March 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

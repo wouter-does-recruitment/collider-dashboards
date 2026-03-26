@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collider — Outreach Conversion Funnel</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; }
+
+  .cover { background: #1a1a18; border-radius: 14px; padding: 44px 48px 36px; margin-bottom: 20px; }
+  .cover-top { display: flex; justify-content: space-between; margin-bottom: 28px; }
+  .cover-logo { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #888780; }
+  .cover-date { font-size: 11px; color: #888780; }
+  .cover h1 { font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .cover p { font-size: 13px; color: #888780; margin-bottom: 0; }
+
+  .section { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .section-title { font-size: 16px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .section-sub { font-size: 12px; color: #888780; margin-bottom: 24px; }
+  .sl { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 22px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* Big funnel */
+  .funnel-wrap { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  .funnel-step { display: flex; align-items: center; gap: 14px; }
+  .funnel-bar-outer { flex: 1; background: #f5f4f0; border-radius: 4px; height: 40px; overflow: hidden; position: relative; }
+  .funnel-bar-inner { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 14px; transition: width 0.3s; }
+  .funnel-bar-label { font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .funnel-meta { width: 140px; flex-shrink: 0; text-align: right; }
+  .funnel-num { font-size: 20px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .funnel-pct { font-size: 11px; color: #888780; }
+  .funnel-arrow { width: 24px; text-align: center; color: #e0ddd6; font-size: 16px; flex-shrink: 0; }
+  .funnel-drop { font-size: 10px; color: #b4b2a9; margin-left: 8px; }
+
+  /* Stats row */
+  .stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 24px; }
+  .stat-card { background: #f5f4f0; border-radius: 8px; padding: 12px 14px; text-align: center; }
+  .stat-val { font-size: 24px; font-weight: 600; color: #1a1a18; line-height: 1; margin-bottom: 3px; }
+  .stat-lbl { font-size: 10px; color: #888780; }
+  .stat-sub { font-size: 10px; margin-top: 2px; }
+
+  /* Campaign table */
+  .camp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .camp-table thead tr { border-bottom: 0.5px solid #e0ddd6; }
+  .camp-table thead th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #888780; padding: 0 10px 8px 0; }
+  .camp-table thead th:not(:first-child) { text-align: right; }
+  .camp-table tbody tr { border-bottom: 0.5px solid #f0ede6; }
+  .camp-table tbody tr:last-child { border-bottom: none; }
+  .camp-table tbody td { padding: 9px 10px 9px 0; }
+  .camp-table tbody td:not(:first-child) { text-align: right; }
+  .camp-name { font-weight: 600; color: #1a1a18; }
+  .good { color: #1D9E75; font-weight: 600; }
+  .ok { color: #BA7517; font-weight: 600; }
+  .na { color: #b4b2a9; }
+
+  /* Applied candidates list */
+  .applied-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .applied-card { border: 0.5px solid #e0ddd6; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+  .avatar-sm { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
+  .applied-name { font-size: 12px; font-weight: 600; color: #1a1a18; }
+  .applied-sub { font-size: 10px; color: #888780; }
+  .pill { font-size: 10px; padding: 2px 7px; border-radius: 20px; font-weight: 500; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .pill-green { background: #EAF3DE; color: #3B6D11; }
+  .pill-blue { background: #E6F1FB; color: #185FA5; }
+  .pill-amber { background: #FAEEDA; color: #BA7517; }
+  .pill-pink { background: #FBEAF0; color: #993556; }
+  .pill-purple { background: #EEEDFE; color: #534AB7; }
+  .pill-teal { background: #E1F5EE; color: #0F6E56; }
+  .pill-gray { background: #f5f4f0; color: #888780; }
+  .pill-star { background: #1D9E75; color: #fff; }
+
+  .insight-box { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; margin-top: 16px; font-size: 12px; color: #888780; line-height: 1.6; }
+  .insight-box strong { color: #1a1a18; }
+
+  .footer { text-align: center; padding: 16px 0 8px; font-size: 11px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">The Collider · Mobile World Capital</div>
+      <div class="cover-date">Outreach Funnel · March 2026</div>
+    </div>
+    <h1>Proactive Outreach —<br>Full Conversion Funnel</h1>
+    <p>From first LinkedIn contact to shortlisted co-founder · Does Recruitment · Wouter Jaarsma</p>
+  </div>
+
+  <!-- SECTION 1: THE FULL FUNNEL -->
+  <div class="section">
+    <div class="section-title">End-to-end conversion funnel</div>
+    <div class="section-sub">Every step from initial outreach to shortlist — 6 campaigns combined · Dec 2025 – Mar 2026</div>
+
+    <div class="funnel-wrap">
+
+      <div class="funnel-step">
+        <div class="funnel-meta" style="text-align:right;">
+          <div class="funnel-num">214</div>
+          <div class="funnel-pct">Profiles identified</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:100%; background:#2C2C2A;">
+            <span class="funnel-bar-label">Profiles identified & sourced</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">206</div>
+          <div class="funnel-pct" style="color:#1D9E75;">96% of identified</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:96%; background:#378ADD;">
+            <span class="funnel-bar-label">Connection requests sent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">151</div>
+          <div class="funnel-pct" style="color:#1D9E75;">73% of invited</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:73%; background:#1D9E75;">
+            <span class="funnel-bar-label">Connections accepted</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">152</div>
+          <div class="funnel-pct">Messaged (incl. re-sends)</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:73%; background:#534AB7;">
+            <span class="funnel-bar-label">Messages sent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">123</div>
+          <div class="funnel-pct" style="color:#1D9E75;">81% of messaged</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:59%; background:#9FE1CB;">
+            <span class="funnel-bar-label" style="color:#04342C;">Replies received</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">15</div>
+          <div class="funnel-pct">7% of leads sourced</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:7%; background:#BA7517;">
+            <span class="funnel-bar-label">Applied via form</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num">19</div>
+          <div class="funnel-pct">9% of leads sourced</div>
+        </div>
+        <div class="funnel-arrow">↓</div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:9%; background:#D85A30;">
+            <span class="funnel-bar-label">Reached interview stage</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="funnel-step">
+        <div class="funnel-meta">
+          <div class="funnel-num" style="color:#1D9E75;">5</div>
+          <div class="funnel-pct" style="color:#1D9E75;">2.3% of leads sourced</div>
+        </div>
+        <div class="funnel-arrow"></div>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:2.3%; background:#1D9E75; min-width:120px;">
+            <span class="funnel-bar-label">★ Shortlisted</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="insight-box">
+      <strong>Reading the funnel:</strong> Of 214 profiles identified and contacted, <strong>73% accepted</strong> the connection and <strong>81% of those replied</strong> to the message — strong engagement rates. The drop-off happens at application: only <strong>15 applied via the form (7%)</strong>, but <strong>19 reached interview stage (9%)</strong> — meaning some were identified and invited directly without going through the public form. Ultimately <strong>5 candidates from proactive outreach are shortlisted</strong>, representing a 2.3% lead-to-shortlist conversion. This is a healthy rate for a niche deep-tech CEO search.
+    </div>
+  </div>
+
+  <!-- SECTION 2: PER CAMPAIGN -->
+  <div class="section">
+    <div class="section-title">Conversion per campaign</div>
+    <div class="section-sub">How each Dripify campaign performed at each funnel stage</div>
+
+    <table class="camp-table">
+      <thead>
+        <tr>
+          <th style="width:140px;">Campaign</th>
+          <th>Leads</th>
+          <th>Invites</th>
+          <th>Accepted</th>
+          <th>Acc. %</th>
+          <th>Messaged</th>
+          <th>Replies</th>
+          <th>Reply %</th>
+          <th>Applied</th>
+          <th>Interview</th>
+          <th>Shortlist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="camp-name">TarGlio</span></td>
+          <td>66</td>
+          <td>65</td>
+          <td>45</td>
+          <td><span class="ok">69%</span></td>
+          <td>40</td>
+          <td>32</td>
+          <td><span class="good">80%</span></td>
+          <td>5</td>
+          <td>8</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><span class="camp-name">ONAKids</span></td>
+          <td>55</td>
+          <td>53</td>
+          <td>42</td>
+          <td><span class="good">79%</span></td>
+          <td>56</td>
+          <td>38</td>
+          <td><span class="good">68%</span></td>
+          <td>2</td>
+          <td>2</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><span class="camp-name">Biotech Pool</span></td>
+          <td>36</td>
+          <td>35</td>
+          <td>24</td>
+          <td><span class="ok">69%</span></td>
+          <td>25</td>
+          <td>20</td>
+          <td><span class="good">80%</span></td>
+          <td>4</td>
+          <td>4</td>
+          <td><span class="good">3</span></td>
+        </tr>
+        <tr>
+          <td><span class="camp-name">MedTech Pool</span></td>
+          <td>20</td>
+          <td>20</td>
+          <td>17</td>
+          <td><span class="good">85%</span></td>
+          <td>16</td>
+          <td>12</td>
+          <td><span class="ok">75%</span></td>
+          <td>1</td>
+          <td>3</td>
+          <td><span class="good">1</span></td>
+        </tr>
+        <tr>
+          <td><span class="camp-name">Sorbmetrics</span></td>
+          <td>22</td>
+          <td>22</td>
+          <td>15</td>
+          <td><span class="ok">68%</span></td>
+          <td>6</td>
+          <td>15</td>
+          <td><span class="good">100%*</span></td>
+          <td>2</td>
+          <td>2</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td><span class="camp-name">ENDOMET</span></td>
+          <td>11</td>
+          <td>11</td>
+          <td>8</td>
+          <td><span class="ok">73%</span></td>
+          <td>9</td>
+          <td>6</td>
+          <td><span class="ok">67%</span></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr style="border-top:1px solid #e0ddd6; font-weight:600;">
+          <td>Total</td>
+          <td>210</td>
+          <td>206</td>
+          <td>151</td>
+          <td><span class="good">73%</span></td>
+          <td>152</td>
+          <td>123</td>
+          <td><span class="good">81%</span></td>
+          <td>15</td>
+          <td>19</td>
+          <td><span class="good">5</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">* Sorbmetrics reply count includes inbound candidates also in the Dripify list · Some leads appear in multiple campaigns — deduplicated in totals</p>
+  </div>
+
+  <!-- SECTION 3: WHO APPLIED FROM DRIPIFY -->
+  <div class="section">
+    <div class="section-title">Dripify leads who applied & advanced</div>
+    <div class="section-sub">15 leads submitted an application form · 5 are shortlisted</div>
+
+    <p class="sl" style="margin-bottom:10px;">Applied via form — 15 candidates</p>
+    <div class="applied-list">
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#1D9E75; color:#fff;">★</div>
+        <div><div class="applied-name">Timothy Cash</div><div class="applied-sub">Biotech Pool campaign</div></div>
+        <span class="pill pill-star">Shortlist</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#1D9E75; color:#fff;">★</div>
+        <div><div class="applied-name">Silvia Gómez Montes</div><div class="applied-sub">Biotech Pool campaign</div></div>
+        <span class="pill pill-star">Shortlist</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#1D9E75; color:#fff;">★</div>
+        <div><div class="applied-name">Javier Rodriguez Saiz</div><div class="applied-sub">Biotech Pool campaign</div></div>
+        <span class="pill pill-star">Shortlist</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#1D9E75; color:#fff;">★</div>
+        <div><div class="applied-name">David Luis Milia Garrote</div><div class="applied-sub">MedTech Pool campaign</div></div>
+        <span class="pill pill-star">Shortlist</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#1D9E75; color:#fff;">★</div>
+        <div><div class="applied-name">Francisco Rico</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-star">Shortlist</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">JD</div>
+        <div><div class="applied-name">Jonathan Dando</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-blue">Interview sched.</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">JP</div>
+        <div><div class="applied-name">Juan Jose Perez Villar</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-blue">Interview req.</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#FBEAF0; color:#993556;">AS</div>
+        <div><div class="applied-name">Alessandro Scandurra</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-pink">TarGlio</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#FBEAF0; color:#993556;">AP</div>
+        <div><div class="applied-name">Antonio Puertas Bonachela</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-pink">TarGlio</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#FBEAF0; color:#993556;">JC</div>
+        <div><div class="applied-name">Josselin Caradec</div><div class="applied-sub">TarGlio campaign</div></div>
+        <span class="pill pill-pink">TarGlio</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#FAEEDA; color:#BA7517;">DB</div>
+        <div><div class="applied-name">Dana Bernhardt</div><div class="applied-sub">Sorbmetrics campaign</div></div>
+        <span class="pill pill-amber">Sorbmetrics</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">DR</div>
+        <div><div class="applied-name">Devendra Ridhurkar</div><div class="applied-sub">ENDOMET campaign</div></div>
+        <span class="pill pill-green">ENDOMET</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">MA</div>
+        <div><div class="applied-name">Mario Arpaia</div><div class="applied-sub">ONAKids campaign</div></div>
+        <span class="pill pill-blue">ONAKids</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#EEEDFE; color:#534AB7;">LC</div>
+        <div><div class="applied-name">Lily Chen</div><div class="applied-sub">MedTech Pool campaign</div></div>
+        <span class="pill pill-purple">MedTech Pool</span>
+      </div>
+      <div class="applied-card">
+        <div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">MB</div>
+        <div><div class="applied-name">Mikita Butsko</div><div class="applied-sub">ONAKids campaign</div></div>
+        <span class="pill pill-gray">No-go</span>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:16px;">
+      <strong>Key takeaway:</strong> The <strong>Biotech Pool</strong> was the most effective campaign for quality — it produced 3 out of 5 shortlisted candidates (Timothy Cash, Silvia Gómez Montes, Javier Rodriguez Saiz) despite being a general pool rather than project-specific. <strong>TarGlio</strong> produced the most applicants (5) but 0 shortlisted — candidates are still in the active pipeline. The <strong>MedTech Pool</strong> produced David Milia Garrote, one of the strongest candidates overall.
+    </div>
+  </div>
+
+  <div class="footer">
+    Does Recruitment · wouter@doesrecruitment.com · Outreach funnel analysis · March 2026 · Confidential
+  </div>
+
+</div>
+</body>
+</html>

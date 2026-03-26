@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Collider — Candidate Source Attribution</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 1000px; margin: 0 auto; }
+
+  .cover { background: #1a1a18; border-radius: 14px; padding: 44px 48px 36px; margin-bottom: 20px; }
+  .cover-top { display: flex; justify-content: space-between; margin-bottom: 32px; }
+  .cover-logo { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #888780; }
+  .cover-date { font-size: 11px; color: #888780; }
+  .cover h1 { font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .cover p { font-size: 13px; color: #888780; margin-bottom: 32px; }
+  .cover-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 0.5px solid #333; padding-top: 24px; }
+  .cs { padding: 0 20px; border-right: 0.5px solid #333; }
+  .cs:first-child { padding-left: 0; }
+  .cs:last-child { border-right: none; }
+  .cs-val { font-size: 32px; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 4px; }
+  .cs-lbl { font-size: 11px; color: #888780; }
+  .cs-val.green { color: #1D9E75; }
+  .cs-val.blue { color: #378ADD; }
+
+  .section { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .section-title { font-size: 16px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .section-sub { font-size: 12px; color: #888780; margin-bottom: 22px; }
+  .sl { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 10px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 20px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .ml { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .mv { font-size: 28px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .mv.green { color: #1D9E75; }
+  .mv.blue { color: #185FA5; }
+  .mv.amber { color: #BA7517; }
+  .ms { font-size: 11px; margin-top: 3px; }
+  .ms.g { color: #1D9E75; }
+  .ms.n { color: #888780; }
+
+  /* Big source split visual */
+  .source-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .source-box { border-radius: 10px; padding: 20px 22px; }
+  .source-box.inbound { background: #E6F1FB; border: 1px solid #B5D4F4; }
+  .source-box.dripify { background: #EAF3DE; border: 1px solid #C0DD97; }
+  .source-box-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .source-box.inbound .source-box-label { color: #185FA5; }
+  .source-box.dripify .source-box-label { color: #3B6D11; }
+  .source-box-num { font-size: 48px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+  .source-box.inbound .source-box-num { color: #185FA5; }
+  .source-box.dripify .source-box-num { color: #1D9E75; }
+  .source-box-sub { font-size: 12px; margin-bottom: 14px; }
+  .source-box.inbound .source-box-sub { color: #185FA5; }
+  .source-box.dripify .source-box-sub { color: #3B6D11; }
+  .source-box-detail { font-size: 11px; line-height: 1.6; }
+  .source-box.inbound .source-box-detail { color: #0C447C; }
+  .source-box.dripify .source-box-detail { color: #27500A; }
+
+  /* Stacked bar */
+  .stacked-bar { display: flex; height: 36px; border-radius: 6px; overflow: hidden; gap: 2px; margin-bottom: 8px; }
+  .stacked-seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #fff; }
+
+  /* Candidate table */
+  .cand-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .cand-table thead tr { border-bottom: 0.5px solid #e0ddd6; }
+  .cand-table thead th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #888780; padding: 0 10px 8px 0; white-space: nowrap; }
+  .cand-table tbody tr { border-bottom: 0.5px solid #f0ede6; }
+  .cand-table tbody tr:last-child { border-bottom: none; }
+  .cand-table tbody td { padding: 8px 10px 8px 0; vertical-align: top; }
+  .cn { font-weight: 600; color: #1a1a18; font-size: 12px; }
+  .cr { font-size: 10px; color: #888780; margin-top: 1px; }
+
+  .source-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; padding: 3px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+  .sb-dripify { background: #EAF3DE; color: #3B6D11; }
+  .sb-inbound { background: #E6F1FB; color: #185FA5; }
+  .sb-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .pill { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; display: inline-block; }
+  .pill-green { background: #EAF3DE; color: #3B6D11; }
+  .pill-blue { background: #E6F1FB; color: #185FA5; }
+  .pill-amber { background: #FAEEDA; color: #BA7517; }
+  .pill-pink { background: #FBEAF0; color: #993556; }
+  .pill-teal { background: #E1F5EE; color: #0F6E56; }
+  .pill-purple { background: #EEEDFE; color: #534AB7; }
+  .pill-gray { background: #f5f4f0; color: #888780; }
+  .pill-red { background: #FCEBEB; color: #A32D2D; }
+
+  .status-done { color: #1D9E75; font-weight: 600; font-size: 11px; }
+  .status-scheduled { color: #BA7517; font-weight: 600; font-size: 11px; }
+  .status-request { color: #185FA5; font-weight: 600; font-size: 11px; }
+  .status-nogo { color: #A32D2D; font-weight: 600; font-size: 11px; }
+  .status-na { color: #b4b2a9; font-size: 11px; }
+
+  .shortlist-yes { display: inline-block; background: #1D9E75; color: #fff; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .shortlist-no { color: #b4b2a9; font-size: 11px; }
+
+  /* Funnel comparison */
+  .funnel-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .funnel-col { }
+  .funnel-col-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .funnel-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .frow { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 0.5px solid #f0ede6; }
+  .frow:last-child { border-bottom: none; }
+  .flabel { font-size: 11px; color: #888780; flex: 1; }
+  .fnum { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; }
+  .fpct { font-size: 11px; color: #b4b2a9; min-width: 32px; text-align: right; }
+  .fbar-wrap { width: 80px; background: #f5f4f0; border-radius: 2px; height: 5px; overflow: hidden; }
+  .fbar { height: 100%; border-radius: 2px; }
+
+  .insight-box { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; margin-top: 16px; }
+  .insight-box p { font-size: 12px; color: #888780; line-height: 1.6; }
+  .insight-box strong { color: #1a1a18; }
+
+  .footer { text-align: center; padding: 16px 0 8px; font-size: 11px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">The Collider · Mobile World Capital</div>
+      <div class="cover-date">Source Attribution · March 2026</div>
+    </div>
+    <h1>Candidate Source Attribution</h1>
+    <p>Where did our candidates come from? Proactive outreach vs inbound — across 45 applicants who reached interview stage</p>
+    <div class="cover-stats">
+      <div class="cs">
+        <div class="cs-val">45</div>
+        <div class="cs-lbl">Reached interview stage</div>
+      </div>
+      <div class="cs">
+        <div class="cs-val blue">19</div>
+        <div class="cs-lbl">Via Dripify outreach</div>
+      </div>
+      <div class="cs">
+        <div class="cs-val green">26</div>
+        <div class="cs-lbl">Inbound / other channel</div>
+      </div>
+      <div class="cs">
+        <div class="cs-val">13</div>
+        <div class="cs-lbl">Shortlisted for matchmaking</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: SOURCE SPLIT -->
+  <div class="section">
+    <div class="section-title">Source split — interview stage</div>
+    <div class="section-sub">How candidates entered the pipeline at interview level</div>
+
+    <div class="source-split">
+      <div class="source-box inbound">
+        <div class="source-box-label">Inbound / Other channel</div>
+        <div class="source-box-num">26</div>
+        <div class="source-box-sub">58% of interview-stage candidates</div>
+        <div class="source-box-detail">
+          Candidates who applied directly via the Call4Entrepreneurs programme, were referred, or came through The Collider's own network and events. These were not proactively sourced by Does Recruitment.
+        </div>
+      </div>
+      <div class="source-box dripify">
+        <div class="source-box-label">Proactive outreach — Dripify</div>
+        <div class="source-box-num">19</div>
+        <div class="source-box-sub">42% of interview-stage candidates</div>
+        <div class="source-box-detail">
+          Candidates who were proactively sourced and contacted via Dripify LinkedIn campaigns across ONAKids, TarGlio, Sorbmetrics, ENDOMET, and the general Biotech / MedTech pools.
+        </div>
+      </div>
+    </div>
+
+    <p class="sl">Overall pipeline split — all stages</p>
+    <div class="stacked-bar">
+      <div class="stacked-seg" style="background:#185FA5; flex:26;">Inbound · 26</div>
+      <div class="stacked-seg" style="background:#1D9E75; flex:19;">Dripify · 19</div>
+    </div>
+    <div style="display:flex; gap:16px; margin-top:6px;">
+      <span style="font-size:10px; color:#888780; display:flex; align-items:center; gap:4px;"><span style="width:8px;height:8px;background:#185FA5;border-radius:2px;display:block;"></span>Inbound (58%)</span>
+      <span style="font-size:10px; color:#888780; display:flex; align-items:center; gap:4px;"><span style="width:8px;height:8px;background:#1D9E75;border-radius:2px;display:block;"></span>Dripify outreach (42%)</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="sl">Shortlist conversion by source</p>
+    <div class="funnel-compare">
+      <div class="funnel-col">
+        <div class="funnel-col-title"><span class="funnel-dot" style="background:#185FA5;"></span>Inbound candidates</div>
+        <div class="frow">
+          <span class="flabel">Reached interview</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:100%; background:#185FA5;"></div></div>
+          <span class="fnum">26</span>
+          <span class="fpct">100%</span>
+        </div>
+        <div class="frow">
+          <span class="flabel">Interview done</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:65%; background:#185FA5;"></div></div>
+          <span class="fnum">17</span>
+          <span class="fpct">68%</span>
+        </div>
+        <div class="frow">
+          <span class="flabel">Shortlisted</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:31%; background:#1D9E75;"></div></div>
+          <span class="fnum">8</span>
+          <span class="fpct">31%</span>
+        </div>
+      </div>
+      <div class="funnel-col">
+        <div class="funnel-col-title"><span class="funnel-dot" style="background:#1D9E75;"></span>Dripify outreach candidates</div>
+        <div class="frow">
+          <span class="flabel">Reached interview</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:100%; background:#1D9E75;"></div></div>
+          <span class="fnum">19</span>
+          <span class="fpct">100%</span>
+        </div>
+        <div class="frow">
+          <span class="flabel">Interview done</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:74%; background:#1D9E75;"></div></div>
+          <span class="fnum">14</span>
+          <span class="fpct">70%</span>
+        </div>
+        <div class="frow">
+          <span class="flabel">Shortlisted</span>
+          <div class="fbar-wrap"><div class="fbar" style="width:26%; background:#1D9E75;"></div></div>
+          <span class="fnum">5</span>
+          <span class="fpct">26%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <p><strong>Key insight:</strong> Inbound candidates convert to shortlist at <strong>31%</strong> vs <strong>26%</strong> for Dripify-sourced candidates. This is expected — inbound applicants self-select and tend to be more motivated/aligned with the programme. However, Dripify adds significant volume and reaches profiles that would never have applied organically. <strong>42% of all interview-stage candidates came from proactive outreach</strong> — a meaningful contribution to a pool that would otherwise be much smaller.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: DRIPIFY CAMPAIGN BREAKDOWN -->
+  <div class="section">
+    <div class="section-title">Dripify candidates — by campaign</div>
+    <div class="section-sub">Which campaigns produced interview-stage candidates</div>
+
+    <div class="three-col" style="margin-bottom:0;">
+      <div class="metric-card">
+        <p class="ml">TarGlio campaign</p>
+        <p class="mv green">8</p>
+        <p class="ms g">42% of Dripify interviews</p>
+      </div>
+      <div class="metric-card">
+        <p class="ml">Biotech & MedTech Pools</p>
+        <p class="mv blue">7</p>
+        <p class="ms n">37% of Dripify interviews</p>
+      </div>
+      <div class="metric-card">
+        <p class="ml">ONAKids & Sorbmetrics</p>
+        <p class="mv amber">4</p>
+        <p class="ms n">21% of Dripify interviews</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: FULL INTERVIEW LIST WITH SOURCE -->
+  <div class="section">
+    <div class="section-title">All interview-stage candidates — source attributed</div>
+    <div class="section-sub">45 candidates who reached interview stage, tagged by source channel</div>
+
+    <table class="cand-table">
+      <thead>
+        <tr>
+          <th style="width:180px;">Candidate</th>
+          <th style="width:130px;">Source</th>
+          <th style="width:100px;">Status</th>
+          <th style="width:80px;">Shortlist</th>
+          <th style="width:120px;">Project match</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- SHORTLISTED FIRST -->
+        <tr><td colspan="6" style="padding:8px 0 4px; font-size:10px; font-weight:600; color:#1D9E75; text-transform:uppercase; letter-spacing:0.07em;">★ Shortlisted — 13 candidates</td></tr>
+
+        <tr>
+          <td><div class="cn">Cristina Aguilera Xiol</div><div class="cr">CEO & Founder · Labsinlove</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-green">ENDOMET</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Timothy Cash</div><div class="cr">Co-Founder · Rejuversen</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · Biotech Pool</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-green">ENDOMET</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Xian Weng Jiang</div><div class="cr">Dir. Product Solutions · Mytos</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-green">ENDOMET</span> <span class="pill pill-pink">TarGlio</span></td>
+          <td style="font-size:11px; color:#888780;">Can't attend matchmaking, but advances</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Silvia Gomez Montes</div><div class="cr">CEO & Co-Founder · SENS Solutions</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · Biotech Pool</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Yves Prevoo</div><div class="cr">Founder & CEO · easee (acq. J&J)</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">Can't attend matchmaking, but advances</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Nicolás Escartin</div><div class="cr">COO & Co-Founder · Qbeast</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-blue">ONAKids</span> <span class="pill pill-teal">OpticMizing</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Pamela Pardini</div><div class="cr">Project Manager · Mapsi Photonics</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-blue">ONAKids</span> <span class="pill pill-pink">TarGlio</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Hugo Macedo</div><div class="cr">People & Ops Lead · Complear</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span> <span class="pill pill-pink">TarGlio</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">David Luis Milia Garrote</div><div class="cr">Chairman/CEO · Canadian Energy Nexus</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · MedTech Pool</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Alvaro Montero Bockos</div><div class="cr">Growth Consultant · GrantTree London</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Andres Clarós</div><div class="cr">Founder · Ancla Project Blue</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-teal">OpticMizing</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Francisco Rico</div><div class="cr">Co-Founder</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · TarGlio</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-purple">Ulisses DS</span> <span class="pill pill-teal">OpticMizing</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Javier Rodríguez Saiz</div><div class="cr">Co-Founder · Smart Foods Global</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · Biotech Pool</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-yes">Shortlist ★</span></td>
+          <td><span class="pill pill-purple">Ulisses DS</span> <span class="pill pill-teal">OpticMizing</span></td>
+          <td style="font-size:11px; color:#888780;">GO — Matchmaking event</td>
+        </tr>
+
+        <!-- INTERVIEW DONE - NOT SHORTLISTED -->
+        <tr><td colspan="6" style="padding:10px 0 4px; font-size:10px; font-weight:600; color:#888780; text-transform:uppercase; letter-spacing:0.07em;">Interview done — not shortlisted</td></tr>
+
+        <tr>
+          <td><div class="cn">Mario Arpaia</div><div class="cr">CEO & Co-Founder · Suture Sense AI</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">Consultant profile, doubts</td>
+        </tr>
+        <tr>
+          <td><div class="cn">ROSARIO COSPEDAL</div><div class="cr">COO · Blue Healthcare</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">Interim profile, not willing to commit 100%</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Slav Fokin</div><div class="cr">Founder · Grantalist</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">EdTech background, no Spanish, doubt</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Nil Sancho</div><div class="cr">Head Market Access · LATAM</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">Low experience / low risk tolerance</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Mikita Butsko</div><div class="cr">Mentor · Startupbootcamp</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-blue">ONAKids</span></td>
+          <td style="font-size:11px; color:#888780;">No Spanish, doubt</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Alin Tobares</div><div class="cr">COO / CTO profile</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · TarGlio</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Profile better suited for COO/CSO/CTO</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Sami Rtimi Sboui</div><div class="cr">Lead Consultant · DROP Innovations</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span></td>
+          <td style="font-size:11px; color:#888780;">Not The Collider profile — ego too high</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Dana Bernhardt</div><div class="cr">Senior Research Scientist · Pack2Earth</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · Sorbmetrics</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span></td>
+          <td style="font-size:11px; color:#888780;">No CEO experience</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Andrés Montefeltro</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ENDOMET</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Interim profile, not 100% commitment</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Ariadna Montero</div><div class="cr">Co-Founder · Orikine Bio</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Standby for projects later in the year</td>
+        </tr>
+        <tr>
+          <td><div class="cn">David Sagüés</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Ask for references — Basque Country</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Josselin Caradec</div><div class="cr">Board Observer · Curlew Bio</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · TarGlio</span></td>
+          <td><span class="status-done">Done</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-green">ENDOMET</span> <span class="pill pill-pink">TarGlio</span></td>
+          <td style="font-size:11px; color:#888780;">Advancing in project pipeline</td>
+        </tr>
+
+        <!-- SCHEDULED / IN PROGRESS -->
+        <tr><td colspan="6" style="padding:10px 0 4px; font-size:10px; font-weight:600; color:#888780; text-transform:uppercase; letter-spacing:0.07em;">Scheduled / in progress</td></tr>
+
+        <tr>
+          <td><div class="cn">Jonathan Dando</div><div class="cr">Hybrid CEO · Mirare Ltd</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · TarGlio</span></td>
+          <td><span class="status-scheduled">Scheduled</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-green">ENDOMET</span></td>
+          <td style="font-size:11px; color:#888780;">Interview scheduled</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Juan Jose Perez Villar</div><div class="cr">CEO · QABY Biotech</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · TarGlio</span></td>
+          <td><span class="status-request">Request sent</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-pink">TarGlio</span></td>
+          <td style="font-size:11px; color:#888780;">Interview request sent</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Bruno Pacheco</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-request">Request sent</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">TBD</span></td>
+          <td style="font-size:11px; color:#888780;">Interview request sent</td>
+        </tr>
+
+        <!-- NO GO / DECLINED -->
+        <tr><td colspan="6" style="padding:10px 0 4px; font-size:10px; font-weight:600; color:#A32D2D; text-transform:uppercase; letter-spacing:0.07em;">No-go / not proceeded</td></tr>
+
+        <tr>
+          <td><div class="cn">Arian Avato</div><div class="cr">CEO · Smart.e startup</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-nogo">No work permit</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-amber">Sorbmetrics</span></td>
+          <td style="font-size:11px; color:#888780;">No right to work in Spain</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Marc Hernandez</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-nogo">No-go</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Corporate profile, no founder experience</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Francisco Alvarado</div></td>
+          <td><span class="source-badge sb-dripify"><span class="sb-dot" style="background:#1D9E75;"></span>Dripify · ONAKids</span></td>
+          <td><span class="status-nogo">No-go</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">No work permit in Spain</td>
+        </tr>
+        <tr>
+          <td><div class="cn">Pietro Lucchini</div></td>
+          <td><span class="source-badge sb-inbound"><span class="sb-dot" style="background:#185FA5;"></span>Inbound</span></td>
+          <td><span class="status-nogo">No-go</span></td>
+          <td><span class="shortlist-no">—</span></td>
+          <td><span class="pill pill-gray">—</span></td>
+          <td style="font-size:11px; color:#888780;">Consultant/mentor profile, not founder</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    Does Recruitment · wouter@doesrecruitment.com · Source attribution analysis · March 2026 · Confidential
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biotech Sourcing Pool — Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #EEEDFE; color: #534AB7; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  .notice { background: #EEEDFE; border-left: 3px solid #AFA9EC; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #534AB7; }
+  .notice strong { color: #26215C; font-weight: 600; }
+
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.purple { color: #534AB7; }
+  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
+  .metric-sub.neutral { color: #888780; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #888780; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
+
+  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
+  .action-row:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .action-label { font-size: 12px; color: #888780; flex: 1; }
+  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .action-pct { font-size: 11px; color: #b4b2a9; min-width: 32px; text-align: right; }
+
+  .lead-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .lead-table thead tr { border-bottom: 0.5px solid #e0ddd6; }
+  .lead-table thead th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 8px 8px 0; }
+  .lead-table tbody tr { border-bottom: 0.5px solid #f0ede6; }
+  .lead-table tbody tr:last-child { border-bottom: none; }
+  .lead-table tbody td { padding: 7px 8px 7px 0; vertical-align: middle; }
+  .avatar-sm { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
+  .name-cell { display: flex; align-items: center; gap: 8px; }
+  .lead-name { font-weight: 600; color: #1a1a18; }
+  .lead-role { font-size: 11px; color: #888780; }
+  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; }
+  .act-connect { background: #E6F1FB; color: #185FA5; }
+  .act-message { background: #EAF3DE; color: #3B6D11; }
+  .act-view { background: #f5f4f0; color: #888780; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Biotech Sourcing Pool — General Campaign</h1>
+      <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">Feb — Mar 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- Notice -->
+  <div class="notice">
+    <strong>General sourcing pool — not project-specific.</strong> This campaign targeted Barcelona-based biotech founders, CEOs and co-founders across multiple sectors. Leads from this pool can be matched to open Collider projects as needed.
+  </div>
+
+  <!-- Outreach KPIs -->
+  <p class="section-label">Outreach — Dripify campaign</p>
+  <div class="metric-grid-4">
+    <div class="metric-card">
+      <p class="metric-label">Invites sent</p>
+      <p class="metric-value">35</p>
+      <p class="metric-sub neutral">Feb — Mar 2026</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Accepted</p>
+      <p class="metric-value">24</p>
+      <p class="metric-sub">69% acceptance rate</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Messaged</p>
+      <p class="metric-value">25</p>
+      <p class="metric-sub neutral">Follow-ups sent</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Replies received</p>
+      <p class="metric-value">20</p>
+      <p class="metric-sub">57% reply rate</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#534AB7;"></div></div>
+        <span class="funnel-num">35</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:69%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">24</span>
+        <span class="funnel-pct">69%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:71%; background:#534AB7;"></div></div>
+        <span class="funnel-num">25</span>
+        <span class="funnel-pct">71%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:57%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">20</span>
+        <span class="funnel-pct">57%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:46%; background:#888780;"></div></div>
+        <span class="funnel-num">16</span>
+        <span class="funnel-pct">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Lead actions breakdown</p>
+      <div class="action-row">
+        <div class="action-dot" style="background:#1D9E75;"></div>
+        <span class="action-label">Messages sent</span>
+        <span class="action-num">15</span>
+        <span class="action-pct">42%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#888780;"></div>
+        <span class="action-label">Profiles viewed</span>
+        <span class="action-num">13</span>
+        <span class="action-pct">36%</span>
+      </div>
+      <div class="action-row">
+        <div class="action-dot" style="background:#378ADD;"></div>
+        <span class="action-label">Connection requests</span>
+        <span class="action-num">8</span>
+        <span class="action-pct">22%</span>
+      </div>
+
+      <div style="border-top:0.5px solid #f0ede6; margin-top:14px; padding-top:14px;">
+        <p class="section-label" style="margin-bottom:6px;">Total leads in pool</p>
+        <p style="font-size:28px; font-weight:600; color:#534AB7; line-height:1;">36</p>
+        <p style="font-size:11px; color:#888780; margin-top:4px;">Barcelona biotech ecosystem · founders, CEOs & co-founders</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Leads table -->
+  <p class="section-label">Sourced leads — available for project matching</p>
+  <table class="lead-table">
+    <thead>
+      <tr>
+        <th style="width:260px;">Name</th>
+        <th>Role & Company</th>
+        <th style="width:110px;">Last action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">MS</div><span class="lead-name">Marco Straccia</span></div></td>
+        <td><div class="lead-role">Co-Founder & CEO — FRESCI Human Health Innovation</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">MB</div><span class="lead-name">Maria Buxadé Fortuny</span></div></td>
+        <td><div class="lead-role">CEO & Co-Founder — Alterna Therapeutics</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">GL</div><span class="lead-name">Gisela Lorente</span></div></td>
+        <td><div class="lead-role">CEO — Aptadel Therapeutics</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">JG</div><span class="lead-name">Joan Grasas</span></div></td>
+        <td><div class="lead-role">CEO — DEBIOS Dx</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">JC</div><span class="lead-name">João Curado</span></div></td>
+        <td><div class="lead-role">Co-Founder & CEO — Flomics</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">MR</div><span class="lead-name">Monica Rodriguez De La Vega</span></div></td>
+        <td><div class="lead-role">Co-Founder & CEO — Manina Medtech</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">AG</div><span class="lead-name">Andrea Giordano</span></div></td>
+        <td><div class="lead-role">Co-Founder & Head of Research — PLANeT BIOTECH</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">DP</div><span class="lead-name">David Pastorino</span></div></td>
+        <td><div class="lead-role">CEO & Partner — ZAGA Centers</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">RV</div><span class="lead-name">Roc Viñas</span></div></td>
+        <td><div class="lead-role">Co-Founder & CEO — Citring</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#EAF3DE; color:#3B6D11;">GF</div><span class="lead-name">Gonzalo Fernández-Miranda</span></div></td>
+        <td><div class="lead-role">Co-Founder & CEO — CureAge Therapeutics</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">TC</div><span class="lead-name">Timothy Cash</span></div></td>
+        <td><div class="lead-role">Co-Founder — Rejuversen</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">AM</div><span class="lead-name">Ariadna Montero-Blay</span></div></td>
+        <td><div class="lead-role">Co-Founder & Head of Innovation — Orikine Bio</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">AN</div><span class="lead-name">Aaron M. New</span></div></td>
+        <td><div class="lead-role">Founder — Cisgenica</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">IF</div><span class="lead-name">Ivan Fedyunin</span></div></td>
+        <td><div class="lead-role">Partner — ABE (Accelerating Breakthroughs in EB)</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#E6F1FB; color:#185FA5;">JR</div><span class="lead-name">Javier Rodriguez Saiz</span></div></td>
+        <td><div class="lead-role">Co-Founder — Smart Foods Global</div></td>
+        <td><span class="action-badge act-connect">Connect sent</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">MJ</div><span class="lead-name">Marta Jubero Domènech</span></div></td>
+        <td><div class="lead-role">CEO & Founder — RODA Cosmetics</div></td>
+        <td><span class="action-badge act-view">Profile viewed</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">IS</div><span class="lead-name">Ivelisse Sanchez</span></div></td>
+        <td><div class="lead-role">Founder & CSO — BIOINTAXIS</div></td>
+        <td><span class="action-badge act-view">Profile viewed</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">MS</div><span class="lead-name">Marc Serra Bartra</span></div></td>
+        <td><div class="lead-role">CBDO & Co-Founder — AXIAL BIOTECH</div></td>
+        <td><span class="action-badge act-message">Messaged</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">OI</div><span class="lead-name">Oriol Iborra Egea</span></div></td>
+        <td><div class="lead-role">CEO — NIMBLE Diagnostics</div></td>
+        <td><span class="action-badge act-view">Profile viewed</span></td>
+      </tr>
+      <tr>
+        <td><div class="name-cell"><div class="avatar-sm" style="background:#f5f4f0; color:#5F5E5A;">FV</div><span class="lead-name">Felipe Velasquez</span></div></td>
+        <td><div class="lead-role">CEO — Omnio AB</div></td>
+        <td><span class="action-badge act-view">Profile viewed</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Generated March 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -12,8 +12,7 @@
   .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
-  .badge-blue { background: #E6F1FB; color: #185FA5; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #FFF0EA; color: #B5521A; }
 
   .notice { background: #E6F1FB; border-left: 3px solid #378ADD; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #185FA5; }
   .notice strong { color: #0C447C; font-weight: 600; }
@@ -26,10 +25,10 @@
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
   .metric-value.blue { color: #185FA5; }
-  .metric-value.green { color: #1D9E75; }
   .metric-value.amber { color: #BA7517; }
+  .metric-value.green { color: #1D9E75; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
-  .metric-sub.g { color: #1D9E75; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
@@ -42,33 +41,22 @@
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
   .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
 
-  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
+  .action-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
   .action-row:last-child { border-bottom: none; }
   .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .action-label { font-size: 12px; color: #888780; flex: 1; }
   .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .action-pct { font-size: 11px; color: #b4b2a9; margin-left: 6px; }
 
-  .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
-  .progress-seg { height: 6px; border-radius: 3px; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-  .stage-col { margin-bottom: 16px; }
-  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
-  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
-
-  .cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
-  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
-  .cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
-  .cand-role { font-size: 10px; color: #888780; }
-  .stage-pill { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
-  .pill-new { background: #f5f4f0; color: #888780; }
-  .pill-connect { background: #E6F1FB; color: #185FA5; }
-  .pill-message { background: #EAF3DE; color: #3B6D11; }
+  .lead-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .lead-row:last-child { border-bottom: none; }
+  .avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
+  .lead-name { font-size: 12px; font-weight: 600; color: #1a1a18; }
+  .lead-title { font-size: 10px; color: #888780; }
+  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .act-connect { background: #E6F1FB; color: #185FA5; }
+  .act-message { background: #EAF3DE; color: #3B6D11; }
+  .act-view { background: #f5f4f0; color: #888780; }
 
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
   .footer p { font-size: 11px; color: #b4b2a9; }
@@ -85,154 +73,179 @@
   <!-- Header -->
   <div class="header">
     <div class="header-left">
-      <h1>CEO OGYX (OrganoFluidyx Microsystems) — Recruitment Dashboard</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
+      <h1>CEO OGYX — Recruitment Dashboard</h1>
+      <p>The Collider Programme · Mobile World Capital · Does Recruitment · OrganoFluidyx Microsystems · LEITAT Barcelona</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge badge-blue">Week 1 · March 2026</div>
+      <div class="badge">Week 2 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
   <!-- Notice -->
   <div class="notice">
-    <strong>Campaign just launched.</strong> Dripify outreach started this week — all 7 connection requests sent, awaiting acceptances and replies. No Manatal pipeline data yet. Profiles targeted: MedDev founders, microfluidics specialists and BD profiles in the pharma/CRO ecosystem — primarily Barcelona-based.
+    <strong>Campaign active — no Manatal pipeline yet.</strong> Dripify outreach running with 7 leads sourced this week. Connections and replies pending. First Manatal candidates expected next week as responses come in.
   </div>
 
-  <!-- Outreach KPIs -->
-  <p class="section-label">Outreach — Dripify campaign</p>
+  <!-- KPIs -->
+  <p class="section-label">Outreach — Dripify campaign · Week 2</p>
   <div class="metric-grid-4">
     <div class="metric-card">
       <p class="metric-label">Leads sourced</p>
       <p class="metric-value">7</p>
-      <p class="metric-sub">LinkedIn Recruiter</p>
+      <p class="metric-sub up">↑ from 0 last week</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Connect requests sent</p>
-      <p class="metric-value blue">7</p>
+      <p class="metric-label">Connect requests</p>
+      <p class="metric-value blue">2</p>
       <p class="metric-sub">Awaiting acceptance</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Messages sent</p>
-      <p class="metric-value amber">0</p>
-      <p class="metric-sub">Pending acceptances</p>
+      <p class="metric-value green">1</p>
+      <p class="metric-sub">Ingrid Lansard</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Pipeline candidates</p>
-      <p class="metric-value green">0</p>
-      <p class="metric-sub">No Manatal data yet</p>
+      <p class="metric-label">Manatal pipeline</p>
+      <p class="metric-value amber">0</p>
+      <p class="metric-sub">Expected next week</p>
     </div>
   </div>
 
   <div class="two-col">
+
+    <!-- Funnel -->
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Leads sourced</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
+        <span class="funnel-num">7</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:57%; background:#888780;"></div></div>
+        <span class="funnel-num">4</span>
+        <span class="funnel-pct">57%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Connect sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:29%; background:#378ADD;"></div></div>
+        <span class="funnel-num">2</span>
+        <span class="funnel-pct">29%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Message sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">1</span>
+        <span class="funnel-pct">14%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Manatal pipeline</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">Campaign launched this week. Acceptances and replies building — expect first Manatal entries next update.</p>
+    </div>
+
+    <!-- Action breakdown -->
     <div class="card">
       <p class="section-label" style="margin-bottom:14px;">Lead actions breakdown</p>
       <div class="action-row">
+        <div class="action-dot" style="background:#888780;"></div>
+        <span class="action-label">Profiles viewed</span>
+        <span class="action-num">4</span>
+        <span class="action-pct">57%</span>
+      </div>
+      <div class="action-row">
         <div class="action-dot" style="background:#378ADD;"></div>
         <span class="action-label">Connection requests sent</span>
-        <span class="action-num">7</span>
+        <span class="action-num">2</span>
+        <span class="action-pct">29%</span>
       </div>
       <div class="action-row">
         <div class="action-dot" style="background:#1D9E75;"></div>
         <span class="action-label">Messages sent</span>
-        <span class="action-num">0</span>
+        <span class="action-num">1</span>
+        <span class="action-pct">14%</span>
       </div>
+
       <div style="border-top:0.5px solid #f0ede6; margin-top:14px; padding-top:14px;">
-        <p class="section-label" style="margin-bottom:6px;">MedDev / microfluidics focus</p>
-        <p style="font-size:11px; color:#888780; line-height:1.6;">Profiles targeted: MedDev founders and CEOs, microfluidics engineers, pharma/CRO BD — primarily Barcelona-based. OGYX is a 56-unit microfluidic OoC plate platform out of LEITAT, backed by The Collider.</p>
+        <p class="section-label" style="margin-bottom:8px;">Target profile</p>
+        <p style="font-size:11px; color:#888780; line-height:1.6;">MedDev founders / CEOs with microfluidics, organ-on-chip, or pharma hardware commercialisation background. Regulatory (FDA/EMA) experience a strong plus given 2025 FDA validation of OoC as animal testing alternative.</p>
       </div>
-    </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Pipeline status</p>
-      <div class="metric-grid-4" style="grid-template-columns: repeat(2,1fr); gap:8px; margin-bottom:14px;">
-        <div class="metric-card" style="padding:10px 12px;">
-          <p class="metric-label">Total candidates</p>
-          <p class="metric-value" style="font-size:20px;">0</p>
-        </div>
-        <div class="metric-card" style="padding:10px 12px;">
-          <p class="metric-label">Active</p>
-          <p class="metric-value blue" style="font-size:20px;">0</p>
-        </div>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">New candidates</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#888780;"></div></div>
-        <span class="funnel-num">0</span>
-        <span class="funnel-pct">—</span>
-      </div>
-      <p style="font-size:11px; color:#888780; margin-top:12px;">Pipeline is in early build phase. Dripify acceptances and replies expected this week.</p>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- Pipeline -->
-  <p class="section-label">Candidate pipeline — CEO OGYX</p>
-
-  <div class="progress-bar">
-    <div class="progress-seg" style="background:#378ADD; flex:7;"></div>
-  </div>
-  <div class="legend" style="margin-bottom:20px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Connect sent</div>
-  </div>
-
-  <!-- Stage 1 — empty -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#888780;"></div>
-      <span class="stage-title">Stage 1 — New candidates (Manatal)</span>
-      <span class="stage-count">0 candidates — pending</span>
+  <!-- Leads -->
+  <p class="section-label">Dripify leads — 7 profiles sourced</p>
+  <div class="card">
+    <div class="lead-row">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">IL</div>
+      <div style="flex:1;">
+        <div class="lead-name">Ingrid Lansard</div>
+        <div class="lead-title">Head of Commercial & BD — ABCDx SA · Barcelona</div>
+      </div>
+      <span class="action-badge act-message">Messaged</span>
     </div>
-    <p style="font-size:11px; color:#b4b2a9; padding: 8px 0;">No Manatal pipeline data available yet. Will be updated once candidates start responding.</p>
-  </div>
-
-  <hr class="divider">
-
-  <!-- Dripify leads -->
-  <p class="section-label">Dripify leads — awaiting response</p>
-  <div class="cand-grid">
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JA</div>
-      <div><div class="cand-name">Jaume Amat Riera</div><div class="cand-role">Founder, CEO & Chairman — Versa Biomedical</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">BL</div>
-      <div><div class="cand-name">Betiana Lerner</div><div class="cand-role">CEO & Co-founder — 7 Talos</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AP</div>
-      <div><div class="cand-name">Arnau Perdigó-Oliveras</div><div class="cand-role">CEO — Perdigó Medical</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AO</div>
-      <div><div class="cand-name">Alfredo Edoardo Ongaro</div><div class="cand-role">Bio Engineer Biosensors / Microfluidics — Onalabs Inno-Hub</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">IL</div>
-      <div><div class="cand-name">Ingrid Lansard</div><div class="cand-role">Head of Commercial & BD — ABCDx SA</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">CV</div>
-      <div><div class="cand-name">Cynthia Villarroel Spring</div><div class="cand-role">Innovation & PM Consultant · BD & Tech Transfer — Freelance</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
-    </div>
-    <div class="cand-card">
+    <div class="lead-row">
       <div class="avatar" style="background:#E6F1FB; color:#185FA5;">MR</div>
-      <div><div class="cand-name">Miguel Russo</div><div class="cand-role">Business Development Manager — Programa Centelha</div></div>
-      <span class="stage-pill pill-connect">Connect sent</span>
+      <div style="flex:1;">
+        <div class="lead-name">Miguel Russo</div>
+        <div class="lead-title">Business Development Manager — Programa Centelha · Spain</div>
+      </div>
+      <span class="action-badge act-connect">Connect sent</span>
+    </div>
+    <div class="lead-row">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AO</div>
+      <div style="flex:1;">
+        <div class="lead-name">Alfredo Edoardo Ongaro</div>
+        <div class="lead-title">Bio Engineer Biosensors / Microfluidics — Onalabs Inno-Hub</div>
+      </div>
+      <span class="action-badge act-connect">Connect sent</span>
+    </div>
+    <div class="lead-row">
+      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">JA</div>
+      <div style="flex:1;">
+        <div class="lead-name">Jaume Amat Riera</div>
+        <div class="lead-title">Founder, CEO & Chairman — Versa Biomedical · Barcelona</div>
+      </div>
+      <span class="action-badge act-view">Profile viewed</span>
+    </div>
+    <div class="lead-row">
+      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">BL</div>
+      <div style="flex:1;">
+        <div class="lead-name">Betiana Lerner</div>
+        <div class="lead-title">CEO & Co-Founder — 7 Talos · Barcelona</div>
+      </div>
+      <span class="action-badge act-view">Profile viewed</span>
+    </div>
+    <div class="lead-row">
+      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">AP</div>
+      <div style="flex:1;">
+        <div class="lead-name">Arnau Perdigó-Oliveras</div>
+        <div class="lead-title">CEO — Perdigó Medical · Barcelona</div>
+      </div>
+      <span class="action-badge act-view">Profile viewed</span>
+    </div>
+    <div class="lead-row">
+      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">CV</div>
+      <div style="flex:1;">
+        <div class="lead-name">Cynthia Villarroel Spring</div>
+        <div class="lead-title">Innovation & Project Management — R&D, BD & Tech Transfer · Freelance</div>
+      </div>
+      <span class="action-badge act-view">Profile viewed</span>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Generated March 2026 · Confidential</p>
+    <p>Week 2 · April 2026 · Confidential</p>
   </div>
 
 </div>

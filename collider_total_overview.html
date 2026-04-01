@@ -3,53 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Collider — Recruitment Overview</title>
+<title>The Collider — Recruitment Overview Week 2</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
   .page { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 
-  /* Header — same as GridWatch */
   .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
-  .badge-blue { background: #E6F1FB; color: #185FA5; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
 
-  /* Notice — same as GridWatch */
-  .notice { background: #E6F1FB; border-left: 3px solid #378ADD; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #185FA5; }
-  .notice strong { color: #0C447C; font-weight: 600; }
+  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
+  .notice strong { color: #0F6E56; font-weight: 600; }
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  /* Metric cards — same as GridWatch */
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
   .metric-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
   .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .metric-value.blue { color: #185FA5; }
   .metric-value.green { color: #1D9E75; }
+  .metric-value.blue { color: #185FA5; }
   .metric-value.amber { color: #BA7517; }
   .metric-value.purple { color: #534AB7; }
-  .metric-value.red { color: #A32D2D; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
-  .metric-sub.g { color: #1D9E75; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
 
-  /* Two col card — same as GridWatch */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
 
-  /* Action rows — same as GridWatch */
-  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
-  .action-row:last-child { border-bottom: none; }
-  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .action-label { font-size: 12px; color: #888780; flex: 1; }
-  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
-  .action-pct { font-size: 11px; color: #1D9E75; margin-left: 6px; }
+  /* WoW table */
+  .wow-table { width: 100%; border-collapse: collapse; }
+  .wow-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
+  .wow-table th:not(:first-child) { text-align: right; }
+  .wow-table td { padding: 8px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; }
+  .wow-table tr:last-child td { border-bottom: none; }
+  .wow-table td:not(:first-child) { text-align: right; }
+  .metric-name { font-weight: 500; color: #1a1a18; }
+  .up { color: #1D9E75; font-weight: 600; }
+  .nc { color: #888780; }
+  .dn { color: #A32D2D; font-weight: 600; }
 
-  /* Funnel items — same as GridWatch */
+  /* Funnel */
   .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
   .funnel-label { font-size: 12px; color: #888780; width: 160px; flex-shrink: 0; }
@@ -58,70 +56,39 @@
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 30px; text-align: right; }
   .funnel-pct { font-size: 11px; color: #888780; min-width: 42px; text-align: right; }
 
-  /* Progress bar + legend — same as GridWatch */
+  /* Progress bar + legend */
   .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
   .progress-seg { height: 6px; border-radius: 3px; }
   .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-  /* Stage / pipeline — same as GridWatch */
-  .stage-col { margin-bottom: 20px; }
-  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
-  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
-
-  /* Candidate cards — same as GridWatch */
-  .cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
-  .cand-card.new-project { background: #f9fdf6; border-color: #C0DD97; }
-  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
-  .cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
-  .cand-role { font-size: 10px; color: #888780; }
-  .cand-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
-  .stage-pill { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
-  .pill-new { background: #f5f4f0; color: #888780; }
-  .pill-connect { background: #E6F1FB; color: #185FA5; }
-  .pill-message { background: #EAF3DE; color: #3B6D11; }
-  .pill-interview { background: #E6F1FB; color: #185FA5; }
+  /* Project table */
+  .proj-table { width: 100%; border-collapse: collapse; }
+  .proj-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 8px 8px 0; border-bottom: 0.5px solid #e0ddd6; }
+  .proj-table th:not(:first-child) { text-align: center; }
+  .proj-table td { padding: 9px 8px 9px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; vertical-align: middle; }
+  .proj-table tr:last-child td { border-bottom: none; }
+  .proj-table td:not(:first-child) { text-align: center; }
+  .proj-name { font-weight: 600; color: #1a1a18; }
+  .proj-sector { font-size: 10px; color: #888780; }
+  .pill { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; display: inline-block; }
+  .pill-ref { background: #1D9E75; color: #fff; }
   .pill-talent { background: #EAF3DE; color: #3B6D11; }
-  .pill-inbound { background: #f5f4f0; color: #888780; }
+  .pill-interview { background: #E6F1FB; color: #185FA5; }
+  .pill-signed { background: #0F6E56; color: #fff; }
+  .pill-new { background: #f5f4f0; color: #888780; }
+  .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
 
-  /* Outreach table */
-  .out-table { width: 100%; border-collapse: collapse; }
-  .out-table thead th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
-  .out-table thead th:not(:first-child) { text-align: right; }
-  .out-table tbody tr { border-bottom: 0.5px solid #f0ede6; }
-  .out-table tbody tr:last-child { border-bottom: none; }
-  .out-table tbody td { padding: 9px 0; font-size: 12px; }
-  .out-table tbody td:not(:first-child) { text-align: right; }
-  .out-name { font-weight: 600; color: #1a1a18; }
-  .rate-good { color: #1D9E75; font-weight: 600; }
-  .rate-ok { color: #BA7517; font-weight: 600; }
-  .no-campaign { color: #b4b2a9; font-style: italic; }
-  .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 6px; border-radius: 10px; font-weight: 600; margin-left: 5px; vertical-align: middle; }
-  .new-row td { background: #f9fdf6; }
+  /* Avatar */
+  .proj-avatar { width: 26px; height: 26px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
 
-  /* Timeline */
-  .timeline { display: grid; grid-template-columns: 80px 1fr; gap: 0; }
-  .tl-month { font-size: 11px; font-weight: 600; color: #888780; padding: 12px 16px 12px 0; border-right: 2px solid #e0ddd6; text-align: right; position: relative; }
-  .tl-month::after { content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; background: #e0ddd6; }
-  .tl-content { padding: 8px 0 8px 20px; }
-  .tl-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0; }
-  .tl-chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  /* Highlights */
+  .highlight-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 4px; }
+  .highlight-card { background: #f5f4f0; border-radius: 8px; padding: 12px 14px; }
+  .highlight-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .highlight-sub { font-size: 11px; color: #888780; line-height: 1.5; }
 
-  /* Pool cards */
-  .pool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .pool-card { border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
-  .pool-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
-  .pool-sub { font-size: 11px; color: #888780; margin-bottom: 14px; }
-  .pool-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .pool-stat { background: #f5f4f0; border-radius: 6px; padding: 8px 10px; }
-  .pool-stat-val { font-size: 18px; font-weight: 600; color: #1a1a18; }
-  .pool-stat-lbl { font-size: 10px; color: #888780; }
-
-  /* Footer — same as GridWatch */
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
   .footer p { font-size: 11px; color: #b4b2a9; }
 
@@ -134,485 +101,338 @@
 <body>
 <div class="page">
 
-  <!-- HEADER -->
+  <!-- Header -->
   <div class="header">
     <div class="header-left">
       <h1>The Collider — Recruitment Progress Overview</h1>
-      <p>CEO & Co-Founder sourcing across 8 deep tech projects · Does Recruitment · Wouter Jaarsma</p>
+      <p>CEO & Co-Founder sourcing across 9 deep tech projects · Does Recruitment · Wouter Jaarsma</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge badge-blue">Week report · March 2026</div>
+      <div class="badge">Week 2 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
-  <!-- TOP KPIs -->
-  <p class="section-label">Overview — all projects combined</p>
+  <!-- Notice -->
+  <div class="notice">
+    <strong>Strong week-over-week progress across the board.</strong> ONAKids reached Stage 6 (Reference Check) — the furthest stage in the programme. ENDOMET Talent tripled (1→3). GridWatch and BraidStent both activated. Total Disruptive Talent pool: 14 candidates across 8 projects.
+  </div>
+
+  <!-- Top KPIs -->
+  <p class="section-label">Programme totals — Week 2</p>
   <div class="metric-grid-5">
     <div class="metric-card">
-      <p class="metric-label">Invites sent</p>
-      <p class="metric-value">231</p>
-      <p class="metric-sub">8 campaigns</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Leads sourced</p>
-      <p class="metric-value purple">239</p>
-      <p class="metric-sub">Total profiles</p>
-    </div>
-    <div class="metric-card">
       <p class="metric-label">Total candidates</p>
-      <p class="metric-value amber">108</p>
-      <p class="metric-sub">All pipelines</p>
+      <p class="metric-value">120</p>
+      <p class="metric-sub up">↑ +12 vs Week 1</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">In interview</p>
-      <p class="metric-value blue">14</p>
-      <p class="metric-sub">Across 4 projects</p>
+      <p class="metric-label">Dripify leads</p>
+      <p class="metric-value blue">257</p>
+      <p class="metric-sub up">↑ +26 Round 2</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Disruptive talent</p>
-      <p class="metric-value green">11</p>
-      <p class="metric-sub">Across 6 projects</p>
+      <p class="metric-value green">14</p>
+      <p class="metric-sub up">↑ +3 vs Week 1</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Reference check</p>
+      <p class="metric-value green">2</p>
+      <p class="metric-sub up">↑ NEW stage</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Signed</p>
+      <p class="metric-value purple">1</p>
+      <p class="metric-sub">Sorbmetrics ✓</p>
     </div>
   </div>
 
+  <!-- WoW comparison -->
+  <p class="section-label">Week-over-week comparison</p>
+  <div class="card" style="margin-bottom:24px;">
+    <table class="wow-table">
+      <thead>
+        <tr><th>Metric</th><th>Week 1</th><th>Week 2</th><th>Change</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="metric-name">Total candidates (all projects)</td><td>108</td><td>120</td><td class="up">↑ +12</td></tr>
+        <tr><td class="metric-name">Dripify leads sourced</td><td>231</td><td>257</td><td class="up">↑ +26</td></tr>
+        <tr><td class="metric-name">Disruptive Talent</td><td>11</td><td>14</td><td class="up">↑ +3</td></tr>
+        <tr><td class="metric-name">Interview stage (active)</td><td>14</td><td>18</td><td class="up">↑ +4</td></tr>
+        <tr><td class="metric-name">Reference check stage</td><td>0</td><td>2</td><td class="up">↑ NEW</td></tr>
+        <tr><td class="metric-name">Signed</td><td>1</td><td>1</td><td class="nc">→ stable</td></tr>
+        <tr><td class="metric-name">Active projects</td><td>8</td><td>9</td><td class="up">↑ BraidStent added</td></tr>
+        <tr><td class="metric-name">ENDOMET Disruptive Talent</td><td>1</td><td>3</td><td class="up">↑ +2</td></tr>
+        <tr><td class="metric-name">ONAKids — furthest stage</td><td>Stage 5 (Talent)</td><td>Stage 6 (Ref check)</td><td class="up">↑ advanced</td></tr>
+        <tr><td class="metric-name">GridWatch Manatal pipeline</td><td>1</td><td>5</td><td class="up">↑ +4</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pipeline funnel -->
   <div class="two-col">
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Outreach performance</p>
-      <div class="action-row">
-        <div class="action-dot" style="background:#378ADD;"></div>
-        <span class="action-label">Connection invites sent</span>
-        <span class="action-num">231</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#1D9E75;"></div>
-        <span class="action-label">Connections accepted</span>
-        <span class="action-num">151</span>
-        <span class="action-pct">73%</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#534AB7;"></div>
-        <span class="action-label">Messages sent</span>
-        <span class="action-num">152</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#9FE1CB;"></div>
-        <span class="action-label">Replies received</span>
-        <span class="action-num">123</span>
-        <span class="action-pct">81%</span>
-      </div>
-      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">GridWatch (17) and OGYX (7) launched this week — acceptances pending.</p>
-    </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Pipeline conversion</p>
+      <p class="section-label" style="margin-bottom:14px;">Programme pipeline funnel</p>
       <div class="funnel-item">
         <span class="funnel-label">Leads sourced</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
-        <span class="funnel-num">239</span>
+        <span class="funnel-num">257</span>
         <span class="funnel-pct">100%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Entered pipeline</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:45%; background:#378ADD;"></div></div>
-        <span class="funnel-num">108</span>
-        <span class="funnel-pct">45%</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Active</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:20%; background:#534AB7;"></div></div>
-        <span class="funnel-num">48</span>
-        <span class="funnel-pct">44%</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:47%; background:#378ADD;"></div></div>
+        <span class="funnel-num">120</span>
+        <span class="funnel-pct">47%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Interview stage</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6%; background:#BA7517;"></div></div>
-        <span class="funnel-num">14</span>
-        <span class="funnel-pct">13%</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7%; background:#185FA5;"></div></div>
+        <span class="funnel-num">18</span>
+        <span class="funnel-pct">15%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Disruptive talent</span>
+        <span class="funnel-label">Disruptive Talent</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">11</span>
-        <span class="funnel-pct">10%</span>
+        <span class="funnel-num">14</span>
+        <span class="funnel-pct">12%</span>
       </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Reference check</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:1%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">2</span>
+        <span class="funnel-pct">2%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Signed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.5%; background:#534AB7;"></div></div>
+        <span class="funnel-num">1</span>
+        <span class="funnel-pct">1%</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Outreach performance — all campaigns</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#378ADD;"></div></div>
+        <span class="funnel-num">231</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:65%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">151</span>
+        <span class="funnel-pct">73%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66%; background:#378ADD;"></div></div>
+        <span class="funnel-num">152</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:53%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">123</span>
+        <span class="funnel-pct">81%</span>
+      </div>
+      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">Based on Week 1 confirmed campaigns (ONAKids, Sorbmetrics, TarGlio, ENDOMET). GridWatch Round 2 + ENDOMET Round 2 + OGYX acceptance data pending.</p>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- OUTREACH PER PROJECT -->
-  <p class="section-label">Outreach per project — Dripify campaigns</p>
-  <table class="out-table">
+  <!-- Per project table -->
+  <p class="section-label">Pipeline per project — 9 active searches</p>
+
+  <div class="progress-bar">
+    <div class="progress-seg" style="background:#0F6E56; flex:2;"></div>
+    <div class="progress-seg" style="background:#1D9E75; flex:14;"></div>
+    <div class="progress-seg" style="background:#378ADD; flex:18;"></div>
+    <div class="progress-seg" style="background:#BA7517; flex:20;"></div>
+    <div class="progress-seg" style="background:#888780; flex:20;"></div>
+    <div class="progress-seg" style="background:#E24B4A; flex:46;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:20px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#0F6E56;"></div>Ref check / Signed (3)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive Talent (14)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview (18)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Application (20)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New / Shortlisted (20)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (46+)</div>
+  </div>
+
+  <table class="proj-table">
     <thead>
       <tr>
         <th>Project</th>
-        <th>Invites</th>
-        <th>Accepted</th>
-        <th>Acc. %</th>
-        <th>Messaged</th>
-        <th>Replies</th>
-        <th>Reply %</th>
-        <th>Period</th>
+        <th>Total</th>
+        <th>Best stage</th>
+        <th>Interview</th>
+        <th>Talent / Ref</th>
+        <th>Dripify leads</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="out-name">ONAKids</span></td>
-        <td>53</td><td>42</td>
-        <td><span class="rate-good">79%</span></td>
-        <td>56</td><td>38</td>
-        <td><span class="rate-good">68%</span></td>
-        <td>Dec — Jan</td>
+        <td>
+          <span class="proj-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</span>
+          <span class="proj-name">ENDOMET</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Biotech · Rare Disease</span>
+        </td>
+        <td>8</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>3</td>
+        <td style="color:#1D9E75; font-weight:600;">3 ★</td>
+        <td>26 <span style="font-size:10px; color:#1D9E75;">+15 R2</span></td>
+        <td><span class="pill pill-talent">Active</span></td>
       </tr>
       <tr>
-        <td><span class="out-name">TarGlio</span></td>
-        <td>65</td><td>45</td>
-        <td><span class="rate-ok">69%</span></td>
-        <td>40</td><td>32</td>
-        <td><span class="rate-good">80%</span></td>
-        <td>Feb — Mar</td>
+        <td>
+          <span class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">ON</span>
+          <span class="proj-name">ONAKids</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Digital Health · Pediatrics</span>
+        </td>
+        <td>33</td>
+        <td><span class="pill pill-ref">Stage 6 ✦</span></td>
+        <td>4</td>
+        <td style="color:#1D9E75; font-weight:600;">1 ★ + 2 ref</td>
+        <td>53</td>
+        <td><span class="pill pill-ref">Ref check</span></td>
       </tr>
       <tr>
-        <td><span class="out-name">Sorbmetrics</span></td>
-        <td>22</td><td>15</td>
-        <td><span class="rate-ok">68%</span></td>
-        <td>6</td><td>15</td>
-        <td><span class="rate-good">100%*</span></td>
-        <td>Jan — Mar</td>
+        <td>
+          <span class="proj-avatar" style="background:#FAEEDA; color:#BA7517;">SO</span>
+          <span class="proj-name">Sorbmetrics</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Materials · CleanTech</span>
+        </td>
+        <td>48</td>
+        <td><span class="pill pill-signed">Signed ✓</span></td>
+        <td>2</td>
+        <td style="color:#1D9E75; font-weight:600;">3 ★</td>
+        <td>22</td>
+        <td><span class="pill pill-signed">Filled</span></td>
       </tr>
       <tr>
-        <td><span class="out-name">ENDOMET</span></td>
-        <td>11</td><td>8</td>
-        <td><span class="rate-good">73%</span></td>
-        <td>9</td><td>6</td>
-        <td><span class="rate-ok">67%</span></td>
-        <td>Mar</td>
+        <td>
+          <span class="proj-avatar" style="background:#FBEAF0; color:#993556;">TG</span>
+          <span class="proj-name">TarGlio</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Biotech · Oncology</span>
+        </td>
+        <td>8</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>4</td>
+        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
+        <td>65</td>
+        <td><span class="pill pill-talent">Active</span></td>
       </tr>
       <tr>
-        <td><span class="out-name">OpticMizing</span></td>
-        <td colspan="6"><span class="no-campaign">No outreach campaign — inbound only</span></td>
+        <td>
+          <span class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</span>
+          <span class="proj-name">OpticMizing</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Deep Tech · Optics</span>
+        </td>
+        <td>8</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>0</td>
+        <td style="color:#1D9E75; font-weight:600;">2 ★</td>
         <td>—</td>
+        <td><span class="pill pill-new">Inbound only</span></td>
       </tr>
       <tr>
-        <td><span class="out-name">Ulisses DS</span></td>
-        <td colspan="6"><span class="no-campaign">No outreach campaign — inbound only</span></td>
+        <td>
+          <span class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</span>
+          <span class="proj-name">Ulisses DS</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Data Science · AI</span>
+        </td>
+        <td>4</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>0</td>
+        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
         <td>—</td>
+        <td><span class="pill pill-new">Inbound only</span></td>
       </tr>
-      <tr class="new-row">
-        <td><span class="out-name">GridWatch</span><span class="new-badge">NEW</span></td>
-        <td>17</td><td>—</td>
-        <td><span class="no-campaign">Pending</span></td>
-        <td>1</td><td>—</td>
-        <td><span class="no-campaign">Pending</span></td>
-        <td>Mar 2026</td>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</span>
+          <span class="proj-name">GridWatch</span><span class="new-badge">NEW</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Smart Grid · Energy · IREC</span>
+        </td>
+        <td>5</td>
+        <td><span class="pill pill-interview">Stage 4</span></td>
+        <td>2</td>
+        <td style="color:#888780;">—</td>
+        <td>18</td>
+        <td><span class="pill pill-interview">Growing</span></td>
       </tr>
-      <tr class="new-row">
-        <td><span class="out-name">OGYX</span><span class="new-badge">NEW</span></td>
-        <td>7</td><td>—</td>
-        <td><span class="no-campaign">Pending</span></td>
-        <td>0</td><td>—</td>
-        <td><span class="no-campaign">Pending</span></td>
-        <td>Mar 2026</td>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#FFF0EA; color:#B5521A;">OG</span>
+          <span class="proj-name">OGYX</span><span class="new-badge">NEW</span><br>
+          <span class="proj-sector" style="margin-left:34px;">MedDev · Organ-on-a-Chip · LEITAT</span>
+        </td>
+        <td>0</td>
+        <td><span class="pill pill-new">Outreach</span></td>
+        <td>0</td>
+        <td style="color:#888780;">—</td>
+        <td>7</td>
+        <td><span class="pill pill-new">Launching</span></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#FBEAF0; color:#993556;">BS</span>
+          <span class="proj-name">BraidStent</span><span class="new-badge">NEW</span><br>
+          <span class="proj-sector" style="margin-left:34px;">MedDev · Urology</span>
+        </td>
+        <td>6</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>2</td>
+        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
+        <td>—</td>
+        <td><span class="pill pill-interview">Active</span></td>
       </tr>
     </tbody>
   </table>
-  <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">* Sorbmetrics includes inbound candidates also reached via outreach · GridWatch & OGYX launched this week — acceptances pending</p>
+  <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">✦ ONAKids is the most advanced pipeline in the programme — Silvia Gomez Montes and Nicolas Escartin both in Stage 6 Reference Check.</p>
 
   <hr class="divider">
 
-  <!-- CAMPAIGN TIMELINE -->
-  <p class="section-label">Campaign timeline</p>
-  <div class="timeline">
-    <div class="tl-month">Dec 2025</div>
-    <div class="tl-content">
-      <div class="tl-row">
-        <span class="tl-chip" style="background:#E6F1FB; color:#185FA5;">ONAKids — 24 invites</span>
-      </div>
+  <!-- Cross-project highlights -->
+  <p class="section-label">Cross-project highlights — Week 2</p>
+  <div class="highlight-grid">
+    <div class="highlight-card">
+      <div class="highlight-title">Hugo Macedo — 3 pipelines</div>
+      <div class="highlight-sub">Disruptive Talent in Sorbmetrics, TarGlio and BraidStent simultaneously. Broadest cross-project presence of any candidate.</div>
     </div>
-    <div class="tl-month">Jan 2026</div>
-    <div class="tl-content">
-      <div class="tl-row">
-        <span class="tl-chip" style="background:#E6F1FB; color:#185FA5;">ONAKids — 29 invites</span>
-        <span class="tl-chip" style="background:#FAEEDA; color:#BA7517;">Sorbmetrics — 22 invites</span>
-      </div>
+    <div class="highlight-card">
+      <div class="highlight-title">Josselin Caradec — 2 pipelines</div>
+      <div class="highlight-sub">ENDOMET Disruptive Talent + TarGlio Interview. Oncology/biotech background confirmed as strong cross-project fit.</div>
     </div>
-    <div class="tl-month">Feb 2026</div>
-    <div class="tl-content">
-      <div class="tl-row">
-        <span class="tl-chip" style="background:#FBEAF0; color:#993556;">TarGlio — 54 invites</span>
-        <span class="tl-chip" style="background:#EEEDFE; color:#534AB7;">Biotech Pool — 35 invites</span>
-        <span class="tl-chip" style="background:#E1F5EE; color:#0F6E56;">MedTech Pool — 20 invites</span>
-      </div>
+    <div class="highlight-card">
+      <div class="highlight-title">David Milia — 2 pipelines</div>
+      <div class="highlight-sub">Sorbmetrics Disruptive Talent + GridWatch Interview. Energy/cleantech profile travels well across projects.</div>
     </div>
-    <div class="tl-month">Mar 2026</div>
-    <div class="tl-content">
-      <div class="tl-row">
-        <span class="tl-chip" style="background:#FBEAF0; color:#993556;">TarGlio — 11 invites</span>
-        <span class="tl-chip" style="background:#EAF3DE; color:#3B6D11;">ENDOMET — 11 invites</span>
-        <span class="tl-chip" style="background:#f5f4f0; color:#888780;">Sorbmetrics — follow-up</span>
-        <span class="tl-chip" style="background:#E6F1FB; color:#185FA5; border:1px solid #378ADD;">GridWatch — 17 invites ✦</span>
-        <span class="tl-chip" style="background:#FFF0EA; color:#B5521A; border:1px solid #E8804F;">OGYX — 7 invites ✦</span>
-      </div>
+    <div class="highlight-card">
+      <div class="highlight-title">Katerina Danezi — watch list</div>
+      <div class="highlight-sub">PhD mitochondria/metabolism IRB Barcelona — messaged in ENDOMET Round 2. Direct scientific match. Not yet in Manatal.</div>
     </div>
-  </div>
-  <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">✦ New campaigns launched this week — awaiting first responses.</p>
-
-  <hr class="divider">
-
-  <!-- PIPELINE PER PROJECT -->
-  <p class="section-label">Pipeline per project — 8 active searches</p>
-
-  <div class="progress-bar">
-    <div class="progress-seg" style="background:#888780; flex:7;"></div>
-    <div class="progress-seg" style="background:#BA7517; flex:12;"></div>
-    <div class="progress-seg" style="background:#534AB7; flex:4;"></div>
-    <div class="progress-seg" style="background:#378ADD; flex:14;"></div>
-    <div class="progress-seg" style="background:#1D9E75; flex:11;"></div>
-    <div class="progress-seg" style="background:#E24B4A; flex:59;"></div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New (7)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full app (12)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#534AB7;"></div>Shortlisted (4)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview (14)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive Talent (11)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (59)</div>
-  </div>
-
-  <!-- Original 6 projects -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#1D9E75;"></div>
-      <span class="stage-title">Active pipelines — original 6 projects</span>
-      <span class="stage-count">107 candidates · 48 active · 11 Talent</span>
+    <div class="highlight-card">
+      <div class="highlight-title">Javier Rodriguez Saiz — 2 pipelines</div>
+      <div class="highlight-sub">Disruptive Talent in both OpticMizing and Ulisses DS. Commercial founder profile with tech transfer experience.</div>
     </div>
-    <div class="cand-grid">
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">ON</div>
-        <div>
-          <div class="cand-name">ONAKids</div>
-          <div class="cand-role">Digital Health / Pediatrics</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">32 total</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">4 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">3 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-interview">Dripify</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">SO</div>
-        <div>
-          <div class="cand-name">Sorbmetrics</div>
-          <div class="cand-role">Materials / CleanTech</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">48 total</span>
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">2 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">3 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-interview">Dripify</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FBEAF0; color:#993556;">TG</div>
-        <div>
-          <div class="cand-name">TarGlio</div>
-          <div class="cand-role">Biotech / Oncology</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">8 total</span>
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">4 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">1 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-interview">Dripify</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div>
-        <div>
-          <div class="cand-name">ENDOMET</div>
-          <div class="cand-role">Biotech / Rare Disease</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">8 total</span>
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">4 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">1 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-interview">Dripify</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div>
-        <div>
-          <div class="cand-name">OpticMizing</div>
-          <div class="cand-role">Deep Tech / Optics</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">7 total</span>
-            <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:1px 6px; border-radius:4px;">0 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">2 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-inbound">Inbound</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EEEDFE; color:#534AB7;">UL</div>
-        <div>
-          <div class="cand-name">Ulisses DS</div>
-          <div class="cand-role">Data Science / AI</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">4 total</span>
-            <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:1px 6px; border-radius:4px;">0 interview</span>
-            <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:4px;">1 ★ talent</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-inbound">Inbound</span>
-      </div>
+    <div class="highlight-card">
+      <div class="highlight-title">ONAKids — programme milestone</div>
+      <div class="highlight-sub">First project to reach Stage 6 Reference Check. Silvia Gomez Montes and Nicolas Escartin both in final verification stage.</div>
     </div>
   </div>
 
-  <!-- New 2 projects -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#378ADD;"></div>
-      <span class="stage-title">New campaigns — week 1</span>
-      <span class="stage-count">1 candidate · pipelines building</span>
-    </div>
-    <div class="cand-grid">
-      <div class="cand-card new-project">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">GW</div>
-        <div>
-          <div class="cand-name">GridWatch <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 5px; border-radius:8px; margin-left:3px;">NEW</span></div>
-          <div class="cand-role">Smart Grid / Energy Resilience · IREC Barcelona</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">17 leads sent</span>
-            <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:1px 6px; border-radius:4px;">1 Manatal</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-connect">Dripify</span>
-      </div>
-      <div class="cand-card new-project">
-        <div class="avatar" style="background:#FFF0EA; color:#B5521A;">OG</div>
-        <div>
-          <div class="cand-name">OGYX <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 5px; border-radius:8px; margin-left:3px;">NEW</span></div>
-          <div class="cand-role">MedDev / Organ-on-a-Chip · LEITAT Barcelona</div>
-          <div class="cand-tags">
-            <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:1px 6px; border-radius:4px;">7 leads sent</span>
-            <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:1px 6px; border-radius:4px;">0 Manatal</span>
-          </div>
-        </div>
-        <span class="stage-pill pill-connect">Dripify</span>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- TOP CANDIDATES -->
-  <p class="section-label">Top & recurring candidates</p>
-  <div class="cand-grid" style="grid-template-columns: 1fr;">
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
-      <div style="flex:1;">
-        <div class="cand-name">Hugo Macedo</div>
-        <div class="cand-role">People & Ops Lead — Complear · Imperial College London</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#FAEEDA; color:#BA7517; padding:2px 7px; border-radius:20px;">Sorbmetrics · Talent</span>
-          <span style="font-size:10px; background:#FBEAF0; color:#993556; padding:2px 7px; border-radius:20px;">TarGlio · Talent</span>
-          <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:2px 7px; border-radius:20px;">3 references ✓</span>
-        </div>
-      </div>
-    </div>
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JR</div>
-      <div style="flex:1;">
-        <div class="cand-name">Javier Rodriguez Saiz</div>
-        <div class="cand-role">Co-Founder — Smart Foods Global · Rotterdam School of Management</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#E1F5EE; color:#0F6E56; padding:2px 7px; border-radius:20px;">OpticMizing · Talent</span>
-          <span style="font-size:10px; background:#EEEDFE; color:#534AB7; padding:2px 7px; border-radius:20px;">Ulisses DS · Talent</span>
-          <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:2px 7px; border-radius:20px;">Biotech pool</span>
-        </div>
-      </div>
-    </div>
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">DM</div>
-      <div style="flex:1;">
-        <div class="cand-name">David Luis Milia Garrote</div>
-        <div class="cand-role">Chairman/CEO — Canadian Energy & Climate Nexus</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#FAEEDA; color:#BA7517; padding:2px 7px; border-radius:20px;">Sorbmetrics · Talent</span>
-          <span style="font-size:10px; background:#E6F1FB; color:#185FA5; padding:2px 7px; border-radius:20px;">GridWatch · potential</span>
-          <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:2px 7px; border-radius:20px;">2 references ✓</span>
-        </div>
-      </div>
-    </div>
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
-      <div style="flex:1;">
-        <div class="cand-name">Josselin Caradec</div>
-        <div class="cand-role">Board Observer & Co-Scientific Lead — Curlew Bio</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:2px 7px; border-radius:20px;">ENDOMET · New</span>
-          <span style="font-size:10px; background:#FBEAF0; color:#993556; padding:2px 7px; border-radius:20px;">TarGlio · Interview</span>
-        </div>
-      </div>
-    </div>
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">LC</div>
-      <div style="flex:1;">
-        <div class="cand-name">Lily Chen</div>
-        <div class="cand-role">Founding Partner — Crossworld Capital · MIT Sloan</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:2px 7px; border-radius:20px;">ENDOMET · Interview</span>
-          <span style="font-size:10px; background:#FFF0EA; color:#B5521A; padding:2px 7px; border-radius:20px;">OGYX · potential</span>
-          <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:2px 7px; border-radius:20px;">MedTech pool</span>
-        </div>
-      </div>
-    </div>
-    <div class="cand-card" style="padding:12px 14px;">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DR</div>
-      <div style="flex:1;">
-        <div class="cand-name">Dr. Devendra Ridhurkar</div>
-        <div class="cand-role">CEO & Founder — RidNova Pharmaceuticals · IIT BHU</div>
-        <div class="cand-tags">
-          <span style="font-size:10px; background:#EAF3DE; color:#3B6D11; padding:2px 7px; border-radius:20px;">ENDOMET · Interview</span>
-          <span style="font-size:10px; background:#f5f4f0; color:#888780; padding:2px 7px; border-radius:20px;">Dripify lead</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- SOURCING POOLS -->
-  <p class="section-label">General sourcing pools</p>
-  <div class="pool-grid">
-    <div class="pool-card">
-      <div class="pool-title">Biotech Pool</div>
-      <div class="pool-sub">Barcelona biotech founders, CEOs & co-founders · Feb — Mar 2026</div>
-      <div class="pool-stats">
-        <div class="pool-stat"><div class="pool-stat-val">36</div><div class="pool-stat-lbl">Leads</div></div>
-        <div class="pool-stat"><div class="pool-stat-val" style="color:#1D9E75;">69%</div><div class="pool-stat-lbl">Acc. rate</div></div>
-        <div class="pool-stat"><div class="pool-stat-val" style="color:#185FA5;">57%</div><div class="pool-stat-lbl">Reply rate</div></div>
-      </div>
-    </div>
-    <div class="pool-card">
-      <div class="pool-title">MedTech & HealthTech Pool</div>
-      <div class="pool-sub">Barcelona & Spain medtech, digital health profiles · Feb — Mar 2026</div>
-      <div class="pool-stats">
-        <div class="pool-stat"><div class="pool-stat-val">20</div><div class="pool-stat-lbl">Leads</div></div>
-        <div class="pool-stat"><div class="pool-stat-val" style="color:#1D9E75;">85%</div><div class="pool-stat-lbl">Acc. rate</div></div>
-        <div class="pool-stat"><div class="pool-stat-val" style="color:#185FA5;">60%</div><div class="pool-stat-lbl">Reply rate</div></div>
-      </div>
-    </div>
-  </div>
-  <div style="background:#f5f4f0; border-radius:8px; padding:12px 14px; margin-top:10px;">
-    <p style="font-size:12px; color:#888780;"><strong style="color:#1a1a18;">56 profiled leads</strong> available for immediate outreach. MedTech pool directly relevant for new OGYX search. Several leads already active across project pipelines.</p>
-  </div>
-
-  <!-- FOOTER -->
+  <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Generated March 2026 · Confidential</p>
+    <p>Week 2 · April 2026 · 9 projects · Confidential</p>
   </div>
 
 </div>

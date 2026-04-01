@@ -12,26 +12,27 @@
   .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #FAEEDA; color: #BA7517; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #EEEDFE; color: #534AB7; }
+
+  .notice { background: #E6F1FB; border-left: 3px solid #378ADD; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #185FA5; }
+  .notice strong { color: #0C447C; font-weight: 600; }
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
-
-  .notice { background: #f5f4f0; border-left: 3px solid #D3D1C7; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #888780; }
-  .notice strong { color: #1a1a18; font-weight: 600; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
   .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
   .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .metric-value.blue { color: #185FA5; }
   .metric-value.green { color: #1D9E75; }
+  .metric-value.amber { color: #BA7517; }
   .metric-value.red { color: #A32D2D; }
-  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
-  .metric-sub.neutral { color: #888780; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
 
   .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
   .progress-seg { height: 6px; border-radius: 3px; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
@@ -42,16 +43,18 @@
   .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
 
   .cand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
-  .cand-card.dropped { opacity: 0.5; }
-  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
-  .cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
-  .cand-role { font-size: 10px; color: #888780; }
-  .stage-pill { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 11px 14px; display: flex; align-items: center; gap: 10px; }
+  .cand-card.dropped { opacity: 0.55; }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .cand-role { font-size: 11px; color: #888780; }
+  .stage-pill { font-size: 10px; padding: 3px 9px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
   .pill-new { background: #f5f4f0; color: #888780; }
   .pill-app { background: #FAEEDA; color: #BA7517; }
   .pill-talent { background: #EAF3DE; color: #3B6D11; }
   .pill-dropped { background: #FCEBEB; color: #A32D2D; }
+  .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+  .cross-badge { font-size: 9px; background: #EEEDFE; color: #534AB7; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
 
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
   .footer p { font-size: 11px; color: #b4b2a9; }
@@ -72,84 +75,85 @@
       <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge">Inbound only</div>
+      <div class="badge">Week 2 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
   <!-- Notice -->
   <div class="notice">
-    <strong>No outreach campaign ran for this project.</strong> All candidates entered the pipeline via inbound applications through the Call4Entrepreneurs programme.
+    <strong>Small but focused pipeline.</strong> Sahil Chutani (Alira Health — healthcare data & AI consulting) moved into Stage 2 this week. No outreach campaign active — consider launching Dripify targeting data science + healthcare AI founders to build volume.
   </div>
 
-  <!-- Pipeline KPIs -->
+  <!-- KPIs -->
   <p class="section-label">Candidate pipeline — CEO Ulisses DS</p>
   <div class="metric-grid-4" style="margin-bottom:16px;">
     <div class="metric-card">
       <p class="metric-label">Total candidates</p>
       <p class="metric-value">4</p>
-      <p class="metric-sub neutral">Inbound only</p>
+      <p class="metric-sub">Inbound only</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Active pipeline</p>
-      <p class="metric-value blue">2</p>
+      <p class="metric-value">2</p>
       <p class="metric-sub">50% active rate</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Disruptive talent</p>
       <p class="metric-value green">1</p>
-      <p class="metric-sub">25% conversion</p>
+      <p class="metric-sub">Javier Rodriguez Saiz</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Dropped</p>
       <p class="metric-value red">2</p>
-      <p class="metric-sub neutral">Not qualified</p>
+      <p class="metric-sub">Not qualified</p>
     </div>
   </div>
 
+  <!-- Progress bar -->
   <div class="progress-bar">
     <div class="progress-seg" style="background:#BA7517; flex:1;"></div>
     <div class="progress-seg" style="background:#1D9E75; flex:1;"></div>
     <div class="progress-seg" style="background:#E24B4A; flex:2;"></div>
   </div>
   <div class="legend" style="margin-bottom:24px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full application</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full application (1)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent (1)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (2)</div>
   </div>
 
-  <!-- Stage 5 -->
+  <!-- Stage 5 — Disruptive Talent -->
   <div class="stage-col">
     <div class="stage-header">
       <div class="stage-dot" style="background:#1D9E75;"></div>
-      <span class="stage-title">Stage 5 — Disruptive talent META</span>
+      <span class="stage-title">Stage 5 — Disruptive Talent META</span>
       <span class="stage-count">1 candidate</span>
     </div>
     <div class="cand-grid">
       <div class="cand-card">
         <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JR</div>
         <div>
-          <div class="cand-name">Javier Rodriguez Saiz</div>
-          <div class="cand-role">Co-Founder — Smart Foods Global · Rotterdam School of Management</div>
+          <div class="cand-name">Javier Rodriguez Saiz <span class="cross-badge">↔ OpticMizing</span></div>
+          <div class="cand-role">Co-Founder — Smart Foods Global · RSM Rotterdam</div>
         </div>
-        <span class="stage-pill pill-talent">Talent</span>
+        <span class="stage-pill pill-talent">★ Talent</span>
       </div>
     </div>
   </div>
 
-  <!-- Stage 2 -->
+  <!-- Stage 2 — Full Application -->
   <div class="stage-col">
     <div class="stage-header">
       <div class="stage-dot" style="background:#BA7517;"></div>
-      <span class="stage-title">Stage 2 — Full application</span>
+      <span class="stage-title">Stage 2 — Full Application</span>
       <span class="stage-count">1 candidate</span>
     </div>
     <div class="cand-grid">
       <div class="cand-card">
         <div class="avatar" style="background:#FAEEDA; color:#BA7517;">SC</div>
         <div>
-          <div class="cand-name">Sahil Chutani</div>
-          <div class="cand-role">Engagement Manager — Alira Health · EM Lyon</div>
+          <div class="cand-name">Sahil Chutani <span class="new-badge">NEW ↑</span></div>
+          <div class="cand-role">Engagement Manager — Alira Health</div>
         </div>
         <span class="stage-pill pill-app">Application</span>
       </div>
@@ -165,28 +169,36 @@
     </div>
     <div class="cand-grid">
       <div class="cand-card dropped">
-        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">PY</div>
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">PG</div>
         <div>
           <div class="cand-name">Paloma Yumi Garcia Freixes</div>
           <div class="cand-role">Senior Innovation Consultant — INNOVA NEXT</div>
         </div>
-        <span class="stage-pill pill-dropped">Not qualified</span>
+        <span class="stage-pill pill-dropped">Dropped</span>
       </div>
       <div class="cand-card dropped">
         <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">RU</div>
         <div>
           <div class="cand-name">Rafael Urdaneta</div>
-          <div class="cand-role">Entrepreneur · Universidad Rey Juan Carlos</div>
+          <div class="cand-role">Entrepreneur</div>
         </div>
-        <span class="stage-pill pill-dropped">Not qualified</span>
+        <span class="stage-pill pill-dropped">Dropped</span>
       </div>
     </div>
+  </div>
+
+  <hr class="divider">
+
+  <div style="background:#f5f4f0; border-radius:8px; padding:14px 16px;">
+    <p style="font-size:12px; color:#888780; line-height:1.6;">
+      <strong style="color:#1a1a18;">Next step:</strong> Pipeline is thin — 2 active candidates only. No Dripify campaign has run yet for Ulisses DS. A targeted outreach round focusing on data science entrepreneurs, AI product founders, and healthcare analytics profiles would significantly broaden the funnel. Javier Rodriguez Saiz (Talent) is also active in OpticMizing — cross-project fit confirmed for tech-commercial profiles.
+    </p>
   </div>
 
   <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Generated March 2026 · Confidential</p>
+    <p>Week 2 · April 2026 · Confidential</p>
   </div>
 
 </div>

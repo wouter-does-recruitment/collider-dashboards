@@ -7,37 +7,32 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
-
   .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
 
   .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .header-left p { font-size: 12px; color: #888780; }
-  .header-right { text-align: right; }
-  .header-right .badge { display: inline-block; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+  .badge { display: inline-block; background: #E6F1FB; color: #185FA5; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+
+  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
+  .notice strong { color: #0F6E56; font-weight: 600; }
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
-
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  /* Metric grid */
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
-  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
   .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
   .metric-value.blue { color: #185FA5; }
   .metric-value.green { color: #1D9E75; }
   .metric-value.red { color: #A32D2D; }
-  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
 
-  /* Two column */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-
-  /* Card */
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
 
-  /* Funnel */
   .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
   .funnel-label { font-size: 12px; color: #888780; width: 120px; flex-shrink: 0; }
@@ -46,23 +41,27 @@
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
   .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
 
-  /* Progress bar */
+  .lead-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .lead-row:last-child { border-bottom: none; }
+  .lead-name { font-weight: 600; color: #1a1a18; font-size: 12px; }
+  .lead-title { color: #888780; font-size: 11px; }
+  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .act-connect { background: #E6F1FB; color: #185FA5; }
+  .act-message { background: #EAF3DE; color: #3B6D11; }
+  .act-view { background: #f5f4f0; color: #888780; }
+
   .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
   .progress-seg { height: 6px; border-radius: 3px; }
-
-  /* Legend */
   .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-  /* Stage block */
   .stage-col { margin-bottom: 16px; }
   .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
   .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
 
-  /* Candidate card */
   .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 11px 14px; margin-bottom: 7px; display: flex; align-items: center; gap: 10px; }
   .cand-card.dropped { opacity: 0.55; }
   .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
@@ -74,15 +73,7 @@
   .pill-talent { background: #EAF3DE; color: #3B6D11; }
   .pill-dropped { background: #FCEBEB; color: #A32D2D; }
 
-  /* Leads table */
-  .lead-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
-  .lead-row:last-child { border-bottom: none; }
-  .lead-name { font-weight: 600; color: #1a1a18; font-size: 12px; }
-  .lead-title { color: #888780; font-size: 11px; }
-  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
-  .act-connect { background: #E6F1FB; color: #185FA5; }
-  .act-message { background: #EAF3DE; color: #3B6D11; }
-  .act-view { background: #f5f4f0; color: #888780; }
+  .wow-pill { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 6px; vertical-align: middle; }
 
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; align-items: center; }
   .footer p { font-size: 11px; color: #b4b2a9; }
@@ -102,37 +93,151 @@
       <h1>CEO ENDOMET — Recruitment Dashboard</h1>
       <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
     </div>
-    <div class="header-right">
-      <div class="badge">March 2026</div>
+    <div style="text-align:right;">
+      <div class="badge">Week 2 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
-  <!-- Section 1: Outreach -->
-  <p class="section-label">Outreach — Dripify campaign</p>
-  <div class="metric-grid-4">
+  <!-- WoW notice -->
+  <div class="notice">
+    <strong>Strong week-over-week progress.</strong> Disruptive Talent grew from 1 → 3: Josselin Caradec and Dr. Jonathan Dando both advanced to Stage 5. Interview stage reduced from 4 → 3 as candidates move up the funnel.
+  </div>
+
+  <!-- Pipeline KPIs -->
+  <p class="section-label">Candidate pipeline — CEO ENDOMET</p>
+  <div class="metric-grid-4" style="margin-bottom:16px;">
     <div class="metric-card">
-      <p class="metric-label">Invites sent</p>
-      <p class="metric-value">11</p>
-      <p class="metric-sub" style="color:#888780;">LinkedIn Recruiter</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Accepted</p>
+      <p class="metric-label">Total candidates</p>
       <p class="metric-value">8</p>
-      <p class="metric-sub">73% acceptance rate</p>
+      <p class="metric-sub">Stable vs Week 1</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Messaged</p>
-      <p class="metric-value">9</p>
-      <p class="metric-sub" style="color:#888780;">Follow-up sent</p>
+      <p class="metric-label">Interview stage</p>
+      <p class="metric-value blue">3</p>
+      <p class="metric-sub">↓ from 4 (moved up)</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Replies received</p>
-      <p class="metric-value">6</p>
-      <p class="metric-sub">67% reply rate</p>
+      <p class="metric-label">Disruptive talent</p>
+      <p class="metric-value green">3</p>
+      <p class="metric-sub up">↑ from 1 last week</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Dropped</p>
+      <p class="metric-value red">2</p>
+      <p class="metric-sub">Stable</p>
     </div>
   </div>
 
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-seg" style="background:#378ADD; flex:3;"></div>
+    <div class="progress-seg" style="background:#1D9E75; flex:3;"></div>
+    <div class="progress-seg" style="background:#E24B4A; flex:2;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:20px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview with staff (3)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent (3)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (2)</div>
+  </div>
+
+  <!-- Stage 5 — Disruptive Talent -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 5 — Disruptive Talent META</span>
+      <span class="stage-count">3 candidates <span class="wow-pill">↑ +2 this week</span></span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">CA</div>
+      <div>
+        <div class="cand-name">Cristina Aguilera</div>
+        <div class="cand-role">CEO & Founder — Labsinlove · IE Business School</div>
+      </div>
+      <span class="stage-pill pill-talent">★ Talent</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JC</div>
+      <div>
+        <div class="cand-name">Josselin Caradec <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 5px; border-radius:8px; font-weight:600; margin-left:4px;">NEW ↑</span></div>
+        <div class="cand-role">Board Observer & Co-Scientific Lead — Curlew Bio</div>
+      </div>
+      <span class="stage-pill pill-talent">★ Talent</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JD</div>
+      <div>
+        <div class="cand-name">Dr. Jonathan Dando <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 5px; border-radius:8px; font-weight:600; margin-left:4px;">NEW ↑</span></div>
+        <div class="cand-role">Hybrid CEO & Co-Founder — Mirare Ltd · UK Open University</div>
+      </div>
+      <span class="stage-pill pill-talent">★ Talent</span>
+    </div>
+  </div>
+
+  <!-- Stage 4 — Interview -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#378ADD;"></div>
+      <span class="stage-title">Stage 4 — Interview with Staff</span>
+      <span class="stage-count">3 candidates</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DR</div>
+      <div>
+        <div class="cand-name">Dr. Devendra Ridhurkar</div>
+        <div class="cand-role">CEO & Founder — RidNova Pharmaceuticals · IIT BHU</div>
+      </div>
+      <span class="stage-pill pill-interview">Interview</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">LC</div>
+      <div>
+        <div class="cand-name">Lily Chen</div>
+        <div class="cand-role">Founding Partner — Crossworld Capital · MIT Sloan</div>
+      </div>
+      <span class="stage-pill pill-interview">Interview</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">NJ</div>
+      <div>
+        <div class="cand-name">Naia Jiménez Polo</div>
+        <div class="cand-role">COO — NIMBLE Diagnostics · EAE Business School</div>
+      </div>
+      <span class="stage-pill pill-interview">Interview</span>
+    </div>
+  </div>
+
+  <!-- Dropped -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#E24B4A;"></div>
+      <span class="stage-title">Dropped</span>
+      <span class="stage-count">2 candidates</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">BT</div>
+        <div>
+          <div class="cand-name">Borja Torres Béjar</div>
+          <div class="cand-role">Grants Consultant — PGB Audit</div>
+        </div>
+        <span class="stage-pill pill-dropped">Not qualified</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">AM</div>
+        <div>
+          <div class="cand-name">Aitor Martin Garcia</div>
+          <div class="cand-role">CFO — Idomics Biotech</div>
+        </div>
+        <span class="stage-pill pill-dropped">Not qualified</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Dripify outreach -->
+  <p class="section-label">Outreach — Dripify campaign</p>
   <div class="two-col">
     <div class="card">
       <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
@@ -160,190 +265,47 @@
         <span class="funnel-num">6</span>
         <span class="funnel-pct">67%</span>
       </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Profiles viewed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:45%; background:#888780;"></div></div>
-        <span class="funnel-num">5</span>
-        <span class="funnel-pct">—</span>
-      </div>
     </div>
 
     <div class="card">
       <p class="section-label" style="margin-bottom:12px;">Dripify leads</p>
       <div class="lead-row">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DR</div>
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5; width:26px; height:26px; font-size:9px; flex-shrink:0;">DR</div>
         <div><div class="lead-name">Devendra Ridhurkar</div><div class="lead-title">CEO & Founder, RidNova Pharma</div></div>
         <span class="action-badge act-connect">Connect sent</span>
       </div>
       <div class="lead-row">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">OP</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11; width:26px; height:26px; font-size:9px; flex-shrink:0;">OP</div>
         <div><div class="lead-name">Oscar Pérez Albet</div><div class="lead-title">Chief Sci. & BD Officer, Ferrer</div></div>
         <span class="action-badge act-message">Messaged</span>
       </div>
       <div class="lead-row">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">LM</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11; width:26px; height:26px; font-size:9px; flex-shrink:0;">LM</div>
         <div><div class="lead-name">Lisa Mcnally</div><div class="lead-title">Founder, Innovigilancia</div></div>
         <span class="action-badge act-message">Messaged</span>
       </div>
       <div class="lead-row">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">IH</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11; width:26px; height:26px; font-size:9px; flex-shrink:0;">IH</div>
         <div><div class="lead-name">Isabel Huber Ruano</div><div class="lead-title">Co-Founder & CEO, SUCCIPRO</div></div>
         <span class="action-badge act-message">Messaged</span>
       </div>
       <div class="lead-row">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JT</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11; width:26px; height:26px; font-size:9px; flex-shrink:0;">JT</div>
         <div><div class="lead-name">Judit Tomsen Melero</div><div class="lead-title">Project Co-coordinator, CIBER</div></div>
         <span class="action-badge act-message">Messaged</span>
       </div>
       <div class="lead-row">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">BE</div>
-        <div><div class="lead-name">Brayan Endara Calvache</div><div class="lead-title">Presidente, Societat Eng. Bio.</div></div>
-        <span class="action-badge act-message">Messaged</span>
-      </div>
-      <div class="lead-row">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">IP</div>
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A; width:26px; height:26px; font-size:9px; flex-shrink:0;">IP</div>
         <div><div class="lead-name">Ian Paterson-Daverkosen</div><div class="lead-title">CSO, Complix N.V.</div></div>
         <span class="action-badge act-connect">Connect sent</span>
       </div>
-      <div class="lead-row">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">MG</div>
-        <div><div class="lead-name">María García Morant</div><div class="lead-title">Cell Engineering, Integra Tx</div></div>
-        <span class="action-badge act-connect">Connect sent</span>
-      </div>
-      <div class="lead-row">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">JB</div>
-        <div><div class="lead-name">Jordi Barquinero</div><div class="lead-title">Co-Founder, Nema-Health</div></div>
-        <span class="action-badge act-view">Profile viewed</span>
-      </div>
-      <div class="lead-row">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">MO</div>
-        <div><div class="lead-name">María Alejandra Ortega</div><div class="lead-title">Senior Researcher, IBEC</div></div>
-        <span class="action-badge act-view">Profile viewed</span>
-      </div>
-      <div class="lead-row">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">JT</div>
-        <div><div class="lead-name">Jose Antonio Tornero</div><div class="lead-title">Co-Founder & CTO, CEBIOTEX</div></div>
-        <span class="action-badge act-view">Profile viewed</span>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- Section 2: Pipeline -->
-  <p class="section-label">Candidate pipeline — CEO ENDOMET</p>
-  <div class="metric-grid-4" style="margin-bottom:16px;">
-    <div class="metric-card">
-      <p class="metric-label">Total candidates</p>
-      <p class="metric-value">8</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Interview with staff</p>
-      <p class="metric-value blue">4</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Disruptive talent</p>
-      <p class="metric-value green">1</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Dropped</p>
-      <p class="metric-value red">2</p>
-    </div>
-  </div>
-
-  <div class="progress-bar">
-    <div class="progress-seg" style="background:#888780; flex:1;"></div>
-    <div class="progress-seg" style="background:#378ADD; flex:4;"></div>
-    <div class="progress-seg" style="background:#1D9E75; flex:1;"></div>
-    <div class="progress-seg" style="background:#E24B4A; flex:2;"></div>
-  </div>
-  <div class="legend" style="margin-bottom:20px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New candidate</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview with staff</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped</div>
-  </div>
-
-  <!-- Stage 5 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#1D9E75;"></div>
-      <span class="stage-title">Stage 5 — Disruptive talent META</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">CA</div>
-      <div><div class="cand-name">Cristina Aguilera</div><div class="cand-role">CEO & Founder — Labsinlove · IE Business School</div></div>
-      <span class="stage-pill pill-talent">Disruptive talent</span>
-    </div>
-  </div>
-
-  <!-- Stage 4 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#378ADD;"></div>
-      <span class="stage-title">Stage 4 — Interview with staff</span>
-      <span class="stage-count">4 candidates</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DR</div>
-      <div><div class="cand-name">Dr. Devendra Ridhurkar</div><div class="cand-role">CEO & Founder — RidNova Pharmaceuticals · IIT BHU</div></div>
-      <span class="stage-pill pill-interview">Interview</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">LC</div>
-      <div><div class="cand-name">Lily Chen</div><div class="cand-role">Founding Partner — Crossworld Capital · MIT Sloan</div></div>
-      <span class="stage-pill pill-interview">Interview</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JD</div>
-      <div><div class="cand-name">Dr. Jonathan Dando</div><div class="cand-role">Hybrid CEO & Co-Founder — Mirare Ltd · UK Open University</div></div>
-      <span class="stage-pill pill-interview">Interview</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">NJ</div>
-      <div><div class="cand-name">Naia Jiménez Polo</div><div class="cand-role">COO — NIMBLE Diagnostics · EAE Business School</div></div>
-      <span class="stage-pill pill-interview">Interview</span>
-    </div>
-  </div>
-
-  <!-- Stage 1 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#888780;"></div>
-      <span class="stage-title">Stage 1 — New candidates</span>
-      <span class="stage-count">1 active</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">JC</div>
-      <div><div class="cand-name">Josselin Caradec</div><div class="cand-role">Board Observer & Co-Scientific Lead — Curlew Bio</div></div>
-      <span class="stage-pill pill-new">New</span>
-    </div>
-  </div>
-
-  <!-- Dropped -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#E24B4A;"></div>
-      <span class="stage-title">Dropped</span>
-      <span class="stage-count">2 candidates</span>
-    </div>
-    <div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">BT</div>
-      <div><div class="cand-name">Borja Torres Béjar</div><div class="cand-role">Grants Consultant — PGB Audit</div></div>
-      <span class="stage-pill pill-dropped">Not qualified</span>
-    </div>
-    <div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">AM</div>
-      <div><div class="cand-name">Aitor Martin Garcia</div><div class="cand-role">CFO — Idomics Biotech</div></div>
-      <span class="stage-pill pill-dropped">Not qualified</span>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Generated March 2026 · Confidential</p>
+    <p>Week 2 · April 2026 · Confidential</p>
   </div>
 
 </div>

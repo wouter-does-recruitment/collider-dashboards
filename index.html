@@ -16,9 +16,8 @@
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; margin-top: 24px; }
 
-  /* Project cards */
   .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 4px; }
-  .project-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; position: relative; }
+  .project-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
   .project-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
   .project-card.new-card { border-color: #C0DD97; background: #f9fdf6; }
   .project-card.new-card:hover { border-color: #1D9E75; }
@@ -37,7 +36,6 @@
 
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 20px 0; }
 
-  /* Analytics cards */
   .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .analytics-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
   .analytics-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
@@ -55,38 +53,35 @@
 <body>
 <div class="page">
 
-  <!-- HEADER -->
+  <!-- Header -->
   <div class="header">
     <div class="header-left">
       <h1>The Collider — Recruitment Dashboards</h1>
-      <p>CEO & Co-Founder sourcing · 8 deep tech projects · Does Recruitment · Wouter Jaarsma</p>
+      <p>CEO & Co-Founder sourcing · 9 deep tech projects · Does Recruitment · Wouter Jaarsma</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge">March 2026</div>
+      <div class="badge">April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">wouter@doesrecruitment.com</p>
     </div>
   </div>
 
-  <!-- TOTAL OVERVIEW -->
+  <!-- Total Overview -->
   <a href="collider_total_overview.html" class="project-card" style="background:#1a1a18; border-color:#1a1a18; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; padding:20px 28px;">
     <div>
       <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:4px;">📊 &nbsp;Total Overview — All Projects</div>
-      <div style="font-size:12px; color:#888780;">239 leads · 108 candidates · 14 interview · 11 Disruptive Talent · 8 projects</div>
+      <div style="font-size:12px; color:#888780;">239 leads · 108 candidates · 14 interview · 11 Disruptive Talent · 9 projects</div>
     </div>
     <div style="font-size:13px; color:#888780; font-weight:600;">View →</div>
   </a>
 
-  <!-- PROJECT DASHBOARDS -->
+  <!-- Project Dashboards -->
   <p class="section-label">Project dashboards — active searches</p>
   <div class="project-grid">
 
     <a href="collider_endomet_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div>
-        <div>
-          <div class="card-title">ENDOMET</div>
-          <div class="card-sector">Biotech · Rare Disease</div>
-        </div>
+        <div><div class="card-title">ENDOMET</div><div class="card-sector">Biotech · Rare Disease</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">8 candidates</span>
@@ -99,10 +94,7 @@
     <a href="collider_onakids_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E6F1FB; color:#185FA5;">ON</div>
-        <div>
-          <div class="card-title">ONAKids</div>
-          <div class="card-sector">Digital Health · Pediatrics</div>
-        </div>
+        <div><div class="card-title">ONAKids</div><div class="card-sector">Digital Health · Pediatrics</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">32 candidates</span>
@@ -115,10 +107,7 @@
     <a href="collider_opticmizing_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div>
-        <div>
-          <div class="card-title">OpticMizing</div>
-          <div class="card-sector">Deep Tech · Optics</div>
-        </div>
+        <div><div class="card-title">OpticMizing</div><div class="card-sector">Deep Tech · Optics</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">7 candidates</span>
@@ -131,10 +120,7 @@
     <a href="collider_sorbmetrics_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FAEEDA; color:#BA7517;">SO</div>
-        <div>
-          <div class="card-title">Sorbmetrics</div>
-          <div class="card-sector">Materials · CleanTech</div>
-        </div>
+        <div><div class="card-title">Sorbmetrics</div><div class="card-sector">Materials · CleanTech</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">48 candidates</span>
@@ -147,10 +133,7 @@
     <a href="collider_targlio_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FBEAF0; color:#993556;">TG</div>
-        <div>
-          <div class="card-title">TarGlio</div>
-          <div class="card-sector">Biotech · Oncology</div>
-        </div>
+        <div><div class="card-title">TarGlio</div><div class="card-sector">Biotech · Oncology</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">8 candidates</span>
@@ -163,10 +146,7 @@
     <a href="collider_ulissesds_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#EEEDFE; color:#534AB7;">UL</div>
-        <div>
-          <div class="card-title">Ulisses DS</div>
-          <div class="card-sector">Data Science · AI</div>
-        </div>
+        <div><div class="card-title">Ulisses DS</div><div class="card-sector">Data Science · AI</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">4 candidates</span>
@@ -179,15 +159,11 @@
     <a href="collider_gridwatch_dashboard.html" class="project-card new-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div>
-        <div>
-          <div class="card-title">GridWatch <span class="new-badge">NEW</span></div>
-          <div class="card-sector">Smart Grid · Energy</div>
-        </div>
+        <div><div class="card-title">GridWatch <span class="new-badge">NEW</span></div><div class="card-sector">Smart Grid · Energy</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">17 leads sent</span>
         <span class="card-stat" style="background:#f5f4f0; color:#888780;">1 Manatal</span>
-        <span class="card-stat" style="background:#f5f4f0; color:#888780;">Pending replies</span>
       </div>
       <div class="card-link">Open dashboard</div>
     </a>
@@ -195,22 +171,31 @@
     <a href="collider_ogyx_dashboard.html" class="project-card new-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FFF0EA; color:#B5521A;">OG</div>
-        <div>
-          <div class="card-title">OGYX <span class="new-badge">NEW</span></div>
-          <div class="card-sector">MedDev · Organ-on-a-Chip</div>
-        </div>
+        <div><div class="card-title">OGYX <span class="new-badge">NEW</span></div><div class="card-sector">MedDev · Organ-on-a-Chip</div></div>
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">7 leads sent</span>
         <span class="card-stat" style="background:#f5f4f0; color:#888780;">0 Manatal</span>
-        <span class="card-stat" style="background:#f5f4f0; color:#888780;">Pending replies</span>
+      </div>
+      <div class="card-link">Open dashboard</div>
+    </a>
+
+    <a href="collider_braidstent_dashboard.html" class="project-card new-card">
+      <div class="card-top">
+        <div class="card-avatar" style="background:#FBEAF0; color:#993556;">BS</div>
+        <div><div class="card-title">BraidStent <span class="new-badge">NEW</span></div><div class="card-sector">MedDev · Urology</div></div>
+      </div>
+      <div class="card-stats">
+        <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">6 candidates</span>
+        <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">2 interview</span>
+        <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">1 ★ Talent</span>
       </div>
       <div class="card-link">Open dashboard</div>
     </a>
 
   </div>
 
-  <!-- ANALYTICS DASHBOARDS -->
+  <!-- Analytics -->
   <p class="section-label">Analytics & sourcing reports</p>
   <div class="analytics-grid">
 
@@ -219,7 +204,7 @@
         <div class="card-avatar" style="background:#EEEDFE; color:#534AB7; border-radius:8px;">SA</div>
         <div class="analytics-title">Source Attribution</div>
       </div>
-      <div class="analytics-desc">Dripify vs inbound — who came from proactive outreach vs applied directly. 19 Dripify · 26 inbound at interview stage.</div>
+      <div class="analytics-desc">Dripify vs inbound — who came from proactive outreach vs applied directly.</div>
       <div class="card-link">Open report</div>
     </a>
 
@@ -228,16 +213,16 @@
         <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11; border-radius:8px;">OF</div>
         <div class="analytics-title">Outreach Funnel</div>
       </div>
-      <div class="analytics-desc">Full conversion funnel — 214 leads to 5 shortlisted. Per campaign breakdown with applied and interview stage candidates named.</div>
+      <div class="analytics-desc">Full conversion funnel — 214 leads to 5 shortlisted. Per campaign breakdown.</div>
       <div class="card-link">Open report</div>
     </a>
 
     <a href="collider_applicant_insights.html" class="analytics-card">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#FAEEDA; color:#BA7517; border-radius:8px;">AI</div>
-        <div class="analytics-title">Applicant Insights</div>
+        <div class="analytics-title">Applicant Insights — Week 2</div>
       </div>
-      <div class="analytics-desc">Analysis of the 62 application form responses — backgrounds, sector experience, founder status, availability and language skills.</div>
+      <div class="analytics-desc">65 application form responses — WoW comparison, founder profiles, availability, sectors.</div>
       <div class="card-link">Open report</div>
     </a>
 
@@ -246,14 +231,14 @@
         <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11; border-radius:8px;">BP</div>
         <div class="analytics-title">Biotech + MedTech Pools</div>
       </div>
-      <div class="analytics-desc">56 profiled leads in general sourcing pools — available for immediate outreach on new Collider projects or pipeline reinforcement.</div>
+      <div class="analytics-desc">56 profiled leads in general sourcing pools — available for immediate outreach.</div>
       <div class="card-link">Open report</div>
     </a>
 
   </div>
 
   <div class="footer">
-    Does Recruitment · wouter@doesrecruitment.com · The Collider · Mobile World Capital Barcelona · March 2026 · Confidential
+    Does Recruitment · wouter@doesrecruitment.com · The Collider · Mobile World Capital Barcelona · April 2026 · Confidential
   </div>
 
 </div>

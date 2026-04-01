@@ -12,7 +12,10 @@
   .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #FBEAF0; color: #993556; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
+
+  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
+  .notice strong { color: #0F6E56; font-weight: 600; }
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
@@ -23,9 +26,10 @@
   .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
   .metric-value.blue { color: #185FA5; }
   .metric-value.green { color: #1D9E75; }
+  .metric-value.amber { color: #BA7517; }
   .metric-value.red { color: #A32D2D; }
-  .metric-sub { font-size: 11px; color: #1D9E75; margin-top: 3px; }
-  .metric-sub.neutral { color: #888780; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
@@ -37,13 +41,6 @@
   .funnel-bar { height: 100%; border-radius: 3px; }
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
   .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
-
-  .action-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
-  .action-row:last-child { border-bottom: none; }
-  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .action-label { font-size: 12px; color: #888780; flex: 1; }
-  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
-  .action-pct { font-size: 11px; color: #b4b2a9; min-width: 32px; text-align: right; }
 
   .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
   .progress-seg { height: 6px; border-radius: 3px; }
@@ -69,6 +66,8 @@
   .pill-interview { background: #E6F1FB; color: #185FA5; }
   .pill-talent { background: #EAF3DE; color: #3B6D11; }
   .pill-dropped { background: #FCEBEB; color: #A32D2D; }
+  .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+  .cross-badge { font-size: 9px; background: #EEEDFE; color: #534AB7; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
 
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
   .footer p { font-size: 11px; color: #b4b2a9; }
@@ -89,36 +88,169 @@
       <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge">Feb — Mar 2026</div>
+      <div class="badge">Week 2 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
-  <!-- Outreach KPIs -->
-  <p class="section-label">Outreach — Dripify campaign</p>
-  <div class="metric-grid-4">
+  <!-- Notice -->
+  <div class="notice">
+    <strong>+2 new candidates this week.</strong> Maria Chiara Maffia (postdoc IRCCS San Raffaele) entered active pipeline. Josselin Caradec — already Disruptive Talent in ENDOMET — now also in TarGlio interview stage, confirming strong cross-project fit for oncology biotech.
+  </div>
+
+  <!-- KPIs -->
+  <p class="section-label">Candidate pipeline — CEO TarGlio</p>
+  <div class="metric-grid-4" style="margin-bottom:16px;">
     <div class="metric-card">
-      <p class="metric-label">Invites sent</p>
-      <p class="metric-value">65</p>
-      <p class="metric-sub neutral">Feb — Mar 2026</p>
+      <p class="metric-label">Total candidates</p>
+      <p class="metric-value">8</p>
+      <p class="metric-sub up">↑ +2 vs Week 1</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Accepted</p>
-      <p class="metric-value">45</p>
-      <p class="metric-sub">69% acceptance rate</p>
+      <p class="metric-label">Interview stage</p>
+      <p class="metric-value blue">4</p>
+      <p class="metric-sub">Stable</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Messaged</p>
-      <p class="metric-value">40</p>
-      <p class="metric-sub neutral">Follow-ups sent</p>
+      <p class="metric-label">Disruptive talent</p>
+      <p class="metric-value green">1</p>
+      <p class="metric-sub">Hugo Macedo</p>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Replies received</p>
-      <p class="metric-value">32</p>
-      <p class="metric-sub">71% reply rate</p>
+      <p class="metric-label">Active pipeline</p>
+      <p class="metric-value amber">7</p>
+      <p class="metric-sub">1 dropped only</p>
     </div>
   </div>
 
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-seg" style="background:#888780; flex:1;"></div>
+    <div class="progress-seg" style="background:#BA7517; flex:1;"></div>
+    <div class="progress-seg" style="background:#378ADD; flex:4;"></div>
+    <div class="progress-seg" style="background:#1D9E75; flex:1;"></div>
+    <div class="progress-seg" style="background:#E24B4A; flex:1;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:24px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New (1)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full app (1)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview (4)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent (1)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (1)</div>
+  </div>
+
+  <!-- Stage 5 — Disruptive Talent -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 5 — Disruptive Talent META</span>
+      <span class="stage-count">1 candidate</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
+        <div>
+          <div class="cand-name">Hugo Macedo</div>
+          <div class="cand-role">People & Ops Lead — Complear · Imperial College</div>
+        </div>
+        <span class="stage-pill pill-talent">★ Talent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 4 — Interview -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#378ADD;"></div>
+      <span class="stage-title">Stage 4 — Interview with Staff</span>
+      <span class="stage-count">4 candidates</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AP</div>
+        <div>
+          <div class="cand-name">Antonio Manuel Puertas</div>
+          <div class="cand-role">Business Manager — Bioflow SUR</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
+        <div>
+          <div class="cand-name">Josselin Caradec <span class="cross-badge">↔ ENDOMET</span></div>
+          <div class="cand-role">Board Observer — Curlew Bio</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AS</div>
+        <div>
+          <div class="cand-name">Alessandro Scandurra</div>
+          <div class="cand-role">BD Manager — SEQUENTIA BIOTECH</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JP</div>
+        <div>
+          <div class="cand-name">Juan J. Pérez Villar</div>
+          <div class="cand-role">CEO — QABY Biotech</div>
+        </div>
+        <span class="stage-pill pill-interview">Interview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 2 — Application -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#BA7517;"></div>
+      <span class="stage-title">Stage 2 — Full Application</span>
+      <span class="stage-count">1 candidate</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">AO</div>
+        <div>
+          <div class="cand-name">Alessandro Oliveri</div>
+          <div class="cand-role">Founder & Co-CEO — The Algaemist srl</div>
+        </div>
+        <span class="stage-pill pill-app">Application</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage 1 — New -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#888780;"></div>
+      <span class="stage-title">Stage 1 — New Candidates</span>
+      <span class="stage-count">1 active · 1 dropped</span>
+    </div>
+    <div class="cand-grid">
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">MM</div>
+        <div>
+          <div class="cand-name">Maria Chiara Maffia <span class="new-badge">NEW</span></div>
+          <div class="cand-role">Junior Postdoc — IRCCS San Raffaele Institute</div>
+        </div>
+        <span class="stage-pill pill-new">New</span>
+      </div>
+      <div class="cand-card dropped">
+        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">AG</div>
+        <div>
+          <div class="cand-name">André Gottardi Marçal <span class="new-badge" style="background:#FAEEDA; color:#BA7517;">NEW</span></div>
+          <div class="cand-role">Senior Delivery Manager — COMPASS UOL</div>
+        </div>
+        <span class="stage-pill pill-dropped">Dropped</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Dripify -->
+  <p class="section-label">Outreach — Dripify campaign</p>
   <div class="two-col">
     <div class="card">
       <p class="section-label" style="margin-bottom:14px;">Dripify funnel</p>
@@ -142,205 +274,24 @@
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Replied</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:71%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:49%; background:#1D9E75;"></div></div>
         <span class="funnel-num">32</span>
-        <span class="funnel-pct">71%</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Profiles viewed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:45%; background:#888780;"></div></div>
-        <span class="funnel-num">29</span>
-        <span class="funnel-pct">—</span>
+        <span class="funnel-pct">80%</span>
       </div>
     </div>
-
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Lead actions breakdown</p>
-      <div class="action-row">
-        <div class="action-dot" style="background:#888780;"></div>
-        <span class="action-label">Profiles viewed</span>
-        <span class="action-num">24</span>
-        <span class="action-pct">36%</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#1D9E75;"></div>
-        <span class="action-label">Messages sent</span>
-        <span class="action-num">25</span>
-        <span class="action-pct">38%</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#378ADD;"></div>
-        <span class="action-label">Connection requests</span>
-        <span class="action-num">16</span>
-        <span class="action-pct">24%</span>
-      </div>
-      <div class="action-row">
-        <div class="action-dot" style="background:#EF9F27;"></div>
-        <span class="action-label">Profiles followed</span>
-        <span class="action-num">1</span>
-        <span class="action-pct">2%</span>
-      </div>
-
-      <div style="border-top:0.5px solid #f0ede6; margin-top:14px; padding-top:14px;">
-        <p class="section-label" style="margin-bottom:6px;">Total leads sourced</p>
-        <p style="font-size:28px; font-weight:600; color:#1a1a18; line-height:1;">66</p>
-        <p style="font-size:11px; color:#888780; margin-top:4px;">LinkedIn Recruiter — oncology, biotech & pharma focus</p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- Pipeline -->
-  <p class="section-label">Candidate pipeline — CEO TarGlio</p>
-
-  <div class="metric-grid-4" style="margin-bottom:16px;">
-    <div class="metric-card">
-      <p class="metric-label">Total candidates</p>
-      <p class="metric-value">8</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Active pipeline</p>
-      <p class="metric-value blue">7</p>
-      <p class="metric-sub">88% active rate</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Disruptive talent</p>
-      <p class="metric-value green">1</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Dropped</p>
-      <p class="metric-value red">1</p>
-    </div>
-  </div>
-
-  <div class="progress-bar">
-    <div class="progress-seg" style="background:#888780; flex:2;"></div>
-    <div class="progress-seg" style="background:#BA7517; flex:1;"></div>
-    <div class="progress-seg" style="background:#378ADD; flex:4;"></div>
-    <div class="progress-seg" style="background:#1D9E75; flex:1;"></div>
-    <div class="progress-seg" style="background:#E24B4A; flex:1;"></div>
-  </div>
-  <div class="legend" style="margin-bottom:20px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New candidates</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Full application</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview with staff</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive talent</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped</div>
-  </div>
-
-  <!-- Stage 5 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#1D9E75;"></div>
-      <span class="stage-title">Stage 5 — Disruptive talent META</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-grid">
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
-        <div>
-          <div class="cand-name">Hugo Macedo</div>
-          <div class="cand-role">People & Ops Lead — Complear · Imperial College London</div>
-        </div>
-        <span class="stage-pill pill-talent">Talent</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stage 4 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#378ADD;"></div>
-      <span class="stage-title">Stage 4 — Interview with staff</span>
-      <span class="stage-count">4 candidates</span>
-    </div>
-    <div class="cand-grid">
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AP</div>
-        <div>
-          <div class="cand-name">Antonio Manuel Puertas</div>
-          <div class="cand-role">Business Manager — Bioflow SUR · Univ. Granada</div>
-        </div>
-        <span class="stage-pill pill-interview">Interview</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
-        <div>
-          <div class="cand-name">Josselin Caradec</div>
-          <div class="cand-role">Board Observer — Curlew Bio · Vancouver Prostate Centre</div>
-        </div>
-        <span class="stage-pill pill-interview">Interview</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AS</div>
-        <div>
-          <div class="cand-name">Alessandro Scandurra</div>
-          <div class="cand-role">BD Manager — Sequentia Biotech · UPM</div>
-        </div>
-        <span class="stage-pill pill-interview">Interview</span>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JP</div>
-        <div>
-          <div class="cand-name">Juan J. Pérez Villar</div>
-          <div class="cand-role">CEO — QABY Biotech · UAM Immunology</div>
-        </div>
-        <span class="stage-pill pill-interview">Interview</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stage 2 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#BA7517;"></div>
-      <span class="stage-title">Stage 2 — Full application</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-grid">
-      <div class="cand-card">
-        <div class="avatar" style="background:#FAEEDA; color:#BA7517;">AO</div>
-        <div>
-          <div class="cand-name">Alessandro Oliveri</div>
-          <div class="cand-role">Founder & Co-CEO — The Algaemist · MIP Politecnico Milano</div>
-        </div>
-        <span class="stage-pill pill-app">Application</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stage 1 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#888780;"></div>
-      <span class="stage-title">Stage 1 — New candidates</span>
-      <span class="stage-count">1 active · 1 dropped</span>
-    </div>
-    <div class="cand-grid">
-      <div class="cand-card">
-        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">MM</div>
-        <div>
-          <div class="cand-name">Maria Chiara Maffia</div>
-          <div class="cand-role">Junior Postdoctoral Researcher — IRCCS San Raffaele</div>
-        </div>
-        <span class="stage-pill pill-new">New</span>
-      </div>
-      <div class="cand-card dropped">
-        <div class="avatar" style="background:#FCEBEB; color:#A32D2D;">AG</div>
-        <div>
-          <div class="cand-name">Andre Luis Gottardi Marcal</div>
-          <div class="cand-role">Senior Delivery Manager — COMPASS UOL</div>
-        </div>
-        <span class="stage-pill pill-dropped">Not qualified</span>
-      </div>
+      <p class="section-label" style="margin-bottom:10px;">Cross-project note</p>
+      <p style="font-size:12px; color:#888780; line-height:1.7;">
+        <strong style="color:#1a1a18;">Josselin Caradec</strong> is active in both TarGlio (interview) and ENDOMET (Disruptive Talent). His oncology + biotech background makes him a strong cross-project fit.<br><br>
+        <strong style="color:#1a1a18;">Hugo Macedo</strong> (Disruptive Talent) is simultaneously in Sorbmetrics Talent and BraidStent Talent pools — the broadest cross-project presence of any candidate in the programme.
+      </p>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Generated March 2026 · Confidential</p>
+    <p>Week 2 · April 2026 · Confidential</p>
   </div>
 
 </div>

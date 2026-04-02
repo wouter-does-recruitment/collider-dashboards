@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manatal Talent Pool Structure — The Collider</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --cream: #F7F4EF;
+    --ink: #1C1917;
+    --ink-light: #78716C;
+    --ink-faint: #A8A29E;
+    --border: #E5E0D8;
+    --biotech: #2D6A4F;
+    --biotech-light: #D8EFE3;
+    --meddev: #1D4E89;
+    --meddev-light: #D6E8F7;
+    --energy: #B45309;
+    --energy-light: #FEF3C7;
+    --deeptech: #6B21A8;
+    --deeptech-light: #EDE9FE;
+    --data: #BE123C;
+    --data-light: #FFE4E6;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 48px 32px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .page { max-width: 960px; margin: 0 auto; }
+
+  /* Header */
+  .header { margin-bottom: 48px; }
+  .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 12px; }
+  .header p { font-size: 14px; color: var(--ink-light); max-width: 520px; line-height: 1.7; }
+  .header-meta { display: flex; gap: 24px; margin-top: 20px; }
+  .meta-item { font-size: 11px; color: var(--ink-faint); }
+  .meta-item strong { color: var(--ink); font-weight: 600; }
+
+  /* Section labels */
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
+
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 40px 0; }
+
+  /* Intro stats */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 48px; }
+  .stat-block { background: #fff; padding: 20px 22px; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 11px; color: var(--ink-faint); }
+
+  /* Layer 1 — Folders */
+  .folders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+
+  .folder-card {
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .folder-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 0 0 0 80px;
+    opacity: 0.15;
+  }
+
+  .folder-card.biotech { background: var(--biotech-light); border-color: #A7D4B8; }
+  .folder-card.biotech::before { background: var(--biotech); }
+  .folder-card.meddev { background: var(--meddev-light); border-color: #A3C4E6; }
+  .folder-card.meddev::before { background: var(--meddev); }
+  .folder-card.energy { background: var(--energy-light); border-color: #FCD34D; }
+  .folder-card.energy::before { background: var(--energy); }
+  .folder-card.deeptech { background: var(--deeptech-light); border-color: #C4B5FD; }
+  .folder-card.deeptech::before { background: var(--deeptech); }
+  .folder-card.data { background: var(--data-light); border-color: #FDA4AF; }
+  .folder-card.data::before { background: var(--data); }
+
+  .folder-icon { font-size: 22px; margin-bottom: 12px; display: block; }
+  .folder-name { font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; margin-bottom: 6px; }
+  .folder-name.biotech { color: var(--biotech); }
+  .folder-name.meddev { color: var(--meddev); }
+  .folder-name.energy { color: var(--energy); }
+  .folder-name.deeptech { color: var(--deeptech); }
+  .folder-name.data { color: var(--data); }
+
+  .folder-desc { font-size: 12px; color: var(--ink-light); margin-bottom: 16px; line-height: 1.6; }
+
+  .folder-projects { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .proj-chip { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .proj-chip.biotech { background: #fff; color: var(--biotech); border: 1px solid #A7D4B8; }
+  .proj-chip.meddev { background: #fff; color: var(--meddev); border: 1px solid #A3C4E6; }
+  .proj-chip.energy { background: #fff; color: var(--energy); border: 1px solid #FCD34D; }
+  .proj-chip.deeptech { background: #fff; color: var(--deeptech); border: 1px solid #C4B5FD; }
+  .proj-chip.data { background: #fff; color: var(--data); border: 1px solid #FDA4AF; }
+
+  .folder-count { font-size: 11px; font-weight: 600; color: var(--ink-light); }
+  .folder-count span { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-right: 4px; }
+
+  /* Full width card */
+  .folder-card.full { grid-column: 1 / -1; }
+
+  /* Layer 2 — Tags */
+  .tags-section { margin-bottom: 48px; }
+  .tags-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  .tag-group { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .tag-group-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
+  .tag-list { display: flex; flex-direction: column; gap: 7px; }
+  .tag-item { display: flex; align-items: center; gap: 8px; }
+  .tag-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .tag-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .tag-desc { font-size: 11px; color: var(--ink-faint); }
+
+  /* How it works */
+  .howto { background: var(--ink); border-radius: 12px; padding: 32px; margin-bottom: 48px; color: #fff; }
+  .howto-title { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; margin-bottom: 20px; color: #fff; }
+  .howto-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .howto-step { }
+  .howto-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: rgba(255,255,255,0.2); line-height: 1; margin-bottom: 8px; }
+  .howto-step-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .howto-step-desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* Example search -->*/
+  .example { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 48px; }
+  .example-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 16px; }
+  .example-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+  .example-row:last-child { border-bottom: none; }
+  .example-project { font-size: 12px; font-weight: 600; color: var(--ink); width: 130px; flex-shrink: 0; }
+  .example-folder { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; flex-shrink: 0; }
+  .example-tags { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; }
+  .tag-pill { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: #f5f4f0; color: var(--ink-light); font-weight: 500; }
+
+  /* Known candidates -->*/
+  .candidates-note { background: #FEF9F0; border: 1px solid #FCD34D; border-radius: 10px; padding: 20px 24px; }
+  .candidates-note-title { font-size: 13px; font-weight: 600; color: var(--energy); margin-bottom: 12px; }
+  .cand-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #FDE68A; }
+  .cand-row:last-child { border-bottom: none; }
+  .cand-name { font-size: 12px; font-weight: 600; color: var(--ink); width: 180px; flex-shrink: 0; }
+  .cand-tags-list { display: flex; flex-wrap: wrap; gap: 5px; }
+  .cand-tag { font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 500; }
+  .ct-green { background: var(--biotech-light); color: var(--biotech); }
+  .ct-blue { background: var(--meddev-light); color: var(--meddev); }
+  .ct-amber { background: var(--energy-light); color: var(--energy); }
+  .ct-purple { background: var(--deeptech-light); color: var(--deeptech); }
+  .ct-red { background: var(--data-light); color: var(--data); }
+  .ct-gray { background: #f5f4f0; color: var(--ink-light); }
+
+  .footer { text-align: center; font-size: 11px; color: var(--ink-faint); padding-top: 20px; }
+
+  @media print {
+    body { background: #fff; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <p class="header-eyebrow">Does Recruitment · The Collider · Manatal</p>
+    <h1>Talent Pool Structure<br>Proposal</h1>
+    <p>A two-layer tagging system — sector folders + profile tags — to make every candidate we've ever spoken to findable and reusable across future Collider cohorts.</p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>120+</strong> candidates to tag</div>
+      <div class="meta-item"><strong>65</strong> application forms</div>
+      <div class="meta-item"><strong>9</strong> projects · Cohort 1</div>
+      <div class="meta-item"><strong>April 2026</strong></div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Sector folders (Layer 1)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">10</div>
+      <div class="stat-label">Profile tags (Layer 2)</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Tags per candidate</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">∀</div>
+      <div class="stat-label">Reusable across cohorts</div>
+    </div>
+  </div>
+
+  <!-- Layer 1 -->
+  <p class="section-label">Layer 1 — Manatal Folders (sector)</p>
+  <p style="font-size:13px; color:var(--ink-light); margin-bottom:20px; max-width:600px;">Each candidate lives in one primary folder. Reflects the sector they have the most relevant experience in — not just the project they applied to.</p>
+
+  <div class="folders-grid">
+
+    <div class="folder-card biotech">
+      <span class="folder-icon">🧬</span>
+      <div class="folder-name biotech">Biotech & Life Sciences</div>
+      <div class="folder-desc">Pharma, drug development, orphan diseases, academic spin-offs, biomarkers, cell & gene therapy, clinical research.</div>
+      <div class="folder-projects">
+        <span class="proj-chip biotech">ENDOMET</span>
+        <span class="proj-chip biotech">TarGlio</span>
+        <span class="proj-chip biotech">BraidStent</span>
+      </div>
+      <div class="folder-count"><span>48</span> current candidates</div>
+    </div>
+
+    <div class="folder-card meddev">
+      <span class="folder-icon">🔬</span>
+      <div class="folder-name meddev">MedDev & Digital Health</div>
+      <div class="folder-desc">Medical devices, microfluidics, diagnostics, organ-on-chip, digital therapeutics, health data platforms, pediatric health.</div>
+      <div class="folder-projects">
+        <span class="proj-chip meddev">ONAKids</span>
+        <span class="proj-chip meddev">OGYX</span>
+      </div>
+      <div class="folder-count"><span>38</span> current candidates</div>
+    </div>
+
+    <div class="folder-card energy">
+      <span class="folder-icon">⚡</span>
+      <div class="folder-name energy">Energy & CleanTech</div>
+      <div class="folder-desc">Smart grids, renewables, energy storage, DSO/TSO commercialisation, sustainability platforms, climate tech.</div>
+      <div class="folder-projects">
+        <span class="proj-chip energy">GridWatch</span>
+        <span class="proj-chip energy">Sorbmetrics</span>
+      </div>
+      <div class="folder-count"><span>53</span> current candidates</div>
+    </div>
+
+    <div class="folder-card deeptech">
+      <span class="folder-icon">🔭</span>
+      <div class="folder-name deeptech">Deep Tech & Advanced Industry</div>
+      <div class="folder-desc">Photonics, optics, advanced materials, robotics, MEMS, hardware commercialisation, manufacturing innovation.</div>
+      <div class="folder-projects">
+        <span class="proj-chip deeptech">OpticMizing</span>
+      </div>
+      <div class="folder-count"><span>8</span> current candidates</div>
+    </div>
+
+    <div class="folder-card data full">
+      <span class="folder-icon">📊</span>
+      <div class="folder-name data">Data Science, AI & Platform Tech</div>
+      <div class="folder-desc">Machine learning, healthcare analytics, SaaS platform founders, data infrastructure, AI product leaders. Increasingly cross-sector — relevant for almost any future Collider project with a software/AI component.</div>
+      <div class="folder-projects">
+        <span class="proj-chip data">Ulisses DS</span>
+        <span class="proj-chip data">+ cross-sector</span>
+      </div>
+      <div class="folder-count"><span>4</span> current candidates · expected to grow significantly in future cohorts</div>
+    </div>
+
+  </div>
+
+  <!-- Layer 2 -->
+  <p class="section-label">Layer 2 — Manatal Tags (profile characteristics)</p>
+  <p style="font-size:13px; color:var(--ink-light); margin-bottom:20px; max-width:600px;">Multiple tags per candidate. Cross-folder filterable. This is what makes the pool searchable for future cohorts — e.g. find everyone in Biotech who has raised equity AND has tech transfer experience.</p>
+
+  <div class="tags-grid" style="margin-bottom:40px;">
+
+    <div class="tag-group">
+      <div class="tag-group-title">Founder background</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#2D6A4F;"></div>
+          <div>
+            <div class="tag-name">CEO / Founder experience</div>
+            <div class="tag-desc">Has built and led a company before</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#2D6A4F;"></div>
+          <div>
+            <div class="tag-name">Tech Transfer / Spin-off</div>
+            <div class="tag-desc">University or R&D spin-off background</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#2D6A4F;"></div>
+          <div>
+            <div class="tag-name">Scientific background</div>
+            <div class="tag-desc">PhD or active R&D track record</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-group">
+      <div class="tag-group-title">Fundraising</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#1D4E89;"></div>
+          <div>
+            <div class="tag-name">Raised — equity</div>
+            <div class="tag-desc">VC, angel or seed investment raised</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#1D4E89;"></div>
+          <div>
+            <div class="tag-name">Raised — grants / public</div>
+            <div class="tag-desc">EIC, Horizon, national public funding</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#1D4E89;"></div>
+          <div>
+            <div class="tag-name">Raised — both</div>
+            <div class="tag-desc">Mixed public + private track record</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-group">
+      <div class="tag-group-title">Commercial & regulatory</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#B45309;"></div>
+          <div>
+            <div class="tag-name">Commercial / BD / Sales</div>
+            <div class="tag-desc">Revenue, partnerships, B2B track record</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#B45309;"></div>
+          <div>
+            <div class="tag-name">Regulatory experience</div>
+            <div class="tag-desc">EMA, FDA, CE marking, clinical pathways</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-group">
+      <div class="tag-group-title">Location & eligibility</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#6B21A8;"></div>
+          <div>
+            <div class="tag-name">Spain eligible</div>
+            <div class="tag-desc">Right to work in Spain confirmed</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#6B21A8;"></div>
+          <div>
+            <div class="tag-name">Barcelona based</div>
+            <div class="tag-desc">Already living in Barcelona area</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#6B21A8;"></div>
+          <div>
+            <div class="tag-name">Spanish native / fluent</div>
+            <div class="tag-desc">Excellent Spanish — required for some roles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-group">
+      <div class="tag-group-title">Pipeline quality</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#BE123C;"></div>
+          <div>
+            <div class="tag-name">Disruptive Talent — verified</div>
+            <div class="tag-desc">Reached Stage 5+ in any Collider project</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#BE123C;"></div>
+          <div>
+            <div class="tag-name">Reference checked</div>
+            <div class="tag-desc">Professional references completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tag-group">
+      <div class="tag-group-title">Availability</div>
+      <div class="tag-list">
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#57534E;"></div>
+          <div>
+            <div class="tag-name">Available immediately</div>
+            <div class="tag-desc">Can start within 1 month</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#57534E;"></div>
+          <div>
+            <div class="tag-name">Full-time commitment</div>
+            <div class="tag-desc">Available 4–5 days per week</div>
+          </div>
+        </div>
+        <div class="tag-item">
+          <div class="tag-dot" style="background:#57534E;"></div>
+          <div>
+            <div class="tag-name">Cohort 1 — not selected</div>
+            <div class="tag-desc">Progressed but not placed — re-approach for cohort 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- How it works -->
+  <div class="howto">
+    <div class="howto-title">How it works in practice</div>
+    <div class="howto-grid">
+      <div class="howto-step">
+        <div class="howto-num">01</div>
+        <div class="howto-step-title">Candidate enters pipeline</div>
+        <div class="howto-step-desc">Assign one Folder (sector) and all relevant Tags. Takes 2 minutes per candidate in Manatal.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">02</div>
+        <div class="howto-step-title">New project launches (Cohort 2)</div>
+        <div class="howto-step-desc">Filter by Folder + Tags. E.g. "Biotech + Tech Transfer + Spain eligible + Disruptive Talent verified" → instant shortlist.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">03</div>
+        <div class="howto-step-title">Pool grows over time</div>
+        <div class="howto-step-desc">Every candidate who applied, replied to outreach, or was screened adds to the pool. Compound value across cohorts.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example searches -->
+  <p class="section-label">Example searches — new project in Cohort 2</p>
+  <div class="example">
+    <div class="example-title">Scenario: New rare disease biotech project launches — who do we already have?</div>
+    <div class="example-row">
+      <div class="example-project">Cristina Aguilera</div>
+      <span class="example-folder proj-chip biotech">Biotech</span>
+      <div class="example-tags">
+        <span class="tag-pill">CEO / Founder</span>
+        <span class="tag-pill">Spain eligible</span>
+        <span class="tag-pill">Barcelona based</span>
+        <span class="tag-pill">Disruptive Talent ✓</span>
+        <span class="tag-pill">Cohort 1 — not selected</span>
+      </div>
+    </div>
+    <div class="example-row">
+      <div class="example-project">Josselin Caradec</div>
+      <span class="example-folder proj-chip biotech">Biotech</span>
+      <div class="example-tags">
+        <span class="tag-pill">Tech Transfer</span>
+        <span class="tag-pill">Scientific background</span>
+        <span class="tag-pill">Disruptive Talent ✓</span>
+        <span class="tag-pill">Spain eligible</span>
+      </div>
+    </div>
+    <div class="example-row">
+      <div class="example-project">Katerina Danezi</div>
+      <span class="example-folder proj-chip biotech">Biotech</span>
+      <div class="example-tags">
+        <span class="tag-pill">Scientific background</span>
+        <span class="tag-pill">Tech Transfer</span>
+        <span class="tag-pill">Barcelona based</span>
+        <span class="tag-pill">Spain eligible</span>
+      </div>
+    </div>
+    <div class="example-row">
+      <div class="example-project">Hugo Macedo</div>
+      <span class="example-folder proj-chip biotech">Biotech</span>
+      <div class="example-tags">
+        <span class="tag-pill">CEO / Founder</span>
+        <span class="tag-pill">Tech Transfer</span>
+        <span class="tag-pill">Raised — equity</span>
+        <span class="tag-pill">Disruptive Talent ✓</span>
+        <span class="tag-pill">Reference checked</span>
+      </div>
+    </div>
+    <p style="font-size:11px; color:var(--ink-faint); margin-top:12px;">→ 4 warm candidates ready to re-approach within minutes. No cold sourcing needed.</p>
+  </div>
+
+  <!-- Known candidates note -->
+  <p class="section-label">Cross-project talent — already taggable today</p>
+  <div class="candidates-note">
+    <div class="candidates-note-title">⭐ Priority tagging — multi-project candidates</div>
+    <div class="cand-row">
+      <div class="cand-name">Hugo Macedo</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-green">Biotech</span>
+        <span class="cand-tag ct-green">CEO / Founder</span>
+        <span class="cand-tag ct-green">Tech Transfer</span>
+        <span class="cand-tag ct-green">Raised — equity</span>
+        <span class="cand-tag ct-green">Disruptive Talent ✓</span>
+        <span class="cand-tag ct-green">Reference checked</span>
+        <span class="cand-tag ct-gray">3 pipelines</span>
+      </div>
+    </div>
+    <div class="cand-row">
+      <div class="cand-name">Josselin Caradec</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-green">Biotech</span>
+        <span class="cand-tag ct-green">Scientific background</span>
+        <span class="cand-tag ct-green">Tech Transfer</span>
+        <span class="cand-tag ct-green">Disruptive Talent ✓</span>
+        <span class="cand-tag ct-gray">2 pipelines</span>
+      </div>
+    </div>
+    <div class="cand-row">
+      <div class="cand-name">David Luis Milia Garrote</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-amber">Energy</span>
+        <span class="cand-tag ct-amber">CEO / Founder</span>
+        <span class="cand-tag ct-amber">Raised — both</span>
+        <span class="cand-tag ct-amber">Disruptive Talent ✓</span>
+        <span class="cand-tag ct-amber">Reference checked</span>
+        <span class="cand-tag ct-gray">2 pipelines</span>
+      </div>
+    </div>
+    <div class="cand-row">
+      <div class="cand-name">Javier Rodriguez Saiz</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-purple">Deep Tech</span>
+        <span class="cand-tag ct-purple">CEO / Founder</span>
+        <span class="cand-tag ct-purple">Commercial / BD</span>
+        <span class="cand-tag ct-purple">Disruptive Talent ✓</span>
+        <span class="cand-tag ct-gray">2 pipelines</span>
+      </div>
+    </div>
+    <div class="cand-row">
+      <div class="cand-name">Silvia Gomez Montes</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-blue">MedDev</span>
+        <span class="cand-tag ct-blue">CEO / Founder</span>
+        <span class="cand-tag ct-blue">Raised — equity</span>
+        <span class="cand-tag ct-blue">Disruptive Talent ✓</span>
+        <span class="cand-tag ct-blue">Reference checked</span>
+        <span class="cand-tag ct-gray">ONAKids Stage 6</span>
+      </div>
+    </div>
+    <div class="cand-row">
+      <div class="cand-name">Katerina Danezi</div>
+      <div class="cand-tags-list">
+        <span class="cand-tag ct-green">Biotech</span>
+        <span class="cand-tag ct-green">Scientific background</span>
+        <span class="cand-tag ct-green">Tech Transfer</span>
+        <span class="cand-tag ct-green">Barcelona based</span>
+        <span class="cand-tag ct-gray">ENDOMET Round 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer" style="margin-top:40px;">
+    Does Recruitment · wouter@doesrecruitment.com · The Collider · April 2026 · Proposal — not final
+  </div>
+
+</div>
+</body>
+</html>

@@ -39,12 +39,16 @@
   .card-link { font-size: 11px; color: #185FA5; font-weight: 600; }
   .card-link::after { content: ' →'; }
 
-  /* Analytics + tools section */
+  /* Tools grid */
   .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .tool-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
   .tool-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
-  .tool-card.highlight { border-color: #C4B5FD; background: #FAFAFE; }
-  .tool-card.highlight:hover { border-color: #8B5CF6; }
+  .tool-card.highlight-purple { border-color: #C4B5FD; background: #FAFAFE; }
+  .tool-card.highlight-purple:hover { border-color: #8B5CF6; }
+  .tool-card.highlight-amber { border-color: #FCD34D; background: #FFFDF5; }
+  .tool-card.highlight-amber:hover { border-color: #F59E0B; }
+  .tool-card.highlight-blue { border-color: #93C5FD; background: #F5FAFF; }
+  .tool-card.highlight-blue:hover { border-color: #3B82F6; }
   .tool-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
   .tool-desc { font-size: 11px; color: #888780; margin-bottom: 10px; line-height: 1.5; }
 
@@ -103,9 +107,9 @@
         <div><div class="card-title">ONAKids</div><div class="card-sector">Digital Health · Pediatrics</div></div>
       </div>
       <div class="card-stats">
-        <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">33 candidates</span>
         <span class="card-stat" style="background:#1D9E75; color:#fff; font-weight:600;">2 ref check ✦</span>
-        <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">4 interview</span>
+        <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">4 interview</span>
+        <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">1 ★ Talent</span>
       </div>
       <div class="card-link">Open dashboard</div>
     </a>
@@ -139,11 +143,10 @@
     <a href="collider_opticmizing_dashboard.html" class="project-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div>
-        <div><div class="card-title">OpticMizing</div><div class="card-sector">Deep Tech · Optics</div></div>
+        <div><div class="card-title">OpticMizing</div><div class="card-sector">Deep Tech · Food/Fermentation</div></div>
       </div>
       <div class="card-stats">
-        <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">8 candidates</span>
-        <span class="card-stat" style="background:#f5f4f0; color:#888780;">Inbound only</span>
+        <span class="card-stat" style="background:#FAEEDA; color:#BA7517; font-weight:600;">⚠ Profile shift</span>
         <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">2 ★ Talent</span>
       </div>
       <div class="card-link">Open dashboard</div>
@@ -156,8 +159,8 @@
       </div>
       <div class="card-stats">
         <span class="card-stat" style="background:#E6F1FB; color:#185FA5;">4 candidates</span>
-        <span class="card-stat" style="background:#f5f4f0; color:#888780;">Inbound only</span>
         <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">1 ★ Talent</span>
+        <span class="card-stat" style="background:#FAEEDA; color:#BA7517;">1 application</span>
       </div>
       <div class="card-link">Open dashboard</div>
     </a>
@@ -202,11 +205,35 @@
 
   </div>
 
+  <!-- Weekly reports -->
+  <p class="section-label">Weekly reports & team notes</p>
+  <div class="tools-grid">
+
+    <a href="collider_weekly_activity.html" class="tool-card highlight-blue">
+      <div class="card-top" style="margin-bottom:6px;">
+        <div class="card-avatar" style="background:#E6F1FB; color:#185FA5; border-radius:8px;">WA</div>
+        <div class="tool-title">Weekly Activity Report — Week 2</div>
+      </div>
+      <div class="tool-desc">Outreach done (all campaigns), Manatal stage changes, + 9 new application form matches for open roles including Francisco Alvarado for OpticMizing.</div>
+      <div class="card-link">Open report</div>
+    </a>
+
+    <a href="collider_team_notes.html" class="tool-card highlight-amber">
+      <div class="card-top" style="margin-bottom:6px;">
+        <div class="card-avatar" style="background:#FEF3C7; color:#B45309; border-radius:8px;">TN</div>
+        <div class="tool-title">Team Notes — Consuelo · 27 March</div>
+      </div>
+      <div class="tool-desc">OpticMizing profile shift (food/fermentation), Xavi Bou for GridWatch, Silvia Gomez cross-project risk (TarGlio vs ONAKids), Josselin ENDOMET contradiction.</div>
+      <div class="card-link">Open notes</div>
+    </a>
+
+  </div>
+
   <!-- Analytics & Tools -->
   <p class="section-label">Analytics, reports & tools</p>
   <div class="tools-grid">
 
-    <a href="collider_talent_pool_structure.html" class="tool-card highlight">
+    <a href="collider_talent_pool_structure.html" class="tool-card highlight-purple">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#EEEDFE; color:#6B21A8; border-radius:8px;">TP</div>
         <div class="tool-title">Talent Pool Structure — Manatal</div>

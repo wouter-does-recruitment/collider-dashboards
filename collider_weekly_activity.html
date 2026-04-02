@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collider — Weekly Activity Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  /* Metric cards */
+  .metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 24px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.amber { color: #BA7517; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
+
+  /* Campaign table */
+  .camp-table { width: 100%; border-collapse: collapse; }
+  .camp-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
+  .camp-table th:not(:first-child) { text-align: right; }
+  .camp-table td { padding: 9px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; vertical-align: middle; }
+  .camp-table tr:last-child td { border-bottom: none; }
+  .camp-table td:not(:first-child) { text-align: right; }
+  .camp-name { font-weight: 600; color: #1a1a18; }
+  .rate-good { color: #1D9E75; font-weight: 600; }
+  .rate-ok { color: #BA7517; font-weight: 600; }
+  .rate-low { color: #A32D2D; font-weight: 600; }
+  .camp-badge { font-size: 9px; padding: 1px 5px; border-radius: 6px; font-weight: 600; margin-left: 5px; }
+  .cb-new { background: #EAF3DE; color: #3B6D11; }
+  .cb-pool { background: #EEEDFE; color: #534AB7; }
+
+  /* Manatal changes */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+
+  .change-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .change-row:last-child { border-bottom: none; }
+  .change-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .change-text { font-size: 12px; color: #1a1a18; flex: 1; line-height: 1.5; }
+  .change-text .name { font-weight: 600; }
+  .change-text .from { color: #888780; }
+  .change-text .to { font-weight: 600; }
+  .arrow { color: #888780; margin: 0 4px; }
+  .pill { font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 600; }
+  .pill-talent { background: #EAF3DE; color: #3B6D11; }
+  .pill-interview { background: #E6F1FB; color: #185FA5; }
+  .pill-app { background: #FAEEDA; color: #BA7517; }
+  .pill-new { background: #f5f4f0; color: #888780; }
+  .pill-ref { background: #1D9E75; color: #fff; }
+  .pill-drop { background: #FCEBEB; color: #A32D2D; }
+
+  /* Application matches */
+  .match-card { border: 0.5px solid #e0ddd6; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+  .match-header { padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 0.5px solid #e0ddd6; }
+  .match-avatar { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; }
+  .match-project { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .match-sector { font-size: 10px; color: #888780; }
+  .match-count { margin-left: auto; font-size: 11px; color: #888780; }
+  .match-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .match-cand { display: flex; align-items: flex-start; gap: 8px; }
+  .match-cand-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
+  .match-cand-name { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .match-cand-bg { font-size: 11px; color: #888780; line-height: 1.4; }
+  .match-cand-loc { font-size: 10px; color: #b4b2a9; }
+  .match-reason { font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-left: auto; flex-shrink: 0; white-space: nowrap; }
+  .mr-food { background: #FEF3C7; color: #B45309; font-weight: 600; }
+  .mr-energy { background: #EAF3DE; color: #3B6D11; font-weight: 600; }
+  .mr-bio { background: #E6F1FB; color: #185FA5; font-weight: 600; }
+  .mr-nano { background: #EEEDFE; color: #534AB7; font-weight: 600; }
+  .mr-rare { background: #FBEAF0; color: #993556; font-weight: 600; }
+  .star { font-size: 10px; background: #1D9E75; color: #fff; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Weekly Activity Report</h1>
+      <p>The Collider Programme · Outreach done · Manatal changes · New application matches · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">Week 2 · April 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- Top KPIs -->
+  <p class="section-label">This week at a glance</p>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <p class="metric-label">New Dripify leads</p>
+      <p class="metric-value blue">51</p>
+      <p class="metric-sub">ENDOMET R2 + GridWatch + OGYX</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Manatal stage moves</p>
+      <p class="metric-value green">8</p>
+      <p class="metric-sub">Across all projects</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">New Talent stage</p>
+      <p class="metric-value green">+3</p>
+      <p class="metric-sub">Josselin + Jonathan → Stage 5</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Reference check</p>
+      <p class="metric-value green">2</p>
+      <p class="metric-sub">ONAKids — first in programme</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">App form matches</p>
+      <p class="metric-value amber">9</p>
+      <p class="metric-sub">New fits identified for open roles</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Outreach done -->
+  <p class="section-label">Outreach done — Dripify campaigns (all time)</p>
+  <table class="camp-table" style="margin-bottom:24px;">
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>Leads</th>
+        <th>Invites</th>
+        <th>Accepted</th>
+        <th>Acc. %</th>
+        <th>Messaged</th>
+        <th>Replies</th>
+        <th>Reply %</th>
+        <th>Period</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="camp-name">ONAKids</span></td>
+        <td>60</td><td>53</td><td>42</td>
+        <td><span class="rate-good">79%</span></td>
+        <td>56</td><td>38</td>
+        <td><span class="rate-good">68%</span></td>
+        <td>Dec '25 — Jan '26</td>
+      </tr>
+      <tr>
+        <td><span class="camp-name">TarGlio</span></td>
+        <td>66</td><td>65</td><td>45</td>
+        <td><span class="rate-ok">69%</span></td>
+        <td>40</td><td>32</td>
+        <td><span class="rate-good">80%</span></td>
+        <td>Feb — Mar '26</td>
+      </tr>
+      <tr>
+        <td><span class="camp-name">Sorbmetrics</span></td>
+        <td>22</td><td>22</td><td>15</td>
+        <td><span class="rate-ok">68%</span></td>
+        <td>6</td><td>15</td>
+        <td><span class="rate-good">100%</span></td>
+        <td>Jan — Mar '26</td>
+      </tr>
+      <tr>
+        <td><span class="camp-name">Biotech Pool <span class="camp-badge cb-pool">Pool</span></span></td>
+        <td>36</td><td>35</td><td>24</td>
+        <td><span class="rate-ok">69%</span></td>
+        <td>25</td><td>20</td>
+        <td><span class="rate-good">80%</span></td>
+        <td>Feb — Mar '26</td>
+      </tr>
+      <tr>
+        <td><span class="camp-name">MedTech Pool <span class="camp-badge cb-pool">Pool</span></span></td>
+        <td>20</td><td>20</td><td>17</td>
+        <td><span class="rate-good">85%</span></td>
+        <td>16</td><td>12</td>
+        <td><span class="rate-good">75%</span></td>
+        <td>Feb — Mar '26</td>
+      </tr>
+      <tr>
+        <td><span class="camp-name">ENDOMET R1</span></td>
+        <td>11</td><td>11</td><td>8</td>
+        <td><span class="rate-good">73%</span></td>
+        <td>9</td><td>6</td>
+        <td><span class="rate-ok">67%</span></td>
+        <td>Mar '26</td>
+      </tr>
+      <tr style="background:#f9fdf6;">
+        <td><span class="camp-name">ENDOMET R2 <span class="camp-badge cb-new">NEW</span></span></td>
+        <td>26</td><td>—</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>11</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>Apr '26</td>
+      </tr>
+      <tr style="background:#f9fdf6;">
+        <td><span class="camp-name">GridWatch <span class="camp-badge cb-new">NEW</span></span></td>
+        <td>18</td><td>—</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>3</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>Apr '26</td>
+      </tr>
+      <tr style="background:#f9fdf6;">
+        <td><span class="camp-name">OGYX <span class="camp-badge cb-new">NEW</span></span></td>
+        <td>7</td><td>—</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>1</td><td>—</td>
+        <td class="rate-ok">Pending</td>
+        <td>Apr '26</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:10px; color:#b4b2a9; margin-bottom:8px;">* Sorbmetrics 100% reply rate includes inbound overlap · New campaigns (green rows) acceptance/reply data pending as sequence progresses.</p>
+  <div style="background:#f5f4f0; border-radius:8px; padding:12px 14px; margin-bottom:4px;">
+    <p style="font-size:12px; color:#1a1a18;"><strong>Total across all campaigns:</strong> 266 leads profiled · 206 invites sent · 151 accepted (73% avg) · 123 replies (81% avg reply rate on messaged) · 3 new campaigns launched this week</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Manatal changes -->
+  <p class="section-label">Manatal pipeline changes — Week 2</p>
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:12px;">Stage advances ↑</p>
+      <div class="change-row">
+        <div class="change-dot" style="background:#1D9E75;"></div>
+        <div class="change-text">
+          <span class="name">Josselin Caradec</span> (ENDOMET)<br>
+          <span class="from">New</span> <span class="arrow">→</span> <span class="pill pill-talent">★ Disruptive Talent</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#1D9E75;"></div>
+        <div class="change-text">
+          <span class="name">Dr. Jonathan Dando</span> (ENDOMET)<br>
+          <span class="from">Interview</span> <span class="arrow">→</span> <span class="pill pill-talent">★ Disruptive Talent</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#1D9E75;"></div>
+        <div class="change-text">
+          <span class="name">Silvia Gomez Montes</span> (ONAKids)<br>
+          <span class="from">Disruptive Talent</span> <span class="arrow">→</span> <span class="pill pill-ref">Stage 6 Ref check</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#1D9E75;"></div>
+        <div class="change-text">
+          <span class="name">Nicolas Escartin</span> (ONAKids)<br>
+          <span class="from">Disruptive Talent</span> <span class="arrow">→</span> <span class="pill pill-ref">Stage 6 Ref check</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#378ADD;"></div>
+        <div class="change-text">
+          <span class="name">Xavi Bou Torrent</span> (GridWatch)<br>
+          <span class="from">New</span> <span class="arrow">→</span> <span class="pill pill-interview">Interview</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#378ADD;"></div>
+        <div class="change-text">
+          <span class="name">David Luis Milia Garrote</span> (GridWatch)<br>
+          <span class="from">New</span> <span class="arrow">→</span> <span class="pill pill-interview">Interview</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#BA7517;"></div>
+        <div class="change-text">
+          <span class="name">Sahil Chutani</span> (Ulisses DS)<br>
+          <span class="from">New</span> <span class="arrow">→</span> <span class="pill pill-app">Full application</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#BA7517;"></div>
+        <div class="change-text">
+          <span class="name">Alexander Euler</span> (GridWatch)<br>
+          <span class="from">New</span> <span class="arrow">→</span> <span class="pill pill-app">Full application</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:12px;">New entries + drops</p>
+      <div class="change-row">
+        <div class="change-dot" style="background:#EF9F27;"></div>
+        <div class="change-text">
+          <span class="name">Maria Chiara Maffia</span> (TarGlio)<br>
+          New entry — <span class="pill pill-new">Stage 1</span> · Postdoc IRCCS San Raffaele
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#EF9F27;"></div>
+        <div class="change-text">
+          <span class="name">Fearghal O'Connor</span> (BraidStent)<br>
+          New entry — <span class="pill pill-new">Stage 1</span> · Doctoral Candidate ICIQ
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#E24B4A;"></div>
+        <div class="change-text">
+          <span class="name">André Gottardi Marçal</span> (TarGlio)<br>
+          New entry → immediately <span class="pill pill-drop">Dropped</span>
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#E24B4A;"></div>
+        <div class="change-text">
+          <span class="name">Annamaria Grassi</span> (GridWatch)<br>
+          <span class="pill pill-drop">Dropped</span> · Data compliance — wrong profile
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#E24B4A;"></div>
+        <div class="change-text">
+          <span class="name">Georgy Godizov</span> (GridWatch)<br>
+          <span class="pill pill-drop">Dropped</span> · Technical PM — too technical
+        </div>
+      </div>
+      <div class="change-row">
+        <div class="change-dot" style="background:#E24B4A;"></div>
+        <div class="change-text">
+          <span class="name">Miguel Latre</span> (OpticMizing)<br>
+          New entry → immediately <span class="pill pill-drop">Dropped</span> · PwC advisor
+        </div>
+      </div>
+      <div style="background:#FBEAF0; border-radius:6px; padding:10px 12px; margin-top:12px;">
+        <p style="font-size:11px; color:#993556; font-weight:600; margin-bottom:4px;">🔄 Cross-project move</p>
+        <p style="font-size:11px; color:#1a1a18;">Javier Rodriguez Saiz officially moved from OpticMizing Talent → Ulisses DS. Confirmed by The Collider team.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- New application matches -->
+  <p class="section-label">New application form matches — 62 responses analysed</p>
+  <p style="font-size:12px; color:#888780; margin-bottom:16px; max-width:640px;">Based on background descriptions and "problem drawn to" answers. These candidates applied but haven't been matched to a specific project yet — or are new profiles worth adding to existing pipelines.</p>
+
+  <!-- OpticMizing -->
+  <div class="match-card">
+    <div class="match-header">
+      <div class="match-avatar" style="background:#FAEEDA; color:#BA7517;">OP</div>
+      <div>
+        <div class="match-project">OpticMizing — Food & Fermentation Commercial CEO</div>
+        <div class="match-sector">New requirement per Consuelo — food industry connections, fermentation (yogurt, cheese), GTM soon</div>
+      </div>
+      <div class="match-count">4 matches found</div>
+    </div>
+    <div class="match-body">
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#FEF3C7; color:#B45309;">FA</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Francisco Alvarado ⭐ <span class="star">Top match</span></div>
+          <div class="match-cand-bg">Chemical Engineer + Industrial Engineer · "Food Ingredients and Biotechnology — experience in many ways on how to scale food biotech products"</div>
+          <div class="match-cand-loc">📍 Viña del Mar, Chile — check Spain eligibility</div>
+        </div>
+        <span class="match-reason mr-food">Food Biotech</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#FEF3C7; color:#B45309;">MD</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Mohanad Darawsheh</div>
+          <div class="match-cand-bg">PhD Molecular Chemistry · "Laser-focused on Biotech, Agri-Food and Chemical industries" · Valencia-based</div>
+          <div class="match-cand-loc">📍 Valencia, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-food">Agri-Food</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#FEF3C7; color:#B45309;">DB</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Dana Bernhardt</div>
+          <div class="match-cand-bg">PhD Industrial Chemistry + BSc Food Technology · "Waste revalorization and development of bio-based materials" · Already in Sorbmetrics Interview</div>
+          <div class="match-cand-loc">📍 Barcelona ✓ · ⚠ Already in Sorbmetrics pipeline</div>
+        </div>
+        <span class="match-reason mr-food">Food Tech</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#FEF3C7; color:#B45309;">AC</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Andres Clarós</div>
+          <div class="match-cand-bg">Engineer + MBA · "Experience in industrial manufacturing, foodtech and healthtech" · Barcelona-based</div>
+          <div class="match-cand-loc">📍 Barcelona, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-food">FoodTech</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GridWatch -->
+  <div class="match-card">
+    <div class="match-header">
+      <div class="match-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div>
+      <div>
+        <div class="match-project">GridWatch — Energy sector CEO / Commercial profile</div>
+        <div class="match-sector">Xavi Bou is the reference profile. Need similar energy + BD + public funding experience</div>
+      </div>
+      <div class="match-count">3 new matches</div>
+    </div>
+    <div class="match-body">
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EAF3DE; color:#3B6D11;">RS</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Ricardo Simon Leon Correa ⭐ <span class="star">Top match</span></div>
+          <div class="match-cand-bg">Background in energy · "Natural preference for climate-tech and energy given my background" · Terrassa, Barcelona</div>
+          <div class="match-cand-loc">📍 Terrassa, Barcelona ✓</div>
+        </div>
+        <span class="match-reason mr-energy">Energy / ClimaTech</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EAF3DE; color:#3B6D11;">DS</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">David Sagüés</div>
+          <div class="match-cand-bg">Electrical Engineer · "Specially interested in power electronics and energy conversion" · Madrid</div>
+          <div class="match-cand-loc">📍 Madrid, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-energy">Power Electronics</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EAF3DE; color:#3B6D11;">JV</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Jorge Vila Barros</div>
+          <div class="match-cand-bg">Energy & Climate + Materials background · Seville-based founder profile</div>
+          <div class="match-cand-loc">📍 Seville, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-energy">Energy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TarGlio -->
+  <div class="match-card">
+    <div class="match-header">
+      <div class="match-avatar" style="background:#FBEAF0; color:#993556;">TG</div>
+      <div>
+        <div class="match-project">TarGlio — Oncology / Nanotech CEO, more options needed</div>
+        <div class="match-sector">Silvia Gomez being considered but team needs alternatives</div>
+      </div>
+      <div class="match-count">3 new matches</div>
+    </div>
+    <div class="match-body">
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EEEDFE; color:#534AB7;">AM</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Ariadna Montero ⭐ <span class="star">Top match</span></div>
+          <div class="match-cand-bg">PhD Synthetic Biology + Executive MBA ESADE · "Biotech leader" · Barcelona-based — strong science + business combo</div>
+          <div class="match-cand-loc">📍 Barcelona, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-nano">Synth Bio + MBA</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EEEDFE; color:#534AB7;">SS</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Stuart Sims</div>
+          <div class="match-cand-bg">PhD life sciences · "Career helping turn therapeutic innovations into commercial successes" · Zurich — check Spain eligibility</div>
+          <div class="match-cand-loc">📍 Zurich, Switzerland — check Spain eligibility</div>
+        </div>
+        <span class="match-reason mr-nano">Therapeutics</span>
+      </div>
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#EEEDFE; color:#534AB7;">AT</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Alin Tobares</div>
+          <div class="match-cand-bg">PhD + 20 years life sciences experience · Barcelona-based · Not yet placed in any pipeline</div>
+          <div class="match-cand-loc">📍 Barcelona, Spain ✓</div>
+        </div>
+        <span class="match-reason mr-nano">Life Sciences PhD</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENDOMET -->
+  <div class="match-card">
+    <div class="match-header">
+      <div class="match-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div>
+      <div>
+        <div class="match-project">ENDOMET — Rare disease / Mitochondria profile</div>
+        <div class="match-sector">Josselin is favourite but "not the right profile" — deeper science or rare disease experience needed</div>
+      </div>
+      <div class="match-count">1 strong match</div>
+    </div>
+    <div class="match-body">
+      <div class="match-cand">
+        <div class="match-cand-avatar" style="background:#FBEAF0; color:#993556;">TC</div>
+        <div style="flex:1;">
+          <div class="match-cand-name">Timothy Patrick Cash Flexer ⭐ <span class="star">Top match</span></div>
+          <div class="match-cand-bg">17 years academic research · PhD Cell Biology · Barcelona-based · Already in our pipeline (TarGlio reference check stage) · Rare disease / cell biology overlap with ENDOMET science</div>
+          <div class="match-cand-loc">📍 Barcelona, Spain ✓ · Already known from TarGlio</div>
+        </div>
+        <span class="match-reason mr-rare">Cell Biology PhD</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Week 2 · April 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

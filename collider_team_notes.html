@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collider — Team Notes & Status Update</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #FAEEDA; color: #BA7517; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  /* Note card */
+  .note-card { border-radius: 10px; border: 0.5px solid #e0ddd6; margin-bottom: 16px; overflow: hidden; }
+  .note-header { padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid #e0ddd6; }
+  .note-avatar { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+  .note-project { font-size: 14px; font-weight: 600; color: #1a1a18; }
+  .note-sector { font-size: 11px; color: #888780; }
+  .status-pill { font-size: 10px; padding: 3px 9px; border-radius: 20px; font-weight: 600; margin-left: auto; white-space: nowrap; }
+  .status-action { background: #FAEEDA; color: #BA7517; }
+  .status-watch { background: #E6F1FB; color: #185FA5; }
+  .status-flag { background: #FCEBEB; color: #A32D2D; }
+  .status-good { background: #EAF3DE; color: #3B6D11; }
+
+  .note-body { padding: 16px 18px; }
+
+  /* Quote block */
+  .quote-block { background: #f9f8f6; border-left: 3px solid #D3D1C7; border-radius: 0 6px 6px 0; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; color: #5F5E5A; line-height: 1.6; font-style: italic; }
+  .quote-source { font-size: 10px; color: #b4b2a9; margin-top: 4px; font-style: normal; }
+
+  /* Analysis rows */
+  .analysis { display: flex; flex-direction: column; gap: 8px; }
+  .analysis-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .analysis-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .analysis-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .analysis-text { font-size: 12px; color: #1a1a18; line-height: 1.6; flex: 1; }
+  .analysis-text strong { color: #1a1a18; font-weight: 600; }
+  .analysis-text .highlight { background: #FEF3C7; padding: 1px 4px; border-radius: 3px; font-weight: 500; }
+  .analysis-text .flag { background: #FCEBEB; padding: 1px 4px; border-radius: 3px; color: #A32D2D; font-weight: 500; }
+  .analysis-text .good { background: #EAF3DE; padding: 1px 4px; border-radius: 3px; color: #3B6D11; font-weight: 500; }
+
+  /* Action needed box */
+  .action-box { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: 8px; padding: 12px 14px; margin-top: 12px; }
+  .action-box-title { font-size: 11px; font-weight: 600; color: #B45309; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .action-list { display: flex; flex-direction: column; gap: 5px; }
+  .action-list-item { font-size: 12px; color: #1a1a18; display: flex; gap: 8px; align-items: flex-start; }
+  .action-list-item::before { content: '→'; color: #B45309; font-weight: 600; flex-shrink: 0; }
+
+  /* Summary table */
+  .summary-table { width: 100%; border-collapse: collapse; }
+  .summary-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
+  .summary-table td { padding: 10px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; vertical-align: top; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .proj-label { font-weight: 600; color: #1a1a18; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Team Notes — Status Update</h1>
+      <p>The Collider Programme · Notes from Consuelo Rebolledo · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">27 March 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- OPTICMIZING -->
+  <div class="note-card">
+    <div class="note-header">
+      <div class="note-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div>
+      <div>
+        <div class="note-project">OpticMizing</div>
+        <div class="note-sector">Deep Tech · Optics / Food Industry</div>
+      </div>
+      <span class="status-pill status-action">⚠ Profile shift — action needed</span>
+    </div>
+    <div class="note-body">
+      <div class="quote-block">
+        "We have Francisco, but the team wants to have options and Javier decided to join ULISSES so we don't have options. For this project we need someone with good connections with the food industry, specially fermentation (Yogurt, Cheese). The go to market is not far, so we need a commercial profile."
+        <div class="quote-source">— Consuelo Rebolledo, 27 March 2026</div>
+      </div>
+      <div class="analysis">
+        <div class="analysis-item">
+          <span class="analysis-icon">📌</span>
+          <div class="analysis-text"><strong>Francisco</strong> is the only remaining active candidate — Javier Rodriguez Saiz has <span class="highlight">officially moved to Ulisses DS</span>. We are left with one option only.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🔄</span>
+          <div class="analysis-text"><strong>Significant profile change:</strong> The target is no longer a generic deep tech CEO. The Collider now needs someone with <span class="highlight">food industry connections, specifically fermentation — yogurt, cheese</span>. This is a niche requirement that our current Dripify pool does not cover.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">💼</span>
+          <div class="analysis-text"><strong>Commercial profile priority</strong> — go-to-market is close. They need someone who can open doors in food & beverage, not a scientist or platform builder.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🔍</span>
+          <div class="analysis-text">Current Disruptive Talent (Cinzia Palumbo) has a tech/innovation background — unlikely to have food industry network. <span class="flag">New sourcing round needed.</span></div>
+        </div>
+      </div>
+      <div class="action-box">
+        <div class="action-box-title">Action required</div>
+        <div class="action-list">
+          <div class="action-list-item">Build new Dripify boolean targeting food industry CEOs, fermentation/bioprocessing founders, F&B commercial directors with startup experience</div>
+          <div class="action-list-item">Target companies: dairy, fermentation biotech, food ingredients, Givaudan/Ingredion ecosystem, FoodTech scale-ups</div>
+          <div class="action-list-item">Check applicant pool — filter for food/agriculture sector background in application forms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRIDWATCH -->
+  <div class="note-card">
+    <div class="note-header">
+      <div class="note-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div>
+      <div>
+        <div class="note-project">GridWatch</div>
+        <div class="note-sector">Smart Grid · Energy · IREC</div>
+      </div>
+      <span class="status-pill status-good">✓ On track</span>
+    </div>
+    <div class="note-body">
+      <div class="quote-block">
+        "For Gridwatch, someone like Xavi Bou would be great."
+        <div class="quote-source">— Consuelo Rebolledo, 27 March 2026</div>
+      </div>
+      <div class="analysis">
+        <div class="analysis-item">
+          <span class="analysis-icon">✅</span>
+          <div class="analysis-text"><strong>Xavi Bou Torrent</strong> is already in our pipeline at <span class="good">Stage 4 Interview</span> — strong alignment with The Collider team's expectations. REN Communities Director with Innovation & Public Funding background.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">📌</span>
+          <div class="analysis-text">Consuelo says "someone like Xavi Bou" — implying they want <strong>more options</strong> with a similar profile. Energy sector + public funding + commercialisation experience is the sweet spot.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">👤</span>
+          <div class="analysis-text"><strong>David Luis Milia Garrote</strong> also in Stage 4 — cross-project from Sorbmetrics Talent pool. His Canadian Energy & Climate Nexus background is strong but less Spain-specific than Xavi.</div>
+        </div>
+      </div>
+      <div class="action-box">
+        <div class="action-box-title">Action required</div>
+        <div class="action-list">
+          <div class="action-list-item">Prioritise Xavi Bou Torrent — push to Stage 5 if interview went well</div>
+          <div class="action-list-item">Continue Dripify campaign to build additional options with similar profile (energy sector + BD + public funding experience)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARGLIO -->
+  <div class="note-card">
+    <div class="note-header">
+      <div class="note-avatar" style="background:#FBEAF0; color:#993556;">TG</div>
+      <div>
+        <div class="note-project">TarGlio</div>
+        <div class="note-sector">Biotech · Oncology</div>
+      </div>
+      <span class="status-pill status-watch">👁 Watch — cross-project candidate</span>
+    </div>
+    <div class="note-body">
+      <div class="quote-block">
+        "For Targlio now we are considering Silvia Gomez, because she has worked with Carlos Caro, the future CTO in the past and her profile is in nanotechnology, but we need someone else."
+        <div class="quote-source">— Consuelo Rebolledo, 27 March 2026</div>
+      </div>
+      <div class="analysis">
+        <div class="analysis-item">
+          <span class="analysis-icon">🔗</span>
+          <div class="analysis-text"><strong>Silvia Gomez Montes</strong> is currently in <span class="good">ONAKids Stage 6 Reference Check</span> — the most advanced stage in the entire programme. She is now also being considered for TarGlio. <span class="highlight">Cross-project candidate — needs careful coordination.</span></div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🤝</span>
+          <div class="analysis-text">Key factor: Silvia has <strong>previously worked with Carlos Caro</strong> (future TarGlio CTO) — personal chemistry and trust already established. Her nanotechnology background adds scientific credibility.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">⚠️</span>
+          <div class="analysis-text">Risk: if Silvia is selected for ONAKids, she won't be available for TarGlio. The Collider team needs to decide which project has priority for her — or we need more options for TarGlio regardless.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🔍</span>
+          <div class="analysis-text">Current TarGlio interview pipeline has 4 candidates (Puertas, Josselin Caradec, Scandurra, Pérez Villar) — check if any have oncology + commercial overlap strong enough to present as alternatives.</div>
+        </div>
+      </div>
+      <div class="action-box">
+        <div class="action-box-title">Action required</div>
+        <div class="action-list">
+          <div class="action-list-item">Align with The Collider on Silvia Gomez — ONAKids or TarGlio? Avoid losing her to indecision</div>
+          <div class="action-list-item">Source additional TarGlio options with oncology/nanotech + commercial background</div>
+          <div class="action-list-item">Review Josselin Caradec for TarGlio fit — he is already in Stage 4 there and Stage 5 in ENDOMET</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENDOMET -->
+  <div class="note-card">
+    <div class="note-header">
+      <div class="note-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div>
+      <div>
+        <div class="note-project">ENDOMET</div>
+        <div class="note-sector">Biotech · Rare Disease · Mitochondria</div>
+      </div>
+      <span class="status-pill status-flag">🚩 Contradiction — needs clarity</span>
+    </div>
+    <div class="note-body">
+      <div class="quote-block">
+        "For ENDOMET we have Josselin Caradec, but I haven't received an answer from him regarding the interview with Albert and Jonathan. As we already discussed, is the favourite, but not the profile we are looking for."
+        <div class="quote-source">— Consuelo Rebolledo, 27 March 2026</div>
+      </div>
+      <div class="analysis">
+        <div class="analysis-item">
+          <span class="analysis-icon">⭐</span>
+          <div class="analysis-text"><strong>Josselin Caradec</strong> is confirmed as the favourite candidate for ENDOMET by The Collider team. He is currently at <span class="good">Stage 5 Disruptive Talent</span> in our pipeline.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">📞</span>
+          <div class="analysis-text"><strong>No reply received</strong> from Josselin regarding the interview with Albert and Jonathan. This needs immediate follow-up — a warm candidate going cold is a real risk.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🚩</span>
+          <div class="analysis-text"><span class="flag">Contradiction flagged:</span> Consuelo says he is "the favourite but not the profile we are looking for." This is ambiguous — it likely means he is the strongest available candidate, but the team had a different ideal profile in mind (perhaps more science-heavy, or specific rare disease expertise). Worth clarifying with The Collider what the ideal profile gap is.</div>
+        </div>
+        <div class="analysis-item">
+          <span class="analysis-icon">🔬</span>
+          <div class="analysis-text"><strong>Katerina Danezi</strong> — PhD mitochondria/metabolism IRB Barcelona — was messaged in Round 2 Dripify. Not yet in Manatal. Could be a stronger scientific match if the team feels Josselin lacks domain depth.</div>
+        </div>
+      </div>
+      <div class="action-box">
+        <div class="action-box-title">Action required</div>
+        <div class="action-list">
+          <div class="action-list-item">Follow up with Josselin Caradec — confirm interview availability with Albert and Jonathan</div>
+          <div class="action-list-item">Ask The Collider: what specifically is the profile gap with Josselin? Science depth, regulatory, fundraising?</div>
+          <div class="action-list-item">Track Katerina Danezi response from Round 2 outreach — if she replies, prioritise for ENDOMET</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Summary table -->
+  <p class="section-label">Summary — status per project</p>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Key candidate</th>
+        <th>Status</th>
+        <th>Main concern</th>
+        <th>Next action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="proj-label">OpticMizing</span></td>
+        <td>Francisco (only option)</td>
+        <td><span class="status-pill status-action">Profile shift</span></td>
+        <td>Javier moved to Ulisses. Need fermentation/food industry commercial CEO</td>
+        <td>New Dripify boolean — food industry</td>
+      </tr>
+      <tr>
+        <td><span class="proj-label">GridWatch</span></td>
+        <td>Xavi Bou Torrent</td>
+        <td><span class="status-pill status-good">On track</span></td>
+        <td>Need more options with similar energy + public funding profile</td>
+        <td>Continue campaign + push Xavi to Stage 5</td>
+      </tr>
+      <tr>
+        <td><span class="proj-label">TarGlio</span></td>
+        <td>Silvia Gomez Montes</td>
+        <td><span class="status-pill status-watch">Cross-project risk</span></td>
+        <td>Silvia in ONAKids Stage 6 — which project has priority?</td>
+        <td>Align with Collider team on Silvia's priority</td>
+      </tr>
+      <tr>
+        <td><span class="proj-label">ENDOMET</span></td>
+        <td>Josselin Caradec</td>
+        <td><span class="status-pill status-flag">No reply + contradiction</span></td>
+        <td>Favourite but "not the profile" — and no interview response</td>
+        <td>Follow up Josselin + clarify profile gap</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Notes: Consuelo Rebolledo · 27 March 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

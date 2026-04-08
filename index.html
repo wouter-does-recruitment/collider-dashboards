@@ -16,41 +16,35 @@
 
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; margin-top: 24px; }
 
-  /* Total overview */
   .total-card { background: #1a1a18; border-radius: 10px; padding: 20px 28px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; transition: opacity 0.15s; }
   .total-card:hover { opacity: 0.88; }
 
-  /* Project cards */
   .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 4px; }
-  .project-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
-  .project-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
-  .project-card.new-card { border-color: #C0DD97; background: #f9fdf6; }
-  .project-card.new-card:hover { border-color: #1D9E75; }
+  .card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
+  .card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
+  .card.new-card { border-color: #C0DD97; background: #f9fdf6; }
+  .card.new-card:hover { border-color: #1D9E75; }
+  .card.hl-blue { border-color: #93C5FD; background: #F5FAFF; }
+  .card.hl-blue:hover { border-color: #3B82F6; }
+  .card.hl-amber { border-color: #FCD34D; background: #FFFDF5; }
+  .card.hl-amber:hover { border-color: #F59E0B; }
+  .card.hl-purple { border-color: #C4B5FD; background: #FAFAFE; }
+  .card.hl-purple:hover { border-color: #8B5CF6; }
+  .card.hl-green { border-color: #9FE1CB; background: #F7FDF9; }
+  .card.hl-green:hover { border-color: #1D9E75; }
 
   .card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
   .card-avatar { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
   .card-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 1px; }
   .card-sector { font-size: 10px; color: #888780; }
   .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 5px; }
-
   .card-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
   .card-stat { font-size: 10px; padding: 2px 7px; border-radius: 4px; }
-
   .card-link { font-size: 11px; color: #185FA5; font-weight: 600; }
   .card-link::after { content: ' →'; }
+  .card-desc { font-size: 11px; color: #888780; margin-bottom: 10px; line-height: 1.5; }
 
-  /* Tools grid */
   .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .tool-card { background: #fff; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); text-decoration: none; color: inherit; display: block; border: 0.5px solid #e0ddd6; transition: box-shadow 0.15s, border-color 0.15s; }
-  .tool-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-color: #b4b2a9; }
-  .tool-card.highlight-purple { border-color: #C4B5FD; background: #FAFAFE; }
-  .tool-card.highlight-purple:hover { border-color: #8B5CF6; }
-  .tool-card.highlight-amber { border-color: #FCD34D; background: #FFFDF5; }
-  .tool-card.highlight-amber:hover { border-color: #F59E0B; }
-  .tool-card.highlight-blue { border-color: #93C5FD; background: #F5FAFF; }
-  .tool-card.highlight-blue:hover { border-color: #3B82F6; }
-  .tool-title { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
-  .tool-desc { font-size: 11px; color: #888780; margin-bottom: 10px; line-height: 1.5; }
 
   .footer { text-align: center; padding: 24px 0 8px; font-size: 11px; color: #b4b2a9; }
 
@@ -79,7 +73,7 @@
   <a href="collider_total_overview.html" class="total-card">
     <div>
       <div style="font-size:14px; font-weight:600; color:#fff; margin-bottom:4px;">📊 &nbsp;Total Overview — All Projects · Week 2</div>
-      <div style="font-size:12px; color:#888780;">257 leads · 120 candidates · 18 interview · 14 Disruptive Talent · 2 Reference Check · 1 Signed · 9 projects</div>
+      <div style="font-size:12px; color:#888780;">288 leads · 124 candidates · 47 staff interviews · 13 shortlisted · 25 references · 1 signed · 9 projects</div>
     </div>
     <div style="font-size:13px; color:#888780; font-weight:600; flex-shrink:0;">View →</div>
   </a>
@@ -88,7 +82,7 @@
   <p class="section-label">Project dashboards — active searches</p>
   <div class="project-grid">
 
-    <a href="collider_endomet_dashboard.html" class="project-card">
+    <a href="collider_endomet_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div>
         <div><div class="card-title">ENDOMET</div><div class="card-sector">Biotech · Rare Disease</div></div>
@@ -101,7 +95,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_onakids_dashboard.html" class="project-card">
+    <a href="collider_onakids_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E6F1FB; color:#185FA5;">ON</div>
         <div><div class="card-title">ONAKids</div><div class="card-sector">Digital Health · Pediatrics</div></div>
@@ -114,7 +108,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_sorbmetrics_dashboard.html" class="project-card">
+    <a href="collider_sorbmetrics_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FAEEDA; color:#BA7517;">SO</div>
         <div><div class="card-title">Sorbmetrics</div><div class="card-sector">Materials · CleanTech</div></div>
@@ -127,7 +121,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_targlio_dashboard.html" class="project-card">
+    <a href="collider_targlio_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FBEAF0; color:#993556;">TG</div>
         <div><div class="card-title">TarGlio</div><div class="card-sector">Biotech · Oncology</div></div>
@@ -140,19 +134,20 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_opticmizing_dashboard.html" class="project-card">
+    <a href="collider_opticmizing_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div>
         <div><div class="card-title">OpticMizing</div><div class="card-sector">Deep Tech · Food/Fermentation</div></div>
       </div>
       <div class="card-stats">
-        <span class="card-stat" style="background:#FAEEDA; color:#BA7517; font-weight:600;">⚠ Profile shift</span>
+        <span class="card-stat" style="background:#1D9E75; color:#fff; font-weight:600;">2 ref check ✦</span>
         <span class="card-stat" style="background:#EAF3DE; color:#3B6D11;">2 ★ Talent</span>
+        <span class="card-stat" style="background:#FAEEDA; color:#BA7517;">⚠ New campaign</span>
       </div>
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_ulissesds_dashboard.html" class="project-card">
+    <a href="collider_ulissesds_dashboard.html" class="card">
       <div class="card-top">
         <div class="card-avatar" style="background:#EEEDFE; color:#534AB7;">UL</div>
         <div><div class="card-title">Ulisses DS</div><div class="card-sector">Data Science · AI</div></div>
@@ -165,7 +160,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_gridwatch_dashboard.html" class="project-card new-card">
+    <a href="collider_gridwatch_dashboard.html" class="card new-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div>
         <div><div class="card-title">GridWatch <span class="new-badge">NEW</span></div><div class="card-sector">Smart Grid · Energy · IREC</div></div>
@@ -178,7 +173,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_ogyx_dashboard.html" class="project-card new-card">
+    <a href="collider_ogyx_dashboard.html" class="card new-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FFF0EA; color:#B5521A;">OG</div>
         <div><div class="card-title">OGYX <span class="new-badge">NEW</span></div><div class="card-sector">MedDev · Organ-on-a-Chip · LEITAT</div></div>
@@ -190,7 +185,7 @@
       <div class="card-link">Open dashboard</div>
     </a>
 
-    <a href="collider_braidstent_dashboard.html" class="project-card new-card">
+    <a href="collider_braidstent_dashboard.html" class="card new-card">
       <div class="card-top">
         <div class="card-avatar" style="background:#FBEAF0; color:#993556;">BS</div>
         <div><div class="card-title">BraidStent <span class="new-badge">NEW</span></div><div class="card-sector">MedDev · Urology</div></div>
@@ -205,76 +200,73 @@
 
   </div>
 
+  <!-- Programme Analytics -->
+  <p class="section-label">Programme analytics</p>
+  <div class="tools-grid">
+
+    <a href="collider_sourcing_analytics.html" class="card hl-blue">
+      <div class="card-top" style="margin-bottom:6px;">
+        <div class="card-avatar" style="background:#E6F1FB; color:#185FA5; border-radius:8px;">SA</div>
+        <div class="card-title">Sourcing Analytics</div>
+      </div>
+      <div class="card-desc">Conversion funnel · Source split (outbound 64% / inbound 36%) · Gender KPIs · 47 staff interviews · 13 shortlisted · 25 references (avg 9.4/10)</div>
+      <div class="card-link">Open report</div>
+    </a>
+
+    <a href="collider_references.html" class="card hl-green">
+      <div class="card-top" style="margin-bottom:6px;">
+        <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11; border-radius:8px;">RF</div>
+        <div class="card-title">Professional References</div>
+      </div>
+      <div class="card-desc">25 references · 12 candidates · Average score 9.4/10 · Detailed cards with key quotes, scores and flags per candidate</div>
+      <div class="card-link">Open report</div>
+    </a>
+
+  </div>
+
   <!-- Weekly reports -->
   <p class="section-label">Weekly reports & team notes</p>
   <div class="tools-grid">
 
-    <a href="collider_weekly_activity.html" class="tool-card highlight-blue">
+    <a href="collider_weekly_activity.html" class="card hl-blue">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#E6F1FB; color:#185FA5; border-radius:8px;">WA</div>
-        <div class="tool-title">Weekly Activity Report — Week 2</div>
+        <div class="card-title">Weekly Activity Report — Week 2</div>
       </div>
-      <div class="tool-desc">Outreach done (all campaigns), Manatal stage changes, + 9 new application form matches for open roles including Francisco Alvarado for OpticMizing.</div>
+      <div class="card-desc">Outreach done · Manatal stage changes · 9 new application form matches for open roles including Francisco Alvarado for OpticMizing</div>
       <div class="card-link">Open report</div>
     </a>
 
-    <a href="collider_team_notes.html" class="tool-card highlight-amber">
+    <a href="collider_team_notes.html" class="card hl-amber">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#FEF3C7; color:#B45309; border-radius:8px;">TN</div>
-        <div class="tool-title">Team Notes — Consuelo · 27 March</div>
+        <div class="card-title">Team Notes — Consuelo · 27 March</div>
       </div>
-      <div class="tool-desc">OpticMizing profile shift (food/fermentation), Xavi Bou for GridWatch, Silvia Gomez cross-project risk (TarGlio vs ONAKids), Josselin ENDOMET contradiction.</div>
+      <div class="card-desc">OpticMizing profile shift · Xavi Bou for GridWatch · Silvia Gomez cross-project risk · Josselin ENDOMET contradiction flagged</div>
       <div class="card-link">Open notes</div>
     </a>
 
   </div>
 
-  <!-- Analytics & Tools -->
-  <p class="section-label">Analytics, reports & tools</p>
+  <!-- Tools & Proposals -->
+  <p class="section-label">Tools & proposals</p>
   <div class="tools-grid">
 
-    <a href="collider_talent_pool_structure.html" class="tool-card highlight-purple">
+    <a href="collider_talent_pool_structure.html" class="card hl-purple">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#EEEDFE; color:#6B21A8; border-radius:8px;">TP</div>
-        <div class="tool-title">Talent Pool Structure — Manatal</div>
+        <div class="card-title">Talent Pool Structure — Manatal</div>
       </div>
-      <div class="tool-desc">Proposed folder & tag system for reusable talent pools across Collider cohorts. 5 sector folders · 10 profile tags.</div>
+      <div class="card-desc">Proposed folder & tag system for reusable talent pools across future Collider cohorts · 5 sector folders · 10 profile tags</div>
       <div class="card-link">Open proposal</div>
     </a>
 
-    <a href="collider_applicant_insights.html" class="tool-card">
+    <a href="collider_applicant_insights.html" class="card">
       <div class="card-top" style="margin-bottom:6px;">
         <div class="card-avatar" style="background:#FAEEDA; color:#BA7517; border-radius:8px;">AI</div>
-        <div class="tool-title">Applicant Insights — Week 2</div>
+        <div class="card-title">Applicant Insights — Week 2</div>
       </div>
-      <div class="tool-desc">65 application form responses — WoW comparison, founder profiles, availability, sectors, languages.</div>
-      <div class="card-link">Open report</div>
-    </a>
-
-    <a href="collider_source_attribution.html" class="tool-card">
-      <div class="card-top" style="margin-bottom:6px;">
-        <div class="card-avatar" style="background:#EEEDFE; color:#534AB7; border-radius:8px;">SA</div>
-        <div class="tool-title">Source Attribution</div>
-      </div>
-      <div class="tool-desc">Dripify vs inbound — who came from proactive outreach vs applied directly. Conversion per source.</div>
-      <div class="card-link">Open report</div>
-    </a>
-
-    <a href="collider_outreach_funnel.html" class="tool-card">
-      <div class="card-top" style="margin-bottom:6px;">
-        <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11; border-radius:8px;">OF</div>
-        <div class="tool-title">Outreach Funnel</div>
-      </div>
-      <div class="tool-desc">Full conversion funnel per campaign — leads to shortlisted. Named candidates at each stage.</div>
-      <div class="card-link">Open report</div>
-    </a>
-
-    <a href="collider_biotech_pool_dashboard.html" class="tool-card">
-      <div class="card-top" style="margin-bottom:6px;">
-        <div class="card-avatar" style="background:#EAF3DE; color:#3B6D11; border-radius:8px;">BP</div>
-        <div class="tool-title">Biotech + MedTech Pools</div>
-      </div>
-      <div class="tool-desc">56 profiled leads in general sourcing pools — available for immediate outreach on new projects.</div>
+      <div class="card-desc">65 application form responses · WoW comparison · founder profiles · availability · sectors · languages</div>
       <div class="card-link">Open report</div>
     </a>
 

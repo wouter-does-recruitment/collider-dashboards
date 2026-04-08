@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collider — Sourcing Analytics</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+  .kpi-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .kpi-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .kpi-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .kpi-value.green { color: #1D9E75; }
+  .kpi-value.blue { color: #185FA5; }
+  .kpi-value.purple { color: #534AB7; }
+  .kpi-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .kpi-sub.up { color: #1D9E75; font-weight: 600; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #888780; width: 160px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 8px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 36px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 40px; text-align: right; }
+
+  .camp-table { width: 100%; border-collapse: collapse; }
+  .camp-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
+  .camp-table th:not(:first-child) { text-align: right; }
+  .camp-table td { padding: 8px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; }
+  .camp-table tr:last-child td { border-bottom: none; }
+  .camp-table td:not(:first-child) { text-align: right; }
+  .rate-good { color: #1D9E75; font-weight: 600; }
+  .rate-ok { color: #BA7517; font-weight: 600; }
+  .total-row td { font-weight: 600; border-top: 1px solid #e0ddd6; padding-top: 10px; }
+
+  /* Source split */
+  .split-bar { display: flex; height: 36px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+  .split-outbound { background: #185FA5; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
+  .split-inbound { background: #888780; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 600; }
+
+  .source-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .source-box { border-radius: 10px; padding: 16px 18px; }
+  .source-num { font-size: 40px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+  .source-pct-big { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .source-desc { font-size: 11px; color: #888780; line-height: 1.6; }
+
+  /* Gender */
+  .gender-bar { height: 28px; border-radius: 6px; overflow: hidden; display: flex; margin-bottom: 8px; }
+  .gender-m { background: #378ADD; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 600; }
+  .gender-f { background: #E87F9A; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 600; }
+  .gender-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  .verified-tag { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 6px; }
+
+  /* Staff interview */
+  .interview-banner { background: #1a1a18; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .proj-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .proj-row:last-child { border-bottom: none; }
+  .proj-avatar { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; }
+  .proj-name { font-size: 12px; font-weight: 600; color: #1a1a18; flex: 1; }
+  .proj-bar-wrap { width: 120px; background: #f5f4f0; border-radius: 3px; height: 6px; overflow: hidden; }
+  .proj-bar { height: 100%; border-radius: 3px; background: #378ADD; }
+  .proj-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 20px; text-align: right; }
+
+  .disclaimer { background: #f9f8f6; border: 0.5px solid #e0ddd6; border-radius: 8px; padding: 12px 14px; font-size: 11px; color: #888780; line-height: 1.6; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Sourcing Analytics — The Collider Programme</h1>
+      <p>Conversion rates · Source split · Gender KPIs · Staff interview tracker · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">Week 2 · April 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- Top KPIs -->
+  <p class="section-label">Programme totals</p>
+  <div class="kpi-grid" style="grid-template-columns: repeat(6, 1fr);">
+    <div class="kpi-card">
+      <p class="kpi-label">Dripify leads sourced</p>
+      <p class="kpi-value">288</p>
+      <p class="kpi-sub">Across 10 campaigns</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Application form</p>
+      <p class="kpi-value blue">65</p>
+      <p class="kpi-sub">Inbound responses</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Staff interviews</p>
+      <p class="kpi-value blue">47</p>
+      <p class="kpi-sub up">Verified from Excel</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Shortlisted</p>
+      <p class="kpi-value green">13</p>
+      <p class="kpi-sub">NDA + project matched</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">References received</p>
+      <p class="kpi-value green">25</p>
+      <p class="kpi-sub">Avg score 9.4/10</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Signed</p>
+      <p class="kpi-value purple">1</p>
+      <p class="kpi-sub">Sorbmetrics ✓</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 1: FUNNEL -->
+  <p class="section-label">1. Conversion funnel — 288 leads → signed</p>
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Full programme funnel</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Dripify leads sourced</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
+        <span class="funnel-num">288</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Application form</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6%; background:#534AB7;"></div></div>
+        <span class="funnel-num">65</span>
+        <span class="funnel-pct">6%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Entered Manatal</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#378ADD;"></div></div>
+        <span class="funnel-num">124</span>
+        <span class="funnel-pct">43%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Staff interview</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4%; background:#185FA5;"></div></div>
+        <span class="funnel-num">47</span>
+        <span class="funnel-pct">38%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Shortlisted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:1.2%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">13</span>
+        <span class="funnel-pct">28%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Ref check</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.5%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">5</span>
+        <span class="funnel-pct">38%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Signed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.1%; background:#534AB7;"></div></div>
+        <span class="funnel-num">1</span>
+        <span class="funnel-pct">20%</span>
+      </div>
+      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">% shown relative to previous stage from Manatal onward</p>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">Dripify campaign performance</p>
+      <table class="camp-table">
+        <thead>
+          <tr><th>Campaign</th><th>Sent</th><th>Acc%</th><th>Rep%</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-weight:600;">ONAKids</td><td>53</td><td><span class="rate-good">79%</span></td><td><span class="rate-good">68%</span></td></tr>
+          <tr><td style="font-weight:600;">TarGlio</td><td>65</td><td><span class="rate-ok">69%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr><td style="font-weight:600;">Sorbmetrics</td><td>22</td><td><span class="rate-ok">68%</span></td><td><span class="rate-good">100%</span></td></tr>
+          <tr><td style="font-weight:600;">Biotech Pool</td><td>35</td><td><span class="rate-ok">69%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr><td style="font-weight:600;">MedTech Pool</td><td>20</td><td><span class="rate-good">85%</span></td><td><span class="rate-good">75%</span></td></tr>
+          <tr><td style="font-weight:600;">ENDOMET R1</td><td>11</td><td><span class="rate-good">73%</span></td><td><span class="rate-ok">67%</span></td></tr>
+          <tr><td style="font-weight:600;">OpticMizing</td><td>20</td><td><span class="rate-ok">25%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr class="total-row"><td>Total</td><td>226</td><td><span class="rate-good">69%</span></td><td><span class="rate-good">81%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 2: SOURCE SPLIT -->
+  <p class="section-label">2. Source split — outbound vs inbound</p>
+
+  <div class="split-bar">
+    <div class="split-outbound" style="flex:79;">Outbound (contacted by us) — 79 · 64%</div>
+    <div class="split-inbound" style="flex:45;">Pure inbound — 45 · 36%</div>
+  </div>
+
+  <div class="source-grid">
+    <div class="source-box" style="background:#E6F1FB; border:0.5px solid #93C5FD;">
+      <p class="source-num" style="color:#185FA5;">79</p>
+      <p class="source-pct-big" style="color:#185FA5;">64% — Outbound</p>
+      <p class="source-desc">Contacted via Dripify. If we reached out first — even if they also filled the form later — they count as outbound. Includes 17 who did both.</p>
+    </div>
+    <div class="source-box" style="background:#f5f4f0; border:0.5px solid #e0ddd6;">
+      <p class="source-num" style="color:#888780;">45</p>
+      <p class="source-pct-big" style="color:#888780;">36% — Pure inbound</p>
+      <p class="source-desc">Found the role via Call4Entrepreneurs or The Collider's channels. Never in any Dripify campaign. Applied entirely on their own initiative.</p>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong style="color:#1a1a18;">Methodology:</strong> Application form names cross-referenced against all Dripify lead exports. Anyone who appears in a Dripify campaign is counted as outbound regardless of form submission. Matching on first + last name — accent variations may cause minor undercounting.
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3: GENDER -->
+  <p class="section-label">3. Gender KPIs</p>
+  <div class="two-col">
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:4px;">Staff interviews — 47 candidates <span class="verified-tag">✓ Verified data</span></p>
+      <p style="font-size:11px; color:#888780; margin-bottom:12px;">Gender self-reported in the interview questionnaire</p>
+      <div class="gender-bar">
+        <div class="gender-m" style="flex:76;">♂ Hombre — 36 (76%)</div>
+        <div class="gender-f" style="flex:24;">♀ Mujer — 11 (23%)</div>
+      </div>
+      <div style="display:flex; gap:16px; margin-top:6px;">
+        <span><span class="gender-dot" style="background:#378ADD;"></span><span style="font-size:11px; color:#888780;">Male: 36 (76%)</span></span>
+        <span><span class="gender-dot" style="background:#E87F9A;"></span><span style="font-size:11px; color:#888780;">Female: 11 (23%)</span></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="section-label" style="margin-bottom:4px;">Application form — 65 respondents <span style="font-size:9px; background:#FAEEDA; color:#BA7517; padding:1px 6px; border-radius:8px; font-weight:600; margin-left:4px;">Name-based estimate</span></p>
+      <p style="font-size:11px; color:#888780; margin-bottom:12px;">No gender question in form — inferred from first names</p>
+      <div class="gender-bar">
+        <div class="gender-m" style="flex:79;">♂ Male — ~51 (79%)</div>
+        <div class="gender-f" style="flex:21;">♀ ~14 (21%)</div>
+      </div>
+      <div style="display:flex; gap:16px; margin-top:6px;">
+        <span><span class="gender-dot" style="background:#378ADD;"></span><span style="font-size:11px; color:#888780;">Male: ~51 (79%)</span></span>
+        <span><span class="gender-dot" style="background:#E87F9A;"></span><span style="font-size:11px; color:#888780;">Female: ~14 (21%)</span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="disclaimer" style="margin-bottom:8px;">
+    <strong style="color:#1a1a18;">Note:</strong> Interview gender data is verified — self-reported in the interview questionnaire (Hombre/Mujer). Application form gender is name-based estimation only. For reporting purposes, use the interview figures as the verified KPI.
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 4: STAFF INTERVIEW -->
+  <p class="section-label">4. Staff interview tracker — your colleague's KPI</p>
+
+  <div class="interview-banner">
+    <div>
+      <p style="font-size:48px; font-weight:600; color:#fff; line-height:1;">47</p>
+      <p style="font-size:13px; color:#888780; margin-top:4px;">candidates completed a Staff Interview</p>
+    </div>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end;">
+      <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#378ADD; line-height:1;">47</p>
+        <p style="font-size:10px; color:#888780;">Staff<br>Interview</p>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#1D9E75; line-height:1;">13</p>
+        <p style="font-size:10px; color:#888780;">Short-<br>listed</p>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#0F6E56; line-height:1;">5</p>
+        <p style="font-size:10px; color:#888780;">Ref<br>check</p>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#EAF3DE; line-height:1;">25</p>
+        <p style="font-size:10px; color:#888780;">References<br>received</p>
+      </div>
+      <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#fff; line-height:1;">1</p>
+        <p style="font-size:10px; color:#888780;">Signed</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <p class="section-label" style="margin-bottom:14px;">Shortlisted candidates — NDA & reference status</p>
+    <table class="camp-table">
+      <thead>
+        <tr><th>Candidate</th><th>Project 1</th><th>Project 2</th><th>References</th><th>NDA</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight:600;">Silvia Gomez Montes</td><td>ONAKids</td><td>BraidStent</td><td><span class="rate-good">Received</span></td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">David Luis Milia Garrote</td><td>Sorbmetrics</td><td>GridWatch</td><td><span class="rate-good">Received</span></td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Timothy Cash Flexer</td><td>ENDOMET</td><td>VATICIP</td><td><span class="rate-good">Received</span></td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Pamela Pardini</td><td>ONAKids</td><td>TarGlio</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Francisco Rico</td><td>Ulisses DS</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Javier Rodríguez Saiz</td><td>Ulisses DS</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Nicolás Escartin</td><td>ONAKids</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Hugo Macedo</td><td>Sorbmetrics</td><td>TarGlio</td><td style="color:#888780;">Pending</td><td><span class="rate-ok">Sent</span></td></tr>
+        <tr><td style="font-weight:600;">Cristina Aguilera Xiol</td><td>ENDOMET</td><td>VATICIP</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
+        <tr><td style="font-weight:600;">Alvaro Montero Bockos</td><td>Sorbmetrics</td><td>GridWatch</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
+        <tr><td style="font-weight:600;">Andres Clarós</td><td>OpticMizing</td><td>—</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
+        <tr><td style="font-weight:600;">Xian Weng Jiang</td><td>TarGlio</td><td>Ulisses DS</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
+        <tr><td style="font-weight:600;">Szilvia Endrényi</td><td>—</td><td>—</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <p class="section-label" style="margin-bottom:14px;">Stage 4+ per project (Manatal)</p>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">ON</div><span class="proj-name">ONAKids</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:100%;"></div></div><span class="proj-num">7</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div><span class="proj-name">ENDOMET</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:86%;"></div></div><span class="proj-num">6</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FAEEDA; color:#BA7517;">SO</div><span class="proj-name">Sorbmetrics</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:86%;"></div></div><span class="proj-num">6</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div><span class="proj-name">OpticMizing</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">TG</div><span class="proj-name">TarGlio</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">BS</div><span class="proj-name">BraidStent</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:43%;"></div></div><span class="proj-num">3</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div><span class="proj-name">GridWatch</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:29%;"></div></div><span class="proj-num">2</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</div><span class="proj-name">Ulisses DS</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:14%;"></div></div><span class="proj-num">1</span></div>
+    <div style="border-top:1px solid #e0ddd6; margin-top:12px; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:12px; font-weight:600; color:#1a1a18;">Total across all projects</span>
+      <span style="font-size:18px; font-weight:600; color:#1D9E75;">35</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Does Recruitment · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfa8b0aaabbaad9fbbb0baacadbabcadaab6abb

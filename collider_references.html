@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collider — Professional References</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #EAF3DE; color: #3B6D11; }
+
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  /* KPIs */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  .kpi-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .kpi-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .kpi-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .kpi-value.green { color: #1D9E75; }
+  .kpi-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+
+  /* Score bar */
+  .score-bar-wrap { height: 6px; background: #f5f4f0; border-radius: 3px; overflow: hidden; flex: 1; }
+  .score-bar { height: 100%; border-radius: 3px; }
+
+  /* Candidate cards */
+  .cand-card { border: 0.5px solid #e0ddd6; border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+  .cand-card.perfect { border-color: #9FE1CB; }
+  .cand-card.flag { border-color: #FCD34D; }
+
+  .cand-header { padding: 14px 18px; display: flex; align-items: center; gap: 12px; background: #fafaf9; border-bottom: 0.5px solid #e0ddd6; }
+  .cand-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .cand-name { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .cand-project { font-size: 11px; color: #888780; }
+
+  /* Score display */
+  .score-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-left: auto; }
+  .score-10 { background: #EAF3DE; color: #0F6E56; }
+  .score-9 { background: #E6F1FB; color: #185FA5; }
+  .score-8 { background: #FAEEDA; color: #BA7517; }
+  .score-7 { background: #FAEEDA; color: #BA7517; }
+  .ref-count { font-size: 10px; color: #888780; text-align: center; margin-top: 2px; }
+
+  .cand-body { padding: 14px 18px; }
+
+  /* Individual reference */
+  .ref-item { padding: 10px 0; border-bottom: 0.5px solid #f0ede6; }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .ref-name { font-size: 12px; font-weight: 600; color: #1a1a18; flex: 1; }
+  .ref-score { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .rs-10 { background: #EAF3DE; color: #0F6E56; }
+  .rs-9 { background: #E6F1FB; color: #185FA5; }
+  .rs-8 { background: #FAEEDA; color: #BA7517; }
+  .rs-7 { background: #FAEEDA; color: #B45309; }
+
+  .ref-words { font-size: 11px; color: #1a1a18; font-style: italic; margin-bottom: 4px; line-height: 1.5; }
+  .ref-concerns { font-size: 11px; color: #888780; line-height: 1.5; }
+  .ref-concerns.flag-text { color: #BA7517; }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #f5f4f0; color: #5F5E5A; font-weight: 500; }
+
+  /* Summary table */
+  .summary-table { width: 100%; border-collapse: collapse; }
+  .summary-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
+  .summary-table td { padding: 9px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; vertical-align: middle; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .dot-score { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Professional References — The Collider Programme</h1>
+      <p>25 references · 12 candidates · Collected by Consuelo Rebolledo · Does Recruitment</p>
+    </div>
+    <div style="text-align:right;">
+      <div class="badge">March–April 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <p class="kpi-label">Total references</p>
+      <p class="kpi-value">25</p>
+      <p class="kpi-sub">Across 12 candidates</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Average score</p>
+      <p class="kpi-value green">9.4</p>
+      <p class="kpi-sub">Out of 10</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Perfect 10/10</p>
+      <p class="kpi-value green">5</p>
+      <p class="kpi-sub">Candidates avg 10.0</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Score range</p>
+      <p class="kpi-value">7–10</p>
+      <p class="kpi-sub">Lowest: Timothy Cash</p>
+    </div>
+  </div>
+
+  <!-- Quick summary -->
+  <p class="section-label">Summary — all candidates ranked by score</p>
+  <div style="border:0.5px solid #e0ddd6; border-radius:10px; overflow:hidden; margin-bottom:28px;">
+    <table class="summary-table" style="padding:0;">
+      <thead style="padding:12px 16px; display:table-header-group;">
+        <tr style="background:#fafaf9;">
+          <th style="padding:10px 16px;">Candidate</th>
+          <th style="padding:10px 16px; text-align:center;">Refs</th>
+          <th style="padding:10px 16px; text-align:center;">Avg score</th>
+          <th style="padding:10px 16px;">Score bar</th>
+          <th style="padding:10px 16px;">Key words</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:8px 16px; font-weight:600;">Cristina Aguilera</td><td style="text-align:center; padding:8px 16px;">2</td><td style="text-align:center; padding:8px 16px;"><span style="background:#EAF3DE; color:#0F6E56; font-weight:700; padding:2px 8px; border-radius:8px;">10.0</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:#1D9E75;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Brillante, pies en el suelo, vocación salud</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">David Luis Milia Garrote</td><td style="text-align:center; padding:8px 16px;">2</td><td style="text-align:center; padding:8px 16px;"><span style="background:#EAF3DE; color:#0F6E56; font-weight:700; padding:2px 8px; border-radius:8px;">10.0</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:#1D9E75;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Intellectually sharp, People smart, Integrity</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Álvaro Montero Bockos</td><td style="text-align:center; padding:8px 16px;">3</td><td style="text-align:center; padding:8px 16px;"><span style="background:#EAF3DE; color:#0F6E56; font-weight:700; padding:2px 8px; border-radius:8px;">10.0</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:#1D9E75;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Genuine, talented, hard-working, self-starter</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Francisco Rico</td><td style="text-align:center; padding:8px 16px;">2</td><td style="text-align:center; padding:8px 16px;"><span style="background:#EAF3DE; color:#0F6E56; font-weight:700; padding:2px 8px; border-radius:8px;">10.0</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:100%; background:#1D9E75;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Perspicaz, humilde, resiliente</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Hugo Macedo</td><td style="text-align:center; padding:8px 16px;">3</td><td style="text-align:center; padding:8px 16px;"><span style="background:#EAF3DE; color:#0F6E56; font-weight:700; padding:2px 8px; border-radius:8px;">9.7</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:97%; background:#1D9E75;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Humble, Resourceful, Hard-working</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Silvia Gómez Montes</td><td style="text-align:center; padding:8px 16px;">3</td><td style="text-align:center; padding:8px 16px;"><span style="background:#E6F1FB; color:#185FA5; font-weight:700; padding:2px 8px; border-radius:8px;">9.3</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:93%; background:#378ADD;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Pensadora, estratégica y resiliente</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Xian Weng Jiang</td><td style="text-align:center; padding:8px 16px;">3</td><td style="text-align:center; padding:8px 16px;"><span style="background:#E6F1FB; color:#185FA5; font-weight:700; padding:2px 8px; border-radius:8px;">9.3</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:93%; background:#378ADD;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Problem solver, Pragmatic, Business acumen</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Javier Rodriguez Saiz</td><td style="text-align:center; padding:8px 16px;">1</td><td style="text-align:center; padding:8px 16px;"><span style="background:#E6F1FB; color:#185FA5; font-weight:700; padding:2px 8px; border-radius:8px;">9.0</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:90%; background:#378ADD;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Resolutivo, adaptable, visión estratégica</td></tr>
+        <tr><td style="padding:8px 16px; font-weight:600;">Nicolás Escartin</td><td style="text-align:center; padding:8px 16px;">2</td><td style="text-align:center; padding:8px 16px;"><span style="background:#E6F1FB; color:#185FA5; font-weight:700; padding:2px 8px; border-radius:8px;">8.5</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:85%; background:#378ADD;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Eficiente, honesto, transparente</td></tr>
+        <tr style="background:#FFFBEB;"><td style="padding:8px 16px; font-weight:600;">Timothy Cash Flexer</td><td style="text-align:center; padding:8px 16px;">2</td><td style="text-align:center; padding:8px 16px;"><span style="background:#FAEEDA; color:#BA7517; font-weight:700; padding:2px 8px; border-radius:8px;">7.5</span></td><td style="padding:8px 16px;"><div class="score-bar-wrap"><div class="score-bar" style="width:75%; background:#BA7517;"></div></div></td><td style="padding:8px 16px; font-size:11px; color:#888780;">Credible, Intelligent — lacks VC network ⚠</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Detailed cards -->
+  <p class="section-label">Detailed reference cards</p>
+
+  <!-- Álvaro Montero — 3x 10/10 -->
+  <div class="cand-card perfect">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#EAF3DE; color:#3B6D11;">AM</div>
+      <div>
+        <div class="cand-name">Álvaro Montero Bockos</div>
+        <div class="cand-project">Sorbmetrics · GridWatch</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-10">10.0</div>
+        <div class="ref-count">3 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Dr James MacFarlane</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Genuine, talented, hard-working, self-starter."</div>
+        <div class="ref-concerns">Works especially well in agile, fast-paced environments. Comfortable with uncertainty and taking initiative.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Alex Mauser</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Pro-active, good networker, adaptable."</div>
+        <div class="ref-concerns">Solid understanding of the tech transfer and commercialisation process. Easy to work with.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Aleksandra Rogozinska</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Accomplished, commercially savvy, and collaborative."</div>
+        <div class="ref-concerns">Hands-on experience taking projects from early lab-stage evidence to commercial-scale validation.</div>
+      </div>
+      <div class="tags"><span class="tag">3x 10/10</span><span class="tag">Tech transfer</span><span class="tag">Commercial</span><span class="tag">Agile environments</span></div>
+    </div>
+  </div>
+
+  <!-- David Milia -->
+  <div class="cand-card perfect">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#EAF3DE; color:#3B6D11;">DM</div>
+      <div>
+        <div class="cand-name">David Luis Milia Garrote</div>
+        <div class="cand-project">Sorbmetrics · GridWatch</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-10">10.0</div>
+        <div class="ref-count">2 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Alejandro Rodriguez</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Intellectually sharp, People smart, Integrity."</div>
+        <div class="ref-concerns">Rare combination of academic intelligence and emotional intelligence. Family comes first — his wife and four children are based in Argentina. Worth discussing relocation.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Chanelle McLeod</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Operational, Collaborative, Gets-it-done."</div>
+        <div class="ref-concerns">"I would stake my reputation on it." Can manage very different personalities and bring misaligned teams into a cohesive unit.</div>
+      </div>
+      <div class="tags"><span class="tag">2x 10/10</span><span class="tag">Leadership</span><span class="tag">EQ</span><span class="tag">⚠ Family in Argentina</span></div>
+    </div>
+  </div>
+
+  <!-- Cristina Aguilera -->
+  <div class="cand-card perfect">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#EAF3DE; color:#3B6D11;">CA</div>
+      <div>
+        <div class="cand-name">Cristina Aguilera Xiol</div>
+        <div class="cand-project">ENDOMET · VATICIP</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-10">10.0</div>
+        <div class="ref-count">2 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Rosario</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Brillante, capacidad increíble para entender la tecnología y comunicarla."</div>
+        <div class="ref-concerns">"La recomendaría sin duda."</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Ignacio Porras</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Piensa muy bien, pies en el suelo, vocación por la salud."</div>
+        <div class="ref-concerns">"Además de todo es buena persona. Es muy agradable trabajar con ella."</div>
+      </div>
+      <div class="tags"><span class="tag">2x 10/10</span><span class="tag">Science communication</span><span class="tag">Healthcare focus</span></div>
+    </div>
+  </div>
+
+  <!-- Francisco Rico -->
+  <div class="cand-card perfect">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#EAF3DE; color:#3B6D11;">FR</div>
+      <div>
+        <div class="cand-name">Francisco Rico</div>
+        <div class="cand-project">Ulisses DS · OpticMizing</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-10">10.0</div>
+        <div class="ref-count">2 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Verónica Cipolatti</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Amable, transparente y motivador."</div>
+        <div class="ref-concerns">Gran confianza construida a lo largo de los años.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Juan Núñez</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Perspicaz, humilde, resiliente."</div>
+        <div class="ref-concerns">"Lo recomendaría plenamente — hasta el punto de haber considerado incorporarlo al propio equipo."</div>
+      </div>
+      <div class="tags"><span class="tag">2x 10/10</span><span class="tag">Trustworthy</span><span class="tag">Commercial</span></div>
+    </div>
+  </div>
+
+  <!-- Hugo Macedo -->
+  <div class="cand-card">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#E6F1FB; color:#185FA5;">HM</div>
+      <div>
+        <div class="cand-name">Hugo Macedo</div>
+        <div class="cand-project">Sorbmetrics · TarGlio · BraidStent</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-9">9.7</div>
+        <div class="ref-count">3 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">David Apple</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Humble, Resourceful, Hard-working."</div>
+        <div class="ref-concerns">Smart Separations closed due to funding — not performance or integrity issues.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">George Weir</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Integrity, Learning, Open."</div>
+        <div class="ref-concerns">Genuine team player — not individualistic. Elevates those around him.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Paulo Maia</span><span class="ref-score rs-9">9/10</span></div>
+        <div class="ref-words">"Trustworthy, Likeable, Knowledgeable."</div>
+        <div class="ref-concerns">"Left voluntarily, yet everyone still misses him and stays in touch." May already be a 10.</div>
+      </div>
+      <div class="tags"><span class="tag">3 references</span><span class="tag">Team player</span><span class="tag">Integrity</span><span class="tag">Humble</span></div>
+    </div>
+  </div>
+
+  <!-- Silvia Gomez -->
+  <div class="cand-card">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#E6F1FB; color:#185FA5;">SG</div>
+      <div>
+        <div class="cand-name">Silvia Gómez Montes</div>
+        <div class="cand-project">ONAKids · BraidStent</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-9">9.3</div>
+        <div class="ref-count">3 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Marck Collado Sebastià</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Pensadora, estratégica y resiliente."</div>
+        <div class="ref-concerns">Fomenta la participación del equipo. Genera confianza.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Maria Mora</span><span class="ref-score rs-8">8/10</span></div>
+        <div class="ref-words">"Clara, adaptable, activa."</div>
+        <div class="ref-concerns">Relación puntual en un programa. Score 8 por contexto limitado, no por dudas sobre el perfil.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Nuria Garcia</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Orientada a las personas, operativa y empática."</div>
+        <div class="ref-concerns">Han mantenido relación activa más allá del proyecto. Sigue explorando oportunidades de colaboración.</div>
+      </div>
+      <div class="tags"><span class="tag">3 references</span><span class="tag">Strategic</span><span class="tag">People-oriented</span><span class="tag">ONAKids Stage 6</span></div>
+    </div>
+  </div>
+
+  <!-- Xian Weng Jiang -->
+  <div class="cand-card">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#E6F1FB; color:#185FA5;">XW</div>
+      <div>
+        <div class="cand-name">Xian Weng Jiang</div>
+        <div class="cand-project">TarGlio · Ulisses DS</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-9">9.3</div>
+        <div class="ref-count">3 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Marian Mellen</span><span class="ref-score rs-10">10/10</span></div>
+        <div class="ref-words">"Clarity, Honesty, Skills."</div>
+        <div class="ref-concerns">"Nothing stopping me from hiring him myself — I just don't have the opening." Catalan, from Girona, currently Madrid.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Joan Ballesteros</span><span class="ref-score rs-9">9/10</span></div>
+        <div class="ref-words">"Technically strong, natural integrator of people."</div>
+        <div class="ref-concerns">Comfortable in ambiguity. Humility is a strength — also worth watching in terms of self-advocacy.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Justin Chan</span><span class="ref-score rs-9">9/10</span></div>
+        <div class="ref-words">"Problem solver, Pragmatic, Business acumen."</div>
+        <div class="ref-concerns">"I would work with the guy — I would found with the guy." Drop him in any room, he'll hold his own.</div>
+      </div>
+      <div class="tags"><span class="tag">3 references</span><span class="tag">Science-to-business bridge</span><span class="tag">Pragmatic</span></div>
+    </div>
+  </div>
+
+  <!-- Javier Rodriguez -->
+  <div class="cand-card">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#E6F1FB; color:#185FA5;">JR</div>
+      <div>
+        <div class="cand-name">Javier Rodriguez Saiz</div>
+        <div class="cand-project">Ulisses DS · OpticMizing</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-9">9.0</div>
+        <div class="ref-count">1 ref</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Alejandro Vivas</span><span class="ref-score rs-9">9/10</span></div>
+        <div class="ref-words">"Resolutivo, adaptable, aporta visión estratégica."</div>
+        <div class="ref-concerns">Muy hábil en venta B2B. Gestiona personas y conflictos con elegancia. Score 9 por si la empresa estuviera fuera de lo que conoce — pero "si alguien se adapta, es él."</div>
+      </div>
+      <div class="tags"><span class="tag">1 reference</span><span class="tag">B2B sales</span><span class="tag">Strategic</span></div>
+    </div>
+  </div>
+
+  <!-- Nicolás Escartin -->
+  <div class="cand-card">
+    <div class="cand-header">
+      <div class="cand-avatar" style="background:#E6F1FB; color:#185FA5;">NE</div>
+      <div>
+        <div class="cand-name">Nicolás Escartin</div>
+        <div class="cand-project">ONAKids · OpticMizing</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-9">8.5</div>
+        <div class="ref-count">2 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Pol Santamaría</span><span class="ref-score rs-8">8/10</span></div>
+        <div class="ref-words">"Eficiente, networking hábil, muy curioso."</div>
+        <div class="ref-concerns">Apasionado por datos, robótica y espacio. Score 8 por estrés en el rol previo por cambios de estrategia y carga laboral.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Iker Lleida</span><span class="ref-score rs-9">9/10</span></div>
+        <div class="ref-words">"Honesto, transparente, empleado como prioridad."</div>
+        <div class="ref-concerns">Se nota estrés en contextos de alta presión. Sigue en contacto — señal de relación sólida.</div>
+      </div>
+      <div class="tags"><span class="tag">2 references</span><span class="tag">Honest</span><span class="tag">Data-driven</span></div>
+    </div>
+  </div>
+
+  <!-- Timothy Cash — flag -->
+  <div class="cand-card flag">
+    <div class="cand-header" style="background:#FFFBEB;">
+      <div class="cand-avatar" style="background:#FAEEDA; color:#BA7517;">TC</div>
+      <div>
+        <div class="cand-name">Timothy Cash Flexer</div>
+        <div class="cand-project">ENDOMET · VATICIP</div>
+      </div>
+      <div style="margin-left:auto; text-align:center;">
+        <div class="score-circle score-8">7.5</div>
+        <div class="ref-count">2 refs</div>
+      </div>
+    </div>
+    <div class="cand-body">
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Stephen Helliwell</span><span class="ref-score rs-8">8/10</span></div>
+        <div class="ref-words">"Credible, Intelligent, Situationally aware."</div>
+        <div class="ref-concerns flag-text">⚠ Lacks a developed VC network and fundraising exposure. Has learned to calibrate communication over time — still developing this skill.</div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-top"><span class="ref-name">Aksana Labokha</span><span class="ref-score rs-7">7/10</span></div>
+        <div class="ref-words">"Integrity, Science, Professionalism."</div>
+        <div class="ref-concerns flag-text">⚠ Two previous companies did not succeed (funding issues). Managed co-founder tension well — but worth discussing his track record directly.</div>
+      </div>
+      <div class="tags"><span class="tag">⚠ Lowest score (7.5)</span><span class="tag">Strong science</span><span class="tag">Lacks VC network</span><span class="tag">2 failed startups</span></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com · References collected by Consuelo Rebolledo</p>
+    <p>March–April 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -17,7 +17,7 @@
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 24px; }
   .kpi-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
   .kpi-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .kpi-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
@@ -36,8 +36,11 @@
   .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 8px; overflow: hidden; }
   .funnel-bar { height: 100%; border-radius: 3px; }
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 36px; text-align: right; }
-  .funnel-pct { font-size: 11px; color: #888780; min-width: 40px; text-align: right; }
+  .funnel-rate { font-size: 11px; font-weight: 600; min-width: 40px; text-align: right; }
+  .rate-great { color: #1D9E75; }
+  .rate-ok { color: #BA7517; }
 
+  /* Campaign table */
   .camp-table { width: 100%; border-collapse: collapse; }
   .camp-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
   .camp-table th:not(:first-child) { text-align: right; }
@@ -45,8 +48,9 @@
   .camp-table tr:last-child td { border-bottom: none; }
   .camp-table td:not(:first-child) { text-align: right; }
   .rate-good { color: #1D9E75; font-weight: 600; }
-  .rate-ok { color: #BA7517; font-weight: 600; }
+  .rate-med { color: #BA7517; font-weight: 600; }
   .total-row td { font-weight: 600; border-top: 1px solid #e0ddd6; padding-top: 10px; }
+  .pool-row td { color: #888780; font-style: italic; }
 
   /* Source split */
   .split-bar { display: flex; height: 36px; border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
@@ -64,7 +68,6 @@
   .gender-m { background: #378ADD; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 600; }
   .gender-f { background: #E87F9A; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 600; }
   .gender-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
-  .verified-tag { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 6px; }
 
   /* Staff interview */
   .interview-banner { background: #1a1a18; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
@@ -92,18 +95,18 @@
       <p>Conversion rates · Source split · Gender KPIs · Staff interview tracker · Does Recruitment</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge">Week 2 · April 2026</div>
+      <div class="badge">Week 3 · April 2026</div>
       <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
 
   <!-- Top KPIs -->
   <p class="section-label">Programme totals</p>
-  <div class="kpi-grid" style="grid-template-columns: repeat(6, 1fr);">
+  <div class="kpi-grid">
     <div class="kpi-card">
-      <p class="kpi-label">Dripify leads sourced</p>
-      <p class="kpi-value">288</p>
-      <p class="kpi-sub">Across 10 campaigns</p>
+      <p class="kpi-label">Dripify leads</p>
+      <p class="kpi-value">295</p>
+      <p class="kpi-sub">9 campaigns · 1 duplicate</p>
     </div>
     <div class="kpi-card">
       <p class="kpi-label">Application form</p>
@@ -121,7 +124,7 @@
       <p class="kpi-sub">NDA + project matched</p>
     </div>
     <div class="kpi-card">
-      <p class="kpi-label">References received</p>
+      <p class="kpi-label">References</p>
       <p class="kpi-value green">25</p>
       <p class="kpi-sub">Avg score 9.4/10</p>
     </div>
@@ -135,72 +138,93 @@
   <hr class="divider">
 
   <!-- SECTION 1: FUNNEL -->
-  <p class="section-label">1. Conversion funnel — 288 leads → signed</p>
+  <p class="section-label">1. Conversion funnel — 295 leads → signed</p>
   <div class="two-col">
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Full programme funnel</p>
+      <p class="section-label" style="margin-bottom:14px;">Stage-by-stage conversion</p>
       <div class="funnel-item">
-        <span class="funnel-label">Dripify leads sourced</span>
+        <span class="funnel-label">Leads sourced</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
-        <span class="funnel-num">288</span>
-        <span class="funnel-pct">100%</span>
+        <span class="funnel-num">295</span>
+        <span class="funnel-rate" style="color:#888780;">—</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Application form</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6%; background:#534AB7;"></div></div>
-        <span class="funnel-num">65</span>
-        <span class="funnel-pct">6%</span>
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:78%; background:#378ADD;"></div></div>
+        <span class="funnel-num">226</span>
+        <span class="funnel-rate rate-great">78%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Entered Manatal</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#378ADD;"></div></div>
-        <span class="funnel-num">124</span>
-        <span class="funnel-pct">43%</span>
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:69%; background:#378ADD;"></div></div>
+        <span class="funnel-num">156</span>
+        <span class="funnel-rate rate-great">69%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:81%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">127</span>
+        <span class="funnel-rate rate-great">81%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Entered pipeline</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#534AB7;"></div></div>
+        <span class="funnel-num">127</span>
+        <span class="funnel-rate rate-ok">43%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Staff interview</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4%; background:#185FA5;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:37%; background:#185FA5;"></div></div>
         <span class="funnel-num">47</span>
-        <span class="funnel-pct">38%</span>
+        <span class="funnel-rate rate-ok">37%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Shortlisted</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:1.2%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:28%; background:#1D9E75;"></div></div>
         <span class="funnel-num">13</span>
-        <span class="funnel-pct">28%</span>
+        <span class="funnel-rate rate-ok">28%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Ref check</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.5%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">5</span>
-        <span class="funnel-pct">38%</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:46%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">6</span>
+        <span class="funnel-rate rate-great">46%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Signed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.1%; background:#534AB7;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7%; background:#534AB7;"></div></div>
         <span class="funnel-num">1</span>
-        <span class="funnel-pct">20%</span>
+        <span class="funnel-rate rate-ok">7%</span>
       </div>
-      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">% shown relative to previous stage from Manatal onward</p>
+      <div style="background:#f5f4f0; border-radius:6px; padding:10px 12px; margin-top:12px;">
+        <p style="font-size:11px; color:#888780; line-height:1.7;">
+          <strong style="color:#1a1a18;">Leads → shortlisted:</strong> 4.4% &nbsp;·&nbsp;
+          <strong style="color:#1a1a18;">Leads → signed:</strong> 0.3%<br>
+          <span style="font-size:10px;">% per row = conversion from previous stage</span>
+        </p>
+      </div>
     </div>
 
     <div class="card">
       <p class="section-label" style="margin-bottom:14px;">Dripify campaign performance</p>
       <table class="camp-table">
         <thead>
-          <tr><th>Campaign</th><th>Sent</th><th>Acc%</th><th>Rep%</th></tr>
+          <tr><th>Campaign</th><th>Leads</th><th>Sent</th><th>Acc%</th><th>Rep%</th></tr>
         </thead>
         <tbody>
-          <tr><td style="font-weight:600;">ONAKids</td><td>53</td><td><span class="rate-good">79%</span></td><td><span class="rate-good">68%</span></td></tr>
-          <tr><td style="font-weight:600;">TarGlio</td><td>65</td><td><span class="rate-ok">69%</span></td><td><span class="rate-good">80%</span></td></tr>
-          <tr><td style="font-weight:600;">Sorbmetrics</td><td>22</td><td><span class="rate-ok">68%</span></td><td><span class="rate-good">100%</span></td></tr>
-          <tr><td style="font-weight:600;">Biotech Pool</td><td>35</td><td><span class="rate-ok">69%</span></td><td><span class="rate-good">80%</span></td></tr>
-          <tr><td style="font-weight:600;">MedTech Pool</td><td>20</td><td><span class="rate-good">85%</span></td><td><span class="rate-good">75%</span></td></tr>
-          <tr><td style="font-weight:600;">ENDOMET R1</td><td>11</td><td><span class="rate-good">73%</span></td><td><span class="rate-ok">67%</span></td></tr>
-          <tr><td style="font-weight:600;">OpticMizing</td><td>20</td><td><span class="rate-ok">25%</span></td><td><span class="rate-good">80%</span></td></tr>
-          <tr class="total-row"><td>Total</td><td>226</td><td><span class="rate-good">69%</span></td><td><span class="rate-good">81%</span></td></tr>
+          <tr><td style="font-weight:600;">ONAKids</td><td>60</td><td>53</td><td><span class="rate-good">79%</span></td><td><span class="rate-good">68%</span></td></tr>
+          <tr><td style="font-weight:600;">TarGlio</td><td>66</td><td>65</td><td><span class="rate-med">69%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr><td style="font-weight:600;">ENDOMET</td><td>44</td><td>11</td><td><span class="rate-good">73%</span></td><td><span class="rate-med">67%</span></td></tr>
+          <tr><td style="font-weight:600;">Sorbmetrics</td><td>23</td><td>22</td><td><span class="rate-med">68%</span></td><td><span class="rate-good">100%</span></td></tr>
+          <tr><td style="font-weight:600;">OpticMizing</td><td>22</td><td>20</td><td><span class="rate-med">25%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr><td style="font-weight:600;">GridWatch</td><td>18</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td style="font-weight:600;">OGYX</td><td>7</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr class="pool-row"><td>BioTech Pool</td><td>36</td><td>35</td><td><span class="rate-med">69%</span></td><td><span class="rate-good">80%</span></td></tr>
+          <tr class="pool-row"><td>MedDev Pool</td><td>20</td><td>20</td><td><span class="rate-good">85%</span></td><td><span class="rate-good">75%</span></td></tr>
+          <tr class="total-row"><td>Total unique</td><td>295</td><td>226</td><td><span class="rate-good">69%</span></td><td><span class="rate-good">81%</span></td></tr>
         </tbody>
       </table>
+      <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">Acc% and Rep% only available for campaigns with Dripify stats export. GridWatch, OGYX pending.</p>
     </div>
   </div>
 
@@ -209,26 +233,26 @@
   <!-- SECTION 2: SOURCE SPLIT -->
   <p class="section-label">2. Source split — outbound vs inbound</p>
 
-  <div class="split-bar">
-    <div class="split-outbound" style="flex:79;">Outbound (contacted by us) — 79 · 64%</div>
-    <div class="split-inbound" style="flex:45;">Pure inbound — 45 · 36%</div>
+  <div class="split-bar" style="margin-bottom:12px;">
+    <div class="split-outbound" style="flex:77;">Outbound (contacted by us) — 77 · 60%</div>
+    <div class="split-inbound" style="flex:50;">Pure inbound — 50 · 40%</div>
   </div>
 
-  <div class="source-grid">
+  <div class="source-grid" style="margin-bottom:12px;">
     <div class="source-box" style="background:#E6F1FB; border:0.5px solid #93C5FD;">
-      <p class="source-num" style="color:#185FA5;">79</p>
-      <p class="source-pct-big" style="color:#185FA5;">64% — Outbound</p>
-      <p class="source-desc">Contacted via Dripify. If we reached out first — even if they also filled the form later — they count as outbound. Includes 17 who did both.</p>
+      <p class="source-num" style="color:#185FA5;">77</p>
+      <p class="source-pct-big" style="color:#185FA5;">60% — Outbound</p>
+      <p class="source-desc">Contacted via Dripify — whether or not they also filled the application form. First contact by us = outbound.</p>
     </div>
     <div class="source-box" style="background:#f5f4f0; border:0.5px solid #e0ddd6;">
-      <p class="source-num" style="color:#888780;">45</p>
-      <p class="source-pct-big" style="color:#888780;">36% — Pure inbound</p>
-      <p class="source-desc">Found the role via Call4Entrepreneurs or The Collider's channels. Never in any Dripify campaign. Applied entirely on their own initiative.</p>
+      <p class="source-num" style="color:#888780;">50</p>
+      <p class="source-pct-big" style="color:#888780;">40% — Pure inbound</p>
+      <p class="source-desc">Found the role via Call4Entrepreneurs or The Collider's own channels. Never in any Dripify campaign.</p>
     </div>
   </div>
 
-  <div class="disclaimer">
-    <strong style="color:#1a1a18;">Methodology:</strong> Application form names cross-referenced against all Dripify lead exports. Anyone who appears in a Dripify campaign is counted as outbound regardless of form submission. Matching on first + last name — accent variations may cause minor undercounting.
+  <div class="disclaimer" style="margin-bottom:8px;">
+    <strong style="color:#1a1a18;">Methodology:</strong> 65 application form names cross-referenced against 295 Dripify leads. Anyone who appears in a Dripify campaign counts as outbound regardless of form submission. Matching on first + last name.
   </div>
 
   <hr class="divider">
@@ -236,10 +260,9 @@
   <!-- SECTION 3: GENDER -->
   <p class="section-label">3. Gender KPIs</p>
   <div class="two-col">
-
     <div class="card">
-      <p class="section-label" style="margin-bottom:4px;">Staff interviews — 47 candidates <span class="verified-tag">✓ Verified data</span></p>
-      <p style="font-size:11px; color:#888780; margin-bottom:12px;">Gender self-reported in the interview questionnaire</p>
+      <p class="section-label" style="margin-bottom:4px;">Staff interviews — 47 candidates <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:8px; font-weight:600; margin-left:4px;">✓ Verified</span></p>
+      <p style="font-size:11px; color:#888780; margin-bottom:12px;">Self-reported in interview questionnaire</p>
       <div class="gender-bar">
         <div class="gender-m" style="flex:76;">♂ Hombre — 36 (76%)</div>
         <div class="gender-f" style="flex:24;">♀ Mujer — 11 (23%)</div>
@@ -249,30 +272,28 @@
         <span><span class="gender-dot" style="background:#E87F9A;"></span><span style="font-size:11px; color:#888780;">Female: 11 (23%)</span></span>
       </div>
     </div>
-
     <div class="card">
-      <p class="section-label" style="margin-bottom:4px;">Application form — 65 respondents <span style="font-size:9px; background:#FAEEDA; color:#BA7517; padding:1px 6px; border-radius:8px; font-weight:600; margin-left:4px;">Name-based estimate</span></p>
-      <p style="font-size:11px; color:#888780; margin-bottom:12px;">No gender question in form — inferred from first names</p>
+      <p class="section-label" style="margin-bottom:4px;">Application form — 65 respondents <span style="font-size:9px; background:#EAF3DE; color:#3B6D11; padding:1px 6px; border-radius:8px; font-weight:600; margin-left:4px;">✓ Verified by Consuelo</span></p>
+      <p style="font-size:11px; color:#888780; margin-bottom:12px;">Manually tracked by The Collider team</p>
       <div class="gender-bar">
-        <div class="gender-m" style="flex:79;">♂ Male — ~51 (79%)</div>
-        <div class="gender-f" style="flex:21;">♀ ~14 (21%)</div>
+        <div class="gender-m" style="flex:67;">♂ Male — 43 (66.7%)</div>
+        <div class="gender-f" style="flex:33;">♀ Female — 22 (33.3%)</div>
       </div>
       <div style="display:flex; gap:16px; margin-top:6px;">
-        <span><span class="gender-dot" style="background:#378ADD;"></span><span style="font-size:11px; color:#888780;">Male: ~51 (79%)</span></span>
-        <span><span class="gender-dot" style="background:#E87F9A;"></span><span style="font-size:11px; color:#888780;">Female: ~14 (21%)</span></span>
+        <span><span class="gender-dot" style="background:#378ADD;"></span><span style="font-size:11px; color:#888780;">Male: 43 (66.7%)</span></span>
+        <span><span class="gender-dot" style="background:#E87F9A;"></span><span style="font-size:11px; color:#888780;">Female: 22 (33.3%)</span></span>
       </div>
     </div>
-
   </div>
 
   <div class="disclaimer" style="margin-bottom:8px;">
-    <strong style="color:#1a1a18;">Note:</strong> Interview gender data is verified — self-reported in the interview questionnaire (Hombre/Mujer). Application form gender is name-based estimation only. For reporting purposes, use the interview figures as the verified KPI.
+    <strong style="color:#1a1a18;">Note:</strong> Form shows higher female representation (33.3%) than interviews (23%). Interview gender verified — self-reported. Form gender manually tracked by Consuelo Rebolledo.
   </div>
 
   <hr class="divider">
 
   <!-- SECTION 4: STAFF INTERVIEW -->
-  <p class="section-label">4. Staff interview tracker — your colleague's KPI</p>
+  <p class="section-label">4. Staff interview tracker</p>
 
   <div class="interview-banner">
     <div>
@@ -289,12 +310,16 @@
         <p style="font-size:10px; color:#888780;">Short-<br>listed</p>
       </div>
       <div style="text-align:center;">
-        <p style="font-size:22px; font-weight:600; color:#0F6E56; line-height:1;">5</p>
+        <p style="font-size:22px; font-weight:600; color:#0F6E56; line-height:1;">6</p>
         <p style="font-size:10px; color:#888780;">Ref<br>check</p>
       </div>
       <div style="text-align:center;">
+        <p style="font-size:22px; font-weight:600; color:#EAF3DE; line-height:1;">3</p>
+        <p style="font-size:10px; color:#888780;">Match-<br>making</p>
+      </div>
+      <div style="text-align:center;">
         <p style="font-size:22px; font-weight:600; color:#EAF3DE; line-height:1;">25</p>
-        <p style="font-size:10px; color:#888780;">References<br>received</p>
+        <p style="font-size:10px; color:#888780;">Refs<br>received</p>
       </div>
       <div style="text-align:center;">
         <p style="font-size:22px; font-weight:600; color:#fff; line-height:1;">1</p>
@@ -303,7 +328,24 @@
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:16px;">
+  <div class="card">
+    <p class="section-label" style="margin-bottom:14px;">Stage 4+ per project (Manatal active)</p>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">ON</div><span class="proj-name">ONAKids</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:100%;"></div></div><span class="proj-num">7</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div><span class="proj-name">ENDOMET</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:100%;"></div></div><span class="proj-num">7</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FAEEDA; color:#BA7517;">SO</div><span class="proj-name">Sorbmetrics</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:86%;"></div></div><span class="proj-num">6</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div><span class="proj-name">OpticMizing</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">TG</div><span class="proj-name">TarGlio</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">BS</div><span class="proj-name">BraidStent</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:43%;"></div></div><span class="proj-num">3</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div><span class="proj-name">GridWatch</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:29%;"></div></div><span class="proj-num">2</span></div>
+    <div class="proj-row"><div class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</div><span class="proj-name">Ulisses DS</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:14%;"></div></div><span class="proj-num">1</span></div>
+    <div style="border-top:1px solid #e0ddd6; margin-top:12px; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:12px; font-weight:600; color:#1a1a18;">Total across all projects</span>
+      <span style="font-size:18px; font-weight:600; color:#1D9E75;">37</span>
+    </div>
+  </div>
+
+  <!-- Shortlist table -->
+  <div class="card" style="margin-top:16px;">
     <p class="section-label" style="margin-bottom:14px;">Shortlisted candidates — NDA & reference status</p>
     <table class="camp-table">
       <thead>
@@ -317,9 +359,9 @@
         <tr><td style="font-weight:600;">Francisco Rico</td><td>Ulisses DS</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
         <tr><td style="font-weight:600;">Javier Rodríguez Saiz</td><td>Ulisses DS</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
         <tr><td style="font-weight:600;">Nicolás Escartin</td><td>ONAKids</td><td>OpticMizing</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
-        <tr><td style="font-weight:600;">Hugo Macedo</td><td>Sorbmetrics</td><td>TarGlio</td><td style="color:#888780;">Pending</td><td><span class="rate-ok">Sent</span></td></tr>
+        <tr><td style="font-weight:600;">Hugo Macedo</td><td>Sorbmetrics</td><td>TarGlio</td><td style="color:#888780;">Pending</td><td><span class="rate-med">Sent</span></td></tr>
         <tr><td style="font-weight:600;">Cristina Aguilera Xiol</td><td>ENDOMET</td><td>VATICIP</td><td style="color:#888780;">Pending</td><td><span class="rate-good">Signed</span></td></tr>
-        <tr><td style="font-weight:600;">Alvaro Montero Bockos</td><td>Sorbmetrics</td><td>GridWatch</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
+        <tr><td style="font-weight:600;">Álvaro Montero Bockos</td><td>Sorbmetrics</td><td>GridWatch</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
         <tr><td style="font-weight:600;">Andres Clarós</td><td>OpticMizing</td><td>—</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
         <tr><td style="font-weight:600;">Xian Weng Jiang</td><td>TarGlio</td><td>Ulisses DS</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
         <tr><td style="font-weight:600;">Szilvia Endrényi</td><td>—</td><td>—</td><td style="color:#888780;">Pending</td><td style="color:#888780;">Pending</td></tr>
@@ -327,21 +369,11 @@
     </table>
   </div>
 
-  <div class="card">
-    <p class="section-label" style="margin-bottom:14px;">Stage 4+ per project (Manatal)</p>
-    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">ON</div><span class="proj-name">ONAKids</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:100%;"></div></div><span class="proj-num">7</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</div><span class="proj-name">ENDOMET</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:86%;"></div></div><span class="proj-num">6</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#FAEEDA; color:#BA7517;">SO</div><span class="proj-name">Sorbmetrics</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:86%;"></div></div><span class="proj-num">6</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</div><span class="proj-name">OpticMizing</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">TG</div><span class="proj-name">TarGlio</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:71%;"></div></div><span class="proj-num">5</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#FBEAF0; color:#993556;">BS</div><span class="proj-name">BraidStent</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:43%;"></div></div><span class="proj-num">3</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</div><span class="proj-name">GridWatch</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:29%;"></div></div><span class="proj-num">2</span></div>
-    <div class="proj-row"><div class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</div><span class="proj-name">Ulisses DS</span><div class="proj-bar-wrap"><div class="proj-bar" style="width:14%;"></div></div><span class="proj-num">1</span></div>
-    <div style="border-top:1px solid #e0ddd6; margin-top:12px; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
-      <span style="font-size:12px; font-weight:600; color:#1a1a18;">Total across all projects</span>
-      <span style="font-size:18px; font-weight:600; color:#1D9E75;">35</span>
-    </div>
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Week 3 · April 2026 · Confidential</p>
   </div>
 
-  <div class="footer">
-    <p>Does Recruitment · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfa8b0aaabbaad9fbbb0baacadbabcadaab6abb
+</div>
+</body>
+</html>

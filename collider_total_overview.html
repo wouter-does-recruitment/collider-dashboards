@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Collider — Recruitment Overview Week 2</title>
+<title>The Collider — Recruitment Overview</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
@@ -20,48 +20,38 @@
   .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
   .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  .metric-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
-  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
-  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .metric-value.green { color: #1D9E75; }
-  .metric-value.blue { color: #185FA5; }
-  .metric-value.amber { color: #BA7517; }
-  .metric-value.purple { color: #534AB7; }
-  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
-  .metric-sub.up { color: #1D9E75; font-weight: 600; }
+  /* KPI grids */
+  .kpi-grid-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 24px; }
+  .kpi-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .kpi-label { font-size: 10px; color: #888780; margin-bottom: 4px; }
+  .kpi-value { font-size: 24px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .kpi-value.green { color: #1D9E75; }
+  .kpi-value.blue { color: #185FA5; }
+  .kpi-value.purple { color: #534AB7; }
+  .kpi-value.amber { color: #BA7517; }
+  .kpi-sub { font-size: 10px; color: #888780; margin-top: 3px; }
+  .kpi-sub.up { color: #1D9E75; font-weight: 600; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
-
-  /* WoW table */
-  .wow-table { width: 100%; border-collapse: collapse; }
-  .wow-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
-  .wow-table th:not(:first-child) { text-align: right; }
-  .wow-table td { padding: 8px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; }
-  .wow-table tr:last-child td { border-bottom: none; }
-  .wow-table td:not(:first-child) { text-align: right; }
-  .metric-name { font-weight: 500; color: #1a1a18; }
-  .up { color: #1D9E75; font-weight: 600; }
-  .nc { color: #888780; }
-  .dn { color: #A32D2D; font-weight: 600; }
+  /* Progress bar */
+  .prog-bar { display: flex; gap: 4px; margin-bottom: 10px; }
+  .prog-seg { height: 6px; border-radius: 3px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
   /* Funnel */
   .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
-  .funnel-label { font-size: 12px; color: #888780; width: 160px; flex-shrink: 0; }
+  .funnel-label { font-size: 12px; color: #888780; width: 170px; flex-shrink: 0; }
   .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
   .funnel-bar { height: 100%; border-radius: 3px; }
-  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 30px; text-align: right; }
-  .funnel-pct { font-size: 11px; color: #888780; min-width: 42px; text-align: right; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 32px; text-align: right; }
+  .funnel-rate { font-size: 11px; font-weight: 600; min-width: 40px; text-align: right; }
+  .rate-g { color: #1D9E75; }
+  .rate-o { color: #BA7517; }
 
-  /* Progress bar + legend */
-  .progress-bar { display: flex; gap: 4px; margin-bottom: 12px; }
-  .progress-seg { height: 6px; border-radius: 3px; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #888780; }
-  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
 
   /* Project table */
   .proj-table { width: 100%; border-collapse: collapse; }
@@ -73,29 +63,23 @@
   .proj-name { font-weight: 600; color: #1a1a18; }
   .proj-sector { font-size: 10px; color: #888780; }
   .pill { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; display: inline-block; }
-  .pill-ref { background: #1D9E75; color: #fff; }
+  .pill-matchmaking { background: #1D9E75; color: #fff; }
+  .pill-ref { background: #EDE9FE; color: #4F46E5; }
   .pill-talent { background: #EAF3DE; color: #3B6D11; }
   .pill-interview { background: #E6F1FB; color: #185FA5; }
   .pill-signed { background: #0F6E56; color: #fff; }
-  .pill-new { background: #f5f4f0; color: #888780; }
+  .pill-outreach { background: #f5f4f0; color: #888780; }
   .new-badge { font-size: 9px; background: #EAF3DE; color: #3B6D11; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
-
-  /* Avatar */
   .proj-avatar { width: 26px; height: 26px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; margin-right: 8px; vertical-align: middle; flex-shrink: 0; }
 
   /* Highlights */
-  .highlight-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 4px; }
+  .highlight-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .highlight-card { background: #f5f4f0; border-radius: 8px; padding: 12px 14px; }
   .highlight-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
   .highlight-sub { font-size: 11px; color: #888780; line-height: 1.5; }
 
   .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
   .footer p { font-size: 11px; color: #b4b2a9; }
-
-  @media print {
-    body { background: #fff; padding: 0; }
-    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
-  }
 </style>
 </head>
 <body>
@@ -108,137 +92,141 @@
       <p>CEO & Co-Founder sourcing across 9 deep tech projects · Does Recruitment · Wouter Jaarsma</p>
     </div>
     <div style="text-align:right;">
-      <div class="badge">Week 2 · April 2026</div>
-      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+      <div class="badge">Week 3 · April 2026</div>
     </div>
   </div>
 
   <!-- Notice -->
   <div class="notice">
-    <strong>Strong week-over-week progress across the board.</strong> ONAKids reached Stage 6 (Reference Check) — the furthest stage in the programme. ENDOMET Talent tripled (1→3). GridWatch and BraidStent both activated. Total Disruptive Talent pool: 14 candidates across 8 projects.
+    <strong>Stage 8 Matchmaking reached for the first time.</strong> ENDOMET advances fastest this week — 3 candidates in Matchmaking (Cristina Aguilera, Timothy Cash, Jonathan Dando). Total pipeline: 127 Manatal entries, 37 at Stage 4+, 6 in Ref Check, 3 in Matchmaking, 1 Signed.
   </div>
 
   <!-- Top KPIs -->
-  <p class="section-label">Programme totals — Week 2</p>
-  <div class="metric-grid-5">
-    <div class="metric-card">
-      <p class="metric-label">Total candidates</p>
-      <p class="metric-value">120</p>
-      <p class="metric-sub up">↑ +12 vs Week 1</p>
+  <p class="section-label">Programme totals — Week 3</p>
+  <div class="kpi-grid-7">
+    <div class="kpi-card">
+      <p class="kpi-label">Dripify leads</p>
+      <p class="kpi-value">295</p>
+      <p class="kpi-sub">9 campaigns</p>
     </div>
-    <div class="metric-card">
-      <p class="metric-label">Dripify leads</p>
-      <p class="metric-value blue">257</p>
-      <p class="metric-sub up">↑ +26 Round 2</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Pipeline</p>
+      <p class="kpi-value blue">127</p>
+      <p class="kpi-sub up">↑ +3 vs Week 2</p>
     </div>
-    <div class="metric-card">
-      <p class="metric-label">Disruptive talent</p>
-      <p class="metric-value green">14</p>
-      <p class="metric-sub up">↑ +3 vs Week 1</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Stage 4+</p>
+      <p class="kpi-value blue">37</p>
+      <p class="kpi-sub up">↑ +2 vs Week 2</p>
     </div>
-    <div class="metric-card">
-      <p class="metric-label">Reference check</p>
-      <p class="metric-value green">2</p>
-      <p class="metric-sub up">↑ NEW stage</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Ref check</p>
+      <p class="kpi-value green">6</p>
+      <p class="kpi-sub up">↑ +1 vs Week 2</p>
     </div>
-    <div class="metric-card">
-      <p class="metric-label">Signed</p>
-      <p class="metric-value purple">1</p>
-      <p class="metric-sub">Sorbmetrics ✓</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Matchmaking</p>
+      <p class="kpi-value green">3</p>
+      <p class="kpi-sub up">↑ NEW stage</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">References</p>
+      <p class="kpi-value amber">25</p>
+      <p class="kpi-sub">Avg 9.4/10</p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Signed</p>
+      <p class="kpi-value purple">1</p>
+      <p class="kpi-sub">Sorbmetrics ✓</p>
     </div>
   </div>
 
-  <!-- WoW comparison -->
-  <p class="section-label">Week-over-week comparison</p>
-  <div class="card" style="margin-bottom:24px;">
-    <table class="wow-table">
-      <thead>
-        <tr><th>Metric</th><th>Week 1</th><th>Week 2</th><th>Change</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="metric-name">Total candidates (all projects)</td><td>108</td><td>120</td><td class="up">↑ +12</td></tr>
-        <tr><td class="metric-name">Dripify leads sourced</td><td>231</td><td>257</td><td class="up">↑ +26</td></tr>
-        <tr><td class="metric-name">Disruptive Talent</td><td>11</td><td>14</td><td class="up">↑ +3</td></tr>
-        <tr><td class="metric-name">Interview stage (active)</td><td>14</td><td>18</td><td class="up">↑ +4</td></tr>
-        <tr><td class="metric-name">Reference check stage</td><td>0</td><td>2</td><td class="up">↑ NEW</td></tr>
-        <tr><td class="metric-name">Signed</td><td>1</td><td>1</td><td class="nc">→ stable</td></tr>
-        <tr><td class="metric-name">Active projects</td><td>8</td><td>9</td><td class="up">↑ BraidStent added</td></tr>
-        <tr><td class="metric-name">ENDOMET Disruptive Talent</td><td>1</td><td>3</td><td class="up">↑ +2</td></tr>
-        <tr><td class="metric-name">ONAKids — furthest stage</td><td>Stage 5 (Talent)</td><td>Stage 6 (Ref check)</td><td class="up">↑ advanced</td></tr>
-        <tr><td class="metric-name">GridWatch Manatal pipeline</td><td>1</td><td>5</td><td class="up">↑ +4</td></tr>
-      </tbody>
-    </table>
+  <!-- Pipeline progress bar -->
+  <div class="prog-bar">
+    <div class="prog-seg" style="background:#1D9E75; flex:3;"></div>
+    <div class="prog-seg" style="background:#4F46E5; flex:6;"></div>
+    <div class="prog-seg" style="background:#378ADD; flex:9;"></div>
+    <div class="prog-seg" style="background:#BA7517; flex:9;"></div>
+    <div class="prog-seg" style="background:#888780; flex:13;"></div>
+    <div class="prog-seg" style="background:#E24B4A; flex:67;"></div>
+  </div>
+  <div class="legend" style="margin-bottom:24px;">
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Matchmaking (3)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4F46E5;"></div>Ref check (6)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview Stage 4 (9)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Talent Stage 5 (9)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>Application / New (16)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (67)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0F6E56;"></div>Signed (1)</div>
   </div>
 
-  <!-- Pipeline funnel -->
+  <!-- Funnel + WoW -->
   <div class="two-col">
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Programme pipeline funnel</p>
+      <p class="section-label" style="margin-bottom:14px;">Conversion funnel</p>
       <div class="funnel-item">
         <span class="funnel-label">Leads sourced</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
-        <span class="funnel-num">257</span>
-        <span class="funnel-pct">100%</span>
+        <span class="funnel-num">295</span>
+        <span class="funnel-rate" style="color:#888780;">—</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Entered pipeline</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:47%; background:#378ADD;"></div></div>
-        <span class="funnel-num">120</span>
-        <span class="funnel-pct">47%</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#378ADD;"></div></div>
+        <span class="funnel-num">127</span>
+        <span class="funnel-rate rate-o">43%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Interview stage</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7%; background:#185FA5;"></div></div>
-        <span class="funnel-num">18</span>
-        <span class="funnel-pct">15%</span>
+        <span class="funnel-label">Staff interview</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:37%; background:#185FA5;"></div></div>
+        <span class="funnel-num">47</span>
+        <span class="funnel-rate rate-o">37%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Disruptive Talent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">14</span>
-        <span class="funnel-pct">12%</span>
+        <span class="funnel-label">Shortlisted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:28%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">13</span>
+        <span class="funnel-rate rate-o">28%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Reference check</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:1%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">2</span>
-        <span class="funnel-pct">2%</span>
+        <span class="funnel-label">Ref check</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:46%; background:#4F46E5;"></div></div>
+        <span class="funnel-num">6</span>
+        <span class="funnel-rate rate-g">46%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Matchmaking</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">3</span>
+        <span class="funnel-rate rate-g">50%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Signed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.5%; background:#534AB7;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7%; background:#0F6E56;"></div></div>
         <span class="funnel-num">1</span>
-        <span class="funnel-pct">1%</span>
+        <span class="funnel-rate rate-o">7%</span>
       </div>
     </div>
 
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">Outreach performance — all campaigns</p>
-      <div class="funnel-item">
-        <span class="funnel-label">Invites sent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#378ADD;"></div></div>
-        <span class="funnel-num">231</span>
-        <span class="funnel-pct">100%</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Accepted</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:65%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">151</span>
-        <span class="funnel-pct">73%</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Messaged</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66%; background:#378ADD;"></div></div>
-        <span class="funnel-num">152</span>
-        <span class="funnel-pct">—</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Replied</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:53%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">123</span>
-        <span class="funnel-pct">81%</span>
-      </div>
-      <p style="font-size:10px; color:#b4b2a9; margin-top:10px;">Based on Week 1 confirmed campaigns (ONAKids, Sorbmetrics, TarGlio, ENDOMET). GridWatch Round 2 + ENDOMET Round 2 + OGYX acceptance data pending.</p>
+      <p class="section-label" style="margin-bottom:14px;">Week-over-week</p>
+      <table style="width:100%; border-collapse:collapse;">
+        <thead><tr>
+          <th style="text-align:left; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:#888780; padding:0 0 8px; border-bottom:0.5px solid #e0ddd6;">Metric</th>
+          <th style="text-align:right; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:#888780; padding:0 0 8px; border-bottom:0.5px solid #e0ddd6;">Wk1</th>
+          <th style="text-align:right; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:#888780; padding:0 0 8px; border-bottom:0.5px solid #e0ddd6;">Wk2</th>
+          <th style="text-align:right; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.07em; color:#888780; padding:0 0 8px; border-bottom:0.5px solid #e0ddd6;">Wk3</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Pipeline total</td><td style="text-align:right; font-size:12px;">108</td><td style="text-align:right; font-size:12px;">124</td><td style="text-align:right; font-size:12px; font-weight:600; color:#1D9E75;">127</td></tr>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Dripify leads</td><td style="text-align:right; font-size:12px;">231</td><td style="text-align:right; font-size:12px;">257</td><td style="text-align:right; font-size:12px; font-weight:600; color:#1D9E75;">295</td></tr>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Stage 4+</td><td style="text-align:right; font-size:12px;">14</td><td style="text-align:right; font-size:12px;">35</td><td style="text-align:right; font-size:12px; font-weight:600; color:#1D9E75;">37</td></tr>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Ref check</td><td style="text-align:right; font-size:12px;">0</td><td style="text-align:right; font-size:12px;">5</td><td style="text-align:right; font-size:12px; font-weight:600; color:#1D9E75;">6</td></tr>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Matchmaking</td><td style="text-align:right; font-size:12px;">—</td><td style="text-align:right; font-size:12px;">—</td><td style="text-align:right; font-size:12px; font-weight:600; color:#1D9E75;">3 ↑ NEW</td></tr>
+          <tr style="border-bottom:0.5px solid #f0ede6;"><td style="padding:8px 0; font-size:12px;">Active projects</td><td style="text-align:right; font-size:12px;">8</td><td style="text-align:right; font-size:12px;">9</td><td style="text-align:right; font-size:12px;">9</td></tr>
+          <tr><td style="padding:8px 0; font-size:12px;">Signed</td><td style="text-align:right; font-size:12px;">1</td><td style="text-align:right; font-size:12px;">1</td><td style="text-align:right; font-size:12px;">1</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -246,33 +234,14 @@
 
   <!-- Per project table -->
   <p class="section-label">Pipeline per project — 9 active searches</p>
-
-  <div class="progress-bar">
-    <div class="progress-seg" style="background:#0F6E56; flex:2;"></div>
-    <div class="progress-seg" style="background:#1D9E75; flex:14;"></div>
-    <div class="progress-seg" style="background:#378ADD; flex:18;"></div>
-    <div class="progress-seg" style="background:#BA7517; flex:20;"></div>
-    <div class="progress-seg" style="background:#888780; flex:20;"></div>
-    <div class="progress-seg" style="background:#E24B4A; flex:46;"></div>
-  </div>
-  <div class="legend" style="margin-bottom:20px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#0F6E56;"></div>Ref check / Signed (3)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Disruptive Talent (14)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Interview (18)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>Application (20)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>New / Shortlisted (20)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#E24B4A;"></div>Dropped (46+)</div>
-  </div>
-
   <table class="proj-table">
     <thead>
       <tr>
         <th>Project</th>
         <th>Total</th>
         <th>Best stage</th>
-        <th>Interview</th>
-        <th>Talent / Ref</th>
-        <th>Dripify leads</th>
+        <th>Stage 4+</th>
+        <th>Dripify</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -281,14 +250,13 @@
         <td>
           <span class="proj-avatar" style="background:#EAF3DE; color:#3B6D11;">EN</span>
           <span class="proj-name">ENDOMET</span><br>
-          <span class="proj-sector" style="margin-left:34px;">Biotech · Rare Disease</span>
+          <span class="proj-sector" style="margin-left:34px;">Biotech · Rare Disease · CoQ10</span>
         </td>
-        <td>8</td>
-        <td><span class="pill pill-talent">Stage 5</span></td>
-        <td>3</td>
-        <td style="color:#1D9E75; font-weight:600;">3 ★</td>
-        <td>26 <span style="font-size:10px; color:#1D9E75;">+15 R2</span></td>
-        <td><span class="pill pill-talent">Active</span></td>
+        <td>11</td>
+        <td><span class="pill pill-matchmaking">Stage 8 ★</span></td>
+        <td style="font-weight:600; color:#1D9E75;">8</td>
+        <td>44</td>
+        <td><span class="pill pill-matchmaking">Matchmaking</span></td>
       </tr>
       <tr>
         <td>
@@ -298,9 +266,8 @@
         </td>
         <td>33</td>
         <td><span class="pill pill-ref">Stage 6 ✦</span></td>
-        <td>4</td>
-        <td style="color:#1D9E75; font-weight:600;">1 ★ + 2 ref</td>
-        <td>53</td>
+        <td style="font-weight:600; color:#1D9E75;">7</td>
+        <td>60</td>
         <td><span class="pill pill-ref">Ref check</span></td>
       </tr>
       <tr>
@@ -311,10 +278,21 @@
         </td>
         <td>48</td>
         <td><span class="pill pill-signed">Signed ✓</span></td>
-        <td>2</td>
-        <td style="color:#1D9E75; font-weight:600;">3 ★</td>
-        <td>22</td>
+        <td style="font-weight:600; color:#1D9E75;">6</td>
+        <td>23</td>
         <td><span class="pill pill-signed">Filled</span></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</span>
+          <span class="proj-name">OpticMizing</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Deep Tech · Food/Fermentation · SaaS</span>
+        </td>
+        <td>12</td>
+        <td><span class="pill pill-ref">Stage 6</span></td>
+        <td style="font-weight:600; color:#1D9E75;">5</td>
+        <td>22</td>
+        <td><span class="pill pill-ref">Ref check</span></td>
       </tr>
       <tr>
         <td>
@@ -324,62 +302,9 @@
         </td>
         <td>8</td>
         <td><span class="pill pill-talent">Stage 5</span></td>
-        <td>4</td>
-        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
-        <td>65</td>
+        <td style="font-weight:600; color:#1D9E75;">5</td>
+        <td>66</td>
         <td><span class="pill pill-talent">Active</span></td>
-      </tr>
-      <tr>
-        <td>
-          <span class="proj-avatar" style="background:#E1F5EE; color:#0F6E56;">OP</span>
-          <span class="proj-name">OpticMizing</span><br>
-          <span class="proj-sector" style="margin-left:34px;">Deep Tech · Optics</span>
-        </td>
-        <td>8</td>
-        <td><span class="pill pill-talent">Stage 5</span></td>
-        <td>0</td>
-        <td style="color:#1D9E75; font-weight:600;">2 ★</td>
-        <td>—</td>
-        <td><span class="pill pill-new">Inbound only</span></td>
-      </tr>
-      <tr>
-        <td>
-          <span class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</span>
-          <span class="proj-name">Ulisses DS</span><br>
-          <span class="proj-sector" style="margin-left:34px;">Data Science · AI</span>
-        </td>
-        <td>4</td>
-        <td><span class="pill pill-talent">Stage 5</span></td>
-        <td>0</td>
-        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
-        <td>—</td>
-        <td><span class="pill pill-new">Inbound only</span></td>
-      </tr>
-      <tr>
-        <td>
-          <span class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</span>
-          <span class="proj-name">GridWatch</span><span class="new-badge">NEW</span><br>
-          <span class="proj-sector" style="margin-left:34px;">Smart Grid · Energy · IREC</span>
-        </td>
-        <td>5</td>
-        <td><span class="pill pill-interview">Stage 4</span></td>
-        <td>2</td>
-        <td style="color:#888780;">—</td>
-        <td>18</td>
-        <td><span class="pill pill-interview">Growing</span></td>
-      </tr>
-      <tr>
-        <td>
-          <span class="proj-avatar" style="background:#FFF0EA; color:#B5521A;">OG</span>
-          <span class="proj-name">OGYX</span><span class="new-badge">NEW</span><br>
-          <span class="proj-sector" style="margin-left:34px;">MedDev · Organ-on-a-Chip · LEITAT</span>
-        </td>
-        <td>0</td>
-        <td><span class="pill pill-new">Outreach</span></td>
-        <td>0</td>
-        <td style="color:#888780;">—</td>
-        <td>7</td>
-        <td><span class="pill pill-new">Launching</span></td>
       </tr>
       <tr>
         <td>
@@ -389,50 +314,84 @@
         </td>
         <td>6</td>
         <td><span class="pill pill-talent">Stage 5</span></td>
-        <td>2</td>
-        <td style="color:#1D9E75; font-weight:600;">1 ★</td>
+        <td style="font-weight:600; color:#1D9E75;">3</td>
         <td>—</td>
         <td><span class="pill pill-interview">Active</span></td>
       </tr>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#E6F1FB; color:#185FA5;">GW</span>
+          <span class="proj-name">GridWatch</span><span class="new-badge">NEW</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Smart Grid · Energy · IREC</span>
+        </td>
+        <td>5</td>
+        <td><span class="pill pill-interview">Stage 4</span></td>
+        <td style="font-weight:600; color:#1D9E75;">2</td>
+        <td>18</td>
+        <td><span class="pill pill-interview">Growing</span></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#EEEDFE; color:#534AB7;">UL</span>
+          <span class="proj-name">Ulisses DS</span><br>
+          <span class="proj-sector" style="margin-left:34px;">Data Science · AI · Ultrasound</span>
+        </td>
+        <td>4</td>
+        <td><span class="pill pill-talent">Stage 5</span></td>
+        <td>1</td>
+        <td>—</td>
+        <td><span class="pill pill-outreach">Inbound only</span></td>
+      </tr>
+      <tr>
+        <td>
+          <span class="proj-avatar" style="background:#FFF0EA; color:#B5521A;">OG</span>
+          <span class="proj-name">OGYX</span><span class="new-badge">NEW</span><br>
+          <span class="proj-sector" style="margin-left:34px;">MedDev · Organ-on-a-Chip · LEITAT</span>
+        </td>
+        <td>0</td>
+        <td><span class="pill pill-outreach">Outreach</span></td>
+        <td>—</td>
+        <td>7</td>
+        <td><span class="pill pill-outreach">Launching</span></td>
+      </tr>
     </tbody>
   </table>
-  <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">✦ ONAKids is the most advanced pipeline in the programme — Silvia Gomez Montes and Nicolas Escartin both in Stage 6 Reference Check.</p>
 
   <hr class="divider">
 
   <!-- Cross-project highlights -->
-  <p class="section-label">Cross-project highlights — Week 2</p>
+  <p class="section-label">Cross-project highlights</p>
   <div class="highlight-grid">
     <div class="highlight-card">
+      <div class="highlight-title">ENDOMET — Stage 8 reached</div>
+      <div class="highlight-sub">Cristina Aguilera, Timothy Cash and Jonathan Dando in Matchmaking. First project to reach this stage.</div>
+    </div>
+    <div class="highlight-card">
       <div class="highlight-title">Hugo Macedo — 3 pipelines</div>
-      <div class="highlight-sub">Disruptive Talent in Sorbmetrics, TarGlio and BraidStent simultaneously. Broadest cross-project presence of any candidate.</div>
+      <div class="highlight-sub">Disruptive Talent in Sorbmetrics, TarGlio and BraidStent simultaneously. Broadest cross-project presence.</div>
     </div>
     <div class="highlight-card">
       <div class="highlight-title">Josselin Caradec — 2 pipelines</div>
-      <div class="highlight-sub">ENDOMET Disruptive Talent + TarGlio Interview. Oncology/biotech background confirmed as strong cross-project fit.</div>
+      <div class="highlight-sub">ENDOMET Ref Check + TarGlio Interview. Oncology/biotech confirmed strong cross-project fit.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-title">Xian Weng Jiang — 2 pipelines</div>
+      <div class="highlight-sub">Now in ENDOMET Interview + TarGlio. Refs 9.3/10 × 3. Strong science-to-business bridge profile.</div>
     </div>
     <div class="highlight-card">
       <div class="highlight-title">David Milia — 2 pipelines</div>
-      <div class="highlight-sub">Sorbmetrics Disruptive Talent + GridWatch Interview. Energy/cleantech profile travels well across projects.</div>
-    </div>
-    <div class="highlight-card">
-      <div class="highlight-title">Katerina Danezi — watch list</div>
-      <div class="highlight-sub">PhD mitochondria/metabolism IRB Barcelona — messaged in ENDOMET Round 2. Direct scientific match. Not yet in Manatal.</div>
-    </div>
-    <div class="highlight-card">
-      <div class="highlight-title">Javier Rodriguez Saiz — 2 pipelines</div>
-      <div class="highlight-sub">Disruptive Talent in both OpticMizing and Ulisses DS. Commercial founder profile with tech transfer experience.</div>
+      <div class="highlight-sub">Sorbmetrics Talent + GridWatch Interview. Refs 10/10 × 2. Energy/cleantech profile.</div>
     </div>
     <div class="highlight-card">
       <div class="highlight-title">ONAKids — programme milestone</div>
-      <div class="highlight-sub">First project to reach Stage 6 Reference Check. Silvia Gomez Montes and Nicolas Escartin both in final verification stage.</div>
+      <div class="highlight-sub">Silvia Gomez Montes and Nicolas Escartin both in Stage 6 Ref Check. Most advanced after ENDOMET.</div>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="footer">
     <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Week 2 · April 2026 · 9 projects · Confidential</p>
+    <p>Week 3 · April 2026 · 9 projects · Confidential</p>
   </div>
 
 </div>

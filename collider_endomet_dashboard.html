@@ -1,326 +1,331 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CEO ENDOMET — Dashboard</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ENDOMET — The Collider · CEO Search Dashboard</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;padding:32px;font-size:13px}
-  .page{max-width:960px;margin:0 auto;background:#fff;border-radius:12px;padding:36px 40px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-  .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:.5px solid #e0ddd6}
-  .header-left h1{font-size:20px;font-weight:600;color:#1a1a18;margin-bottom:4px}
-  .header-left p{font-size:12px;color:#888780}
-  .badge{display:inline-block;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px}
-  .notice{border-left:3px solid #1D9E75;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:24px;font-size:12px;background:#EAF3DE;color:#3B6D11}
-  .notice strong{color:#0F6E56}
-  .section-label{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#888780;margin-bottom:12px}
-  .divider{border:none;border-top:.5px solid #e0ddd6;margin:28px 0}
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-  .metric-card{background:#f5f4f0;border-radius:8px;padding:14px 16px}
-  .metric-label{font-size:11px;color:#888780;margin-bottom:4px}
-  .metric-value{font-size:26px;font-weight:600;color:#1a1a18;line-height:1}
-  .metric-value.green{color:#1D9E75}.metric-value.blue{color:#185FA5}.metric-value.purple{color:#534AB7}
-  .metric-sub{font-size:11px;color:#888780;margin-top:3px}
-  .metric-sub.up{color:#1D9E75;font-weight:600}
-  .stage-col{margin-bottom:16px}
-  .stage-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  .stage-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .stage-title{font-size:11px;font-weight:600;color:#888780;text-transform:uppercase;letter-spacing:.06em}
-  .stage-count{font-size:11px;color:#b4b2a9;margin-left:auto}
-  .cand-card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:10px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
-  .cand-card.dropped{opacity:.5}
-  .cand-card.top{border-color:#9FE1CB;background:#f7fdf9}
-  .cand-card.ref{border-color:#A5B4FC;background:#F5F3FF}
-  .cand-card.match{border-color:#1D9E75;background:#f0fdf6}
-  .cand-card.team{border-color:#534AB7;background:#F5F3FF}
-  .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0}
-  .cand-name{font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:2px}
-  .cand-role{font-size:11px;color:#888780}
-  .stage-pill{font-size:10px;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap;margin-left:auto;flex-shrink:0}
-  .pill-2{background:#f5f4f0;color:#888780}.pill-3{background:#FAEEDA;color:#BA7517}
-  .pill-4{background:#E6F1FB;color:#185FA5}.pill-5{background:#EAF3DE;color:#3B6D11}
-  .pill-6{background:#EDE9FE;color:#4F46E5}.pill-8{background:#1D9E75;color:#fff}
-  .pill-9{background:#0F6E56;color:#fff}.pill-12{background:#534AB7;color:#fff}
-  .pill-dropped{background:#FCEBEB;color:#A32D2D}
-  .new-badge{font-size:9px;background:#EAF3DE;color:#3B6D11;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .cross-badge{font-size:9px;background:#EEEDFE;color:#534AB7;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:16px 18px}
-  .lead-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid #f0ede6}
-  .lead-row:last-child{border-bottom:none}
-  .lead-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0}
-  .action-badge{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:500;white-space:nowrap;margin-left:auto}
-  .act-m{background:#EAF3DE;color:#3B6D11}.act-c{background:#E6F1FB;color:#185FA5}
-  .act-v{background:#f5f4f0;color:#888780}.act-l{background:#FEF3C7;color:#B45309}
-  .footer{margin-top:28px;padding-top:16px;border-top:.5px solid #e0ddd6;display:flex;justify-content:space-between}
-  .footer p{font-size:11px;color:#b4b2a9}
-</style></head><body><div class="page">
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+
+  .header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .header-left h1 { font-size: 22px; font-weight: 600; color: #1a1a18; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
+  .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .header-left .crumb a { color: #888780; text-decoration: none; }
+  .header-left .crumb a:hover { color: #1a1a18; }
+  .header-right .badge {
+    display: inline-block; background: #EAF3DE; color: #3B6D11;
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+
+  .notice {
+    background: #EAF3DE; border-left: 3px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin-bottom: 28px;
+    font-size: 12px; color: #3B6D11;
+  }
+  .notice strong { color: #1a3a0c; font-weight: 600; }
+
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #888780; margin: 0 0 12px;
+  }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  /* 4-card metric grid */
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
+
+  /* Two-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
+
+  /* Funnel */
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
+
+  /* Candidate list */
+  .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; }
+  .cand-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.12s;
+  }
+  .cand-card:hover { background: #fafaf6; }
+  .cand-card + .cand-card { margin-top: 4px; }
+  .cand-card.card-signed {
+    border: 1px solid #9FE1CB; background: #f7fdf9;
+  }
+  .cand-card.card-match {
+    border: 1px solid #1D9E75; background: #f0fdf6;
+  }
+  .cand-card.card-ref {
+    border: 1px solid #A5B4FC; background: #F5F3FF;
+  }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .cand-meta { flex: 1; min-width: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.2; }
+  .cand-sub { font-size: 11px; color: #888780; line-height: 1.4; margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .pill {
+    display: inline-block; padding: 3px 9px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .cand-link {
+    font-size: 11px; color: #888780; text-decoration: none;
+    white-space: nowrap; flex-shrink: 0; padding-left: 4px;
+  }
+  .cand-link:hover { color: #185FA5; }
+  .cand-empty { text-align: center; padding: 32px; font-size: 12px; color: #888780; font-style: italic; }
+
+  .footer {
+    margin-top: 60px; padding-top: 20px;
+    border-top: 0.5px solid #e0ddd6;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: #888780;
+  }
+  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
+  .footer a:hover { color: #1a1a18; }
+
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
+    .metric-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .funnel-label { width: 100px; font-size: 11px; }
+    .cand-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
   <div class="header">
     <div class="header-left">
-      <h1>CEO ENDOMET — Recruitment Dashboard</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment · Biotech · Rare Disease · CoQ10 · IREC</p>
+      <div class="crumb"><a href="index.html">The Collider</a> · CEO Search</div>
+      <h1>ENDOMET</h1>
+      <p class="focus">Mitochondrial disease · orphan drugs</p>
     </div>
-    <div style="text-align:right">
-      <div class="badge" style="background:#EAF3DE;color:#3B6D11;">Week 4 · April 2026</div>
+    <div class="header-right">
+      <span class="badge">Week 3 · Live</span>
+      <div class="date">30 Apr 2026</div>
     </div>
   </div>
-  <div class="notice"><strong>Week 4 update.</strong> 3 candidates in Stage 8 Matchmaking (Cristina Aguilera, Timothy Cash, Jonathan Dando). Josselin Caradec in Ref Check. 4 in Interview stage.</div>
-  <p class="section-label">Pipeline overview</p>
-  <div class="metric-grid">
-    <div class="metric-card"><p class="metric-label">Total candidates</p><p class="metric-value">11</p><p class="metric-sub">2 dropped</p></div>
-    <div class="metric-card"><p class="metric-label">Active</p><p class="metric-value blue">9</p><p class="metric-sub">In pipeline</p></div>
-    <div class="metric-card"><p class="metric-label">Stage 4+</p><p class="metric-value green">8</p><p class="metric-sub">Interview onward</p></div>
-    <div class="metric-card"><p class="metric-label">Dripify leads</p><p class="metric-value">44</p><p class="metric-sub">Outreach sent</p></div>
-  </div>
-  <hr class="divider">
-  <p class="section-label">Pipeline — all candidates</p>
-  <div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#1D9E75;"></div>
-        <span class="stage-title">Stage 8 — Matchmaking</span>
-        <span class="stage-count">3 candidates</span>
-      </div><div class="cand-card match">
-      <div class="avatar" style="background:#1D9E75;color:#fff;">CA</div>
-      <div><div class="cand-name">Cristina Aguilera</div><div class="cand-role">CEO & Founder · Labsinlove</div></div>
-      <span class="stage-pill pill-8">Matchmaking ★</span>
-    </div><div class="cand-card match">
-      <div class="avatar" style="background:#1D9E75;color:#fff;">TC</div>
-      <div><div class="cand-name">Timothy Cash</div><div class="cand-role"> · Rejuversen</div></div>
-      <span class="stage-pill pill-8">Matchmaking ★</span>
-    </div><div class="cand-card match">
-      <div class="avatar" style="background:#1D9E75;color:#fff;">DD</div>
-      <div><div class="cand-name">Dr Jonathan Dando</div><div class="cand-role">Hybrid CEO and Co-Founder · Mirare Ltd (previously Echino Limited, UK)</div></div>
-      <span class="stage-pill pill-8">Matchmaking ★</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#4F46E5;"></div>
-        <span class="stage-title">Stage 6 — Reference Check</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">JC</div>
-      <div><div class="cand-name">Josselin Caradec</div><div class="cand-role">Board Observer & Co-Scientific Lead · Curlew Bio</div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#185FA5;"></div>
-        <span class="stage-title">Stage 4 — Interview with Staff</span>
-        <span class="stage-count">4 candidates</span>
-      </div><div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">DR</div>
-      <div><div class="cand-name">Dr. Devendra Ridhurkar</div><div class="cand-role">Chief Executive Officer & Founder · RidNova Pharmaceuticals</div></div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div><div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">LC</div>
-      <div><div class="cand-name">Lily Chen</div><div class="cand-role">Founding Partner · Crossworld Capital</div></div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div><div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">XJ</div>
-      <div><div class="cand-name">xian weng jiang</div><div class="cand-role">Director of Product Solutions · Mytos London, UK</div></div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div><div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">NP</div>
-      <div><div class="cand-name">Naia JimÃ©nez Polo</div><div class="cand-role">Chief Operations Officer · NIMBLE Diagnostics</div></div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#888780;"></div>
-        <span class="stage-title">Stage 2 — Application</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card">
-      <div class="avatar" style="background:#f5f4f0;color:#5F5E5A;">AS</div>
-      <div><div class="cand-name">Alessandro Scandurra</div><div class="cand-role">Business Development Manager (Part-time) · SEQUENTIA BIOTECH</div></div>
-      <span class="stage-pill pill-2">Application</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#E24B4A;"></div>
-        <span class="stage-title">Dropped</span>
-        <span class="stage-count">2 candidates</span>
+
+  <div class="notice"><strong>3 in matchmaking.</strong> Closing in on team confirmation.</div>
+
+  <div class="metric-grid-4">
+      <div class="metric-card">
+        <div class="metric-label">Total in ATS</div>
+        <div class="metric-value" style="color:#1a1a18;">11</div>
+        <div class="metric-sub">0 dropped</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Interviews</div>
+        <div class="metric-value" style="color:#185FA5;">4</div>
+        <div class="metric-sub">Staff & META</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Matchmaking</div>
+        <div class="metric-value" style="color:#534AB7;">3</div>
+        <div class="metric-sub">Late stage</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Signed / Ready</div>
+        <div class="metric-value" style="color:#888780;">0</div>
+        <div class="metric-sub">Confirmed</div>
       </div>
-      <div class="two-col"><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">AG</div>
-      <div><div class="cand-name">Aitor Martin Garcia</div><div class="cand-role">CFO</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">BB</div>
-      <div><div class="cand-name">Borja Torres BÃ©jar</div><div class="cand-role">Grants Consultant</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div></div></div>
-  <hr class="divider">
-    <p class="section-label">Dripify outreach — 44 leads</p>
-    <div class="card"><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ian Paterson-Daverkosen</div><div style="font-size:10px;color:#888780;">Chief Strategy Officer (CSO) · Complix N.V.</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">OA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Oscar PÃ©rez Albet Bpharm Amp</div><div style="font-size:10px;color:#888780;">Chief Scientific and Business Development Officer · Ferrer</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jose Antonio Tornero</div><div style="font-size:10px;color:#888780;">Co-founder and CTO · CEBIOTEX</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">LM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Lisa Mcnally</div><div style="font-size:10px;color:#888780;">Founder & Independent Pharmaceutical Physician · Innovigilancia SL</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Devendra Ridhurkar</div><div style="font-size:10px;color:#888780;">Chief Executive Officer & Founder · RidNova Pharmaceuticals</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Maria Alejandra Ortega Machuca</div><div style="font-size:10px;color:#888780;">Senior Researcher · Institute for Bioengineering of Cat</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jordi Barquinero</div><div style="font-size:10px;color:#888780;">Co-Founder and Scientific Advisor · Nema-Health</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Isabel Huber Ruano</div><div style="font-size:10px;color:#888780;">Co-Founder and scientific CEO · SUCCIPRO</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Judit Tomsen Melero</div><div style="font-size:10px;color:#888780;">Project co-Coordinator · Centro de InvestigaciÃ³n BiomÃ©dica</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">MarÃ­a GarcÃ­a Morant</div><div style="font-size:10px;color:#888780;">Cell Engineering Scientist · Integra Therapeutics</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">BC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Brayan AndrÃ©s Endara Calvache</div><div style="font-size:10px;color:#888780;">Presidente - decano · Societat d'enginyeria biolÃ³gica de</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Manel Chikh</div><div style="font-size:10px;color:#888780;">Founder & CEO · My Bubble Health</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alberto Vicent</div><div style="font-size:10px;color:#888780;">Head of Regional and Hospital Value Access · SIFI</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">ES</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Enrique Samper</div><div style="font-size:10px;color:#888780;">Chief Business and Transformation Officer · Life Length</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PF</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pascale Fouqueray</div><div style="font-size:10px;color:#888780;">Senior Medical Director - Rare Endocrinology and B · Alexion Pharmaceuticals, Inc.</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">TV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Teresa Valdes-Sanchez</div><div style="font-size:10px;color:#888780;">Business Development in Genetics and Oncology · Eurofins EspaÃ±a</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jose MarÃ­a Lezcano Valverde</div><div style="font-size:10px;color:#888780;">Director General (CEO) · Helix BioS</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Mari Carmen Alvarez Abril</div><div style="font-size:10px;color:#888780;">Managing Director · Tetraneuron</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alvaro Armando Herrera PÃ©rez</div><div style="font-size:10px;color:#888780;">European MSL Lead - MDS and Pipeline (OncoHematolo · Agios Pharmaceuticals</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">YM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Yolanda Gimenez Molina</div><div style="font-size:10px;color:#888780;">Fundadora, CEO y Directora CientÃ­fica · BioBloodChip</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Celia Cordero SÃ¡nchez</div><div style="font-size:10px;color:#888780;">Postdoc Juan de la Cierva 2023 · Universidad de Sevilla</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carlos MarÃ­n Vallejo</div><div style="font-size:10px;color:#888780;">Director de laboratorio · JUNO Genetics EU</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">KD</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Katerina Danezi</div><div style="font-size:10px;color:#888780;">PhD Researcher- Complex Metabolic Diseases and Mit · IRB Barcelona</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">EJ</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Enrique HernÃ¡ndez JimÃ©nez</div><div style="font-size:10px;color:#888780;">Founder & CEO · Loop Dx</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge AntolÃ­n RamÃ­rez Tejero</div><div style="font-size:10px;color:#888780;">Director de tecnologÃ­a · Pronacera</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jennifer Enrich Bengoa</div><div style="font-size:10px;color:#888780;">Local Representative · EIT Health Innovators Community</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">ES</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Esther Castellanos SantamarÃ­a</div><div style="font-size:10px;color:#888780;">Chief Innovation Officer · Berenguer ConservaciÃ³n</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge Arenas Vidal</div><div style="font-size:10px;color:#888780;">Founder & Partner · BioSerentia Group</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Isabel Portero</div><div style="font-size:10px;color:#888780;">Founder. President of the Company Board. Chief Sci · Biohope</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JW</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">James Webb</div><div style="font-size:10px;color:#888780;">Chief Commercial Officer (CCO) · EpiDisease SL</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">XL</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Xavier LlÃ²ria</div><div style="font-size:10px;color:#888780;">Medical Lead, Rare Diseases, EU and International · Chiesi Global Rare Diseases</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">David Cotan</div><div style="font-size:10px;color:#888780;">Principal Chief Operations Officer · Pronacera</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">VT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Vicenc Tur</div><div style="font-size:10px;color:#888780;">Chief Business Officer · SUCCIPRO</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">SC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Susana Catelan</div><div style="font-size:10px;color:#888780;">Founder of Pharmaceutical and Nutrition Services / · PNS</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jose Luis GarcÃ­a-GimÃ©nez</div><div style="font-size:10px;color:#888780;">Profesor universitario · University of Valencia</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Anna J Frandsen Rn Candidate</div><div style="font-size:10px;color:#888780;">Founder + Strategic Director · Bridges of Resilience</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gloria Sanclimens PÃ©rez De Rozas</div><div style="font-size:10px;color:#888780;">R&D BU Director · FAMAR</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Diana Gonzalez Girones</div><div style="font-size:10px;color:#888780;">Head of Project and Business Management · ONA Therapeutics</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">BT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">BelÃ©n Monerris Traver</div><div style="font-size:10px;color:#888780;">Co-founder & CEO BÃ¡lsamo Costazar · BÃ¡lsamo Costazar</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">EV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Elena Molina VÃ¡zquez</div><div style="font-size:10px;color:#888780;">Senior Partner, Co-Founder · BlueDil International</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Cris Milher</div><div style="font-size:10px;color:#888780;">Independent Consultant | Evidence Generation & Med · Consulting Group</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">SP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Silvia RodrÃ­guez Mpharm Pmp</div><div style="font-size:10px;color:#888780;">Assoc. Director, Clinical Trial Educators · IQVIA Spain</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">SE</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Silvia Alfonso-Loeches Emba</div><div style="font-size:10px;color:#888780;">Founder &  CEO · LOEC INNOVATIONS, SL</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">NW</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Nicholas Weber</div><div style="font-size:10px;color:#888780;">Tech Transfer Manager · Cima Universidad de Navarra</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div></div>
-  <div class="footer"><p>Does Recruitment · wouter@doesrecruitment.com</p><p>Week 4 · April 2026 · Confidential</p></div>
-</div></body></html>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label">Pipeline by stage</p>
+      <div class="funnel-item">
+        <span class="funnel-label">New</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#888780;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Full app sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#BA7517;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Shortlisted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Interview</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#185FA5;"></div></div>
+        <span class="funnel-num">4</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Disruptive Talent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Ref check</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#4F46E5;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Matchmaking</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:75.0%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">3</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Signed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+    </div>
+    <div class="card">
+      <p class="section-label">Quick snapshot</p>
+      <div class="funnel-item"><span class="funnel-label">Total candidates</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1a1a18;"></div></div><span class="funnel-num">11</span></div>
+      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1D9E75;"></div></div><span class="funnel-num">11</span></div>
+      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#A32D2D;"></div></div><span class="funnel-num">0</span></div>
+      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:27%; background:#534AB7;"></div></div><span class="funnel-num">3</span></div>
+    </div>
+  </div>
+
+  <p class="section-label">Active candidates · sorted by stage</p>
+  <div class="cand-list">
+      <div class="cand-card card-match">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">CA</div>
+        <div class="cand-meta">
+          <div class="cand-name">Cristina Aguilera</div>
+          <div class="cand-sub">CEO & Founder · Labsinlove</div>
+        </div>
+        <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/138656836" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card card-match">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">DD</div>
+        <div class="cand-meta">
+          <div class="cand-name">Dr Jonathan Dando</div>
+          <div class="cand-sub">Hybrid CEO and Co-Founder · Mirare Ltd (previously Echino Limited, UK)</div>
+        </div>
+        <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140444032" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card card-match">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">TC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Timothy Cash</div>
+          <div class="cand-sub">Rejuversen</div>
+        </div>
+        <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/137539735" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card card-ref">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">JC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Josselin Caradec</div>
+          <div class="cand-sub">Board Observer & Co-Scientific Lead · Curlew Bio</div>
+        </div>
+        <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Ref check</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140253665" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">DR</div>
+        <div class="cand-meta">
+          <div class="cand-name">Dr. Devendra Ridhurkar</div>
+          <div class="cand-sub">Chief Executive Officer & Founder · RidNova Pharmaceuticals</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/142061901" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">LC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Lily Chen</div>
+          <div class="cand-sub">Founding Partner · Crossworld Capital</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/128692385" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">NP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Naia Jiménez Polo</div>
+          <div class="cand-sub">Chief Operations Officer · NIMBLE Diagnostics</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140144304" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">XJ</div>
+        <div class="cand-meta">
+          <div class="cand-name">xian weng jiang</div>
+          <div class="cand-sub">Director of Product Solutions · Mytos London, UK</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/134514930" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Alessandro Scandurra</div>
+          <div class="cand-sub">Business Development Manager (Part-time) · SEQUENTIA BIOTECH</div>
+        </div>
+        <span class="pill" style="background:#FEF3C7; color:#92400E;">Full app</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/139627432" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AG</div>
+        <div class="cand-meta">
+          <div class="cand-name">Aitor Martin Garcia</div>
+          <div class="cand-sub">CFO · Idomics Biotech</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/139456996" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">BB</div>
+        <div class="cand-meta">
+          <div class="cand-name">Borja Torres Béjar</div>
+          <div class="cand-sub">Grants Consultant · PGB Audit</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/139516348" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+  </div>
+
+  <div class="footer">
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 30 Apr 2026</div>
+    <div><a href="index.html">← All projects</a></div>
+  </div>
+
+</div>
+</body>
+</html>

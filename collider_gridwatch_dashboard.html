@@ -1,230 +1,190 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CEO GridWatch — Recruitment Dashboard</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GridWatch — The Collider · CEO Search Dashboard</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
-  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
-  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
-  .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
-  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
-  .notice strong { color: #0F6E56; }
-  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
-  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
-  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+
+  .header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .header-left h1 { font-size: 22px; font-weight: 600; color: #1a1a18; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
+  .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .header-left .crumb a { color: #888780; text-decoration: none; }
+  .header-right .badge {
+    display: inline-block; background: #EAF3DE; color: #3B6D11;
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+  }
+  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+
+  .notice {
+    background: #EAF3DE; border-left: 3px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin-bottom: 28px;
+    font-size: 12px; color: #3B6D11;
+  }
+  .notice strong { color: #1a3a0c; font-weight: 600; }
+
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #888780; margin: 0 0 12px;
+  }
+
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
-  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .metric-value.green { color: #1D9E75; } .metric-value.blue { color: #185FA5; }
-  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
-  .metric-sub.up { color: #1D9E75; font-weight: 600; }
-  .stage-col { margin-bottom: 16px; }
-  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
-  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
-  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 14px; margin-bottom: 7px; display: flex; align-items: center; gap: 10px; }
-  .cand-card.dropped { opacity: 0.5; }
-  .cand-card.match { border-color: #1D9E75; background: #f0fdf6; }
-  .cand-card.top { border-color: #9FE1CB; background: #f7fdf9; }
-  .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
-  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
-  .cand-role { font-size: 11px; color: #888780; }
-  .stage-pill { font-size: 10px; padding: 3px 9px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
-  .pill-8 { background: #1D9E75; color: #fff; }
-  .pill-4 { background: #E6F1FB; color: #185FA5; }
-  .pill-3 { background: #FAEEDA; color: #BA7517; }
-  .pill-2 { background: #f5f4f0; color: #888780; }
-  .pill-dropped { background: #FCEBEB; color: #A32D2D; }
-  .cross-badge { font-size: 9px; background: #EEEDFE; color: #534AB7; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
-  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.purple { color: #534AB7; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
+  .metric-sub.green { color: #1D9E75; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
+
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
-  .funnel-label { font-size: 12px; color: #888780; width: 130px; flex-shrink: 0; }
+  .funnel-label { font-size: 12px; color: #5a5a55; width: 140px; flex-shrink: 0; }
   .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
-  .funnel-bar { height: 100%; border-radius: 3px; }
-  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
-  .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
-  .lead-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
-  .lead-row:last-child { border-bottom: none; }
-  .lead-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
-  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; margin-left: auto; }
-  .act-m { background: #EAF3DE; color: #3B6D11; }
-  .act-c { background: #E6F1FB; color: #185FA5; }
-  .act-v { background: #f5f4f0; color: #888780; }
-  .act-l { background: #FEF3C7; color: #B45309; }
-  .hot-badge { font-size: 9px; background: #FEF3C7; color: #B45309; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
-  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
-  .footer p { font-size: 11px; color: #b4b2a9; }
+  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 30px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; width: 36px; text-align: right; }
+
+  /* Monthly chart */
+  .month-chart { display: flex; align-items: flex-end; gap: 16px; height: 110px; margin-bottom: 8px; padding: 4px 0; }
+  .month-bar-group { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+  .month-bars { display: flex; align-items: flex-end; gap: 3px; height: 80px; }
+  .bar { border-radius: 2px 2px 0 0; width: 11px; min-height: 2px; }
+  .month-label { font-size: 10px; color: #888780; }
+  .chart-legend { display: flex; gap: 14px; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid #f0ede6; }
+  .chart-legend span { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #888780; }
+  .chart-legend .dot { display: block; width: 8px; height: 8px; border-radius: 2px; }
+
+  .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; margin-bottom: 24px; }
+  .cand-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .cand-card:hover { background: #fafaf6; }
+  .cand-card + .cand-card { margin-top: 4px; }
+  .cand-card.card-signed { border: 1px solid #9FE1CB; background: #f7fdf9; }
+  .cand-card.card-match { border: 1px solid #1D9E75; background: #f0fdf6; }
+  .cand-card.card-ref { border: 1px solid #A5B4FC; background: #F5F3FF; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0; letter-spacing: 0.02em;
+  }
+  .cand-meta { flex: 1; min-width: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.2; }
+  .cand-sub { font-size: 11px; color: #888780; line-height: 1.4; margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .pill {
+    display: inline-block; padding: 3px 9px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; flex-shrink: 0;
+  }
+  .cand-link {
+    font-size: 11px; color: #888780; text-decoration: none;
+    white-space: nowrap; flex-shrink: 0; padding-left: 4px;
+  }
+  .cand-link:hover { color: #185FA5; }
+  .cand-empty { text-align: center; padding: 32px; font-size: 12px; color: #888780; font-style: italic; }
+
+  .footer {
+    margin-top: 60px; padding-top: 20px;
+    border-top: 0.5px solid #e0ddd6;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: #888780;
+  }
+  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
+
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
+    .metric-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .funnel-label { width: 110px; font-size: 11px; }
+    .cand-sub { display: none; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="wrap">
 
   <div class="header">
     <div class="header-left">
-      <h1>CEO GridWatch — Recruitment Dashboard</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment · AI power grid resilience · SaaS · IREC Barcelona</p>
+      <div class="crumb"><a href="index.html">The Collider</a> · CEO Search</div>
+      <h1>GridWatch</h1>
+      <p class="focus">AI power grid optimization · blackout-resilient infrastructure</p>
     </div>
-    <div style="text-align:right;">
-      <div class="badge">Week 4 · April 2026</div>
-      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    <div class="header-right">
+      <span class="badge">Week 3 · Live</span>
+      <div class="date">30 Apr 2026</div>
     </div>
   </div>
 
-  <div class="notice">
-    <strong>Week 4 update.</strong> David Milia Garrote advanced to Stage 8 Matchmaking — also in Sorbmetrics Ref Check. Xavi Bou Torrent and Alessandro Caviasca remain in Stage 4 Interview. New R3 campaign launched — 58 energy founder profiles. 29 invites, 24 replies (83% reply rate).
-  </div>
+  <div class="notice"><strong>1 in matchmaking.</strong> David Milia advancing — Dripify outreach scaled up in April with 40 invites and 50% accept rate.</div>
 
-  <p class="section-label">Pipeline overview</p>
-  <div class="metric-grid">
+  <div class="metric-grid-4">
     <div class="metric-card">
-      <p class="metric-label">Total candidates</p>
-      <p class="metric-value">9</p>
-      <p class="metric-sub">4 dropped</p>
+      <div class="metric-label">Manatal entries</div>
+      <div class="metric-value">9</div>
+      <div class="metric-sub">5 active · 4 dropped</div>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Active</p>
-      <p class="metric-value blue">5</p>
-      <p class="metric-sub">In pipeline</p>
+      <div class="metric-label">Dripify invites</div>
+      <div class="metric-value blue">58</div>
+      <div class="metric-sub green">50% accepted (29)</div>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Stage 4+</p>
-      <p class="metric-value green">3</p>
-      <p class="metric-sub up">↑ Matchmaking reached</p>
+      <div class="metric-label">Replies</div>
+      <div class="metric-value">24</div>
+      <div class="metric-sub">83% of accepted</div>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Dripify leads</p>
-      <p class="metric-value">120</p>
-      <p class="metric-sub">R1 (18) + R2 (44) + R3 (58)</p>
+      <div class="metric-label">Matchmaking</div>
+      <div class="metric-value purple">1</div>
+      <div class="metric-sub">Late stage</div>
     </div>
   </div>
 
-  <hr class="divider">
-
-  <p class="section-label">Pipeline — all candidates</p>
-
-  <!-- Stage 8 Matchmaking -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#1D9E75;"></div>
-      <span class="stage-title">Stage 8 — Matchmaking</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-card match">
-      <div class="avatar" style="background:#1D9E75; color:#fff;">DM</div>
-      <div>
-        <div class="cand-name">David Luis Milia Garrote <span class="cross-badge">↔ Sorbmetrics</span></div>
-        <div class="cand-role">Chairman/CEO & Board Member — The Canadian Energy & Climate Nexus · Refs 10/10 × 2</div>
-      </div>
-      <span class="stage-pill pill-8">Matchmaking ★</span>
-    </div>
-  </div>
-
-  <!-- Stage 4 Interview -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#185FA5;"></div>
-      <span class="stage-title">Stage 4 — Interview with Staff</span>
-      <span class="stage-count">2 candidates</span>
-    </div>
-    <div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">XB</div>
-      <div>
-        <div class="cand-name">Xavi Bou Torrent</div>
-        <div class="cand-role">REN Communities Director Innovation & Public Affairs</div>
-      </div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div>
-    <div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AC</div>
-      <div>
-        <div class="cand-name">Alessandro Caviasca</div>
-        <div class="cand-role">CEO — SIARQ Advanced Solar Design</div>
-      </div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div>
-  </div>
-
-  <!-- Stage 3 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#BA7517;"></div>
-      <span class="stage-title">Stage 3 — Shortlisted</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FAEEDA; color:#BA7517;">JC</div>
-      <div>
-        <div class="cand-name">Jamie Crummie</div>
-        <div class="cand-role">Public Speaker & Consultant — jamiecrummie.com</div>
-      </div>
-      <span class="stage-pill pill-3">Shortlisted</span>
-    </div>
-  </div>
-
-  <!-- Stage 2 -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#888780;"></div>
-      <span class="stage-title">Stage 2 — Application</span>
-      <span class="stage-count">1 candidate</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">AE</div>
-      <div>
-        <div class="cand-name">Alexander Euler</div>
-        <div class="cand-role">Managing Director Middle East & South Asia — Hydraloop</div>
-      </div>
-      <span class="stage-pill pill-2">Application</span>
-    </div>
-  </div>
-
-  <!-- Dropped -->
-  <div class="stage-col">
-    <div class="stage-header">
-      <div class="stage-dot" style="background:#E24B4A;"></div>
-      <span class="stage-title">Dropped</span>
-      <span class="stage-count">4 candidates</span>
-    </div>
-    <div class="two-col">
-      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">AG</div><div><div class="cand-name">Annamaria Grassi</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
-      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">GG</div><div><div class="cand-name">Georgy Godizov</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
-      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">CG</div><div><div class="cand-name">Cristóbal Gutiérrez Elejalde</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
-      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">NH</div><div><div class="cand-name">Nil Hernández Muñoz</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- Dripify R3 -->
-  <p class="section-label">Dripify — R3 campaign · Energy founders · April 2026</p>
-  <div class="two-col" style="margin-bottom:20px;">
+  <div class="two-col">
     <div class="card">
-      <p class="section-label" style="margin-bottom:14px;">R3 campaign stats</p>
-      <div class="funnel-item">
-        <span class="funnel-label">Leads sourced</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
-        <span class="funnel-num">58</span>
-        <span class="funnel-pct">—</span>
-      </div>
+      <p class="section-label">Dripify funnel · Mar–Apr 2026</p>
       <div class="funnel-item">
         <span class="funnel-label">Invites sent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50%; background:#378ADD;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#888780;"></div></div>
+        <span class="funnel-num">58</span>
+        <span class="funnel-pct">100%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50%; background:#1D9E75;"></div></div>
         <span class="funnel-num">29</span>
         <span class="funnel-pct">50%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Messaged</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:31%; background:#378ADD;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:31%; background:#185FA5;"></div></div>
         <span class="funnel-num">18</span>
-        <span class="funnel-pct">—</span>
+        <span class="funnel-pct">31%</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Replied</span>
@@ -232,77 +192,259 @@
         <span class="funnel-num">24</span>
         <span class="funnel-pct">83%</span>
       </div>
-      <div style="background:#EAF3DE; border-radius:6px; padding:10px 12px; margin-top:12px;">
-        <p style="font-size:11px; color:#3B6D11; font-weight:600;">83% reply rate — energy/blackout hook performing well.</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Liked</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:38%; background:#FEF3C7;"></div></div>
+        <span class="funnel-num">22</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:60%; background:#888780;"></div></div>
+        <span class="funnel-num">35</span>
+        <span class="funnel-pct">—</span>
       </div>
     </div>
+
     <div class="card">
-      <p class="section-label" style="margin-bottom:10px;">Total outreach — 3 campaigns</p>
-      <div class="funnel-item">
-        <span class="funnel-label">R1 (grid/energy)</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:15%; background:#888780;"></div></div>
-        <span class="funnel-num">18</span>
-        <span class="funnel-pct">—</span>
+      <p class="section-label">Monthly outreach activity</p>
+      <div class="month-chart">
+      <div class="month-bar-group">
+        <div class="month-bars">
+          <div class="bar" style="height:36.0px; background:#888780;" title="Invites sent: 18"></div>
+          <div class="bar" style="height:14.0px; background:#1D9E75;" title="Accepted: 7"></div>
+          <div class="bar" style="height:14.0px; background:#185FA5;" title="Replied: 7"></div>
+        </div>
+        <div class="month-label">Mar 2026</div>
       </div>
-      <div class="funnel-item">
-        <span class="funnel-label">R2 (energy sector)</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:37%; background:#378ADD;"></div></div>
-        <span class="funnel-num">44</span>
-        <span class="funnel-pct">—</span>
+      <div class="month-bar-group">
+        <div class="month-bars">
+          <div class="bar" style="height:80.0px; background:#888780;" title="Invites sent: 40"></div>
+          <div class="bar" style="height:44.0px; background:#1D9E75;" title="Accepted: 22"></div>
+          <div class="bar" style="height:34.0px; background:#185FA5;" title="Replied: 17"></div>
+        </div>
+        <div class="month-label">Apr 2026</div>
       </div>
-      <div class="funnel-item">
-        <span class="funnel-label">R3 (founders)</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:48%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">58</span>
-        <span class="funnel-pct">—</span>
       </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Total unique</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
-        <span class="funnel-num">~120</span>
-        <span class="funnel-pct">—</span>
+      <div class="chart-legend">
+        <span><span class="dot" style="background:#888780;"></span>Invites</span>
+        <span><span class="dot" style="background:#1D9E75;"></span>Accepted</span>
+        <span><span class="dot" style="background:#185FA5;"></span>Replied</span>
       </div>
-      <p style="font-size:11px; color:#888780; margin-top:10px;">🔥 Hot R3 leads: Rafa Terradas (Wattium), Manel Sanmarti (Bamboo Energy), Oriol S (Folgrid), Gonzalo Murillo (Energiot), Borja Saez (Greenvolt)</p>
+      <div style="margin-top:16px; padding-top:12px; border-top:0.5px solid #f0ede6; font-size:11px; color:#5a5a55; line-height:1.5;">
+        <strong style="color:#1a1a18;">April scale-up:</strong> 40 invites vs 18 in March — outreach more than doubled. New blackout-hook sequence pushed engagement up sharply.
+      </div>
     </div>
   </div>
 
-  <p class="section-label">All R3 leads — 58 energy founder profiles</p>
-  <div class="card">
-    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">RT</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Rafa Terradas <span class="hot-badge">🔥</span></div><div style="font-size:10px;color:#888780;">Co-Founder & Director — Wattium</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">MS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Manel Sanmarti <span class="hot-badge">🔥</span></div><div style="font-size:10px;color:#888780;">CEO — Bamboo Energy</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">OS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Oriol S <span class="hot-badge">🔥</span></div><div style="font-size:10px;color:#888780;">Founder & CEO — Folgrid</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">GM</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gonzalo Murillo <span class="hot-badge">🔥</span></div><div style="font-size:10px;color:#888780;">Founder | CEO — Energiot</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">BS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Borja Saez <span class="hot-badge">🔥</span></div><div style="font-size:10px;color:#888780;">CEO — Greenvolt Next</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">OB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Oriol Gomis Bellmunt</div><div style="font-size:10px;color:#888780;">Co-Founder — eRoots Analytics</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JR</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge Ríos Cortés</div><div style="font-size:10px;color:#888780;">CEO — Etecnic</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JR</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge R</div><div style="font-size:10px;color:#888780;">CEO — CINERGIA</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Cristina Corchero</div><div style="font-size:10px;color:#888780;">CTO and Founder — Bamboo Energy</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Michael Sheehy</div><div style="font-size:10px;color:#888780;">Global Energy Efficiency & Optimization — AWS</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IP</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ignasi Pascual Fernandez</div><div style="font-size:10px;color:#888780;">CTO — Tormesh</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jordi Gazo</div><div style="font-size:10px;color:#888780;">Eco-Founder — Floox</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JMP</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Miguel Pérez Rosas</div><div style="font-size:10px;color:#888780;">CEO and co-founder — Finboot</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GM</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gerard Montaner Martinez</div><div style="font-size:10px;color:#888780;">Founder — Àgoraluz</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gerard Barragan Abril</div><div style="font-size:10px;color:#888780;">Co-Founder, CRO — Staria Technologies</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MF</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Mario Fernández</div><div style="font-size:10px;color:#888780;">CEO & Co-Founder — Camby AI</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PL</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Patrizia Laplana</div><div style="font-size:10px;color:#888780;">Founder and CEO — Asla Green Solutions</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">EE</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Edvald Edvaldsson</div><div style="font-size:10px;color:#888780;">Founder & CTO — Youwind Renewables</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Rajai Aghabi Rivas</div><div style="font-size:10px;color:#888780;">Founder & CEO — EOLOS Floating Lidar Solutions</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alejandro Cabrera Muñoz</div><div style="font-size:10px;color:#888780;">Co-founder & CEO — Green Eagle Solutions</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">OB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Oier Bolibar</div><div style="font-size:10px;color:#888780;">CEO & Founder — Plugeen</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JL</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Lander Zubia</div><div style="font-size:10px;color:#888780;">Founder — SOLARTIS</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MG</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Miguel Angel Garcia Tamargo</div><div style="font-size:10px;color:#888780;">Founder & CEO — NatureBrain</div></div><span class="action-badge act-m">Messaged</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">SC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Salvador Clave</div><div style="font-size:10px;color:#888780;">CRO — Algo</div></div><span class="action-badge act-l">Liked</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">PS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pepe Singla</div><div style="font-size:10px;color:#888780;">CEO — ROOFPOWER</div></div><span class="action-badge act-v">Profiled</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">MB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Marc Blasi Borrás</div><div style="font-size:10px;color:#888780;">Country Manager — Audax España</div></div><span class="action-badge act-v">Profiled</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JW</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jack Lewis Wilkinson</div><div style="font-size:10px;color:#888780;">MD — Virtual Power Plant Partners</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">AF</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alberto Fernandez Lopez</div><div style="font-size:10px;color:#888780;">Consultant — World Bank Group</div></div><span class="action-badge act-c">Connect sent</span></div>
-    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Sacri</div><div style="font-size:10px;color:#888780;">Cofundador — Sapiens Energia</div></div><span class="action-badge act-l">Liked</span></div>
-    <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">+ 29 more leads in campaign · Full list in Dripify</p>
+  <p class="section-label">Pipeline by stage</p>
+  <div class="card" style="margin-bottom:28px;">
+      <div class="funnel-item">
+        <span class="funnel-label">New</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#888780;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Full app sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25%; background:#BA7517;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Shortlisted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25%; background:#534AB7;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Interview</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50%; background:#185FA5;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Disruptive Talent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Matchmaking</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Signed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Dropped</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#A32D2D;"></div></div>
+        <span class="funnel-num">4</span>
+      </div>
+  </div>
+
+  <p class="section-label">Active candidates · 5 in pipeline</p>
+  <div class="cand-list">
+      <div class="cand-card card-match">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DG</div>
+        <div class="cand-meta">
+          <div class="cand-name">David Luis Milia Garrote</div>
+          <div class="cand-sub">Chairman/CEO & Board Member · The Canadian Energy & Climate Nexus</div>
+        </div>
+        <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/136229581" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Alessandro Caviasca</div>
+          <div class="cand-sub">CEO · SIARQ Advanced Solar Design</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/147760851" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">XT</div>
+        <div class="cand-meta">
+          <div class="cand-name">Xavi Bou Torrent</div>
+          <div class="cand-sub">REN Communities Director Innovation & Public funding Director</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Interview</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140949378" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">JC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Jamie Crummie</div>
+          <div class="cand-sub">Public Speaker & Consultant · Jamiecrummie.com</div>
+        </div>
+        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/147744822" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AE</div>
+        <div class="cand-meta">
+          <div class="cand-name">Alexander Euler</div>
+          <div class="cand-sub">Managing Director, Middle East & South Asia · Hydraloop</div>
+        </div>
+        <span class="pill" style="background:#FEF3C7; color:#92400E;">Full app</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/143624725" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+  </div>
+
+  <p class="section-label">Dripify leads · top 12 by progression (58 total in DB)</p>
+  <div class="cand-list">
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JG</div>
+        <div class="cand-meta">
+          <div class="cand-name">Jordi Gazo</div>
+          <div class="cand-sub">Eco-Founder  · Floox</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/jordigazoceoatpremium" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">MS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Michael Sheehy</div>
+          <div class="cand-sub">Global Energy Efficiency & Optimization · Amazon Web Services (AWS)</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/michaeljsheehy" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">MS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Mohamed Saad</div>
+          <div class="cand-sub">Co-founder & CTO · Magnetika</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/msaad08" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">PA</div>
+        <div class="cand-meta">
+          <div class="cand-name">Pere Soria Alcazar</div>
+          <div class="cand-sub">Business Development Technical Manager · CIRCUTOR</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/pere-soria-alcazar-3a951838" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">RM</div>
+        <div class="cand-meta">
+          <div class="cand-name">Ramon Molera</div>
+          <div class="cand-sub">Tutor de proyectos · Esade</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/ramonmolera" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">GM</div>
+        <div class="cand-meta">
+          <div class="cand-name">Gerard Montaner Martinez</div>
+          <div class="cand-sub">Founder · Ágoraluz</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/gerardmmontaner" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">GA</div>
+        <div class="cand-meta">
+          <div class="cand-name">Gerard Barragan Abril</div>
+          <div class="cand-sub">Co-Founder, Chief Revenue Officer · Staria Technologies</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/gerard-barragán-abril" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">MF</div>
+        <div class="cand-meta">
+          <div class="cand-name">Mario Fernández</div>
+          <div class="cand-sub">Ceo ¬ Co-Founder · Camby AI</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/mariocamby" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">BS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Borja Saez</div>
+          <div class="cand-sub">Chief Executive Officer · Greenvolt Next</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/borja-saez-9771b7" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">PL</div>
+        <div class="cand-meta">
+          <div class="cand-name">Patrizia Laplana</div>
+          <div class="cand-sub">Founder and CEO · Asla Green Solutions S.L.</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/patrizialaplana" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">EE</div>
+        <div class="cand-meta">
+          <div class="cand-name">Edvald Edvaldsson</div>
+          <div class="cand-sub">Founder & CTO · Youwind Renewables</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/edvald-edvaldsson-6852862b" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">MT</div>
+        <div class="cand-meta">
+          <div class="cand-name">Miguel Angel Garcia Tamargo</div>
+          <div class="cand-sub">Founder & CEO · NatureBrain</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Message sent</span>
+        <a class="cand-link" href="https://www.linkedin.com/in/magarciatamargo" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
   </div>
 
   <div class="footer">
-    <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Week 4 · April 2026 · Confidential</p>
+    <div>The Collider · MWC Barcelona — GridWatch CEO &amp; Co-Founder Search · 30 Apr 2026</div>
+    <div><a href="index.html">← All projects</a></div>
   </div>
 
 </div>

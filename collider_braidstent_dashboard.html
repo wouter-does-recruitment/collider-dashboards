@@ -1,123 +1,286 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CEO BraidStent — Dashboard</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BraidStent — The Collider · CEO Search Dashboard</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;padding:32px;font-size:13px}
-  .page{max-width:960px;margin:0 auto;background:#fff;border-radius:12px;padding:36px 40px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-  .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:.5px solid #e0ddd6}
-  .header-left h1{font-size:20px;font-weight:600;color:#1a1a18;margin-bottom:4px}
-  .header-left p{font-size:12px;color:#888780}
-  .badge{display:inline-block;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px}
-  .notice{border-left:3px solid #1D9E75;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:24px;font-size:12px;background:#EAF3DE;color:#3B6D11}
-  .notice strong{color:#0F6E56}
-  .section-label{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#888780;margin-bottom:12px}
-  .divider{border:none;border-top:.5px solid #e0ddd6;margin:28px 0}
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-  .metric-card{background:#f5f4f0;border-radius:8px;padding:14px 16px}
-  .metric-label{font-size:11px;color:#888780;margin-bottom:4px}
-  .metric-value{font-size:26px;font-weight:600;color:#1a1a18;line-height:1}
-  .metric-value.green{color:#1D9E75}.metric-value.blue{color:#185FA5}.metric-value.purple{color:#534AB7}
-  .metric-sub{font-size:11px;color:#888780;margin-top:3px}
-  .metric-sub.up{color:#1D9E75;font-weight:600}
-  .stage-col{margin-bottom:16px}
-  .stage-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  .stage-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .stage-title{font-size:11px;font-weight:600;color:#888780;text-transform:uppercase;letter-spacing:.06em}
-  .stage-count{font-size:11px;color:#b4b2a9;margin-left:auto}
-  .cand-card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:10px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
-  .cand-card.dropped{opacity:.5}
-  .cand-card.top{border-color:#9FE1CB;background:#f7fdf9}
-  .cand-card.ref{border-color:#A5B4FC;background:#F5F3FF}
-  .cand-card.match{border-color:#1D9E75;background:#f0fdf6}
-  .cand-card.team{border-color:#534AB7;background:#F5F3FF}
-  .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0}
-  .cand-name{font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:2px}
-  .cand-role{font-size:11px;color:#888780}
-  .stage-pill{font-size:10px;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap;margin-left:auto;flex-shrink:0}
-  .pill-2{background:#f5f4f0;color:#888780}.pill-3{background:#FAEEDA;color:#BA7517}
-  .pill-4{background:#E6F1FB;color:#185FA5}.pill-5{background:#EAF3DE;color:#3B6D11}
-  .pill-6{background:#EDE9FE;color:#4F46E5}.pill-8{background:#1D9E75;color:#fff}
-  .pill-9{background:#0F6E56;color:#fff}.pill-12{background:#534AB7;color:#fff}
-  .pill-dropped{background:#FCEBEB;color:#A32D2D}
-  .new-badge{font-size:9px;background:#EAF3DE;color:#3B6D11;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .cross-badge{font-size:9px;background:#EEEDFE;color:#534AB7;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:16px 18px}
-  .lead-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid #f0ede6}
-  .lead-row:last-child{border-bottom:none}
-  .lead-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0}
-  .action-badge{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:500;white-space:nowrap;margin-left:auto}
-  .act-m{background:#EAF3DE;color:#3B6D11}.act-c{background:#E6F1FB;color:#185FA5}
-  .act-v{background:#f5f4f0;color:#888780}.act-l{background:#FEF3C7;color:#B45309}
-  .footer{margin-top:28px;padding-top:16px;border-top:.5px solid #e0ddd6;display:flex;justify-content:space-between}
-  .footer p{font-size:11px;color:#b4b2a9}
-</style></head><body><div class="page">
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+
+  .header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .header-left h1 { font-size: 22px; font-weight: 600; color: #1a1a18; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
+  .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .header-left .crumb a { color: #888780; text-decoration: none; }
+  .header-left .crumb a:hover { color: #1a1a18; }
+  .header-right .badge {
+    display: inline-block; background: #EAF3DE; color: #3B6D11;
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+
+  .notice {
+    background: #EAF3DE; border-left: 3px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin-bottom: 28px;
+    font-size: 12px; color: #3B6D11;
+  }
+  .notice strong { color: #1a3a0c; font-weight: 600; }
+
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #888780; margin: 0 0 12px;
+  }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+
+  /* 4-card metric grid */
+  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
+
+  /* Two-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
+
+  /* Funnel */
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
+
+  /* Candidate list */
+  .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; }
+  .cand-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.12s;
+  }
+  .cand-card:hover { background: #fafaf6; }
+  .cand-card + .cand-card { margin-top: 4px; }
+  .cand-card.card-signed {
+    border: 1px solid #9FE1CB; background: #f7fdf9;
+  }
+  .cand-card.card-match {
+    border: 1px solid #1D9E75; background: #f0fdf6;
+  }
+  .cand-card.card-ref {
+    border: 1px solid #A5B4FC; background: #F5F3FF;
+  }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .cand-meta { flex: 1; min-width: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.2; }
+  .cand-sub { font-size: 11px; color: #888780; line-height: 1.4; margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .pill {
+    display: inline-block; padding: 3px 9px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .cand-link {
+    font-size: 11px; color: #888780; text-decoration: none;
+    white-space: nowrap; flex-shrink: 0; padding-left: 4px;
+  }
+  .cand-link:hover { color: #185FA5; }
+  .cand-empty { text-align: center; padding: 32px; font-size: 12px; color: #888780; font-style: italic; }
+
+  .footer {
+    margin-top: 60px; padding-top: 20px;
+    border-top: 0.5px solid #e0ddd6;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: #888780;
+  }
+  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
+  .footer a:hover { color: #1a1a18; }
+
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
+    .metric-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .funnel-label { width: 100px; font-size: 11px; }
+    .cand-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
   <div class="header">
     <div class="header-left">
-      <h1>CEO BraidStent — Recruitment Dashboard</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment · MedDev · Urology · Biodegradable stent</p>
+      <div class="crumb"><a href="index.html">The Collider</a> · CEO Search</div>
+      <h1>BraidStent</h1>
+      <p class="focus">Biodegradable ureteral stent</p>
     </div>
-    <div style="text-align:right">
-      <div class="badge" style="background:#FBEAF0;color:#993556;">Week 4 · April 2026</div>
+    <div class="header-right">
+      <span class="badge">Week 3 · Live</span>
+      <div class="date">30 Apr 2026</div>
     </div>
   </div>
-  <div class="notice"><strong>Week 4 update.</strong> Szilvia Endrenyi in Stage 8 Matchmaking. James Hugall and Hugo Macedo both in Ref Check. Elaine Salvador in Disruptive Talent.</div>
-  <p class="section-label">Pipeline overview</p>
-  <div class="metric-grid">
-    <div class="metric-card"><p class="metric-label">Total candidates</p><p class="metric-value">6</p><p class="metric-sub">2 dropped</p></div>
-    <div class="metric-card"><p class="metric-label">Active</p><p class="metric-value blue">4</p><p class="metric-sub">In pipeline</p></div>
-    <div class="metric-card"><p class="metric-label">Stage 4+</p><p class="metric-value green">4</p><p class="metric-sub">Interview onward</p></div>
-    <div class="metric-card"><p class="metric-label">Dripify leads</p><p class="metric-value">0</p><p class="metric-sub">Outreach sent</p></div>
-  </div>
-  <hr class="divider">
-  <p class="section-label">Pipeline — all candidates</p>
-  <div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#1D9E75;"></div>
-        <span class="stage-title">Stage 8 — Matchmaking</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card match">
-      <div class="avatar" style="background:#1D9E75;color:#fff;">SE</div>
-      <div><div class="cand-name">Szilvia Endrenyi</div><div class="cand-role">CEO & Co-founder · Rethink Medical S.L.</div></div>
-      <span class="stage-pill pill-8">Matchmaking ★</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#4F46E5;"></div>
-        <span class="stage-title">Stage 6 — Reference Check</span>
-        <span class="stage-count">2 candidates</span>
-      </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">JH</div>
-      <div><div class="cand-name">James Hugall</div><div class="cand-role">Tech transfer lead and interim CEO (Eroica DX) · Institut CatalÃ  de NanociÃ¨ncia i Nanotecnologia (ICN2)</div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">HM</div>
-      <div><div class="cand-name">Hugo Macedo</div><div class="cand-role">People and Operations Lead · Complear (PT)</div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#3B6D11;"></div>
-        <span class="stage-title">Stage 5 — Disruptive Talent</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card top">
-      <div class="avatar" style="background:#EAF3DE;color:#3B6D11;">ES</div>
-      <div><div class="cand-name">Elaine Salvador</div><div class="cand-role">Vice President - Investment Banking · Stifel</div></div>
-      <span class="stage-pill pill-5">★ Talent</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#E24B4A;"></div>
-        <span class="stage-title">Dropped</span>
-        <span class="stage-count">2 candidates</span>
+
+  <div class="notice"><strong>1 in matchmaking.</strong> Closing in on team confirmation.</div>
+
+  <div class="metric-grid-4">
+      <div class="metric-card">
+        <div class="metric-label">Total in ATS</div>
+        <div class="metric-value" style="color:#1a1a18;">6</div>
+        <div class="metric-sub">0 dropped</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Interviews</div>
+        <div class="metric-value" style="color:#185FA5;">1</div>
+        <div class="metric-sub">Staff & META</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Matchmaking</div>
+        <div class="metric-value" style="color:#534AB7;">1</div>
+        <div class="metric-sub">Late stage</div>
+      </div>      <div class="metric-card">
+        <div class="metric-label">Signed / Ready</div>
+        <div class="metric-value" style="color:#888780;">0</div>
+        <div class="metric-sub">Confirmed</div>
       </div>
-      <div class="two-col"><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">FO</div>
-      <div><div class="cand-name">Fearghal O'Connor</div><div class="cand-role">Doctoral Candidate</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">VP</div>
-      <div><div class="cand-name">Vincenzo Del Priore</div><div class="cand-role">Chief Marketing Officer</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div></div></div>
-  
-  <div class="footer"><p>Does Recruitment · wouter@doesrecruitment.com</p><p>Week 4 · April 2026 · Confidential</p></div>
-</div></body></html>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <p class="section-label">Pipeline by stage</p>
+      <div class="funnel-item">
+        <span class="funnel-label">New</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#888780;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Full app sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#BA7517;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Shortlisted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Interview</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#185FA5;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Disruptive Talent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Ref check</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#4F46E5;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Matchmaking</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">1</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Signed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">0</span>
+      </div>
+    </div>
+    <div class="card">
+      <p class="section-label">Quick snapshot</p>
+      <div class="funnel-item"><span class="funnel-label">Total candidates</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1a1a18;"></div></div><span class="funnel-num">6</span></div>
+      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1D9E75;"></div></div><span class="funnel-num">6</span></div>
+      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#A32D2D;"></div></div><span class="funnel-num">0</span></div>
+      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:17%; background:#534AB7;"></div></div><span class="funnel-num">1</span></div>
+    </div>
+  </div>
+
+  <p class="section-label">Active candidates · sorted by stage</p>
+  <div class="cand-list">
+      <div class="cand-card card-match">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">SE</div>
+        <div class="cand-meta">
+          <div class="cand-name">Szilvia Endrenyi</div>
+          <div class="cand-sub">CEO & Co-founder · Rethink Medical S.L.</div>
+        </div>
+        <span class="pill" style="background:#0F6E56; color:#ffffff;">Confirmation</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140451639" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card card-ref">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
+        <div class="cand-meta">
+          <div class="cand-name">Hugo Macedo</div>
+          <div class="cand-sub">People and Operations Lead · Complear (PT)</div>
+        </div>
+        <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Ref check</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/137012740" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card card-ref">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">JH</div>
+        <div class="cand-meta">
+          <div class="cand-name">James Hugall</div>
+          <div class="cand-sub">Tech transfer lead and interim CEO (Eroica DX) · Institut Català de Nanociència i Nanotecnologia (ICN2)</div>
+        </div>
+        <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Ref check</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/141296727" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">ES</div>
+        <div class="cand-meta">
+          <div class="cand-name">Elaine Salvador</div>
+          <div class="cand-sub">Vice President - Investment Banking · Stifel</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Disruptive Talent</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/139235215" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">FO</div>
+        <div class="cand-meta">
+          <div class="cand-name">Fearghal O'Connor</div>
+          <div class="cand-sub">Doctoral Candidate · Institut Català d'investigació Química (ICIQ)</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/144099881" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">VP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Vincenzo Del Priore</div>
+          <div class="cand-sub">Chief Marketing Officer · G. Del Priore</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        <a class="cand-link" href="https://app.manatal.com/candidates/140930725" target="_blank" rel="noopener">Manatal ↗</a>
+      </div>
+  </div>
+
+  <div class="footer">
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 30 Apr 2026</div>
+    <div><a href="index.html">← All projects</a></div>
+  </div>
+
+</div>
+</body>
+</html>

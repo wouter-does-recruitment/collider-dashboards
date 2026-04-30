@@ -1,446 +1,362 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CEO OpticMizing — Dashboard</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO OpticMizing — Recruitment Dashboard</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;padding:32px;font-size:13px}
-  .page{max-width:960px;margin:0 auto;background:#fff;border-radius:12px;padding:36px 40px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-  .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:.5px solid #e0ddd6}
-  .header-left h1{font-size:20px;font-weight:600;color:#1a1a18;margin-bottom:4px}
-  .header-left p{font-size:12px;color:#888780}
-  .badge{display:inline-block;font-size:11px;font-weight:500;padding:4px 10px;border-radius:6px}
-  .notice{border-left:3px solid #1D9E75;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:24px;font-size:12px;background:#EAF3DE;color:#3B6D11}
-  .notice strong{color:#0F6E56}
-  .section-label{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#888780;margin-bottom:12px}
-  .divider{border:none;border-top:.5px solid #e0ddd6;margin:28px 0}
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-  .metric-card{background:#f5f4f0;border-radius:8px;padding:14px 16px}
-  .metric-label{font-size:11px;color:#888780;margin-bottom:4px}
-  .metric-value{font-size:26px;font-weight:600;color:#1a1a18;line-height:1}
-  .metric-value.green{color:#1D9E75}.metric-value.blue{color:#185FA5}.metric-value.purple{color:#534AB7}
-  .metric-sub{font-size:11px;color:#888780;margin-top:3px}
-  .metric-sub.up{color:#1D9E75;font-weight:600}
-  .stage-col{margin-bottom:16px}
-  .stage-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-  .stage-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .stage-title{font-size:11px;font-weight:600;color:#888780;text-transform:uppercase;letter-spacing:.06em}
-  .stage-count{font-size:11px;color:#b4b2a9;margin-left:auto}
-  .cand-card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:10px 14px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
-  .cand-card.dropped{opacity:.5}
-  .cand-card.top{border-color:#9FE1CB;background:#f7fdf9}
-  .cand-card.ref{border-color:#A5B4FC;background:#F5F3FF}
-  .cand-card.match{border-color:#1D9E75;background:#f0fdf6}
-  .cand-card.team{border-color:#534AB7;background:#F5F3FF}
-  .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0}
-  .cand-name{font-size:13px;font-weight:600;color:#1a1a18;margin-bottom:2px}
-  .cand-role{font-size:11px;color:#888780}
-  .stage-pill{font-size:10px;padding:3px 9px;border-radius:6px;font-weight:600;white-space:nowrap;margin-left:auto;flex-shrink:0}
-  .pill-2{background:#f5f4f0;color:#888780}.pill-3{background:#FAEEDA;color:#BA7517}
-  .pill-4{background:#E6F1FB;color:#185FA5}.pill-5{background:#EAF3DE;color:#3B6D11}
-  .pill-6{background:#EDE9FE;color:#4F46E5}.pill-8{background:#1D9E75;color:#fff}
-  .pill-9{background:#0F6E56;color:#fff}.pill-12{background:#534AB7;color:#fff}
-  .pill-dropped{background:#FCEBEB;color:#A32D2D}
-  .new-badge{font-size:9px;background:#EAF3DE;color:#3B6D11;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .cross-badge{font-size:9px;background:#EEEDFE;color:#534AB7;padding:1px 5px;border-radius:8px;font-weight:600;margin-left:4px}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .card{background:#fff;border:.5px solid #e0ddd6;border-radius:10px;padding:16px 18px}
-  .lead-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid #f0ede6}
-  .lead-row:last-child{border-bottom:none}
-  .lead-avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0}
-  .action-badge{font-size:10px;padding:2px 7px;border-radius:6px;font-weight:500;white-space:nowrap;margin-left:auto}
-  .act-m{background:#EAF3DE;color:#3B6D11}.act-c{background:#E6F1FB;color:#185FA5}
-  .act-v{background:#f5f4f0;color:#888780}.act-l{background:#FEF3C7;color:#B45309}
-  .footer{margin-top:28px;padding-top:16px;border-top:.5px solid #e0ddd6;display:flex;justify-content:space-between}
-  .footer p{font-size:11px;color:#b4b2a9}
-</style></head><body><div class="page">
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
+  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+  .header-left p { font-size: 12px; color: #888780; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E1F5EE; color: #0F6E56; }
+  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
+  .notice strong { color: #0F6E56; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
+  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
+  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
+  .metric-sub.up { color: #1D9E75; font-weight: 600; }
+  .stage-col { margin-bottom: 16px; }
+  .stage-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .stage-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stage-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: 0.06em; }
+  .stage-count { font-size: 11px; color: #b4b2a9; margin-left: auto; }
+  .cand-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 10px 14px; margin-bottom: 7px; display: flex; align-items: center; gap: 10px; }
+  .cand-card.dropped { opacity: 0.5; }
+  .cand-card.match { border-color: #1D9E75; background: #f0fdf6; }
+  .cand-card.ref { border-color: #A5B4FC; background: #F5F3FF; }
+  .cand-card.top { border-color: #9FE1CB; background: #f7fdf9; }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; flex-shrink: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .cand-role { font-size: 11px; color: #888780; }
+  .stage-pill { font-size: 10px; padding: 3px 9px; border-radius: 6px; font-weight: 600; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .pill-8 { background: #1D9E75; color: #fff; }
+  .pill-6 { background: #EDE9FE; color: #4F46E5; }
+  .pill-5 { background: #EAF3DE; color: #3B6D11; }
+  .pill-2 { background: #f5f4f0; color: #888780; }
+  .pill-dropped { background: #FCEBEB; color: #A32D2D; }
+  .note-badge { font-size: 9px; background: #FEF3C7; color: #B45309; padding: 1px 6px; border-radius: 8px; font-weight: 600; margin-left: 5px; }
+  .cross-badge { font-size: 9px; background: #EEEDFE; color: #534AB7; padding: 1px 5px; border-radius: 8px; font-weight: 600; margin-left: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #888780; width: 130px; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 24px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
+  .lead-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
+  .lead-row:last-child { border-bottom: none; }
+  .lead-avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; flex-shrink: 0; }
+  .action-badge { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; white-space: nowrap; margin-left: auto; }
+  .act-m { background: #EAF3DE; color: #3B6D11; }
+  .act-c { background: #E6F1FB; color: #185FA5; }
+  .act-v { background: #f5f4f0; color: #888780; }
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: #b4b2a9; }
+</style>
+</head>
+<body>
+<div class="page">
+
   <div class="header">
     <div class="header-left">
-      <h1>CEO OpticMizing — Recruitment Dashboard</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment · Deep Tech · Food Data · SaaS · pH sensor</p>
+      <h1>CEO OpticMizing / pHotoYOGURT — Recruitment Dashboard</h1>
+      <p>The Collider Programme · Mobile World Capital · Does Recruitment · Real-time pH fermentation data · SaaS</p>
     </div>
-    <div style="text-align:right">
-      <div class="badge" style="background:#E1F5EE;color:#0F6E56;">Week 4 · April 2026</div>
+    <div style="text-align:right;">
+      <div class="badge">Week 4 · April 2026</div>
+      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
     </div>
   </div>
-  <div class="notice"><strong>Week 4 update.</strong> 3 candidates in Stage 6 Ref Check (Javier Rodriguez, Francisco Rico, Andres Clarós). New R2 campaign launched — 46 food data/SaaS profiles.</div>
+
+  <div class="notice">
+    <strong>Week 4 update.</strong> Javier Rodriguez Saiz and Francisco Rico both in Stage 8 Matchmaking. Christian Wienecke and Andres Clarós advanced to Stage 6 Ref Check. New R3 campaign launched — 53 food founder/SaaS profiles. Note: Javier is also Stage 12 Team Ready in Ulisses DS.
+  </div>
+
   <p class="section-label">Pipeline overview</p>
   <div class="metric-grid">
-    <div class="metric-card"><p class="metric-label">Total candidates</p><p class="metric-value">17</p><p class="metric-sub">10 dropped</p></div>
-    <div class="metric-card"><p class="metric-label">Active</p><p class="metric-value blue">7</p><p class="metric-sub">In pipeline</p></div>
-    <div class="metric-card"><p class="metric-label">Stage 4+</p><p class="metric-value green">6</p><p class="metric-sub">Interview onward</p></div>
-    <div class="metric-card"><p class="metric-label">Dripify leads</p><p class="metric-value">68</p><p class="metric-sub">Outreach sent</p></div>
+    <div class="metric-card">
+      <p class="metric-label">Total candidates</p>
+      <p class="metric-value">19</p>
+      <p class="metric-sub">10 dropped</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Active</p>
+      <p class="metric-value blue">9</p>
+      <p class="metric-sub">In pipeline</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Stage 4+</p>
+      <p class="metric-value green">7</p>
+      <p class="metric-sub up">↑ strongest week yet</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Dripify leads</p>
+      <p class="metric-value">119</p>
+      <p class="metric-sub">R1 (22) + R2 (44) + R3 (53)</p>
+    </div>
   </div>
+
   <hr class="divider">
+
   <p class="section-label">Pipeline — all candidates</p>
+
+  <!-- Stage 8 Matchmaking -->
   <div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#4F46E5;"></div>
-        <span class="stage-title">Stage 6 — Reference Check</span>
-        <span class="stage-count">3 candidates</span>
-      </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">JS</div>
-      <div><div class="cand-name">Javier Rodriguez Saiz</div><div class="cand-role">Co-Founder · Smart Foods Global</div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">FR</div>
-      <div><div class="cand-name">Francisco Rico</div><div class="cand-role">Co-Founder & Investor · BootNode</div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div><div class="cand-card ref">
-      <div class="avatar" style="background:#EDE9FE;color:#4F46E5;">AC</div>
-      <div><div class="cand-name">Andres ClarÃ³s</div><div class="cand-role">External Consultant Independent </div></div>
-      <span class="stage-pill pill-6">Ref check</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#3B6D11;"></div>
-        <span class="stage-title">Stage 5 — Disruptive Talent</span>
-        <span class="stage-count">2 candidates</span>
-      </div><div class="cand-card top">
-      <div class="avatar" style="background:#EAF3DE;color:#3B6D11;">CP</div>
-      <div><div class="cand-name">CINZIA PALUMBO</div><div class="cand-role">Co-Founder · Genie</div></div>
-      <span class="stage-pill pill-5">★ Talent</span>
-    </div><div class="cand-card top">
-      <div class="avatar" style="background:#EAF3DE;color:#3B6D11;">DB</div>
-      <div><div class="cand-name">Dana Bernhardt</div><div class="cand-role">Senior Research Scientist · Pack2Earth (Spain)</div></div>
-      <span class="stage-pill pill-5">★ Talent</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#185FA5;"></div>
-        <span class="stage-title">Stage 4 — Interview with Staff</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card top">
-      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">CW</div>
-      <div><div class="cand-name">Christian Wienecke</div><div class="cand-role">Entrepreneur in Residence (NL) · Fresh Ventures Studio (Food & Agriculture)</div></div>
-      <span class="stage-pill pill-4">Interview</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#888780;"></div>
-        <span class="stage-title">Stage 2 — Application</span>
-        <span class="stage-count">1 candidate</span>
-      </div><div class="cand-card">
-      <div class="avatar" style="background:#f5f4f0;color:#5F5E5A;">RF</div>
-      <div><div class="cand-name">Rogerio Antonio Nogueira Santos Filho</div><div class="cand-role">Chief Finance and Operating Officer and Board Member · NEXTI (Acquired through Caatinga Capital, a search fund I co-founded)</div></div>
-      <span class="stage-pill pill-2">Application</span>
-    </div></div><div class="stage-col">
-      <div class="stage-header">
-        <div class="stage-dot" style="background:#E24B4A;"></div>
-        <span class="stage-title">Dropped</span>
-        <span class="stage-count">10 candidates</span>
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 8 — Matchmaking</span>
+      <span class="stage-count">2 candidates</span>
+    </div>
+    <div class="cand-card match">
+      <div class="avatar" style="background:#1D9E75; color:#fff;">JR</div>
+      <div>
+        <div class="cand-name">Javier Rodriguez Saiz <span class="note-badge">⚠ Also Stage 12 Ulisses DS</span></div>
+        <div class="cand-role">Co-Founder — Smart Foods Global · RSM Rotterdam</div>
       </div>
-      <div class="two-col"><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">ML</div>
-      <div><div class="cand-name">Miguel Latre</div><div class="cand-role">Business Advisor</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">RO</div>
-      <div><div class="cand-name">Roma Llambes Oliveras</div><div class="cand-role">Executive Advisor & Interim Leader</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">MJ</div>
-      <div><div class="cand-name">Mirko Jurik</div><div class="cand-role">Senior Product Marketing Manager (PMM)</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">VP</div>
-      <div><div class="cand-name">Vincenzo Del Priore</div><div class="cand-role">Chief Marketing Officer</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">KS</div>
-      <div><div class="cand-name">Kenneth Benard Simpson Sr</div><div class="cand-role">Chief Executive Officer</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">EM</div>
-      <div><div class="cand-name">Enrique Gomez Martin</div><div class="cand-role">Plant Manager</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">DG</div>
-      <div><div class="cand-name">Daniel Garcia</div><div class="cand-role">Senior Manager, European PE Funds</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">ST</div>
-      <div><div class="cand-name">Samuel Tabarelli</div><div class="cand-role">General Manager</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">NM</div>
-      <div><div class="cand-name">Nil HernÃ¡ndez MuÃ±oz</div><div class="cand-role"></div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div><div class="cand-card dropped">
-      <div class="avatar" style="background:#FCEBEB;color:#A32D2D;">FR</div>
-      <div><div class="cand-name">Francesc</div><div class="cand-role">Iberia Group Quality Manager</div></div>
-      <span class="stage-pill pill-dropped">Dropped</span>
-    </div></div></div>
+      <span class="stage-pill pill-8">Matchmaking ★</span>
+    </div>
+    <div class="cand-card match">
+      <div class="avatar" style="background:#1D9E75; color:#fff;">FR</div>
+      <div>
+        <div class="cand-name">Francisco Rico <span class="cross-badge">↔ Ulisses DS</span></div>
+        <div class="cand-role">Co-Founder & Investor — BootNode · Refs 10/10 × 2</div>
+      </div>
+      <span class="stage-pill pill-8">Matchmaking ★</span>
+    </div>
+  </div>
+
+  <!-- Stage 6 Ref Check -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#4F46E5;"></div>
+      <span class="stage-title">Stage 6 — Reference Check</span>
+      <span class="stage-count">2 candidates</span>
+    </div>
+    <div class="cand-card ref">
+      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">CW</div>
+      <div>
+        <div class="cand-name">Christian Wienecke</div>
+        <div class="cand-role">Entrepreneur in Residence — Fresh Ventures Studio · Düsseldorf</div>
+      </div>
+      <span class="stage-pill pill-6">Ref check</span>
+    </div>
+    <div class="cand-card ref">
+      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">AC</div>
+      <div>
+        <div class="cand-name">Andres Clarós</div>
+        <div class="cand-role">External Consultant Independent · Barcelona</div>
+      </div>
+      <span class="stage-pill pill-6">Ref check</span>
+    </div>
+  </div>
+
+  <!-- Stage 5 Talent -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#3B6D11;"></div>
+      <span class="stage-title">Stage 5 — Disruptive Talent</span>
+      <span class="stage-count">3 candidates</span>
+    </div>
+    <div class="cand-card top">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AT</div>
+      <div>
+        <div class="cand-name">Alejandro Tres</div>
+        <div class="cand-role">Founder & Co-CEO — Domenico · Barcelona</div>
+      </div>
+      <span class="stage-pill pill-5">★ Talent</span>
+    </div>
+    <div class="cand-card top">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">CP</div>
+      <div>
+        <div class="cand-name">Cinzia Palumbo</div>
+        <div class="cand-role">Co-Founder — Genie · UCLA Anderson</div>
+      </div>
+      <span class="stage-pill pill-5">★ Talent</span>
+    </div>
+    <div class="cand-card top">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">DB</div>
+      <div>
+        <div class="cand-name">Dana Bernhardt</div>
+        <div class="cand-role">Senior Research Scientist — Pack2Earth · Food Tech PhD · Spain</div>
+      </div>
+      <span class="stage-pill pill-5">★ Talent</span>
+    </div>
+  </div>
+
+  <!-- Stage 2 New -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#888780;"></div>
+      <span class="stage-title">Stage 2 — Application</span>
+      <span class="stage-count">2 candidates</span>
+    </div>
+    <div class="two-col">
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">GM</div>
+        <div>
+          <div class="cand-name">Gabriel Mora Oberlander</div>
+          <div class="cand-role">Co-Founder — Gleipnir Medical (ex Real Deal Milk)</div>
+        </div>
+        <span class="stage-pill pill-2">New</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#f5f4f0; color:#5F5E5A;">RN</div>
+        <div>
+          <div class="cand-name">Rogerio Nogueira Santos Filho</div>
+          <div class="cand-role">CFO/COO — NEXTI · Madrid</div>
+        </div>
+        <span class="stage-pill pill-2">New</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropped -->
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#E24B4A;"></div>
+      <span class="stage-title">Dropped</span>
+      <span class="stage-count">10 candidates</span>
+    </div>
+    <div class="two-col">
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">ML</div><div><div class="cand-name">Miguel Latre</div><div class="cand-role">Business Advisor — PwC</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">RL</div><div><div class="cand-name">Roma Llambes Oliveras</div><div class="cand-role">Executive Advisor</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">MJ</div><div><div class="cand-name">Mirko Jurik</div><div class="cand-role">Senior PMM — Marfeel</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">VD</div><div><div class="cand-name">Vincenzo Del Priore</div><div class="cand-role">CMO</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">KB</div><div><div class="cand-name">Kenneth Benard Simpson</div><div class="cand-role">CEO — AEX Consulting</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">EG</div><div><div class="cand-name">Enrique Gomez Martin</div><div class="cand-role">Plant Manager — Air Liquide</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">DG</div><div><div class="cand-name">Daniel Garcia</div><div class="cand-role">—</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">ST</div><div><div class="cand-name">Samuel Tabarelli</div><div class="cand-role">GM — BE WTR</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">NH</div><div><div class="cand-name">Nil Hernández Muñoz</div><div class="cand-role">—</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+      <div class="cand-card dropped"><div class="avatar" style="background:#FCEBEB;color:#A32D2D;">FC</div><div><div class="cand-name">Francesc</div><div class="cand-role">—</div></div><span class="stage-pill pill-dropped">Dropped</span></div>
+    </div>
+  </div>
+
   <hr class="divider">
-    <p class="section-label">Dripify outreach — 68 leads</p>
-    <div class="card"><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Guiomar SÃ¡nchez CarrÃ³n</div><div style="font-size:10px;color:#888780;">Cofundadora y CEO · Bioprocesia</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AÃ</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alejandro Ãlvarez</div><div style="font-size:10px;color:#888780;">CEO y cofundador · Quevana Vegan Cheese</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">LM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Luis Chimeno Moral</div><div style="font-size:10px;color:#888780;">Director de operaciones · Oscillum</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PD</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo Sosa DomÃ­nguez</div><div style="font-size:10px;color:#888780;">CEO · Oscillum</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alan IvÃ¡n Ramos</div><div style="font-size:10px;color:#888780;">Founder & CEO · Libre (by planetary)</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">AdriÃ¡n Cerezo GarcÃ­a</div><div style="font-size:10px;color:#888780;">Gerente Territorial zona Este · Exolum</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ronald Anthony Fletcher Del Castillo</div><div style="font-size:10px;color:#888780;">Product Innovation Specialist & Freelance Consulta</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Javier ViÃ±a GonzÃ¡lez</div><div style="font-size:10px;color:#888780;">CEO · Cultiply | Intelligent fermentation</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Pablo De Giacomi</div><div style="font-size:10px;color:#888780;">Co-Founder & CEO · Innomy</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo SÃ¡nchez-Rey</div><div style="font-size:10px;color:#888780;">Founder & COO · Innomy</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Rutger Boterenbrood</div><div style="font-size:10px;color:#888780;">Former Managing Director · NestlÃ©</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Anna Ferret PiÃ±ol</div><div style="font-size:10px;color:#888780;">General Manager · Laboratorios Ordesa</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carlos Martinez</div><div style="font-size:10px;color:#888780;">Head of Sales Food & Dairy Culinary Solutions · NestlÃ©</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Matteo Breschi</div><div style="font-size:10px;color:#888780;">FOUNDER & CEO · GOURMAX</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DF</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">David RÃ fols</div><div style="font-size:10px;color:#888780;">R&D Director Meat EMEA · MANE</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ricard Martinez Garcia</div><div style="font-size:10px;color:#888780;">Business Development & Account Manager EUROPE · Novonesis</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ignasi Alegre Segura</div><div style="font-size:10px;color:#888780;">Cofundador · FOODYO SL</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">RocÃ­o De Miguel Valdunciel</div><div style="font-size:10px;color:#888780;">Chief Operations Officer · Business owner & Consultant</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Raul Godia Roca</div><div style="font-size:10px;color:#888780;">Founder · Stealth Startup</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Deh Andre</div><div style="font-size:10px;color:#888780;">Founder & Creative Director at Fresca Yogur Helado · Fresca yogur helado con fruta real</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Francisco Carrillo</div><div style="font-size:10px;color:#888780;">VP of Ingredients · Livoo AB</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gabriel Mora</div><div style="font-size:10px;color:#888780;">Cofounder & Chief Researcher · Gleipnir Medical (formerly Real Dea</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Guiomar SÃ¡nchez CarrÃ³n</div><div style="font-size:10px;color:#888780;">Cofundadora y CEO · Bioprocesia</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AÃ</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alejandro Ãlvarez</div><div style="font-size:10px;color:#888780;">CEO y cofundador · Quevana Vegan Cheese</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">LM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Luis Chimeno Moral</div><div style="font-size:10px;color:#888780;">Director de operaciones · Oscillum</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PD</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo Sosa DomÃ­nguez</div><div style="font-size:10px;color:#888780;">CEO · Oscillum</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alan IvÃ¡n Ramos</div><div style="font-size:10px;color:#888780;">Founder & CEO · Libre (by planetary)</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">AdriÃ¡n Cerezo GarcÃ­a</div><div style="font-size:10px;color:#888780;">Gerente Territorial zona Este · Exolum</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ronald Anthony Fletcher Del Castillo</div><div style="font-size:10px;color:#888780;">Product Innovation Specialist & Freelance Consulta</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Javier ViÃ±a GonzÃ¡lez</div><div style="font-size:10px;color:#888780;">CEO · Cultiply | Intelligent fermentation</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Pablo De Giacomi</div><div style="font-size:10px;color:#888780;">Co-Founder & CEO · Innomy</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo SÃ¡nchez-Rey</div><div style="font-size:10px;color:#888780;">Founder & COO · Innomy</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Rutger Boterenbrood</div><div style="font-size:10px;color:#888780;">Former Managing Director · NestlÃ©</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Anna Ferret PiÃ±ol</div><div style="font-size:10px;color:#888780;">General Manager · Laboratorios Ordesa</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carlos Martinez</div><div style="font-size:10px;color:#888780;">Head of Sales Food & Dairy Culinary Solutions · NestlÃ©</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Matteo Breschi</div><div style="font-size:10px;color:#888780;">FOUNDER & CEO · GOURMAX</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DF</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">David RÃ fols</div><div style="font-size:10px;color:#888780;">R&D Director Meat EMEA · MANE</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ricard Martinez Garcia</div><div style="font-size:10px;color:#888780;">Business Development & Account Manager EUROPE · Novonesis</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">IS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ignasi Alegre Segura</div><div style="font-size:10px;color:#888780;">Cofundador · FOODYO SL</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">RocÃ­o De Miguel Valdunciel</div><div style="font-size:10px;color:#888780;">Chief Operations Officer · Business owner & Consultant</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Raul Godia Roca</div><div style="font-size:10px;color:#888780;">Founder · Stealth Startup</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Deh Andre</div><div style="font-size:10px;color:#888780;">Founder & Creative Director at Fresca Yogur Helado · Fresca yogur helado con fruta real</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Francisco Carrillo</div><div style="font-size:10px;color:#888780;">VP of Ingredients · Livoo AB</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">GM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Gabriel Mora</div><div style="font-size:10px;color:#888780;">Cofounder & Chief Researcher · Gleipnir Medical (formerly Real Dea</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Josu Saseta</div><div style="font-size:10px;color:#888780;">Founder · BenelyCare</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Soto</div><div style="font-size:10px;color:#888780;">CEO & Co-Founder · Acumen62i</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Josep Trabal</div><div style="font-size:10px;color:#888780;">Co-Founder · Acuavera</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MT</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Meritxell Ventura Torres</div><div style="font-size:10px;color:#888780;">Sales Manager South Europe · Novameat</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MV</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Marion Vasselle</div><div style="font-size:10px;color:#888780;">Executive Coach & Management Consultant | Talent D</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Marcio Edgar Jacinto Barradas</div><div style="font-size:10px;color:#888780;">CEO and founder · 3D Essence Food</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Arnau Abarca</div><div style="font-size:10px;color:#888780;">Product Manager II, Global Risk Insights · Dow Jones</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JS</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Julio Diez Sanchez</div><div style="font-size:10px;color:#888780;">Co-founder · AIPS-AI Powered Solutions</div></div>
-      <span class="action-badge act-v">Profiled</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AE</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Arnau Rosell Espinosa</div><div style="font-size:10px;color:#888780;">CEO y Co-Fundador · Foodlus</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">KF</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Kevin Forssmann</div><div style="font-size:10px;color:#888780;">Founder · Azada</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Joan Singla MilÃ</div><div style="font-size:10px;color:#888780;">Co-Founder & CEO · HFF Protein</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MM</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Menno Marien</div><div style="font-size:10px;color:#888780;">Chief Executive Officer · Bsure Medical</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JF</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jaume Betrian FatjÃ³</div><div style="font-size:10px;color:#888780;">Co-Founder and CEO · PLESH</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">XA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Xavier Arola</div><div style="font-size:10px;color:#888780;"> · KinEtix Impact</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AD</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Albert DuaigÃ¼es</div><div style="font-size:10px;color:#888780;">CEO y Cofundador · RawData</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">CC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carla Avila Cochs</div><div style="font-size:10px;color:#888780;">Cofundador · Zander Foods</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Maciej Filip Ganczarski</div><div style="font-size:10px;color:#888780;">CEO / Founder · Clean Meal Spain</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">LC</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Liat Cinamon</div><div style="font-size:10px;color:#888780;">Chief Commercial Officer (CCO) · The Mediterranean Food Lab (MFL)</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">DR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Daniel Rio</div><div style="font-size:10px;color:#888780;">CEO · SOSA INGREDIENTS</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AA</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Angelo Abbate</div><div style="font-size:10px;color:#888780;">Deputy CEO · Nutralia Solutions</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JG</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge Gonzalo</div><div style="font-size:10px;color:#888780;">Managing Director and CEO · AGRIFOOD ALTERNATIVE TECHNOLOGIES</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">FB</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Francisco Belisario</div><div style="font-size:10px;color:#888780;">Global Business Intelligence Leader â Senior BI  · Freelance, self-employed</div></div>
-      <span class="action-badge act-c">Connect sent</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">RP</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ricard Puigdemont</div><div style="font-size:10px;color:#888780;">Director de operaciones · Heura Foods</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div><div class="lead-row">
-      <div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">VR</div>
-      <div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">VÃ­ctor GarcÃ­a Reinoso</div><div style="font-size:10px;color:#888780;">GTM Strategy & Business Developer · Ploid AI Biotech</div></div>
-      <span class="action-badge act-m">Messaged</span>
-    </div></div>
-  <div class="footer"><p>Does Recruitment · wouter@doesrecruitment.com</p><p>Week 4 · April 2026 · Confidential</p></div>
-</div></body></html>
+
+  <!-- Dripify R3 stats + leads -->
+  <p class="section-label">Dripify — R3 campaign · Food founders & SaaS · April 2026</p>
+  <div class="two-col" style="margin-bottom:20px;">
+    <div class="card">
+      <p class="section-label" style="margin-bottom:14px;">R3 campaign stats</p>
+      <div class="funnel-item">
+        <span class="funnel-label">Leads sourced</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
+        <span class="funnel-num">53</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:93%; background:#378ADD;"></div></div>
+        <span class="funnel-num">49</span>
+        <span class="funnel-pct">93%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:53%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">26</span>
+        <span class="funnel-pct">53%</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:51%; background:#378ADD;"></div></div>
+        <span class="funnel-num">25</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Replied</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:92%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">23</span>
+        <span class="funnel-pct">92%</span>
+      </div>
+      <div style="background:#EAF3DE; border-radius:6px; padding:10px 12px; margin-top:12px;">
+        <p style="font-size:11px; color:#3B6D11; font-weight:600;">92% reply rate — strongest campaign in programme so far.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p class="section-label" style="margin-bottom:10px;">Total outreach — 3 campaigns</p>
+      <div class="funnel-item">
+        <span class="funnel-label">R1 (food/dairy)</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:19%; background:#888780;"></div></div>
+        <span class="funnel-num">22</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">R2 (food data)</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:37%; background:#378ADD;"></div></div>
+        <span class="funnel-num">44</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">R3 (founders)</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:45%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">53</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Total unique</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#2C2C2A;"></div></div>
+        <span class="funnel-num">~119</span>
+        <span class="funnel-pct">—</span>
+      </div>
+      <p style="font-size:11px; color:#888780; margin-top:10px;">🔥 Hot R3 leads: Guiomar Sánchez (Bioprocesia), Juan Pablo De Giacomi (Innomy), Alejandro Álvarez (Quevana), Ricard Puigdemont (Heura Foods), Damià Villatoro (Qida SaaS)</p>
+    </div>
+  </div>
+
+  <p class="section-label">All R3 leads — 53 food founder & SaaS profiles</p>
+  <div class="card">
+    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">GS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Guiomar Sánchez Carrón 🔥</div><div style="font-size:10px;color:#888780;">Cofundadora y CEO — Bioprocesia</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">JD</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Pablo De Giacomi 🔥</div><div style="font-size:10px;color:#888780;">Co-Founder & CEO — Innomy</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">AA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alejandro Álvarez 🔥</div><div style="font-size:10px;color:#888780;">CEO y Cofundador — Quevana Vegan Cheese</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">RP</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ricard Puigdemont 🔥</div><div style="font-size:10px;color:#888780;">Director de Operaciones — Heura Foods</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#FEF3C7;color:#B45309;">DV</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Damià Villatoro 🔥</div><div style="font-size:10px;color:#888780;">Director of SaaS (ExCo) — Qida</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">PS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo Sánchez-Rey</div><div style="font-size:10px;color:#888780;">Founder & COO — Innomy</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MV</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Meritxell Ventura Torres</div><div style="font-size:10px;color:#888780;">Sales Manager South Europe — Novameat</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">JS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Joan Singla Milà</div><div style="font-size:10px;color:#888780;">Co-Founder & CEO — HFF Protein</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">XA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Xavier Arola</div><div style="font-size:10px;color:#888780;">Managing Director — KinEtix Impact</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AR</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Arnau Rosell Espinosa</div><div style="font-size:10px;color:#888780;">CEO y Co-Fundador — Foodlus</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">KF</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Kevin Forssmann</div><div style="font-size:10px;color:#888780;">Founder — Azada</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Marcio Edgar Jacinto Barradas</div><div style="font-size:10px;color:#888780;">CEO and Founder — 3D Essence Food</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">MV</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Marion Vasselle</div><div style="font-size:10px;color:#888780;">Executive Coach & Management Consultant — Tal</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#E6F1FB;color:#185FA5;">AD</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Albert Duaigües</div><div style="font-size:10px;color:#888780;">CEO y Cofundador — RawData</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">LC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Luis Chimeno Moral</div><div style="font-size:10px;color:#888780;">Director de Operaciones — Oscillum</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">PS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Pablo Sosa Domínguez</div><div style="font-size:10px;color:#888780;">CEO — Oscillum</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">AR</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Alan Iván Ramos</div><div style="font-size:10px;color:#888780;">Founder & CEO — Libre (by Planetary)</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JV</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Javier Viña González</div><div style="font-size:10px;color:#888780;">CEO — Cultiply · Intelligent fermentation</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">RB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Rutger Boterenbrood</div><div style="font-size:10px;color:#888780;">Former Managing Director — Nestlé</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">CM</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carlos Martinez</div><div style="font-size:10px;color:#888780;">Head of Sales Food & Dairy — Nestlé</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">MB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Matteo Breschi</div><div style="font-size:10px;color:#888780;">Founder & CEO — GOURMAX</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">RM</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ricard Martinez Garcia</div><div style="font-size:10px;color:#888780;">BD & Account Manager Europe — Novonesis</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">IA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Ignasi Alegre Segura</div><div style="font-size:10px;color:#888780;">Cofundador — FOODYO SL</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JT</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Josep Trabal</div><div style="font-size:10px;color:#888780;">Co-Founder — Acuavera</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JS</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Juan Soto</div><div style="font-size:10px;color:#888780;">CEO & Co-Founder — Acumen62i</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JB</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jaume Betrian Fatjó</div><div style="font-size:10px;color:#888780;">Co-Founder and CEO — PLESH</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">DR</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Daniel Rio</div><div style="font-size:10px;color:#888780;">CEO — SOSA INGREDIENTS</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">JG</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Jorge Gonzalo</div><div style="font-size:10px;color:#888780;">MD and CEO — AGRIFOOD ALTERNATIVE TECHNOLOGIES</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">AA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Angelo Abbate</div><div style="font-size:10px;color:#888780;">Deputy CEO — Nutralia Solutions</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">MG</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Maciej Filip Ganczarski</div><div style="font-size:10px;color:#888780;">CEO/Founder — Clean Meal Spain</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">LC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Liat Cinamon</div><div style="font-size:10px;color:#888780;">CCO — The Mediterranean Food Lab</div></div><span class="action-badge act-v">Profiled</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">AC</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Adrián Satué Martinez</div><div style="font-size:10px;color:#888780;">Founder — YourTeam.tech</div></div><span class="action-badge act-m">Messaged</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">SG</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Salomon Eduardo Guenun</div><div style="font-size:10px;color:#888780;">Partnerships & Alliances — Tastewise</div></div><span class="action-badge act-c">Connect sent</span></div>
+    <div class="lead-row"><div class="lead-avatar" style="background:#f5f4f0;color:#888780;">CA</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:#1a1a18;">Carla Avila Cochs</div><div style="font-size:10px;color:#888780;">Cofundador — Zander Foods</div></div><span class="action-badge act-v">Profiled</span></div>
+    <p style="font-size:10px; color:#b4b2a9; margin-top:8px;">+ 20 more leads profiled · Full list available in Dripify</p>
+  </div>
+
+  <div class="footer">
+    <p>Does Recruitment · wouter@doesrecruitment.com</p>
+    <p>Week 4 · April 2026 · Confidential</p>
+  </div>
+
+</div>
+</body>
+</html>

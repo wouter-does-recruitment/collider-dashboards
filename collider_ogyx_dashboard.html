@@ -1,231 +1,547 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OGYX — The Collider · CEO Search Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEO OGYX — The Collider · Sourcing Dashboard</title>
 <style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: #f5f4f0;
     color: #1a1a18;
-    -webkit-font-smoothing: antialiased;
     line-height: 1.5;
-    font-size: 14px;
+    padding: 32px 24px;
   }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+  .container { max-width: 1100px; margin: 0 auto; }
 
+  /* Header */
   .header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
-    gap: 20px; flex-wrap: wrap;
+    background: #fff;
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
   }
-  .header-left h1 { font-size: 22px; font-weight: 600; color: #1a1a18; margin: 0 0 4px; letter-spacing: -0.01em; }
-  .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
-  .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
-  .header-left .crumb a { color: #888780; text-decoration: none; }
-  .header-left .crumb a:hover { color: #1a1a18; }
-  .header-right .badge {
-    display: inline-block; background: #EAF3DE; color: #3B6D11;
-    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
-    letter-spacing: 0.02em;
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 18px; }
+  .breadcrumb { font-size: 11px; color: #888780; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; }
+  h1 { font-size: 28px; font-weight: 600; color: #1a1a18; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #6b6a64; }
+  .week-pill {
+    background: #534AB7; color: #fff;
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    white-space: nowrap;
   }
-  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
 
+  /* Notice */
   .notice {
-    background: #EAF3DE; border-left: 3px solid #1D9E75;
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px; margin-bottom: 28px;
-    font-size: 12px; color: #3B6D11;
+    background: #EAF3DE;
+    border-left: 3px solid #1D9E75;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #2a4a1a;
   }
-  .notice strong { color: #1a3a0c; font-weight: 600; }
+  .notice strong { color: #1a1a18; }
 
+  /* Section */
   .section-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
-    color: #888780; margin: 0 0 12px;
+    font-size: 10px; font-weight: 600; color: #888780;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 28px 0 14px 0;
   }
-  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  /* 4-card metric grid */
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
-  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
-  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
-  .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
+  /* Metric grid */
+  .metric-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-bottom: 8px;
+  }
+  .metric-card {
+    background: #f5f4f0;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; }
+  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.amber { color: #BA7517; }
+  .metric-value.purple { color: #534AB7; }
+  .metric-value.muted { color: #888780; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
 
-  /* Two-col layout */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
+  /* Two col card */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px; }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 26px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
 
   /* Funnel */
-  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 0.5px solid #f0ede6;
+  }
   .funnel-item:last-child { border-bottom: none; }
-  .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
+  .funnel-label { font-size: 12px; color: #6b6a64; width: 150px; flex-shrink: 0; }
   .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
-  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
-  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
+  .funnel-bar { height: 100%; border-radius: 3px; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; min-width: 28px; text-align: right; }
+  .funnel-pct { font-size: 11px; color: #888780; min-width: 44px; text-align: right; }
 
-  /* Candidate list */
-  .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; }
-  .cand-card {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 14px; border-radius: 8px;
-    border: 1px solid transparent;
-    transition: background 0.12s;
+  /* Action rows */
+  .action-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 0; border-bottom: 0.5px solid #f0ede6;
   }
-  .cand-card:hover { background: #fafaf6; }
-  .cand-card + .cand-card { margin-top: 4px; }
-  .cand-card.card-signed {
-    border: 1px solid #9FE1CB; background: #f7fdf9;
+  .action-row:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .action-label { font-size: 12px; color: #6b6a64; flex: 1; }
+  .action-num { font-size: 13px; font-weight: 600; color: #1a1a18; }
+  .action-pct { font-size: 11px; color: #1D9E75; margin-left: 6px; }
+
+  /* Monthly trend */
+  .month-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 0.5px solid #f0ede6;
+    font-size: 12px;
   }
-  .cand-card.card-match {
-    border: 1px solid #1D9E75; background: #f0fdf6;
+  .month-row:last-child { border-bottom: none; }
+  .month-row.header {
+    color: #888780;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
-  .cand-card.card-ref {
-    border: 1px solid #A5B4FC; background: #F5F3FF;
+  .month-row.total {
+    border-top: 1px solid #1a1a18;
+    border-bottom: none;
+    padding-top: 12px;
+    margin-top: 4px;
+    font-weight: 600;
+    color: #1a1a18;
+  }
+  .month-name { color: #1a1a18; font-weight: 500; }
+  .month-val { text-align: right; color: #1a1a18; }
+  .month-val.zero { color: #b4b2a9; }
+
+  /* Pipeline */
+  .stage-col {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .stage-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .stage-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .stage-title { font-size: 13px; font-weight: 600; color: #1a1a18; flex: 1; }
+  .stage-count { font-size: 11px; color: #888780; }
+
+  .empty-state {
+    padding: 18px 0;
+    color: #b4b2a9;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* Lead cards */
+  .lead-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .lead-card {
+    background: #fff;
+    border: 1px solid #e8e5dd;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .avatar {
     width: 36px; height: 36px; border-radius: 50%;
+    background: #f5f4f0; color: #6b6a64;
     display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: 600;
     flex-shrink: 0;
+  }
+  .lead-info { flex: 1; min-width: 0; }
+  .lead-name { font-size: 13px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
+  .lead-role { font-size: 11px; color: #6b6a64; line-height: 1.35; }
+  .action-pill {
+    font-size: 10px; font-weight: 600;
+    padding: 3px 9px; border-radius: 10px;
+    white-space: nowrap;
     letter-spacing: 0.02em;
   }
-  .cand-meta { flex: 1; min-width: 0; }
-  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.2; }
-  .cand-sub { font-size: 11px; color: #888780; line-height: 1.4; margin-top: 2px;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .pill {
-    display: inline-block; padding: 3px 9px; border-radius: 4px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
-    white-space: nowrap; flex-shrink: 0;
-  }
-  .cand-link {
-    font-size: 11px; color: #888780; text-decoration: none;
-    white-space: nowrap; flex-shrink: 0; padding-left: 4px;
-  }
-  .cand-link:hover { color: #185FA5; }
-  .cand-empty { text-align: center; padding: 32px; font-size: 12px; color: #888780; font-style: italic; }
+  .pill-msg { background: #EAF3DE; color: #3B6D11; }
+  .pill-connect { background: #E6F1FB; color: #185FA5; }
+  .pill-profile { background: #f5f4f0; color: #888780; }
 
+  /* Project context */
+  .ctx-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 0.5px solid #f0ede6;
+    font-size: 12px;
+  }
+  .ctx-row:last-child { border-bottom: none; }
+  .ctx-label { color: #888780; font-size: 11px; }
+  .ctx-val { color: #1a1a18; line-height: 1.5; }
+  .ctx-val.highlight { background: #EAF3DE; padding: 1px 6px; border-radius: 3px; display: inline; }
+
+  /* Footer */
   .footer {
-    margin-top: 60px; padding-top: 20px;
-    border-top: 0.5px solid #e0ddd6;
-    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    font-size: 11px; color: #888780;
+    text-align: center;
+    padding: 32px 0 8px;
+    font-size: 11px;
+    color: #b4b2a9;
   }
-  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
-  .footer a:hover { color: #1a1a18; }
+  .footer p { margin: 3px 0; }
+  .footer a { color: #888780; text-decoration: none; }
+  .footer a:hover { color: #185FA5; }
 
-  @media (max-width: 768px) {
-    .wrap { padding: 24px 16px 60px; }
-    .metric-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  hr.divider { border: none; border-top: 1px solid #e8e5dd; margin: 24px 0; }
+
+  @media (max-width: 720px) {
+    body { padding: 16px 12px; }
+    .header { padding: 24px 20px; }
+    .card { padding: 18px 20px; }
+    .stage-col { padding: 18px 20px; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
     .two-col { grid-template-columns: 1fr; }
-    .funnel-label { width: 100px; font-size: 11px; }
-    .cand-sub { display: none; }
+    .lead-grid { grid-template-columns: 1fr; }
+    .ctx-row { grid-template-columns: 1fr; gap: 4px; padding: 10px 0; }
+    h1 { font-size: 22px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
+<div class="container">
+
+  <!-- Header -->
   <div class="header">
-    <div class="header-left">
-      <div class="crumb"><a href="index.html">The Collider</a> · CEO Search</div>
-      <h1>OGYX</h1>
-      <p class="focus">Organ-on-chip</p>
-    </div>
-    <div class="header-right">
-      <span class="badge">Week 3 · Live</span>
-      <div class="date">30 Apr 2026</div>
-    </div>
-  </div>
-
-  <div class="notice"><strong>Pipeline build phase.</strong> Outreach not yet started in ATS.</div>
-
-  <div class="metric-grid-4">
-      <div class="metric-card">
-        <div class="metric-label">Total in ATS</div>
-        <div class="metric-value" style="color:#1a1a18;">0</div>
-        <div class="metric-sub">0 dropped</div>
-      </div>      <div class="metric-card">
-        <div class="metric-label">Interviews</div>
-        <div class="metric-value" style="color:#185FA5;">0</div>
-        <div class="metric-sub">Staff & META</div>
-      </div>      <div class="metric-card">
-        <div class="metric-label">Matchmaking</div>
-        <div class="metric-value" style="color:#534AB7;">0</div>
-        <div class="metric-sub">Late stage</div>
-      </div>      <div class="metric-card">
-        <div class="metric-label">Signed / Ready</div>
-        <div class="metric-value" style="color:#888780;">0</div>
-        <div class="metric-sub">Confirmed</div>
+    <div class="header-top">
+      <div>
+        <div class="breadcrumb">The Collider · MWC Barcelona</div>
+        <h1>CEO OGYX — Sourcing Dashboard</h1>
+        <p class="subtitle">OrganoFluidyx Microsystems · LEITAT spin-off · Organ-on-a-Chip · Barcelona</p>
       </div>
+      <span class="week-pill">May 2026 · Build Phase</span>
+    </div>
+
+    <div class="notice">
+      <strong>Status:</strong> Project in early build phase. Dripify outreach kicked off in March 2026 with a small, targeted batch. Manatal pipeline is empty by design — we're validating the message and target profile before scaling sourcing volume.
+    </div>
   </div>
 
+  <!-- KPI Strip -->
+  <p class="section-label">Outreach overview · cumulative since Mar 2026</p>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <p class="metric-label">Invites sent</p>
+      <p class="metric-value blue">7</p>
+      <p class="metric-sub">via Dripify</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Acceptances</p>
+      <p class="metric-value green">4</p>
+      <p class="metric-sub">57% acceptance rate</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Replies</p>
+      <p class="metric-value amber">3</p>
+      <p class="metric-sub">75% reply on accepts</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">In Manatal pipeline</p>
+      <p class="metric-value muted">0</p>
+      <p class="metric-sub">build phase</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Two col: Funnel + Monthly trend -->
   <div class="two-col">
     <div class="card">
-      <p class="section-label">Pipeline by stage</p>
+      <p class="section-label" style="margin-top:0;">Outreach funnel</p>
       <div class="funnel-item">
-        <span class="funnel-label">New</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#888780;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-label">Invites sent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#185FA5;"></div></div>
+        <span class="funnel-num">7</span>
+        <span class="funnel-pct">100%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Full app sent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#BA7517;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-label">Profiles viewed</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:57%; background:#888780;"></div></div>
+        <span class="funnel-num">4</span>
+        <span class="funnel-pct">57%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Shortlisted</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-label">Connects accepted</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:57%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">4</span>
+        <span class="funnel-pct">57%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Interview</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#185FA5;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-label">Messaged</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">3</span>
+        <span class="funnel-pct">43%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Disruptive Talent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-label">Replies received</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43%; background:#BA7517;"></div></div>
+        <span class="funnel-num">3</span>
+        <span class="funnel-pct">43%</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label">Ref check</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#4F46E5;"></div></div>
+        <span class="funnel-label">In Manatal</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#888780;"></div></div>
         <span class="funnel-num">0</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Matchmaking</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">0</span>
-      </div>
-      <div class="funnel-item">
-        <span class="funnel-label">Signed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
-        <span class="funnel-num">0</span>
+        <span class="funnel-pct">—</span>
       </div>
     </div>
+
     <div class="card">
-      <p class="section-label">Quick snapshot</p>
-      <div class="funnel-item"><span class="funnel-label">Total candidates</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1a1a18;"></div></div><span class="funnel-num">0</span></div>
-      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#1D9E75;"></div></div><span class="funnel-num">0</span></div>
-      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#A32D2D;"></div></div><span class="funnel-num">0</span></div>
-      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#534AB7;"></div></div><span class="funnel-num">0</span></div>
+      <p class="section-label" style="margin-top:0;">Monthly activity</p>
+      <div class="month-row header">
+        <div>Month</div>
+        <div class="month-val">Invites</div>
+        <div class="month-val">Accepts</div>
+        <div class="month-val">Msgs</div>
+        <div class="month-val">Replies</div>
+      </div>
+      <div class="month-row">
+        <div class="month-name">Feb 2026</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val zero">0</div>
+      </div>
+      <div class="month-row">
+        <div class="month-name">Mar 2026</div>
+        <div class="month-val">7</div>
+        <div class="month-val">3</div>
+        <div class="month-val">1</div>
+        <div class="month-val">3</div>
+      </div>
+      <div class="month-row">
+        <div class="month-name">Apr 2026</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val">1</div>
+        <div class="month-val">1</div>
+        <div class="month-val zero">0</div>
+      </div>
+      <div class="month-row">
+        <div class="month-name">May 2026</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val zero">0</div>
+        <div class="month-val">1</div>
+        <div class="month-val zero">0</div>
+      </div>
+      <div class="month-row total">
+        <div class="month-name">Total</div>
+        <div class="month-val">7</div>
+        <div class="month-val">4</div>
+        <div class="month-val">3</div>
+        <div class="month-val">3</div>
+      </div>
     </div>
   </div>
 
-  <p class="section-label">Active candidates · sorted by stage</p>
-  <div class="cand-list">
-      <div class="cand-empty">No active candidates yet — sourcing in progress.</div>
+  <hr class="divider">
+
+  <!-- Manatal pipeline -->
+  <p class="section-label">Candidate pipeline — CEO OGYX</p>
+
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#888780;"></div>
+      <span class="stage-title">Stage 1 — New candidates (Manatal)</span>
+      <span class="stage-count">0 candidates</span>
+    </div>
+    <div class="empty-state">No Manatal pipeline data yet — outreach replies are being qualified before adding to ATS.</div>
   </div>
 
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#185FA5;"></div>
+      <span class="stage-title">Stage 4 — Interview</span>
+      <span class="stage-count">0 candidates</span>
+    </div>
+    <div class="empty-state">Pending qualified leads from outreach.</div>
+  </div>
+
+  <div class="stage-col">
+    <div class="stage-header">
+      <div class="stage-dot" style="background:#1D9E75;"></div>
+      <span class="stage-title">Stage 8 — Matchmaking with founders</span>
+      <span class="stage-count">0 candidates</span>
+    </div>
+    <div class="empty-state">No matchmaking sessions scheduled yet.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Outreach leads -->
+  <p class="section-label">Outreach leads — Mar–May 2026</p>
+
+  <div class="lead-grid">
+    <div class="lead-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">IL</div>
+      <div class="lead-info">
+        <div class="lead-name">Ingrid Lansard</div>
+        <div class="lead-role">Head of Commercial &amp; BD · ABCDx SA · Barcelona</div>
+      </div>
+      <span class="action-pill pill-msg">Messaged</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">CV</div>
+      <div class="lead-info">
+        <div class="lead-name">Cynthia Villarroel Spring</div>
+        <div class="lead-role">Innovation &amp; PM Consultant · Freelance · Santiago</div>
+      </div>
+      <span class="action-pill pill-msg">Messaged</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">MR</div>
+      <div class="lead-info">
+        <div class="lead-name">Miguel Russo</div>
+        <div class="lead-role">BD Manager · Programa Centelha · Madrid</div>
+      </div>
+      <span class="action-pill pill-connect">Connect sent</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AO</div>
+      <div class="lead-info">
+        <div class="lead-name">Alfredo Edoardo Ongaro</div>
+        <div class="lead-role">Bio Engineer Biosensors / Microfluidics · Onalabs · Barcelona</div>
+      </div>
+      <span class="action-pill pill-connect">Connect sent</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#f5f4f0; color:#888780;">JA</div>
+      <div class="lead-info">
+        <div class="lead-name">Jaume Amat Riera</div>
+        <div class="lead-role">Founder, CEO &amp; Chairman · Versa Biomedical · Barcelona</div>
+      </div>
+      <span class="action-pill pill-profile">Profile viewed</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#f5f4f0; color:#888780;">BL</div>
+      <div class="lead-info">
+        <div class="lead-name">Betiana Lerner</div>
+        <div class="lead-role">CEO &amp; Co-Founder · 7 Talos · Barcelona</div>
+      </div>
+      <span class="action-pill pill-profile">Profile viewed</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="avatar" style="background:#f5f4f0; color:#888780;">AP</div>
+      <div class="lead-info">
+        <div class="lead-name">Arnau Perdigó-Oliveras</div>
+        <div class="lead-role">CEO · Perdigó Medical · Barcelona</div>
+      </div>
+      <span class="action-pill pill-profile">Profile viewed</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Project context -->
+  <p class="section-label">Project context — OGYX</p>
+
+  <div class="card">
+    <div class="ctx-row">
+      <div class="ctx-label">Product</div>
+      <div class="ctx-val">56-unit microfluidic well-plate for Organ-on-a-Chip applications. Membrane-free, gravity-driven, compatible with standard plate readers.</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Differentiator</div>
+      <div class="ctx-val"><span class="highlight">Solves the "impossible trinity": high-throughput + human-relevant 2D/3D co-culture + cost-effective production — in one platform.</span></div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">IP</div>
+      <div class="ctx-val">Patent published Feb 2024 · WO2024033549</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Validated models</div>
+      <div class="ctx-val">Intestine, cartilage, tendon on-a-chip. Tumor &amp; gut in progress. Liver &amp; kidney in development.</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Early adopters</div>
+      <div class="ctx-val">LEITAT Technological Center · ReadyCell (MedTech Barcelona)</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Pricing</div>
+      <div class="ctx-val">€100 standard plate · €500 customised · On-demand modelling service</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Roadmap</div>
+      <div class="ctx-val">2026: spin-off + mold (€100k) · 2027: first CRO sales contracts · 2027 Q3: HEU + NEOTEC · 2030: &gt;20% OoC market</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Market</div>
+      <div class="ctx-val">TAM €160M (2025) → €1B (2030). FDA April 2025: OoC data valid alternative to animal testing.</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">Founding team</div>
+      <div class="ctx-val">Pooya Azizian (CTO, PhD Mech Eng) · Joan Marc Cabot (PI, PhD Analytical Chem) · Jan Cos (Ventures Manager, LEITAT)</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-label">The offer</div>
+      <div class="ctx-val">Equity + €6k validation stipend + The Collider full venture-building support + Pier 01 coworking</div>
+    </div>
+  </div>
+
+  <!-- Next steps -->
+  <p class="section-label">Next steps</p>
+  <div class="card">
+    <div class="action-row">
+      <div class="action-dot" style="background:#1D9E75;"></div>
+      <span class="action-label">Refine ICP based on the 3 reply signals — convert qualified leads into Manatal</span>
+      <span class="action-num">Week of May 12</span>
+    </div>
+    <div class="action-row">
+      <div class="action-dot" style="background:#185FA5;"></div>
+      <span class="action-label">Scale Dripify volume — second batch (~25 invites) targeting CRO/lab consumables BD profiles</span>
+      <span class="action-num">Mid-May</span>
+    </div>
+    <div class="action-row">
+      <div class="action-dot" style="background:#534AB7;"></div>
+      <span class="action-label">Align with Pooya &amp; Jan Cos on candidate criteria — first matchmaking once 2-3 qualified candidates land</span>
+      <span class="action-num">End of May</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <div class="footer">
-    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 30 Apr 2026</div>
-    <div><a href="index.html">← All projects</a></div>
+    <p>Does Recruitment · <a href="mailto:wouter@doesrecruitment.com">wouter@doesrecruitment.com</a></p>
+    <p>CEO OGYX Dashboard · May 2026 · Confidential · <a href="index.html">← All projects</a></p>
   </div>
 
 </div>

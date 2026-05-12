@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ENDOMET — Resumen de inversión en búsqueda de CEO · The Collider</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+
+  /* Header */
+  .header {
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
+  }
+  .crumb {
+    font-size: 11px; color: #888780; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 8px; font-weight: 600;
+  }
+  h1 { font-size: 26px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { font-size: 13px; color: #5a5a55; margin: 0; max-width: 760px; }
+  .meta {
+    margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: #888780;
+  }
+  .meta-badge {
+    display: inline-block; background: #EAF3DE; color: #3B6D11;
+    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Notice */
+  .notice {
+    background: #EAF3DE; border-left: 3px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin-bottom: 28px;
+    font-size: 13px; color: #1a3a0c; line-height: 1.6;
+  }
+  .notice strong { color: #0d2906; font-weight: 700; }
+
+  /* Section */
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #888780; margin: 32px 0 12px;
+  }
+  .section-label:first-of-type { margin-top: 8px; }
+
+  /* Hero KPIs */
+  .hero-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  .kpi-card {
+    background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
+    padding: 22px 20px;
+    position: relative;
+  }
+  .kpi-card.accent { border-top: 3px solid #1D9E75; }
+  .kpi-card.purple { border-top: 3px solid #534AB7; }
+  .kpi-card.blue { border-top: 3px solid #185FA5; }
+  .kpi-card.amber { border-top: 3px solid #BA7517; }
+  .kpi-num {
+    font-size: 38px; font-weight: 700; line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .kpi-num.green { color: #1D9E75; }
+  .kpi-num.purple { color: #534AB7; }
+  .kpi-num.blue { color: #185FA5; }
+  .kpi-num.amber { color: #BA7517; }
+  .kpi-lbl {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    color: #888780; margin-top: 8px;
+  }
+  .kpi-sub { font-size: 12px; color: #5a5a55; margin-top: 6px; }
+
+  /* Funnel */
+  .funnel { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; margin-bottom: 24px; }
+  .funnel-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-row:last-child { border-bottom: none; }
+  .funnel-stage {
+    font-size: 13px; color: #1a1a18; font-weight: 500;
+    width: 240px; flex-shrink: 0;
+  }
+  .funnel-stage-desc {
+    font-size: 11px; color: #888780; font-weight: 400; margin-top: 2px;
+  }
+  .funnel-bar-wrap {
+    flex: 1; background: #f5f4f0; border-radius: 4px; height: 26px; overflow: hidden;
+    position: relative;
+  }
+  .funnel-bar {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center; padding: 0 12px;
+    color: #fff; font-size: 12px; font-weight: 600;
+    transition: width 0.8s ease;
+  }
+  .funnel-num {
+    font-size: 18px; font-weight: 700; color: #1a1a18;
+    width: 56px; text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .funnel-pct {
+    font-size: 11px; color: #888780; font-weight: 500;
+    width: 50px; text-align: right;
+  }
+
+  /* Candidate cards */
+  .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; margin-bottom: 24px; }
+  .cand-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .cand-card + .cand-card { margin-top: 4px; }
+  .cand-card.match { border: 1px solid #1D9E75; background: #f0fdf6; }
+  .cand-card.ref { border: 1px solid #A5B4FC; background: #F5F3FF; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0;
+  }
+  .cand-meta { flex: 1; min-width: 0; }
+  .cand-name { font-size: 13px; font-weight: 600; color: #1a1a18; line-height: 1.2; }
+  .cand-sub {
+    font-size: 11px; color: #888780; line-height: 1.4; margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .pill {
+    display: inline-block; padding: 3px 9px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Investment summary */
+  .invest-summary {
+    background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
+    padding: 24px 28px; margin-bottom: 24px;
+    border-left: 3px solid #534AB7;
+  }
+  .invest-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: 4px;
+  }
+  .invest-col h4 {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #888780; margin: 0 0 10px;
+  }
+  .invest-col ul { list-style: none; padding: 0; margin: 0; }
+  .invest-col li {
+    font-size: 13px; color: #1a1a18; padding: 4px 0;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .invest-col li:before {
+    content: "▸"; color: #534AB7; font-size: 10px; flex-shrink: 0;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 50px; padding-top: 24px;
+    border-top: 0.5px solid #e0ddd6;
+    font-size: 11px; color: #888780;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .footer strong { color: #5a5a55; }
+
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
+    .hero-kpi { grid-template-columns: repeat(2, 1fr); }
+    .funnel-stage { width: 160px; font-size: 12px; }
+    .invest-grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="crumb">The Collider · MWC Barcelona · Fase de creación de equipo</div>
+    <h1>ENDOMET — Resumen de inversión en la búsqueda del CEO</h1>
+    <p class="sub">Inversión en reclutamiento y pipeline de candidatos para la búsqueda del CEO y Co-Founder de ENDOMET. Documento preparado para la reunión de revisión con la OTRI, mayo de 2026.</p>
+    <div class="meta">
+      <span class="meta-badge">Búsqueda activa · 3 en matchmaking</span>
+      <span>Elaborado por Wouter Jaarsma — Does Recruitment</span>
+      <span>12 de mayo de 2026</span>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Resumen ejecutivo:</strong> Desde febrero de 2026, The Collider ha construido un pipeline cualificado de <strong>80 líderes senior del sector biotech</strong>, procesado <strong>11 candidaturas formales</strong> a través del proceso completo de admisión, realizado <strong>5 entrevistas con el equipo</strong>, y actualmente cuenta con <strong>3 candidatos en fase de matchmaking</strong>, listos para ser evaluados por el equipo del proyecto.
+  </div>
+
+  <p class="section-label">Captación y engagement — Cifras principales</p>
+  <div class="hero-kpi">
+    <div class="kpi-card blue">
+      <div class="kpi-num blue">79</div>
+      <div class="kpi-lbl">Invitaciones de LinkedIn</div>
+      <div class="kpi-sub">Líderes senior del sector biotech</div>
+    </div>
+    <div class="kpi-card accent">
+      <div class="kpi-num green">70%</div>
+      <div class="kpi-lbl">Tasa de aceptación</div>
+      <div class="kpi-sub">55 conexiones aceptadas</div>
+    </div>
+    <div class="kpi-card accent">
+      <div class="kpi-num green">80%</div>
+      <div class="kpi-lbl">Tasa de respuesta</div>
+      <div class="kpi-sub">44 conversaciones activas</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-num purple">3</div>
+      <div class="kpi-lbl">En matchmaking</div>
+      <div class="kpi-sub">Listos para el equipo del proyecto</div>
+    </div>
+  </div>
+
+  <p class="section-label">El embudo completo — Desde la captación hasta el matchmaking</p>
+  <div class="funnel">
+    <div class="funnel-row">
+      <div class="funnel-stage">Leads identificados<div class="funnel-stage-desc">Ejecutivos senior del sector biotech</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#888780;">Sourcing</div></div>
+      <div class="funnel-num">80</div>
+      <div class="funnel-pct">100%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Invitaciones enviadas<div class="funnel-stage-desc">Mensajes personalizados de LinkedIn</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:99%; background:#185FA5;">Contactados</div></div>
+      <div class="funnel-num">79</div>
+      <div class="funnel-pct">99%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Conexiones aceptadas<div class="funnel-stage-desc">Expansión de red de contactos</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:69%; background:#1D9E75;">Aceptados</div></div>
+      <div class="funnel-num">55</div>
+      <div class="funnel-pct">70%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Conversaciones activas<div class="funnel-stage-desc">Diálogos 1-a-1 iniciados</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:55%; background:#1D9E75;">Respondieron</div></div>
+      <div class="funnel-num">44</div>
+      <div class="funnel-pct">56%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Candidaturas formales<div class="funnel-stage-desc">Proceso completo de admisión en Manatal ATS</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14%; background:#BA7517;">Aplicaron</div></div>
+      <div class="funnel-num">11</div>
+      <div class="funnel-pct">14%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">Entrevistas realizadas<div class="funnel-stage-desc">Evaluación en profundidad con The Collider</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6%; background:#534AB7;">Entrevistados</div></div>
+      <div class="funnel-num">5</div>
+      <div class="funnel-pct">6%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-stage">En fase de matchmaking<div class="funnel-stage-desc">Listos para conocer al equipo fundador</div></div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4%; background:#534AB7;">Matchmaking</div></div>
+      <div class="funnel-num">3</div>
+      <div class="funnel-pct">4%</div>
+    </div>
+  </div>
+
+  <p class="section-label">Estrategia de captación — Búsqueda dedicada para ENDOMET</p>
+  <div style="background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px;">
+    <h3 style="font-size: 14px; font-weight: 600; margin: 0 0 6px; color: #1a1a18;">Campaña dedicada de búsqueda · Feb–Abr 2026</h3>
+    <p style="font-size: 12px; color: #888780; margin: 0 0 18px;">Sourcing dirigido a CEOs, fundadores y ejecutivos senior del sector biotech y farmacéutico, con especial enfoque en experiencia en enfermedades raras, medicamentos huérfanos y desarrollo clínico temprano.</p>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;">
+      <div>
+        <div style="font-size: 22px; font-weight: 700; color: #1a1a18; line-height: 1;">79</div>
+        <div style="font-size: 11px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase;">Invitaciones enviadas</div>
+      </div>
+      <div>
+        <div style="font-size: 22px; font-weight: 700; color: #1D9E75; line-height: 1;">55</div>
+        <div style="font-size: 11px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase;">Aceptaciones (70%)</div>
+      </div>
+      <div>
+        <div style="font-size: 22px; font-weight: 700; color: #1a1a18; line-height: 1;">55</div>
+        <div style="font-size: 11px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase;">Mensajes personales</div>
+      </div>
+      <div>
+        <div style="font-size: 22px; font-weight: 700; color: #1D9E75; line-height: 1;">44</div>
+        <div style="font-size: 11px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase;">Respuestas (80%)</div>
+      </div>
+      <div>
+        <div style="font-size: 22px; font-weight: 700; color: #534AB7; line-height: 1;">80</div>
+        <div style="font-size: 11px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase;">Perfiles en base de datos</div>
+      </div>
+    </div>
+    <div style="margin-top: 18px; padding-top: 14px; border-top: 0.5px solid #f0ede6; font-size: 12px; color: #5a5a55; line-height: 1.6;">
+      <strong style="color: #1a1a18;">Calidad sobre cantidad:</strong> las tasas de aceptación (70%) y respuesta (80%) están muy por encima de los benchmarks del sector (30–40% y 20–30% respectivamente), lo que refleja la calidad del targeting y la personalización de cada mensaje.
+    </div>
+  </div>
+
+  <p class="section-label">Pipeline actual — 11 candidatos en Manatal ATS</p>
+  <div class="cand-list">
+    <div class="cand-card match">
+      <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">CA</div>
+      <div class="cand-meta">
+        <div class="cand-name">Cristina Aguilera</div>
+        <div class="cand-sub">CEO &amp; Founder</div>
+      </div>
+      <span class="pill" style="background:#1D9E75; color:#fff;">Matchmaking 1</span>
+    </div>
+    <div class="cand-card match">
+      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">TC</div>
+      <div class="cand-meta">
+        <div class="cand-name">Timothy Cash</div>
+        <div class="cand-sub">Ejecutivo senior biotech</div>
+      </div>
+      <span class="pill" style="background:#1D9E75; color:#fff;">Matchmaking 1</span>
+    </div>
+    <div class="cand-card match">
+      <div class="avatar" style="background:#FEF3C7; color:#92400E;">JD</div>
+      <div class="cand-meta">
+        <div class="cand-name">Dr Jonathan Dando</div>
+        <div class="cand-sub">Hybrid CEO and Co-Founder</div>
+      </div>
+      <span class="pill" style="background:#1D9E75; color:#fff;">Matchmaking 1</span>
+    </div>
+    <div class="cand-card ref">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
+      <div class="cand-meta">
+        <div class="cand-name">Josselin Caradec</div>
+        <div class="cand-sub">Board Observer &amp; Co-Scientific Lead</div>
+      </div>
+      <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Referencias</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#FCE7F3; color:#9D174D;">DR</div>
+      <div class="cand-meta">
+        <div class="cand-name">Dr. Devendra Ridhurkar</div>
+        <div class="cand-sub">CEO &amp; Founder, RidNova Pharmaceuticals</div>
+      </div>
+      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Entrevista</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">LC</div>
+      <div class="cand-meta">
+        <div class="cand-name">Lily Chen</div>
+        <div class="cand-sub">Founding Partner</div>
+      </div>
+      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Entrevista</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">XJ</div>
+      <div class="cand-meta">
+        <div class="cand-name">Xian Weng Jiang</div>
+        <div class="cand-sub">Director of Product Solutions</div>
+      </div>
+      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Entrevista</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#FCE9E0; color:#BA5517;">NJ</div>
+      <div class="cand-meta">
+        <div class="cand-name">Naia Jiménez Polo</div>
+        <div class="cand-sub">Chief Operations Officer</div>
+      </div>
+      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Entrevista</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#FEF3C7; color:#92400E;">AS</div>
+      <div class="cand-meta">
+        <div class="cand-name">Alessandro Scandurra</div>
+        <div class="cand-sub">Business Development Manager</div>
+      </div>
+      <span class="pill" style="background:#FEF3C7; color:#92400E;">Candidatura enviada</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AM</div>
+      <div class="cand-meta">
+        <div class="cand-name">Aitor Martin Garcia</div>
+        <div class="cand-sub">CFO</div>
+      </div>
+      <span class="pill" style="background:#f0ede6; color:#5a5a55;">Nuevo</span>
+    </div>
+    <div class="cand-card">
+      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">BT</div>
+      <div class="cand-meta">
+        <div class="cand-name">Borja Torres Béjar</div>
+        <div class="cand-sub">Grants Consultant</div>
+      </div>
+      <span class="pill" style="background:#f0ede6; color:#5a5a55;">Nuevo</span>
+    </div>
+  </div>
+
+  <p class="section-label">Inversión realizada — En qué se ha invertido tiempo y recursos</p>
+  <div class="invest-summary">
+    <div class="invest-grid">
+      <div class="invest-col">
+        <h4>Sourcing y Captación</h4>
+        <ul>
+          <li>Estrategia de búsqueda booleana personalizada</li>
+          <li>Campaña de Dripify dedicada</li>
+          <li>79 invitaciones de LinkedIn personalizadas</li>
+          <li>55 conversaciones 1-a-1 activas</li>
+          <li>80 perfiles cualificados y documentados</li>
+        </ul>
+      </div>
+      <div class="invest-col">
+        <h4>Screening y Admisión</h4>
+        <ul>
+          <li>11 candidaturas formales procesadas</li>
+          <li>Pipeline personalizado en Manatal</li>
+          <li>5 entrevistas en profundidad realizadas</li>
+          <li>1 referencia profesional verificada</li>
+          <li>Seguimiento y reporting continuos</li>
+        </ul>
+      </div>
+      <div class="invest-col">
+        <h4>Team-fit y Matchmaking</h4>
+        <ul>
+          <li>Evaluaciones de psicología organizacional</li>
+          <li>Análisis de personalidad y química de equipo</li>
+          <li>3 candidatos preparados para matchmaking</li>
+          <li>Briefings y alineación con el equipo del proyecto</li>
+          <li>Soporte y coordinación del programa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice" style="background:#EDE9FE; border-left-color:#534AB7; color:#3a2d6e;">
+    <strong>Situación actual:</strong> tres candidatos de alta calidad están en fase de matchmaking, listos para conocer al equipo fundador de ENDOMET. Un cuarto está en proceso de verificación de referencias. Otros cinco se encuentran en rondas de entrevistas activas. El pipeline está sano, las tasas de conversión están muy por encima de los benchmarks del sector (70% aceptación · 80% respuesta), y la fase de creación de equipo va en línea para entregar un CEO &amp; Co-Founder fuerte para el proyecto.
+  </div>
+
+  <div class="footer">
+    <div>
+      <strong>Does Recruitment</strong> · Wouter Jaarsma — reclutador externo para The Collider · 12 de mayo de 2026<br>
+      Fuentes: Manatal ATS · Campañas de outreach en Dripify · LinkedIn Sales Navigator
+    </div>
+    <div>The Collider · MWC Barcelona</div>
+  </div>
+
+</div>
+</body>
+</html>

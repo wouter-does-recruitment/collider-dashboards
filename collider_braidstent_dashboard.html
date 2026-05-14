@@ -46,20 +46,16 @@
     font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
     color: #888780; margin: 0 0 12px;
   }
-  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  /* 4-card metric grid */
   .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
   .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
 
-  /* Two-col layout */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
 
-  /* Funnel */
   .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
   .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
@@ -67,7 +63,6 @@
   .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
 
-  /* Candidate list */
   .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; }
   .cand-card {
     display: flex; align-items: center; gap: 12px;
@@ -138,29 +133,29 @@
       <p class="focus">Biodegradable ureteral stent</p>
     </div>
     <div class="header-right">
-      <span class="badge">Week 3 · Live</span>
-      <div class="date">30 Apr 2026</div>
+      <span class="badge">Week 4 · Live</span>
+      <div class="date">14 May 2026</div>
     </div>
   </div>
 
-  <div class="notice"><strong>1 in matchmaking.</strong> Closing in on team confirmation.</div>
+  <div class="notice"><strong>1 candidate signed / team ready.</strong> Final stage reached.</div>
 
   <div class="metric-grid-4">
       <div class="metric-card">
         <div class="metric-label">Total in ATS</div>
         <div class="metric-value" style="color:#1a1a18;">6</div>
-        <div class="metric-sub">0 dropped</div>
+        <div class="metric-sub">2 dropped</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Interviews</div>
         <div class="metric-value" style="color:#185FA5;">1</div>
         <div class="metric-sub">Staff & META</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Matchmaking</div>
-        <div class="metric-value" style="color:#534AB7;">1</div>
+        <div class="metric-value" style="color:#534AB7;">0</div>
         <div class="metric-sub">Late stage</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Signed / Ready</div>
-        <div class="metric-value" style="color:#888780;">0</div>
+        <div class="metric-value" style="color:#1D9E75;">1</div>
         <div class="metric-sub">Confirmed</div>
       </div>
   </div>
@@ -170,8 +165,8 @@
       <p class="section-label">Pipeline by stage</p>
       <div class="funnel-item">
         <span class="funnel-label">New</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#888780;"></div></div>
-        <span class="funnel-num">2</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#888780;"></div></div>
+        <span class="funnel-num">0</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Full app sent</span>
@@ -200,33 +195,33 @@
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Matchmaking</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">1</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">0</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Signed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#534AB7;"></div></div>
-        <span class="funnel-num">0</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">1</span>
       </div>
     </div>
     <div class="card">
       <p class="section-label">Quick snapshot</p>
       <div class="funnel-item"><span class="funnel-label">Total candidates</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1a1a18;"></div></div><span class="funnel-num">6</span></div>
-      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1D9E75;"></div></div><span class="funnel-num">6</span></div>
-      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#A32D2D;"></div></div><span class="funnel-num">0</span></div>
-      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:17%; background:#534AB7;"></div></div><span class="funnel-num">1</span></div>
+      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:67%; background:#1D9E75;"></div></div><span class="funnel-num">4</span></div>
+      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:33%; background:#A32D2D;"></div></div><span class="funnel-num">2</span></div>
+      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#534AB7;"></div></div><span class="funnel-num">0</span></div>
     </div>
   </div>
 
   <p class="section-label">Active candidates · sorted by stage</p>
   <div class="cand-list">
-      <div class="cand-card card-match">
+      <div class="cand-card card-signed">
         <div class="avatar" style="background:#E6F1FB; color:#185FA5;">SE</div>
         <div class="cand-meta">
           <div class="cand-name">Szilvia Endrenyi</div>
           <div class="cand-sub">CEO & Co-founder · Rethink Medical S.L.</div>
         </div>
-        <span class="pill" style="background:#0F6E56; color:#ffffff;">Confirmation</span>
+        <span class="pill" style="background:#534AB7; color:#ffffff;">Team Ready</span>
         <a class="cand-link" href="https://app.manatal.com/candidates/140451639" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card card-ref">
@@ -256,28 +251,10 @@
         <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Disruptive Talent</span>
         <a class="cand-link" href="https://app.manatal.com/candidates/139235215" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">FO</div>
-        <div class="cand-meta">
-          <div class="cand-name">Fearghal O'Connor</div>
-          <div class="cand-sub">Doctoral Candidate · Institut Català d'investigació Química (ICIQ)</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/144099881" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">VP</div>
-        <div class="cand-meta">
-          <div class="cand-name">Vincenzo Del Priore</div>
-          <div class="cand-sub">Chief Marketing Officer · G. Del Priore</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/140930725" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
   </div>
 
   <div class="footer">
-    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 30 Apr 2026</div>
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 14 May 2026</div>
     <div><a href="index.html">← All projects</a></div>
   </div>
 

@@ -46,20 +46,16 @@
     font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
     color: #888780; margin: 0 0 12px;
   }
-  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
 
-  /* 4-card metric grid */
   .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
   .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; border: 0.5px solid #e7e3da; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
   .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
 
-  /* Two-col layout */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
 
-  /* Funnel */
   .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
   .funnel-item:last-child { border-bottom: none; }
   .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
@@ -67,7 +63,6 @@
   .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
 
-  /* Candidate list */
   .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; }
   .cand-card {
     display: flex; align-items: center; gap: 12px;
@@ -138,8 +133,8 @@
       <p class="focus">MCSD adsorption devices</p>
     </div>
     <div class="header-right">
-      <span class="badge">Week 3 · Live</span>
-      <div class="date">30 Apr 2026</div>
+      <span class="badge">Week 4 · Live</span>
+      <div class="date">14 May 2026</div>
     </div>
   </div>
 
@@ -149,14 +144,14 @@
       <div class="metric-card">
         <div class="metric-label">Total in ATS</div>
         <div class="metric-value" style="color:#1a1a18;">49</div>
-        <div class="metric-sub">0 dropped</div>
+        <div class="metric-sub">39 dropped</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Interviews</div>
         <div class="metric-value" style="color:#185FA5;">2</div>
         <div class="metric-sub">Staff & META</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Matchmaking</div>
-        <div class="metric-value" style="color:#534AB7;">2</div>
+        <div class="metric-value" style="color:#534AB7;">1</div>
         <div class="metric-sub">Late stage</div>
       </div>      <div class="metric-card">
         <div class="metric-label">Signed / Ready</div>
@@ -170,22 +165,22 @@
       <p class="section-label">Pipeline by stage</p>
       <div class="funnel-item">
         <span class="funnel-label">New</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#888780;"></div></div>
-        <span class="funnel-num">33</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.0%; background:#888780;"></div></div>
+        <span class="funnel-num">0</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Full app sent</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:12.121212121212121%; background:#BA7517;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#BA7517;"></div></div>
         <span class="funnel-num">4</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Shortlisted</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:18.181818181818183%; background:#534AB7;"></div></div>
-        <span class="funnel-num">6</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">1</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Interview</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6.0606060606060606%; background:#185FA5;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#185FA5;"></div></div>
         <span class="funnel-num">2</span>
       </div>
       <div class="funnel-item">
@@ -195,51 +190,42 @@
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Ref check</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:3.0303030303030303%; background:#4F46E5;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#4F46E5;"></div></div>
         <span class="funnel-num">1</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Matchmaking</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6.0606060606060606%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">2</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">1</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label">Signed</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:3.0303030303030303%; background:#534AB7;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#534AB7;"></div></div>
         <span class="funnel-num">1</span>
       </div>
     </div>
     <div class="card">
       <p class="section-label">Quick snapshot</p>
       <div class="funnel-item"><span class="funnel-label">Total candidates</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1a1a18;"></div></div><span class="funnel-num">49</span></div>
-      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%; background:#1D9E75;"></div></div><span class="funnel-num">49</span></div>
-      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0%; background:#A32D2D;"></div></div><span class="funnel-num">0</span></div>
-      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4%; background:#534AB7;"></div></div><span class="funnel-num">2</span></div>
+      <div class="funnel-item"><span class="funnel-label">Active</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:20%; background:#1D9E75;"></div></div><span class="funnel-num">10</span></div>
+      <div class="funnel-item"><span class="funnel-label">Dropped</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:80%; background:#A32D2D;"></div></div><span class="funnel-num">39</span></div>
+      <div class="funnel-item"><span class="funnel-label">Late stage</span><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:2%; background:#534AB7;"></div></div><span class="funnel-num">1</span></div>
     </div>
   </div>
 
   <p class="section-label">Active candidates · sorted by stage</p>
   <div class="cand-list">
       <div class="cand-card card-signed">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">FC</div>
-        <div class="cand-meta">
-          <div class="cand-name">FERNANDO MATÍAS CANALE</div>
-          <div class="cand-sub">Chef de File de España · Sommet des deux Rives – Diálogo 5+5 del Mediterráneo</div>
-        </div>
-        <span class="pill" style="background:#534AB7; color:#ffffff;">Signed</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102644486" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card card-match">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">HM</div>
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">HM</div>
         <div class="cand-meta">
           <div class="cand-name">Hugo Macedo</div>
           <div class="cand-sub">People and Operations Lead · Complear (PT)</div>
         </div>
-        <span class="pill" style="background:#0F6E56; color:#ffffff;">Confirmation</span>
+        <span class="pill" style="background:#534AB7; color:#ffffff;">Team Ready</span>
         <a class="cand-link" href="https://app.manatal.com/candidates/137012740" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card card-match">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">AB</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AB</div>
         <div class="cand-meta">
           <div class="cand-name">Alvaro Montero Bockos</div>
           <div class="cand-sub">Growth Consultant · GrantTree, London, UK</div>
@@ -248,7 +234,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/133627899" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card card-ref">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">DG</div>
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">DG</div>
         <div class="cand-meta">
           <div class="cand-name">David Luis Milia Garrote</div>
           <div class="cand-sub">Chairman/CEO & Board Member · The Canadian Energy & Climate Nexus</div>
@@ -257,7 +243,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/136229581" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">DB</div>
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">DB</div>
         <div class="cand-meta">
           <div class="cand-name">Dana Bernhardt</div>
           <div class="cand-sub">Senior Research Scientist · Pack2Earth (Spain)</div>
@@ -266,7 +252,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/136050083" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">SS</div>
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">SS</div>
         <div class="cand-meta">
           <div class="cand-name">Sami Rtimi Sboui</div>
           <div class="cand-sub">Lead Consultant · DROP Innovations, Barcelona</div>
@@ -275,34 +261,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/127539613" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">DF</div>
-        <div class="cand-meta">
-          <div class="cand-name">Dara Forouzan</div>
-          <div class="cand-sub">Market Analyst · Strategic Directions International (SDi)</div>
-        </div>
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/133721109" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">DD</div>
-        <div class="cand-meta">
-          <div class="cand-name">Deniss Davodov</div>
-          <div class="cand-sub">Chief Executive Officer · DENERGI OÜ</div>
-        </div>
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102968170" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">GT</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ganna Tymko</div>
-          <div class="cand-sub">Founder and CEO · STEALTH STARTUP</div>
-        </div>
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/100992431" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">GG</div>
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">GG</div>
         <div class="cand-meta">
           <div class="cand-name">Gonzaga Mestre Galofré</div>
           <div class="cand-sub">CEO · Technotex</div>
@@ -311,25 +270,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/101284079" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">PQ</div>
-        <div class="cand-meta">
-          <div class="cand-name">Pablo Quintero</div>
-          <div class="cand-sub">Senior Product Manager · Qualifyze</div>
-        </div>
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101300344" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">RL</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ronen Lamdan</div>
-          <div class="cand-sub">CEO | MANAGING DIRECTOR</div>
-        </div>
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">Shortlisted</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103914057" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AA</div>
+        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">AA</div>
         <div class="cand-meta">
           <div class="cand-name">Arian Avato</div>
           <div class="cand-sub">CEO · Smart.e (early-stage startup)</div>
@@ -338,7 +279,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/131743905" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">GB</div>
+        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">GB</div>
         <div class="cand-meta">
           <div class="cand-name">Guillaume Belhaj</div>
           <div class="cand-sub">CEO/Co-Founder · Bayer Co.Lab</div>
@@ -347,7 +288,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/102542055" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">LG</div>
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">LG</div>
         <div class="cand-meta">
           <div class="cand-name">Lakshay Garg</div>
           <div class="cand-sub">Global CEO Office - Growth Strategy · Square Panda</div>
@@ -356,7 +297,7 @@
         <a class="cand-link" href="https://app.manatal.com/candidates/135894775" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
       <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">LL</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">LL</div>
         <div class="cand-meta">
           <div class="cand-name">Laura Garcia Laguna</div>
           <div class="cand-sub">Co fundadora y asesora legal · Hansel Digital SL</div>
@@ -364,307 +305,10 @@
         <span class="pill" style="background:#FEF3C7; color:#92400E;">Full app</span>
         <a class="cand-link" href="https://app.manatal.com/candidates/131348630" target="_blank" rel="noopener">Manatal ↗</a>
       </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AS</div>
-        <div class="cand-meta">
-          <div class="cand-name">Adalberto Stenti</div>
-          <div class="cand-sub">Head of Digital Products and Services · BeDisruptive</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102830477" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AC</div>
-        <div class="cand-meta">
-          <div class="cand-name">Aitor Marieges Castella</div>
-          <div class="cand-sub">Independent consultant · Barcelona</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103498261" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">AE</div>
-        <div class="cand-meta">
-          <div class="cand-name">Alexander Euler</div>
-          <div class="cand-sub">Managing Director, Middle East & South Asia · Hydraloop</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/145250065" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">AF</div>
-        <div class="cand-meta">
-          <div class="cand-name">Alexandre Bartolini French</div>
-          <div class="cand-sub">—</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/87018955" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AT</div>
-        <div class="cand-meta">
-          <div class="cand-name">Alfonso Tomé</div>
-          <div class="cand-sub">Head of Revenue · Kubide Tech Builder</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103446236" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">AA</div>
-        <div class="cand-meta">
-          <div class="cand-name">Anand Ambekar</div>
-          <div class="cand-sub">Director, Product Strategy · Bridgestone Mobility Solutions</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101966945" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">AG</div>
-        <div class="cand-meta">
-          <div class="cand-name">Arthur Gartvikh</div>
-          <div class="cand-sub">Head of PMO | Delivery Director · Leviathan Security Group</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/130659945" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">CV</div>
-        <div class="cand-meta">
-          <div class="cand-name">Carlos Seoane Veiga</div>
-          <div class="cand-sub">Multibrand Program Manager / Sales Manager - Service · SIEMENS GAMESA</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101237595" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">CT</div>
-        <div class="cand-meta">
-          <div class="cand-name">Christoph Teufel</div>
-          <div class="cand-sub">“Interim” COO & Senior Consultant · Magister Doskar</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/132132218" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">DA</div>
-        <div class="cand-meta">
-          <div class="cand-name">Davide</div>
-          <div class="cand-sub">Regional Sales Manager Italy & Middle East & Africa Regions · Mobile Industrial Robots (Teradyne Robotics)</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102713660" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">DM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Diogo Marta</div>
-          <div class="cand-sub">AI PRODUCT MANAGER · Smartex.ai</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102516030" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">EM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ehab Usama Mohamed</div>
-          <div class="cand-sub">CEO · Chitosan Egypt</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/139451139" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">EM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Enrique Gomez Martin</div>
-          <div class="cand-sub">Plant Manager · Air Liquide</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/139437970" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">GB</div>
-        <div class="cand-meta">
-          <div class="cand-name">Gabriel Bestard</div>
-          <div class="cand-sub">CEO of StarUps: Advanced Therapeutics · Leitat Technological Center</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102644495" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">GC</div>
-        <div class="cand-meta">
-          <div class="cand-name">Gabriel Cardon</div>
-          <div class="cand-sub">CTO & co-owner · Anto.info</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/104602634" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">IM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ii Meandr-Pendragon</div>
-          <div class="cand-sub">Startup Investment Relationship Manager · VC Score</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103807654" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">IM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ii Meandr-Pendragon</div>
-          <div class="cand-sub">Startup Investment Relationship Manager · VC Score</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103807591" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">IA</div>
-        <div class="cand-meta">
-          <div class="cand-name">Ildefons Magrans de Abril</div>
-          <div class="cand-sub">Freelance, remote · enQ, Inc.</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103521840" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">JO</div>
-        <div class="cand-meta">
-          <div class="cand-name">James O'Brien</div>
-          <div class="cand-sub">Senior Product Manager (Contract) · Amazon</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/137008753" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">JC</div>
-        <div class="cand-meta">
-          <div class="cand-name">Jon Ching</div>
-          <div class="cand-sub">asset manager · Dynamic Portfolio Management</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/102716783" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">JM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Juan Moreno</div>
-          <div class="cand-sub">Managing Director, Strategy and Corporate Development · LA FARGA yourcoppersolutions</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/104271481" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">LB</div>
-        <div class="cand-meta">
-          <div class="cand-name">Leire Barandiaran</div>
-          <div class="cand-sub">MSAT Scientist · Viralgen Vector Core</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101292344" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">MB</div>
-        <div class="cand-meta">
-          <div class="cand-name">MARIO IGUAL BUENO</div>
-          <div class="cand-sub">International Business Developer & Product Manager · BDR Thermea Group</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101593873" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">MP</div>
-        <div class="cand-meta">
-          <div class="cand-name">Mainak Patra</div>
-          <div class="cand-sub">SCIENTIFIC RESEARCHER · Okinawa Institute of Science and Technology (OIST)</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/101733916" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">NM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Nassif Ben El Mekroud</div>
-          <div class="cand-sub">Fundador y Director · POV SOLUTIONS AI</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/104302142" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">NK</div>
-        <div class="cand-meta">
-          <div class="cand-name">Nicolas de Kerchove</div>
-          <div class="cand-sub">Co-founder and Business Development · Fire Falcom</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/104483677" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">PP</div>
-        <div class="cand-meta">
-          <div class="cand-name">Pamela Alejandra Pardini</div>
-          <div class="cand-sub">Project Manager · Mapsi Photonics</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/134829405" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FEF3C7; color:#92400E;">RM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Raúl Hernández moral</div>
-          <div class="cand-sub">Inventor · ASOCIACIÓN CLUB DE INVENTORES ESPAÑOLES</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/99905481" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">RD</div>
-        <div class="cand-meta">
-          <div class="cand-name">Roger Pallares Danti</div>
-          <div class="cand-sub">CEO & Investor · ONIGAL | SFO private equity & assets</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/133716289" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">RC</div>
-        <div class="cand-meta">
-          <div class="cand-name">Rotem Cohen</div>
-          <div class="cand-sub">CEO · Israeli Coastal and Marine Engineering Research Institute (CAMERI)</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103331981" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">RM</div>
-        <div class="cand-meta">
-          <div class="cand-name">Rudolf Moos</div>
-          <div class="cand-sub">Freelancer</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/103772561" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">SA</div>
-        <div class="cand-meta">
-          <div class="cand-name">Salvador</div>
-          <div class="cand-sub">CEO & Founder · UEPFLY – Regional Passenger Airline in Baleares, Spain</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/141874649" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
-      <div class="cand-card">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">VE</div>
-        <div class="cand-meta">
-          <div class="cand-name">Valentin Eremin</div>
-          <div class="cand-sub">Fellow · Sigma Squared Society</div>
-        </div>
-        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-        <a class="cand-link" href="https://app.manatal.com/candidates/138543544" target="_blank" rel="noopener">Manatal ↗</a>
-      </div>
   </div>
 
   <div class="footer">
-    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 30 Apr 2026</div>
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 14 May 2026</div>
     <div><a href="index.html">← All projects</a></div>
   </div>
 

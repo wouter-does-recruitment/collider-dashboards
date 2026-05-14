@@ -1,284 +1,358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Applicant Insights — Week 2</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Applicant Insights — The Collider · Week 4</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 32px; font-size: 13px; }
-  .page { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 36px 40px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
 
-  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
-  .header-left h1 { font-size: 20px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
-  .header-left p { font-size: 12px; color: #888780; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: #E6F1FB; color: #185FA5; }
+  .header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .header-left h1 { font-size: 22px; font-weight: 600; color: #1a1a18; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
+  .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .header-left .crumb a { color: #888780; text-decoration: none; }
+  .header-right .badge {
+    display: inline-block; background: #EAF3DE; color: #3B6D11;
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+  }
+  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
 
-  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 24px; font-size: 12px; color: #3B6D11; }
-  .notice strong { color: #0F6E56; }
+  .notice {
+    background: #EAF3DE; border-left: 3px solid #1D9E75;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px; margin-bottom: 28px;
+    font-size: 12px; color: #3B6D11;
+  }
+  .notice strong { color: #1a3a0c; font-weight: 600; }
 
-  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin-bottom: 12px; }
-  .divider { border: none; border-top: 0.5px solid #e0ddd6; margin: 28px 0; }
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+    color: #888780; margin: 28px 0 12px;
+  }
 
-  .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .metric-card { background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }
-  .metric-label { font-size: 11px; color: #888780; margin-bottom: 4px; }
-  .metric-value { font-size: 26px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; }
+  .metric-card.signature { border-top: 3px solid #534AB7; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+  .metric-value { font-size: 30px; font-weight: 600; line-height: 1; color: #1a1a18; }
   .metric-value.green { color: #1D9E75; }
+  .metric-value.purple { color: #534AB7; }
   .metric-value.blue { color: #185FA5; }
-  .metric-sub { font-size: 11px; color: #888780; margin-top: 3px; }
-  .wow { font-size: 11px; font-weight: 600; color: #1D9E75; margin-top: 3px; }
-  .wow.nc { color: #888780; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 10px; padding: 16px 18px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 0; }
+  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
+  .card h3 { font-size: 13px; font-weight: 600; margin: 0 0 14px; color: #1a1a18; }
 
-  .bar-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0ede6; }
-  .bar-row:last-child { border-bottom: none; }
-  .bar-label { font-size: 12px; color: #1a1a18; width: 160px; flex-shrink: 0; }
-  .bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 3px; }
-  .bar-num { font-size: 12px; font-weight: 600; color: #1a1a18; min-width: 28px; text-align: right; }
-  .bar-pct { font-size: 11px; color: #888780; min-width: 36px; text-align: right; }
+  .funnel-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
+  .funnel-item:last-child { border-bottom: none; }
+  .funnel-label { font-size: 12px; color: #1a1a18; flex-shrink: 0; }
+  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
+  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 30px; text-align: right; }
 
-  .pill-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
-  .pill { font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
-  .pill-blue { background: #E6F1FB; color: #185FA5; }
-  .pill-green { background: #EAF3DE; color: #3B6D11; }
-  .pill-amber { background: #FAEEDA; color: #BA7517; }
-  .pill-purple { background: #EEEDFE; color: #534AB7; }
-  .pill-gray { background: #f5f4f0; color: #5F5E5A; }
+  /* Submissions chart */
+  .week-chart { display: flex; align-items: flex-end; gap: 6px; height: 95px; padding-bottom: 8px; }
+  .week-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+  .week-bar { width: 100%; max-width: 30px; min-height: 3px; background: linear-gradient(180deg, #1D9E75, #0F6E56); border-radius: 2px 2px 0 0; }
+  .week-num { font-size: 10px; font-weight: 600; color: #1a1a18; margin-top: 4px; }
+  .week-label { font-size: 9px; color: #888780; margin-top: 2px; white-space: nowrap; }
 
-  .wow-table { width: 100%; border-collapse: collapse; }
-  .wow-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; padding: 0 0 8px; border-bottom: 0.5px solid #e0ddd6; }
-  .wow-table th:not(:first-child) { text-align: right; }
-  .wow-table td { padding: 8px 0; font-size: 12px; border-bottom: 0.5px solid #f0ede6; }
-  .wow-table tr:last-child td { border-bottom: none; }
-  .wow-table td:not(:first-child) { text-align: right; }
-  .metric-name { font-weight: 500; color: #1a1a18; }
-  .up { color: #1D9E75; font-weight: 600; }
-  .nc { color: #888780; }
+  .footer {
+    margin-top: 50px; padding-top: 20px;
+    border-top: 0.5px solid #e0ddd6;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-size: 11px; color: #888780;
+  }
+  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
 
-  .month-bars { display: flex; align-items: flex-end; gap: 16px; height: 80px; margin-bottom: 10px; }
-  .month-bar-group { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
-  .month-bar { border-radius: 2px 2px 0 0; width: 100%; }
-  .month-lbl { font-size: 10px; color: #888780; }
-  .month-val { font-size: 11px; font-weight: 600; color: #1a1a18; }
-
-  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #e0ddd6; display: flex; justify-content: space-between; }
-  .footer p { font-size: 11px; color: #b4b2a9; }
-
-  @media print {
-    body { background: #fff; padding: 0; }
-    .page { box-shadow: none; border-radius: 0; padding: 24px 28px; }
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="wrap">
 
   <div class="header">
     <div class="header-left">
-      <h1>Applicant Insights — Founder & Leadership Questionnaire</h1>
-      <p>The Collider Programme · Mobile World Capital · Does Recruitment</p>
+      <div class="crumb"><a href="index.html">The Collider</a> · Applicant Insights</div>
+      <h1>Applicant Insights</h1>
+      <p class="focus">Founder &amp; Leadership Questionnaire — 81 application form responses</p>
     </div>
-    <div style="text-align:right;">
-      <div class="badge">Week 2 · March 2026</div>
-      <p style="font-size:11px; color:#b4b2a9; margin-top:6px;">Wouter Jaarsma</p>
+    <div class="header-right">
+      <span class="badge">Week 4 · Live</span>
+      <div class="date">14 May 2026</div>
     </div>
   </div>
 
-  <div class="notice">
-    <strong>+3 new responses this week.</strong> Total grew from 62 (Week 1) to 65 (Week 2). Responses span January–March 2026. Quality profile remains strong — 86% have founded before, 88% have tech transfer experience.
-  </div>
+  <div class="notice"><strong>Up from 65 to 81 responses</strong> since Week 2. 22 applicants (27%) are now in an active project pipeline. Founder background, tech-transfer experience and full-time commitment remain strong across the pool.</div>
 
-  <p class="section-label">Overall — application form responses</p>
-  <div class="metric-grid-4">
-    <div class="metric-card">
-      <p class="metric-label">Total responses</p>
-      <p class="metric-value green">65</p>
-      <p class="wow">↑ +3 vs Week 1 (62)</p>
-    </div>
-    <div class="metric-card">
-      <p class="metric-label">Founded a company</p>
-      <p class="metric-value">86%</p>
-      <p class="metric-sub">56 of 65 respondents</p>
+  <p class="section-label">Headline numbers</p>
+  <div class="metric-grid">
+    <div class="metric-card signature">
+      <div class="metric-label">Total responses</div>
+      <div class="metric-value purple">81</div>
+      <div class="metric-sub">Up from 65 in Week 2</div>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Tech transfer exp.</p>
-      <p class="metric-value">88%</p>
-      <p class="metric-sub">57 of 65 respondents</p>
+      <div class="metric-label">Founder background</div>
+      <div class="metric-value green">79%</div>
+      <div class="metric-sub">64 have founded or co-founded</div>
     </div>
     <div class="metric-card">
-      <p class="metric-label">Right to work Spain</p>
-      <p class="metric-value blue">92%</p>
-      <p class="metric-sub">60 of 65 respondents</p>
+      <div class="metric-label">Fundraising experience</div>
+      <div class="metric-value green">84%</div>
+      <div class="metric-sub">68 raised grants, equity, or both</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">In active pipeline</div>
+      <div class="metric-value blue">22</div>
+      <div class="metric-sub">27% matched to a Collider project</div>
     </div>
   </div>
 
-  <p class="section-label">Week-over-week comparison</p>
-  <div class="card" style="margin-bottom:24px;">
-    <table class="wow-table">
-      <thead>
-        <tr><th>Metric</th><th>Week 1</th><th>Week 2</th><th>Change</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="metric-name">Total responses</td><td>62</td><td>65</td><td class="up">↑ +3</td></tr>
-        <tr><td class="metric-name">Founded a company</td><td>~84%</td><td>86%</td><td class="up">↑ +2pp</td></tr>
-        <tr><td class="metric-name">Raised funds (any type)</td><td>~89%</td><td>92%</td><td class="up">↑ +3pp</td></tr>
-        <tr><td class="metric-name">Tech transfer experience</td><td>~87%</td><td>88%</td><td class="up">↑ +1pp</td></tr>
-        <tr><td class="metric-name">Prefers CEO / Business lead role</td><td>~76%</td><td>78%</td><td class="up">↑ +2pp</td></tr>
-        <tr><td class="metric-name">Full-time availability</td><td>~56%</td><td>58%</td><td class="up">↑ +2pp</td></tr>
-        <tr><td class="metric-name">Available immediately or within 1 month</td><td>~79%</td><td>80%</td><td class="up">↑ +1pp</td></tr>
-        <tr><td class="metric-name">Willing to relocate</td><td>~74%</td><td>75%</td><td class="nc">→ stable</td></tr>
-        <tr><td class="metric-name">Spanish — Excellent level</td><td>~69%</td><td>71%</td><td class="up">↑ +2pp</td></tr>
-        <tr><td class="metric-name">Right to work in Spain</td><td>~91%</td><td>92%</td><td class="nc">→ stable</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p class="section-label">Responses by month</p>
-  <div class="card" style="margin-bottom:24px;">
-    <div class="month-bars">
-      <div class="month-bar-group">
-        <div class="month-bar" style="background:#378ADD; height:80px;"></div>
-        <span class="month-lbl">Jan 2026</span>
-        <span class="month-val">32</span>
-      </div>
-      <div class="month-bar-group">
-        <div class="month-bar" style="background:#378ADD; height:53px;"></div>
-        <span class="month-lbl">Feb 2026</span>
-        <span class="month-val">21</span>
-      </div>
-      <div class="month-bar-group">
-        <div class="month-bar" style="background:#1D9E75; height:30px;"></div>
-        <span class="month-lbl">Mar 2026 ✦</span>
-        <span class="month-val">12</span>
-      </div>
+  <p class="section-label">Programme readiness</p>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="metric-label">Full-time commitment</div>
+      <div class="metric-value">74%</div>
+      <div class="metric-sub">42 full-time + 18 4+ days/week</div>
     </div>
-    <p style="font-size:10px; color:#b4b2a9;">✦ March still open — campaign ongoing. Peak in January driven by ONAKids and Sorbmetrics launch.</p>
+    <div class="metric-card">
+      <div class="metric-label">Tech-transfer experience</div>
+      <div class="metric-value">79%</div>
+      <div class="metric-sub">64 worked with research labs / TTOs</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Right to work in Spain</div>
+      <div class="metric-value">86%</div>
+      <div class="metric-sub">70 no visa sponsorship needed</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Strong Spanish</div>
+      <div class="metric-value">74%</div>
+      <div class="metric-sub">53 excellent + 7 advanced</div>
+    </div>
   </div>
 
-  <hr class="divider">
+  <p class="section-label">Sector experience · top areas</p>
+  <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Health / Biotech / Life Sciences</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">51</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Materials / Manufacturing / Industry</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66.66666666666666%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">34</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Energy / Climate / Resources</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:49.01960784313725%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">25</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Chips / Computing / AI</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43.13725490196079%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">22</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Robotics / Autonomous Systems</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:23.52941176470588%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">12</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Space / Connectivity / Security</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:17.647058823529413%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">9</span>
+      </div>
+  </div>
 
-  <p class="section-label">Founder profile</p>
+  <p class="section-label">Functional experience · top skills mentioned</p>
+  <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Business strategy and company building</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#185FA5;"></div></div>
+        <span class="funnel-num">72</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Sales / Business development / Partnerships</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:87.5%; background:#185FA5;"></div></div>
+        <span class="funnel-num">63</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Fundraising / Investor relations</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:81.94444444444444%; background:#185FA5;"></div></div>
+        <span class="funnel-num">59</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Operations / Implementation / Pilots</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:73.61111111111111%; background:#185FA5;"></div></div>
+        <span class="funnel-num">53</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Product management / Tech leadership</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66.66666666666666%; background:#185FA5;"></div></div>
+        <span class="funnel-num">48</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:240px;">Regulatory / Clinical / Quality</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:40.27777777777778%; background:#185FA5;"></div></div>
+        <span class="funnel-num">29</span>
+      </div>
+  </div>
+
+  <div style="height:24px;"></div>
+
   <div class="two-col">
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Founding & fundraising experience</p>
-      <div class="bar-row"><span class="bar-label">Founded a company</span><div class="bar-wrap"><div class="bar-fill" style="width:86%; background:#1D9E75;"></div></div><span class="bar-num">56</span><span class="bar-pct">86%</span></div>
-      <div class="bar-row"><span class="bar-label">Tech transfer exp.</span><div class="bar-wrap"><div class="bar-fill" style="width:88%; background:#1D9E75;"></div></div><span class="bar-num">57</span><span class="bar-pct">88%</span></div>
-      <div class="bar-row"><span class="bar-label">Raised equity + grants</span><div class="bar-wrap"><div class="bar-fill" style="width:43%; background:#534AB7;"></div></div><span class="bar-num">28</span><span class="bar-pct">43%</span></div>
-      <div class="bar-row"><span class="bar-label">Raised equity only</span><div class="bar-wrap"><div class="bar-fill" style="width:25%; background:#378ADD;"></div></div><span class="bar-num">16</span><span class="bar-pct">25%</span></div>
-      <div class="bar-row"><span class="bar-label">Raised grants only</span><div class="bar-wrap"><div class="bar-fill" style="width:25%; background:#BA7517;"></div></div><span class="bar-num">16</span><span class="bar-pct">25%</span></div>
-      <div class="bar-row"><span class="bar-label">No fundraising</span><div class="bar-wrap"><div class="bar-fill" style="width:8%; background:#E24B4A;"></div></div><span class="bar-num">5</span><span class="bar-pct">8%</span></div>
+    <div>
+      <p class="section-label" style="margin-top:0;">Natural role in early-stage venture</p>
+      <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">CEO / Business lead</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">59</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">CTO / Technology Lead</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:11.864406779661017%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">7</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">COO / Execution lead</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:10.16949152542373%; background:#BA7517;"></div></div>
+        <span class="funnel-num">6</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">CCO / Commercial lead</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.084745762711865%; background:#185FA5;"></div></div>
+        <span class="funnel-num">3</span>
+      </div>
+      </div>
     </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Role preference</p>
-      <div class="bar-row"><span class="bar-label">CEO / Business lead</span><div class="bar-wrap"><div class="bar-fill" style="width:78%; background:#185FA5;"></div></div><span class="bar-num">51</span><span class="bar-pct">78%</span></div>
-      <div class="bar-row"><span class="bar-label">COO / Execution</span><div class="bar-wrap"><div class="bar-fill" style="width:9%; background:#888780;"></div></div><span class="bar-num">6</span><span class="bar-pct">9%</span></div>
-      <div class="bar-row"><span class="bar-label">CTO / Technology</span><div class="bar-wrap"><div class="bar-fill" style="width:9%; background:#888780;"></div></div><span class="bar-num">6</span><span class="bar-pct">9%</span></div>
-      <div class="bar-row"><span class="bar-label">CCO / Commercial</span><div class="bar-wrap"><div class="bar-fill" style="width:3%; background:#888780;"></div></div><span class="bar-num">2</span><span class="bar-pct">3%</span></div>
-      <div style="border-top:0.5px solid #f0ede6; margin-top:12px; padding-top:12px;">
-        <p class="section-label" style="margin-bottom:10px;">Dominant edge</p>
-        <div class="bar-row"><span class="bar-label">Catalyst (vision)</span><div class="bar-wrap"><div class="bar-fill" style="width:49%; background:#534AB7;"></div></div><span class="bar-num">32</span><span class="bar-pct">49%</span></div>
-        <div class="bar-row"><span class="bar-label">Builder (execution)</span><div class="bar-wrap"><div class="bar-fill" style="width:38%; background:#378ADD;"></div></div><span class="bar-num">25</span><span class="bar-pct">38%</span></div>
-        <div class="bar-row"><span class="bar-label">Commercial driver</span><div class="bar-wrap"><div class="bar-fill" style="width:6%; background:#BA7517;"></div></div><span class="bar-num">4</span><span class="bar-pct">6%</span></div>
-        <div class="bar-row"><span class="bar-label">Domain expert</span><div class="bar-wrap"><div class="bar-fill" style="width:6%; background:#1D9E75;"></div></div><span class="bar-num">4</span><span class="bar-pct">6%</span></div>
+    <div>
+      <p class="section-label" style="margin-top:0;">Founding edge — dominant strength</p>
+      <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">Catalyst</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">35</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">Builder</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:85.71428571428571%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">30</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">Commercial driver</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14.285714285714285%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">5</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:200px;">Domain expert</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14.285714285714285%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">5</span>
+      </div>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
+  <div style="height:24px;"></div>
 
-  <p class="section-label">Availability & logistics</p>
   <div class="two-col">
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Commitment level</p>
-      <div class="bar-row"><span class="bar-label">Full-time</span><div class="bar-wrap"><div class="bar-fill" style="width:58%; background:#1D9E75;"></div></div><span class="bar-num">38</span><span class="bar-pct">58%</span></div>
-      <div class="bar-row"><span class="bar-label">4 days / week</span><div class="bar-wrap"><div class="bar-fill" style="width:25%; background:#378ADD;"></div></div><span class="bar-num">16</span><span class="bar-pct">25%</span></div>
-      <div class="bar-row"><span class="bar-label">Part-time / flexible</span><div class="bar-wrap"><div class="bar-fill" style="width:17%; background:#BA7517;"></div></div><span class="bar-num">11</span><span class="bar-pct">17%</span></div>
-      <div style="border-top:0.5px solid #f0ede6; margin-top:12px; padding-top:12px;">
-        <p class="section-label" style="margin-bottom:10px;">Start timing</p>
-        <div class="bar-row"><span class="bar-label">Immediately</span><div class="bar-wrap"><div class="bar-fill" style="width:57%; background:#1D9E75;"></div></div><span class="bar-num">37</span><span class="bar-pct">57%</span></div>
-        <div class="bar-row"><span class="bar-label">Within 1 month</span><div class="bar-wrap"><div class="bar-fill" style="width:23%; background:#378ADD;"></div></div><span class="bar-num">15</span><span class="bar-pct">23%</span></div>
-        <div class="bar-row"><span class="bar-label">Within 3 months</span><div class="bar-wrap"><div class="bar-fill" style="width:12%; background:#BA7517;"></div></div><span class="bar-num">8</span><span class="bar-pct">12%</span></div>
-        <div class="bar-row"><span class="bar-label">Other / TBD</span><div class="bar-wrap"><div class="bar-fill" style="width:8%; background:#888780;"></div></div><span class="bar-num">5</span><span class="bar-pct">8%</span></div>
+    <div>
+      <p class="section-label" style="margin-top:0;">Pipeline allocation · matched to projects</p>
+      <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">ENDOMET</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:75.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">6</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">OPTICmizing</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:62.5%; background:#534AB7;"></div></div>
+        <span class="funnel-num">5</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">ONAKids</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">8</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">GridWatch</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">OGYX</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+        <div style="margin-top:14px; padding-top:14px; border-top:0.5px solid #f0ede6; font-size:11px; color:#888780; line-height:1.6;">
+          <strong style="color:#1a1a18;">22 of 81 applicants (27%)</strong> are now actively in a Collider project pipeline. The remaining 59 are in the broader talent pool for upcoming projects or under evaluation.
+        </div>
       </div>
     </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Work rights & relocation</p>
-      <div class="bar-row"><span class="bar-label">Right to work Spain</span><div class="bar-wrap"><div class="bar-fill" style="width:92%; background:#1D9E75;"></div></div><span class="bar-num">60</span><span class="bar-pct">92%</span></div>
-      <div class="bar-row"><span class="bar-label">Needs visa</span><div class="bar-wrap"><div class="bar-fill" style="width:6%; background:#E24B4A;"></div></div><span class="bar-num">4</span><span class="bar-pct">6%</span></div>
-      <div class="bar-row"><span class="bar-label">Willing to relocate</span><div class="bar-wrap"><div class="bar-fill" style="width:75%; background:#378ADD;"></div></div><span class="bar-num">49</span><span class="bar-pct">75%</span></div>
-      <div class="bar-row"><span class="bar-label">Not relocating</span><div class="bar-wrap"><div class="bar-fill" style="width:25%; background:#888780;"></div></div><span class="bar-num">16</span><span class="bar-pct">25%</span></div>
-      <div style="border-top:0.5px solid #f0ede6; margin-top:12px; padding-top:12px;">
-        <p class="section-label" style="margin-bottom:10px;">Spanish level</p>
-        <div class="bar-row"><span class="bar-label">Excellent</span><div class="bar-wrap"><div class="bar-fill" style="width:71%; background:#1D9E75;"></div></div><span class="bar-num">46</span><span class="bar-pct">71%</span></div>
-        <div class="bar-row"><span class="bar-label">Advanced</span><div class="bar-wrap"><div class="bar-fill" style="width:9%; background:#378ADD;"></div></div><span class="bar-num">6</span><span class="bar-pct">9%</span></div>
-        <div class="bar-row"><span class="bar-label">Intermediate</span><div class="bar-wrap"><div class="bar-fill" style="width:11%; background:#BA7517;"></div></div><span class="bar-num">7</span><span class="bar-pct">11%</span></div>
-        <div class="bar-row"><span class="bar-label">Beginner / None</span><div class="bar-wrap"><div class="bar-fill" style="width:9%; background:#E24B4A;"></div></div><span class="bar-num">6</span><span class="bar-pct">9%</span></div>
+    <div>
+      <p class="section-label" style="margin-top:0;">Nationality · top of pool</p>
+      <div class="card">
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">Spanish</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#BA7517;"></div></div>
+        <span class="funnel-num">39</span>
       </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <p class="section-label">Sector experience & functional skills</p>
-  <div class="two-col">
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Sectors (multiple select)</p>
-      <div class="bar-row"><span class="bar-label">Health & Life Sciences</span><div class="bar-wrap"><div class="bar-fill" style="width:74%; background:#FBEAF0;"></div></div><span class="bar-num">48</span><span class="bar-pct">74%</span></div>
-      <div class="bar-row"><span class="bar-label">Materials & Industry</span><div class="bar-wrap"><div class="bar-fill" style="width:43%; background:#FAEEDA;"></div></div><span class="bar-num">28</span><span class="bar-pct">43%</span></div>
-      <div class="bar-row"><span class="bar-label">Energy & Climate</span><div class="bar-wrap"><div class="bar-fill" style="width:28%; background:#EAF3DE;"></div></div><span class="bar-num">18</span><span class="bar-pct">28%</span></div>
-      <div class="bar-row"><span class="bar-label">Chips, AI & Computing</span><div class="bar-wrap"><div class="bar-fill" style="width:28%; background:#E6F1FB;"></div></div><span class="bar-num">18</span><span class="bar-pct">28%</span></div>
-      <div class="bar-row"><span class="bar-label">Robotics & Autonomous</span><div class="bar-wrap"><div class="bar-fill" style="width:15%; background:#EEEDFE;"></div></div><span class="bar-num">10</span><span class="bar-pct">15%</span></div>
-      <div class="bar-row"><span class="bar-label">Space & Connectivity</span><div class="bar-wrap"><div class="bar-fill" style="width:12%; background:#f5f4f0;"></div></div><span class="bar-num">8</span><span class="bar-pct">12%</span></div>
-    </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:12px;">Functional experience (multiple select)</p>
-      <div class="bar-row"><span class="bar-label">Business strategy</span><div class="bar-wrap"><div class="bar-fill" style="width:95%; background:#185FA5;"></div></div><span class="bar-num">62</span><span class="bar-pct">95%</span></div>
-      <div class="bar-row"><span class="bar-label">Sales / BD / Partnerships</span><div class="bar-wrap"><div class="bar-fill" style="width:83%; background:#378ADD;"></div></div><span class="bar-num">54</span><span class="bar-pct">83%</span></div>
-      <div class="bar-row"><span class="bar-label">Fundraising / IR</span><div class="bar-wrap"><div class="bar-fill" style="width:78%; background:#534AB7;"></div></div><span class="bar-num">51</span><span class="bar-pct">78%</span></div>
-      <div class="bar-row"><span class="bar-label">Operations / Pilots</span><div class="bar-wrap"><div class="bar-fill" style="width:74%; background:#1D9E75;"></div></div><span class="bar-num">48</span><span class="bar-pct">74%</span></div>
-      <div class="bar-row"><span class="bar-label">Product / Tech leadership</span><div class="bar-wrap"><div class="bar-fill" style="width:65%; background:#BA7517;"></div></div><span class="bar-num">42</span><span class="bar-pct">65%</span></div>
-      <div class="bar-row"><span class="bar-label">Regulatory / Clinical</span><div class="bar-wrap"><div class="bar-fill" style="width:43%; background:#888780;"></div></div><span class="bar-num">28</span><span class="bar-pct">43%</span></div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <p class="section-label">Languages & locations</p>
-  <div class="two-col">
-    <div class="card">
-      <p class="section-label" style="margin-bottom:10px;">Languages spoken</p>
-      <div class="pill-row">
-        <span class="pill pill-blue">English 48</span>
-        <span class="pill pill-green">Spanish 44</span>
-        <span class="pill pill-amber">Catalan 13</span>
-        <span class="pill pill-purple">French 8</span>
-        <span class="pill pill-gray">Portuguese 2</span>
-        <span class="pill pill-gray">Russian 2</span>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">Italian</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:15.384615384615385%; background:#BA7517;"></div></div>
+        <span class="funnel-num">6</span>
       </div>
-      <p style="font-size:11px; color:#888780;">English + Spanish is the dominant combination. 71% have excellent Spanish — strong fit for ONAKids and other Spain-specific roles.</p>
-    </div>
-
-    <div class="card">
-      <p class="section-label" style="margin-bottom:10px;">Current location (top cities)</p>
-      <div class="bar-row"><span class="bar-label">Barcelona</span><div class="bar-wrap"><div class="bar-fill" style="width:100%; background:#378ADD;"></div></div><span class="bar-num">24</span><span class="bar-pct">37%</span></div>
-      <div class="bar-row"><span class="bar-label">Madrid</span><div class="bar-wrap"><div class="bar-fill" style="width:38%; background:#378ADD;"></div></div><span class="bar-num">9</span><span class="bar-pct">14%</span></div>
-      <div class="bar-row"><span class="bar-label">Valencia</span><div class="bar-wrap"><div class="bar-fill" style="width:8%; background:#888780;"></div></div><span class="bar-num">2</span><span class="bar-pct">3%</span></div>
-      <div class="bar-row"><span class="bar-label">Zurich</span><div class="bar-wrap"><div class="bar-fill" style="width:8%; background:#888780;"></div></div><span class="bar-num">2</span><span class="bar-pct">3%</span></div>
-      <div class="bar-row"><span class="bar-label">Buenos Aires</span><div class="bar-wrap"><div class="bar-fill" style="width:8%; background:#888780;"></div></div><span class="bar-num">2</span><span class="bar-pct">3%</span></div>
-      <div class="bar-row"><span class="bar-label">Other / international</span><div class="bar-wrap"><div class="bar-fill" style="width:40%; background:#f5f4f0; border: 0.5px solid #e0ddd6;"></div></div><span class="bar-num">26</span><span class="bar-pct">40%</span></div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">Argentinian</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7.6923076923076925%; background:#BA7517;"></div></div>
+        <span class="funnel-num">3</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">French</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7.6923076923076925%; background:#BA7517;"></div></div>
+        <span class="funnel-num">3</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">Ukraine</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.128205128205128%; background:#BA7517;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">India</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.128205128205128%; background:#BA7517;"></div></div>
+        <span class="funnel-num">2</span>
+      </div>
+      </div>
     </div>
   </div>
 
   <div class="footer">
-    <p>Does Recruitment · wouter@doesrecruitment.com</p>
-    <p>Week 2 · March 2026 · Confidential · 65 responses</p>
+    <div>The Collider · MWC Barcelona — Applicant Insights · 14 May 2026<br>
+    Source: Founder &amp; Leadership Questionnaire (Microsoft Forms) · Manatal ATS</div>
+    <div><a href="index.html">← All projects</a></div>
   </div>
 
 </div>

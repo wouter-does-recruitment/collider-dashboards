@@ -26,7 +26,6 @@
   .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
   .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
   .header-left .crumb a { color: #888780; text-decoration: none; }
-  .header-left .crumb a:hover { color: #1a1a18; }
   .header-right .badge {
     display: inline-block; background: #EAF3DE; color: #3B6D11;
     font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
@@ -52,31 +51,18 @@
   .metric-value { font-size: 26px; font-weight: 600; line-height: 1; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 4px; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
-
-  .funnel-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0ede6; }
-  .funnel-item:last-child { border-bottom: none; }
-  .funnel-label { font-size: 12px; color: #5a5a55; width: 130px; flex-shrink: 0; }
-  .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
-  .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
-  .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 26px; text-align: right; }
-
-  /* Dripify campaign card */
   .dripify-card {
     background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
-    padding: 22px 24px; margin-bottom: 24px;
+    padding: 22px 24px; margin-bottom: 28px;
   }
   .dripify-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 14px; color: #1a1a18; }
   .dripify-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 12px; }
-  .ds-cell { }
   .ds-num { font-size: 20px; font-weight: 700; line-height: 1; color: #1a1a18; }
   .ds-num.green { color: #1D9E75; }
   .ds-num.blue { color: #185FA5; }
   .ds-num.purple { color: #534AB7; }
   .ds-lbl { font-size: 10px; color: #888780; margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
 
-  /* Candidate list */
   .cand-list { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 8px; margin-bottom: 24px; }
   .cand-card {
     display: flex; align-items: center; gap: 12px;
@@ -86,15 +72,8 @@
   }
   .cand-card:hover { background: #fafaf6; }
   .cand-card + .cand-card { margin-top: 4px; }
-  .cand-card.card-top {
-    border: 1px solid #9FE1CB; background: #f7fdf9;
-  }
-  .cand-card.card-match {
-    border: 1px solid #1D9E75; background: #f0fdf6;
-  }
-  .cand-card.card-ref {
-    border: 1px solid #A5B4FC; background: #F5F3FF;
-  }
+  .cand-card.card-match { border: 1px solid #1D9E75; background: #f0fdf6; }
+  .cand-card.card-ref { border: 1px solid #A5B4FC; background: #F5F3FF; }
   .avatar {
     width: 36px; height: 36px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -119,8 +98,6 @@
     margin-left: 6px;
   }
 
-  .cand-empty { text-align: center; padding: 32px; font-size: 12px; color: #888780; font-style: italic; }
-
   .footer {
     margin-top: 60px; padding-top: 20px;
     border-top: 0.5px solid #e0ddd6;
@@ -128,15 +105,12 @@
     font-size: 11px; color: #888780;
   }
   .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
-  .footer a:hover { color: #1a1a18; }
 
   @media (max-width: 768px) {
     .wrap { padding: 24px 16px 60px; }
     .metric-grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .two-col { grid-template-columns: 1fr; }
-    .funnel-label { width: 100px; font-size: 11px; }
-    .cand-sub { display: none; }
     .dripify-stats { grid-template-columns: repeat(2, 1fr); }
+    .cand-sub { display: none; }
   }
 </style>
 </head>
@@ -150,28 +124,28 @@
       <p class="focus">Organ-on-chip · microfluidic well-plate (LEITAT)</p>
     </div>
     <div class="header-right">
-      <span class="badge">Week 5 · Sourcing active</span>
-      <div class="date">21 May 2026</div>
+      <span class="badge">Week 6 · Sourcing active</span>
+      <div class="date">10 Jun 2026</div>
     </div>
   </div>
 
-  <div class="notice"><strong>Pipeline expanded.</strong> 10 candidates now in Manatal (up from 2) — including James Hugall, Cristina Aguilera and Josselin Caradec from broader Collider talent pool. Dripify campaign delivered 14 invites · 50% accept · 4 replies. Two candidates still in Staff Interview, eight new in intake.</div>
+  <div class="notice"><strong>Pipeline building.</strong> 11 candidates in Manatal — 3 in Staff Interview, 8 New. Active Dripify outreach engaged 14 specialised microfluidics / diagnostics leaders. James Hugall recently moved into ATS as top recommend.</div>
 
   <div class="metric-grid-4">
     <div class="metric-card">
       <div class="metric-label">In ATS</div>
-      <div class="metric-value" style="color:#1a1a18;">10</div>
-      <div class="metric-sub">+8 this week</div>
+      <div class="metric-value" style="color:#1a1a18;">11</div>
+      <div class="metric-sub">All active, 0 dropped</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Outreach engaged</div>
-      <div class="metric-value" style="color:#185FA5;">10</div>
+      <div class="metric-value" style="color:#185FA5;">14</div>
       <div class="metric-sub">via Dripify campaign</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Staff Interview</div>
-      <div class="metric-value" style="color:#BA7517;">2</div>
-      <div class="metric-sub">Lansard + Jiang</div>
+      <div class="metric-value" style="color:#BA7517;">3</div>
+      <div class="metric-sub">In active evaluation</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Matchmaking</div>
@@ -182,242 +156,267 @@
 
   <p class="section-label">Dripify outreach campaign · OGYX-specific</p>
   <div class="dripify-card">
-    <h3>Mar – May 2026 · Targeted boolean search</h3>
-    <p style="font-size: 12px; color: #888780; margin: 0 0 16px;">Focused on commercial leaders in diagnostics, microfluidics, lab tools and life science B2B sales — Barcelona, Spain and adjacent EU markets.</p>
+    <h3>Active sourcing campaign</h3>
+    <p style="font-size: 12px; color: #888780; margin: 0 0 16px;">Focused on commercial and BD leaders in microfluidics, IVD, diagnostics, and life science tools — Barcelona, Spain and adjacent EU markets. Deep niche, smaller pool, careful targeting.</p>
     <div class="dripify-stats">
-      <div class="ds-cell">
+      <div>
         <div class="ds-num">14</div>
-        <div class="ds-lbl">Invites sent</div>
+        <div class="ds-lbl">Total leads</div>
       </div>
-      <div class="ds-cell">
-        <div class="ds-num green">7</div>
-        <div class="ds-lbl">Accepted (50%)</div>
+      <div>
+        <div class="ds-num green">6</div>
+        <div class="ds-lbl">Connected + messaged</div>
       </div>
-      <div class="ds-cell">
-        <div class="ds-num">6</div>
-        <div class="ds-lbl">Personal messages</div>
+      <div>
+        <div class="ds-num blue">2</div>
+        <div class="ds-lbl">Connection pending</div>
       </div>
-      <div class="ds-cell">
-        <div class="ds-num green">4</div>
-        <div class="ds-lbl">Replies (57%)</div>
+      <div>
+        <div class="ds-num purple">6</div>
+        <div class="ds-lbl">Warming up</div>
       </div>
-      <div class="ds-cell">
-        <div class="ds-num purple">10</div>
-        <div class="ds-lbl">Leads engaged</div>
+      <div>
+        <div class="ds-num green">75%</div>
+        <div class="ds-lbl">Accept rate</div>
       </div>
-    </div>
-    <div style="margin-top: 14px; padding-top: 14px; border-top: 0.5px solid #f0ede6; font-size: 11px; color: #5a5a55; line-height: 1.6;">
-      Monthly progression: Mar 7 invites · Apr build phase · May 7 invites + 4 messages. Accept and reply rates strong given the deep niche profile required (microfluidics commercial leaders are a small pool in Spain).
     </div>
   </div>
 
   <p class="section-label">Active candidates · in Manatal pipeline</p>
   <div class="cand-list">
-    <div class="cand-card card-match">
-      <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">IL</div>
-      <div class="cand-meta">
-        <div class="cand-name">Ingrid Lansard</div>
-        <div class="cand-sub">Head of Commercial &amp; BD · ABCDx SA (Barcelona)</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">IL</div>
+        <div class="cand-meta">
+          <div class="cand-name">Ingrid lansard</div>
+          <div class="cand-sub">Strategic Advisor · Ovul (Women's Health Diagnostic)</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
+        
       </div>
-      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
-    </div>
-    <div class="cand-card card-match">
-      <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">XJ</div>
-      <div class="cand-meta">
-        <div class="cand-name">Xian Weng Jiang</div>
-        <div class="cand-sub">Director of Product Solutions · cross-listed ENDOMET ref check</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">IP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Inna Pertsovskaya Stern, PhD</div>
+          <div class="cand-sub">Biotech scientific consultant</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
+        
       </div>
-      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
-    </div>
-    <div class="cand-card card-top">
-      <div class="avatar" style="background:#FEF3C7; color:#92400E;">JH</div>
-      <div class="cand-meta">
-        <div class="cand-name">James Hugall</div>
-        <div class="cand-sub">Tech Transfer Lead &amp; Interim CEO · Eroica DX (ICN2/CSIC spin-off)</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">XJ</div>
+        <div class="cand-meta">
+          <div class="cand-name">xian weng jiang</div>
+          <div class="cand-sub">Director of Product Solutions · Mytos London, UK</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-      <span class="badge-note">Top recommend</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">CA</div>
-      <div class="cand-meta">
-        <div class="cand-name">Cristina Aguilera</div>
-        <div class="cand-sub">CEO &amp; Founder · cross-listed ENDOMET matchmaking</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">AS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Alessandro Scandurra</div>
+          <div class="cand-sub">Business Development Manager (Part-time) · SEQUENTIA BIOTECH</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
-      <div class="cand-meta">
-        <div class="cand-name">Josselin Caradec</div>
-        <div class="cand-sub">Board Observer &amp; Co-Scientific Lead · cross-listed ENDOMET</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">CA</div>
+        <div class="cand-meta">
+          <div class="cand-name">Cristina Aguilera</div>
+          <div class="cand-sub">CEO & Founder · Labsinlove</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FCE9E0; color:#BA5517;">YP</div>
-      <div class="cand-meta">
-        <div class="cand-name">Yves Prevoo</div>
-        <div class="cand-sub">Founder &amp; CEO</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">JH</div>
+        <div class="cand-meta">
+          <div class="cand-name">James Hugall</div>
+          <div class="cand-sub">Tech transfer lead and interim CEO (Eroica DX) · Institut Català de Nanociència i Nanotecnologia (ICN2)</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        <span class="badge-note">Top recommend</span>
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">JP</div>
-      <div class="cand-meta">
-        <div class="cand-name">Juan J. Pérez Villar</div>
-        <div class="cand-sub">Chief Executive Officer</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE9E0; color:#BA5517;">JC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Josselin Caradec</div>
+          <div class="cand-sub">Board Observer & Co-Scientific Lead · Curlew Bio</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">PC</div>
-      <div class="cand-meta">
-        <div class="cand-name">Pablo Carasa</div>
-        <div class="cand-sub">Chief Technology Officer</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">JV</div>
+        <div class="cand-meta">
+          <div class="cand-name">Juan J. Pérez Villar</div>
+          <div class="cand-sub">Chief Executive Officer · QABY Biotech</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AS</div>
-      <div class="cand-meta">
-        <div class="cand-name">Alessandro Scandurra</div>
-        <div class="cand-sub">Business Development Manager (Part-time)</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">PC</div>
+        <div class="cand-meta">
+          <div class="cand-name">Pablo Carasa</div>
+          <div class="cand-sub">Chief Technology Officer · ClexBio</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">PP</div>
-      <div class="cand-meta">
-        <div class="cand-name">Pamela Alejandra Pardini</div>
-        <div class="cand-sub">Project Manager</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">PP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Pamela Alejandra Pardini</div>
+          <div class="cand-sub">Project Manager · Mapsi Photonics</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
-    </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">YP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Yves Prevoo</div>
+          <div class="cand-sub">Founder & CEO · easee (Acquired by Visibly / Johnson & Johnson)</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
+      </div>
   </div>
 
-  <p class="section-label">Under analysis · post-recruiter screening (not yet in ATS)</p>
+  <p class="section-label">Outreach in conversation · message sent (5)</p>
   <div class="cand-list">
-    <div class="cand-card">
-      <div class="avatar" style="background:#FCE9E0; color:#BA5517;">LH</div>
-      <div class="cand-meta">
-        <div class="cand-name">Luiza Iuliana Hernandez, PhD</div>
-        <div class="cand-sub">CEO Taldeki Biosolutions (San Sebastián) · 3x founder · PhD microfluidic BBB-on-chip</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">CS</div>
+        <div class="cand-meta">
+          <div class="cand-name">Cynthia Villarroel Spring</div>
+          <div class="cand-sub">Innovation & Project Management Consultant | R&D, Business Development, and T...</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
+        
       </div>
-      <span class="pill" style="background:#FEF3C7; color:#92400E;">Strong, availability TBC</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">SG</div>
-      <div class="cand-meta">
-        <div class="cand-name">Sergi Gassó</div>
-        <div class="cand-sub">Senior IVD Executive · ex-Fuelium CEO · Head of Product Dev Cornea Project</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">RP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Rosa Monge Prieto</div>
+          <div class="cand-sub">R&D Manager y co-founder · Asociación de Jóvenes Empresarios de Zaragoza (AJE...</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
+        
       </div>
-      <span class="pill" style="background:#FEF3C7; color:#92400E;">Strong, IVD adjacent</span>
-    </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">LH</div>
+        <div class="cand-meta">
+          <div class="cand-name">Luiza Iuliana Hernandez</div>
+          <div class="cand-sub">CEO · Taldeki Biosolutions</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
+        <span class="badge-note">Under analysis</span>
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">ON</div>
+        <div class="cand-meta">
+          <div class="cand-name">Oliver Balcells Navarro</div>
+          <div class="cand-sub">Chief Financial Officer · Med Capital Management SGEIC SA</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
+        
+      </div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">BB</div>
+        <div class="cand-meta">
+          <div class="cand-name">Bekir Belce</div>
+          <div class="cand-sub">Co-Founder & CEO @ CellFlow · CellFlow</div>
+        </div>
+        <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
+        
+      </div>
   </div>
 
-  <p class="section-label">Outreach in progress · awaiting reply or next step</p>
+  <p class="section-label">Outreach pending · connection request sent (2)</p>
   <div class="cand-list">
-    <div class="cand-card">
-      <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">CV</div>
-      <div class="cand-meta">
-        <div class="cand-name">Cynthia Villarroel Spring</div>
-        <div class="cand-sub">Innovation &amp; Project Management Consultant · R&amp;D Freelance</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">MR</div>
+        <div class="cand-meta">
+          <div class="cand-name">Miguel Russo</div>
+          <div class="cand-sub">Business Development Manager · Programa Centelha</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
+        
       </div>
-      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FCE7F3; color:#9D174D;">RM</div>
-      <div class="cand-meta">
-        <div class="cand-name">Rosa Monge Prieto</div>
-        <div class="cand-sub">R&amp;D Manager &amp; Co-founder</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AO</div>
+        <div class="cand-meta">
+          <div class="cand-name">Alfredo Edoardo Ongaro</div>
+          <div class="cand-sub">Bio Engineer Biosensors / Microfluidics · Onalabs Inno-Hub</div>
+        </div>
+        <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
+        
       </div>
-      <span class="pill" style="background:#E6F1FB; color:#185FA5;">Message sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">MR</div>
-      <div class="cand-meta">
-        <div class="cand-name">Miguel Russo</div>
-        <div class="cand-sub">Business Development Manager · Programa Centelha</div>
-      </div>
-      <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FEF3C7; color:#92400E;">AO</div>
-      <div class="cand-meta">
-        <div class="cand-name">Alfredo Edoardo Ongaro</div>
-        <div class="cand-sub">Bio Engineer Biosensors / Microfluidics · Onalabs Inno-Hub</div>
-      </div>
-      <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">FL</div>
-      <div class="cand-meta">
-        <div class="cand-name">Florian Laouenan</div>
-        <div class="cand-sub">Product Development Manager · TE IVD Mondragón / microLIQUID</div>
-      </div>
-      <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
-    </div>
   </div>
 
-  <p class="section-label">Identified · profile reviewed, not yet contacted</p>
+  <p class="section-label">Profiles reviewed · warming up before outreach (6)</p>
   <div class="cand-list">
-    <div class="cand-card">
-      <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">JA</div>
-      <div class="cand-meta">
-        <div class="cand-name">Jaume Amat Riera</div>
-        <div class="cand-sub">Founder, CEO &amp; Chairman · Versa Biomedical</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JR</div>
+        <div class="cand-meta">
+          <div class="cand-name">Jaume Amat Riera</div>
+          <div class="cand-sub">Founder, CEO & Chairman of the Board · Versa Biomedical</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#FCE9E0; color:#BA5517;">BL</div>
-      <div class="cand-meta">
-        <div class="cand-name">Betiana Lerner</div>
-        <div class="cand-sub">CEO · 7 Talos</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">BL</div>
+        <div class="cand-meta">
+          <div class="cand-name">Betiana Lerner</div>
+          <div class="cand-sub">CEO, Responsible for setting the strategic direction and overall vision of th...</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
-    </div>
-    <div class="cand-card">
-      <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">AP</div>
-      <div class="cand-meta">
-        <div class="cand-name">Arnau Perdigó-Oliveras</div>
-        <div class="cand-sub">CEO · Perdigó Medical</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">AP</div>
+        <div class="cand-meta">
+          <div class="cand-name">Arnau Perdigó-Oliveras</div>
+          <div class="cand-sub">CEO · Perdigó Medical</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
-    </div>
-  </div>
-
-  <p class="section-label">Reviewed but excluded from OGYX</p>
-  <div class="cand-list">
-    <div class="cand-card" style="opacity: 0.7;">
-      <div class="avatar" style="background:#FEF3C7; color:#92400E;">IS</div>
-      <div class="cand-meta">
-        <div class="cand-name">Ivelisse Sanchez, PhD</div>
-        <div class="cand-sub">CSO Biointaxis · neurodegeneration gene therapy</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FEF3C7; color:#92400E;">FL</div>
+        <div class="cand-meta">
+          <div class="cand-name">Florian Laouenan</div>
+          <div class="cand-sub">Product development manager at TE IVD Mondragón · microLIQUID</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#FECACA; color:#9F1239;">CSO profile, not CEO</span>
-    </div>
-    <div class="cand-card" style="opacity: 0.7;">
-      <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">IL</div>
-      <div class="cand-meta">
-        <div class="cand-name">Ivana Llobet Leca</div>
-        <div class="cand-sub">Stanford Biodesign Fellow · Co-Founder Elevanse / Odapt</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#FCE7F3; color:#9D174D;">BB</div>
+        <div class="cand-meta">
+          <div class="cand-name">Borja B</div>
+          <div class="cand-sub">Business Manager at TE IVD · TE Connectivity</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#FECACA; color:#9F1239;">Better fit ONAKids</span>
-    </div>
-    <div class="cand-card" style="opacity: 0.7;">
-      <div class="avatar" style="background:#E6F1FB; color:#185FA5;">MF</div>
-      <div class="cand-meta">
-        <div class="cand-name">Marc Fàbregas Bachs</div>
-        <div class="cand-sub">Co-founder &amp; CTO · IoT / Smart Cities (Citisend, Zolertia)</div>
+      <div class="cand-card">
+        <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">LL</div>
+        <div class="cand-meta">
+          <div class="cand-name">Laura M Lechuga</div>
+          <div class="cand-sub">Co-founder · EROICA Dx, SL</div>
+        </div>
+        <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
+        
       </div>
-      <span class="pill" style="background:#FECACA; color:#9F1239;">IoT, not microfluidics</span>
-    </div>
   </div>
 
   <div class="footer">
-    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 21 May 2026</div>
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 10 Jun 2026<br>
+    Source: Manatal ATS · Dripify outreach campaign</div>
     <div><a href="index.html">← All projects</a></div>
   </div>
 

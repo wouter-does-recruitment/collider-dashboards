@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Collider — CEO &amp; Co-Founder Search Dashboards</title>
+<title>The Collider — CEO &amp; Co-Founder Searches</title>
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -15,103 +15,125 @@
     line-height: 1.5;
     font-size: 14px;
   }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 32px 80px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
 
   .header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 32px; padding-bottom: 24px; border-bottom: 0.5px solid #e0ddd6;
-    gap: 20px; flex-wrap: wrap;
+    margin-bottom: 28px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
   }
-  .header-left .crumb {
-    font-size: 11px; color: #888780; letter-spacing: 0.08em;
-    text-transform: uppercase; margin-bottom: 8px; font-weight: 600;
-  }
-  .header-left h1 {
-    font-size: 28px; font-weight: 600; color: #1a1a18; margin: 0 0 6px;
-    letter-spacing: -0.01em; line-height: 1.2;
-  }
-  .header-left .lead {
-    font-size: 13px; color: #5a5a55; margin: 0; max-width: 640px;
-  }
-  .header-right .badge {
+  .header h1 { font-size: 26px; font-weight: 600; color: #1a1a18; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .header p { font-size: 13px; color: #888780; margin: 0; }
+  .header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .header .badge {
     display: inline-block; background: #EAF3DE; color: #3B6D11;
     font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
   }
-  .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+  .header .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+
+  /* Week update banner */
+  .update-banner {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);
+    border: 1px solid #F59E0B;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .update-banner-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #92400E; margin-bottom: 10px;
+  }
+  .update-banner-title {
+    font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 12px;
+  }
+  .update-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px;
+  }
+  .update-list li {
+    font-size: 12px; color: #5a2d04; line-height: 1.5;
+    padding-left: 18px; position: relative;
+  }
+  .update-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: #BA7517; font-weight: 700;
+  }
+  .update-list li strong { color: #1a1a18; font-weight: 600; }
 
   .notice {
     background: #EAF3DE; border-left: 3px solid #1D9E75;
     border-radius: 0 8px 8px 0;
-    padding: 12px 16px; margin-bottom: 24px;
+    padding: 12px 16px; margin-bottom: 28px;
     font-size: 12px; color: #3B6D11;
   }
   .notice strong { color: #1a3a0c; font-weight: 600; }
 
   .section-label {
     font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
-    color: #888780; margin: 0 0 12px;
+    color: #888780; margin: 28px 0 12px;
   }
 
-  .metric-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 32px; }
-  .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 16px 18px; }
-  .metric-label { font-size: 10px; color: #888780; margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
-  .metric-value { font-size: 24px; font-weight: 600; line-height: 1; }
+  .metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; }
+  .metric-card.signature { border-top: 3px solid #534AB7; }
+  .metric-card.signed { border-top: 3px solid #1D9E75; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+  .metric-value { font-size: 28px; font-weight: 600; line-height: 1; color: #1a1a18; }
   .metric-value.green { color: #1D9E75; }
   .metric-value.purple { color: #534AB7; }
   .metric-value.blue { color: #185FA5; }
-  .metric-value.indigo { color: #4F46E5; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .proj-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
   .proj-card {
-    background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
-    padding: 22px 24px;
-    text-decoration: none; color: inherit;
-    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-    display: flex; flex-direction: column; gap: 10px;
+    border: 0.5px solid #e0ddd6; border-radius: 12px;
+    padding: 18px 20px;
+    text-decoration: none; color: #1a1a18;
+    transition: all 0.15s ease;
   }
   .proj-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(26,26,24,0.06);
-    border-color: #888780;
+    border-color: #1a1a18; transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
+  .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .proj-head h3 { font-size: 15px; font-weight: 600; margin: 0; }
+  .proj-stage { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; }
+  .proj-focus { font-size: 11px; color: #888780; margin: 0 0 14px; }
+  .proj-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .proj-stats div { display: flex; flex-direction: column; }
+  .ps-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .ps-lbl { font-size: 10px; color: #888780; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
 
-  .proj-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .proj-name { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
-  .proj-focus { font-size: 12px; color: #5a5a55; line-height: 1.4; min-height: 32px; }
-
-  .proj-stats {
-    display: flex; gap: 16px;
-    padding-top: 12px; border-top: 0.5px solid #f0ede6;
-    margin-top: 4px;
+  .extras {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin-top: 16px;
   }
-  .stat { display: flex; flex-direction: column; gap: 2px; }
-  .stat-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .stat-lbl { font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: #888780; font-weight: 500; }
-
-  .pill {
-    display: inline-block; padding: 3px 9px; border-radius: 4px;
-    font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-    white-space: nowrap;
+  .extras a {
+    background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
+    padding: 18px 20px;
+    text-decoration: none; color: #1a1a18;
+    transition: all 0.15s ease;
+    display: block;
   }
+  .extras a:hover {
+    border-color: #1a1a18; transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .extras h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .extras p { font-size: 11px; color: #888780; margin: 0; }
 
   .footer {
-    margin-top: 60px; padding-top: 24px;
+    margin-top: 50px; padding-top: 20px;
     border-top: 0.5px solid #e0ddd6;
     font-size: 11px; color: #888780;
-    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   }
-  .footer strong { color: #5a5a55; }
-  .footer a { color: #5a5a55; text-decoration: none; border-bottom: 0.5px dotted #888780; }
 
-  @media (max-width: 900px) {
-    .metric-grid { grid-template-columns: repeat(3, 1fr); }
-    .grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .wrap { padding: 28px 16px 60px; }
-    h1 { font-size: 22px; }
+  @media (max-width: 768px) {
+    .wrap { padding: 24px 16px 60px; }
     .metric-grid { grid-template-columns: repeat(2, 1fr); }
-    .grid { grid-template-columns: 1fr; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .update-list { grid-template-columns: 1fr; }
+    .extras { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -119,174 +141,196 @@
 <div class="wrap">
 
   <div class="header">
-    <div class="header-left">
-      <div class="crumb">The Collider · MWC Barcelona</div>
-      <h1>CEO &amp; Co-Founder Search</h1>
-      <p class="lead">Live recruitment dashboards for 9 deep tech ventures. Week 4 update — fresh data pulled from Manatal 14 May 2026.</p>
-    </div>
-    <div class="header-right">
-      <span class="badge">Week 4 · Live</span>
-      <div class="date">14 May 2026</div>
+    <div class="header-row">
+      <div>
+        <h1>The Collider · CEO &amp; Co-Founder Searches</h1>
+        <p>Portfolio dashboard — 9 active deep tech projects</p>
+      </div>
+      <div>
+        <span class="badge">Week 6 · Live</span>
+        <div class="date">10 Jun 2026</div>
+      </div>
     </div>
   </div>
 
-  <div class="notice"><strong>Week 4 highlights:</strong> 4 CEOs signed / team ready this week — Sorbmetrics (Hugo Macedo), BraidStent (Szilvia Endrenyi), TarGlio (Silvia Gomez Montes), UlissesDS (Javier Rodriguez Saiz). ENDOMET hits 4 matchmaking · OPTICmizing 3 · GridWatch 2 · 14 candidates in active matchmaking across the portfolio.</div>
+  <div class="update-banner">
+    <div class="update-banner-label">Week 6 updates</div>
+    <div class="update-banner-title">What changed this week</div>
+    <ul class="update-list">
+      <li><strong>OPTICmizing surges to 4 matchmaking</strong> · Anxo Coterillo Frias direct to M2, Alejandro Tres moved M1 → M2</li>
+      <li><strong>GridWatch · Caviasca moved M1 → M2</strong> · Plus 70 leads engaged in Dripify campaign</li>
+      <li><strong>OGYX pipeline triples to 11</strong> · James Hugall added as top recommend, Inna Pertsovskaya new in Staff Interview</li>
+      <li><strong>Applicant Insights · pool quality up</strong> · 79 form responses, 85% founders, 89% fundraising experience, 37% matched to pipeline</li>
+    </ul>
+  </div>
 
-  <p class="section-label">Aggregated metrics — across 9 live searches</p>
+  <div class="notice"><strong>Late-stage momentum:</strong> 15 candidates in matchmaking across the portfolio. OPTICmizing leading with 4 in match (2 in M2), GridWatch with 2 (1 in M2). 4 CEOs already signed across Sorbmetrics, UlissesDS, TarGlio, and BraidStent.</div>
+
+  <p class="section-label">Portfolio totals</p>
   <div class="metric-grid">
-    <div class="metric-card">
-      <div class="metric-label">Projects</div>
-      <div class="metric-value">9</div>
-    </div>
-    <div class="metric-card">
+    <div class="metric-card signature">
       <div class="metric-label">In ATS</div>
-      <div class="metric-value">153</div>
+      <div class="metric-value purple">166</div>
+      <div class="metric-sub">across 9 projects</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Active</div>
-      <div class="metric-value">76</div>
+      <div class="metric-value">89</div>
+      <div class="metric-sub">in evaluation</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Interviews</div>
-      <div class="metric-value blue">25</div>
+      <div class="metric-label">In interviews</div>
+      <div class="metric-value blue">27</div>
+      <div class="metric-sub">Staff + META</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Matchmaking</div>
-      <div class="metric-value green">14</div>
+      <div class="metric-value purple">15</div>
+      <div class="metric-sub">closing toward team</div>
     </div>
-    <div class="metric-card">
+    <div class="metric-card signed">
       <div class="metric-label">Signed</div>
-      <div class="metric-value purple">4</div>
+      <div class="metric-value green">4</div>
+      <div class="metric-sub">CEOs in place</div>
     </div>
   </div>
 
-  <p class="section-label">Project dashboards · click to drill in</p>
-  <div class="grid">
-      <a href="collider_sorbmetrics_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">Sorbmetrics</div>
-          <span class="pill" style="background:#534AB7; color:#ffffff;">Signed</span>
-        </div>
-        <div class="proj-focus">MCSD adsorption devices</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">49</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">2</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_ulissesds_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">UlissesDS</div>
-          <span class="pill" style="background:#534AB7; color:#ffffff;">Signed</span>
-        </div>
-        <div class="proj-focus">AI ultrasound · diagnostics</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">5</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_targlio_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">TarGlio</div>
-          <span class="pill" style="background:#534AB7; color:#ffffff;">Signed</span>
-        </div>
-        <div class="proj-focus">Magnetic nanoparticles · glioblastoma</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">10</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">3</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_braidstent_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">BraidStent</div>
-          <span class="pill" style="background:#534AB7; color:#ffffff;">Signed</span>
-        </div>
-        <div class="proj-focus">Biodegradable ureteral stent</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">6</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_endomet_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">ENDOMET</div>
-          <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking</span>
-        </div>
-        <div class="proj-focus">Mitochondrial disease · orphan drugs</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">16</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">7</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">4</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_opticmizing_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">OPTICmizing</div>
-          <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking</span>
-        </div>
-        <div class="proj-focus">pHotoYOGURT · real-time pH sensor SaaS</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">21</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">4</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">3</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_onakids_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">ONAKids</div>
-          <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking</span>
-        </div>
-        <div class="proj-focus">Pediatric AI · language delay</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">34</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">5</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">3</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_gridwatch_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">GridWatch</div>
-          <span class="pill" style="background:#DEF1E7; color:#0F6E56;">Matchmaking</span>
-        </div>
-        <div class="proj-focus">AI power grid optimization</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">10</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">1</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">2</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
-      <a href="collider_ogyx_dashboard.html" class="proj-card">
-        <div class="proj-top">
-          <div class="proj-name">OGYX</div>
-          <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Sourcing</span>
-        </div>
-        <div class="proj-focus">Organ-on-chip</div>
-        <div class="proj-stats">
-          <div class="stat"><span class="stat-num">2</span><span class="stat-lbl">In ATS</span></div>
-          <div class="stat"><span class="stat-num">2</span><span class="stat-lbl">Interview</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Matchmaking</span></div>
-          <div class="stat"><span class="stat-num">0</span><span class="stat-lbl">Signed</span></div>
-        </div>
-      </a>
+  <p class="section-label">All 9 projects · sorted by closing stage</p>
+  <div class="proj-grid">
+    <a href="collider_sorbmetrics_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>Sorbmetrics</h3>
+        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
+      </div>
+      <p class="proj-focus">MCSD adsorption devices</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">10</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">2</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_ulissesds_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>UlissesDS</h3>
+        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
+      </div>
+      <p class="proj-focus">AI ultrasound · diagnostics</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">3</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_targlio_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>TarGlio</h3>
+        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
+      </div>
+      <p class="proj-focus">Magnetic nanoparticles · glioblastoma</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">8</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">3</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_braidstent_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>BraidStent</h3>
+        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
+      </div>
+      <p class="proj-focus">Biodegradable ureteral stent</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">4</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>OPTICmizing</h3>
+        <span class="proj-stage" style="color:#0F6E56;">M2 · 2</span>
+      </div>
+      <p class="proj-focus">pHotoYOGURT · real-time pH sensor SaaS</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_gridwatch_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>GridWatch</h3>
+        <span class="proj-stage" style="color:#0F6E56;">M2 · 1</span>
+      </div>
+      <p class="proj-focus">AI power grid · grid resilience</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">8</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">2</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">2</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_endomet_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>ENDOMET</h3>
+        <span class="proj-stage" style="color:#1D9E75;">M1 · 4</span>
+      </div>
+      <p class="proj-focus">Mitochondrial disease · orphan drugs</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">14</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">7</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_onakids_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>ONAKids</h3>
+        <span class="proj-stage" style="color:#0F6E56;">M2 · 1</span>
+      </div>
+      <p class="proj-focus">Pediatric AI · language delay</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">18</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">5</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">3</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+    <a href="collider_ogyx_dashboard.html" class="proj-card" style="background:#f5f9fe;">
+      <div class="proj-head">
+        <h3>OGYX</h3>
+        <span class="proj-stage" style="color:#185FA5;">3 interview</span>
+      </div>
+      <p class="proj-focus">Organ-on-chip · microfluidic well-plate</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">11</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">3</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+  </div>
+
+  <p class="section-label">Additional dashboards</p>
+  <div class="extras">
+    <a href="collider_applicant_insights.html">
+      <h3>Applicant Insights</h3>
+      <p>79 form responses · 85% founders · 89% fundraising experience · 37% matched to pipeline</p>
+    </a>
+    <a href="collider_endomet_tto_resumen_ES.html">
+      <h3>ENDOMET · TTO Retención (ES)</h3>
+      <p>Resumen para Consuelo Rebolledo · proceso ENDOMET en español</p>
+    </a>
   </div>
 
   <div class="footer">
-    <div>
-      <strong>Does Recruitment</strong> · Wouter Jaarsma — fractional recruiter for The Collider · 14 May 2026<br>
-      Source: Manatal ATS · Outreach via Dripify · Applications via Google Forms.
-    </div>
-    <div><a href="https://wouter-does-recruitment.github.io/collider-dashboards/">collider-dashboards</a></div>
+    The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 10 Jun 2026<br>
+    Live tracking · Manatal ATS · Dripify outreach · Founder &amp; Leadership Questionnaire
   </div>
 
 </div>

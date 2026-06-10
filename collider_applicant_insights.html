@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Applicant Insights — The Collider · Week 4</title>
+<title>Applicant Insights — The Collider · Week 6</title>
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -55,7 +55,7 @@
   .metric-value.blue { color: #185FA5; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 22px 24px; }
   .card h3 { font-size: 13px; font-weight: 600; margin: 0 0 14px; color: #1a1a18; }
 
@@ -65,13 +65,6 @@
   .funnel-bar-wrap { flex: 1; background: #f5f4f0; border-radius: 3px; height: 7px; overflow: hidden; }
   .funnel-bar { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
   .funnel-num { font-size: 13px; font-weight: 600; color: #1a1a18; width: 30px; text-align: right; }
-
-  /* Submissions chart */
-  .week-chart { display: flex; align-items: flex-end; gap: 6px; height: 95px; padding-bottom: 8px; }
-  .week-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
-  .week-bar { width: 100%; max-width: 30px; min-height: 3px; background: linear-gradient(180deg, #1D9E75, #0F6E56); border-radius: 2px 2px 0 0; }
-  .week-num { font-size: 10px; font-weight: 600; color: #1a1a18; margin-top: 4px; }
-  .week-label { font-size: 9px; color: #888780; margin-top: 2px; white-space: nowrap; }
 
   .footer {
     margin-top: 50px; padding-top: 20px;
@@ -95,37 +88,37 @@
     <div class="header-left">
       <div class="crumb"><a href="index.html">The Collider</a> · Applicant Insights</div>
       <h1>Applicant Insights</h1>
-      <p class="focus">Founder &amp; Leadership Questionnaire — 81 application form responses</p>
+      <p class="focus">Founder &amp; Leadership Questionnaire — 79 application form responses</p>
     </div>
     <div class="header-right">
-      <span class="badge">Week 4 · Live</span>
-      <div class="date">14 May 2026</div>
+      <span class="badge">Week 6 · Live</span>
+      <div class="date">10 Jun 2026</div>
     </div>
   </div>
 
-  <div class="notice"><strong>Up from 65 to 81 responses</strong> since Week 2. 22 applicants (27%) are now in an active project pipeline. Founder background, tech-transfer experience and full-time commitment remain strong across the pool.</div>
+  <div class="notice"><strong>Pool quality strengthens.</strong> 85% founders, 89% with fundraising experience, 84% with tech-transfer background — all up from previous snapshot. 29 applicants (37%) are now active in a Collider project pipeline, up from 27% last review.</div>
 
   <p class="section-label">Headline numbers</p>
   <div class="metric-grid">
     <div class="metric-card signature">
       <div class="metric-label">Total responses</div>
-      <div class="metric-value purple">81</div>
-      <div class="metric-sub">Up from 65 in Week 2</div>
+      <div class="metric-value purple">79</div>
+      <div class="metric-sub">Form active since Jan 2026</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Founder background</div>
-      <div class="metric-value green">79%</div>
-      <div class="metric-sub">64 have founded or co-founded</div>
+      <div class="metric-value green">85%</div>
+      <div class="metric-sub">67 founded or co-founded</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Fundraising experience</div>
-      <div class="metric-value green">84%</div>
-      <div class="metric-sub">68 raised grants, equity, or both</div>
+      <div class="metric-value green">89%</div>
+      <div class="metric-sub">70 raised grants, equity, or both</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">In active pipeline</div>
-      <div class="metric-value blue">22</div>
-      <div class="metric-sub">27% matched to a Collider project</div>
+      <div class="metric-value blue">29</div>
+      <div class="metric-sub">37% matched to a project</div>
     </div>
   </div>
 
@@ -133,23 +126,23 @@
   <div class="metric-grid">
     <div class="metric-card">
       <div class="metric-label">Full-time commitment</div>
-      <div class="metric-value">74%</div>
-      <div class="metric-sub">42 full-time + 18 4+ days/week</div>
+      <div class="metric-value">84%</div>
+      <div class="metric-sub">46 full-time + 20 4+ days/week</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Tech-transfer experience</div>
-      <div class="metric-value">79%</div>
-      <div class="metric-sub">64 worked with research labs / TTOs</div>
+      <div class="metric-value">84%</div>
+      <div class="metric-sub">66 worked with research labs / TTOs</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Right to work in Spain</div>
-      <div class="metric-value">86%</div>
-      <div class="metric-sub">70 no visa sponsorship needed</div>
+      <div class="metric-value">94%</div>
+      <div class="metric-sub">74 no visa sponsorship needed</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Strong Spanish</div>
-      <div class="metric-value">74%</div>
-      <div class="metric-sub">53 excellent + 7 advanced</div>
+      <div class="metric-value">81%</div>
+      <div class="metric-sub">57 excellent + 7 advanced</div>
     </div>
   </div>
 
@@ -158,31 +151,31 @@
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Health / Biotech / Life Sciences</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">51</span>
+        <span class="funnel-num">54</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Materials / Manufacturing / Industry</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66.66666666666666%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">34</span>
+        <span class="funnel-num">36</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Energy / Climate / Resources</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:49.01960784313725%; background:#1D9E75;"></div></div>
-        <span class="funnel-num">25</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:48.148148148148145%; background:#1D9E75;"></div></div>
+        <span class="funnel-num">26</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Chips / Computing / AI</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:43.13725490196079%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:40.74074074074074%; background:#1D9E75;"></div></div>
         <span class="funnel-num">22</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Robotics / Autonomous Systems</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:23.52941176470588%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:22.22222222222222%; background:#1D9E75;"></div></div>
         <span class="funnel-num">12</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Space / Connectivity / Security</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:17.647058823529413%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:16.666666666666664%; background:#1D9E75;"></div></div>
         <span class="funnel-num">9</span>
       </div>
   </div>
@@ -192,32 +185,32 @@
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Business strategy and company building</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#185FA5;"></div></div>
-        <span class="funnel-num">72</span>
+        <span class="funnel-num">76</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Sales / Business development / Partnerships</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:87.5%; background:#185FA5;"></div></div>
-        <span class="funnel-num">63</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:86.8421052631579%; background:#185FA5;"></div></div>
+        <span class="funnel-num">66</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Fundraising / Investor relations</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:81.94444444444444%; background:#185FA5;"></div></div>
-        <span class="funnel-num">59</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:80.26315789473685%; background:#185FA5;"></div></div>
+        <span class="funnel-num">61</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Operations / Implementation / Pilots</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:73.61111111111111%; background:#185FA5;"></div></div>
-        <span class="funnel-num">53</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:75.0%; background:#185FA5;"></div></div>
+        <span class="funnel-num">57</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Product management / Tech leadership</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:66.66666666666666%; background:#185FA5;"></div></div>
-        <span class="funnel-num">48</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:68.42105263157895%; background:#185FA5;"></div></div>
+        <span class="funnel-num">52</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:240px;">Regulatory / Clinical / Quality</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:40.27777777777778%; background:#185FA5;"></div></div>
-        <span class="funnel-num">29</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:42.10526315789473%; background:#185FA5;"></div></div>
+        <span class="funnel-num">32</span>
       </div>
   </div>
 
@@ -230,21 +223,21 @@
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">CEO / Business lead</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#534AB7;"></div></div>
-        <span class="funnel-num">59</span>
+        <span class="funnel-num">63</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">CTO / Technology Lead</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:11.864406779661017%; background:#1D9E75;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:11.11111111111111%; background:#1D9E75;"></div></div>
         <span class="funnel-num">7</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">COO / Execution lead</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:10.16949152542373%; background:#BA7517;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:9.523809523809524%; background:#BA7517;"></div></div>
         <span class="funnel-num">6</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">CCO / Commercial lead</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.084745762711865%; background:#185FA5;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4.761904761904762%; background:#185FA5;"></div></div>
         <span class="funnel-num">3</span>
       </div>
       </div>
@@ -255,21 +248,21 @@
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">Catalyst</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">35</span>
+        <span class="funnel-num">37</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">Builder</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:85.71428571428571%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">30</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:83.78378378378379%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">31</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">Commercial driver</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14.285714285714285%; background:#0F6E56;"></div></div>
-        <span class="funnel-num">5</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:16.216216216216218%; background:#0F6E56;"></div></div>
+        <span class="funnel-num">6</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:200px;">Domain expert</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:14.285714285714285%; background:#0F6E56;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:13.513513513513514%; background:#0F6E56;"></div></div>
         <span class="funnel-num">5</span>
       </div>
       </div>
@@ -283,6 +276,21 @@
       <p class="section-label" style="margin-top:0;">Pipeline allocation · matched to projects</p>
       <div class="card">
       <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">Sorbmetrics</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">8</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">ONAKids</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:87.5%; background:#534AB7;"></div></div>
+        <span class="funnel-num">7</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">OGYX</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:87.5%; background:#534AB7;"></div></div>
+        <span class="funnel-num">7</span>
+      </div>
+      <div class="funnel-item">
         <span class="funnel-label" style="width:160px;">ENDOMET</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:75.0%; background:#534AB7;"></div></div>
         <span class="funnel-num">6</span>
@@ -293,9 +301,14 @@
         <span class="funnel-num">5</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label" style="width:160px;">ONAKids</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#534AB7;"></div></div>
-        <span class="funnel-num">8</span>
+        <span class="funnel-label" style="width:160px;">TarGlio</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:50.0%; background:#534AB7;"></div></div>
+        <span class="funnel-num">4</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:160px;">BraidStent</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:37.5%; background:#534AB7;"></div></div>
+        <span class="funnel-num">3</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:160px;">GridWatch</span>
@@ -303,12 +316,12 @@
         <span class="funnel-num">2</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label" style="width:160px;">OGYX</span>
+        <span class="funnel-label" style="width:160px;">UlissesDS</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:25.0%; background:#534AB7;"></div></div>
         <span class="funnel-num">2</span>
       </div>
         <div style="margin-top:14px; padding-top:14px; border-top:0.5px solid #f0ede6; font-size:11px; color:#888780; line-height:1.6;">
-          <strong style="color:#1a1a18;">22 of 81 applicants (27%)</strong> are now actively in a Collider project pipeline. The remaining 59 are in the broader talent pool for upcoming projects or under evaluation.
+          <strong style="color:#1a1a18;">29 of 79 applicants (37%)</strong> are now active in a Collider project pipeline. Up from 22 (27%) at last snapshot.
         </div>
       </div>
     </div>
@@ -318,31 +331,31 @@
       <div class="funnel-item">
         <span class="funnel-label" style="width:120px;">Spanish</span>
         <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100.0%; background:#BA7517;"></div></div>
-        <span class="funnel-num">39</span>
+        <span class="funnel-num">43</span>
       </div>
       <div class="funnel-item">
         <span class="funnel-label" style="width:120px;">Italian</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:15.384615384615385%; background:#BA7517;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:13.953488372093023%; background:#BA7517;"></div></div>
         <span class="funnel-num">6</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label" style="width:120px;">Argentinian</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7.6923076923076925%; background:#BA7517;"></div></div>
-        <span class="funnel-num">3</span>
-      </div>
-      <div class="funnel-item">
         <span class="funnel-label" style="width:120px;">French</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:7.6923076923076925%; background:#BA7517;"></div></div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:9.30232558139535%; background:#BA7517;"></div></div>
+        <span class="funnel-num">4</span>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label" style="width:120px;">Argentinian</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6.976744186046512%; background:#BA7517;"></div></div>
         <span class="funnel-num">3</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label" style="width:120px;">Ukraine</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.128205128205128%; background:#BA7517;"></div></div>
-        <span class="funnel-num">2</span>
+        <span class="funnel-label" style="width:120px;">Indian</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:6.976744186046512%; background:#BA7517;"></div></div>
+        <span class="funnel-num">3</span>
       </div>
       <div class="funnel-item">
-        <span class="funnel-label" style="width:120px;">India</span>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:5.128205128205128%; background:#BA7517;"></div></div>
+        <span class="funnel-label" style="width:120px;">Ukrainian</span>
+        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:4.651162790697675%; background:#BA7517;"></div></div>
         <span class="funnel-num">2</span>
       </div>
       </div>
@@ -350,7 +363,7 @@
   </div>
 
   <div class="footer">
-    <div>The Collider · MWC Barcelona — Applicant Insights · 14 May 2026<br>
+    <div>The Collider · MWC Barcelona — Applicant Insights · 10 Jun 2026<br>
     Source: Founder &amp; Leadership Questionnaire (Microsoft Forms) · Manatal ATS</div>
     <div><a href="index.html">← All projects</a></div>
   </div>

@@ -17,9 +17,7 @@
   }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
 
-  .header {
-    margin-bottom: 28px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6;
-  }
+  .header { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
   .header h1 { font-size: 26px; font-weight: 600; color: #1a1a18; margin: 0 0 6px; letter-spacing: -0.01em; }
   .header p { font-size: 13px; color: #888780; margin: 0; }
   .header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -29,7 +27,20 @@
   }
   .header .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
 
-  /* Week update banner */
+  .celebrate-banner {
+    background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .cb-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 6px;
+  }
+  .cb-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .cb-sub { font-size: 13px; opacity: 0.92; }
+
   .update-banner {
     background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);
     border: 1px solid #F59E0B;
@@ -41,9 +52,7 @@
     font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
     color: #92400E; margin-bottom: 10px;
   }
-  .update-banner-title {
-    font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 12px;
-  }
+  .update-banner-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 12px; }
   .update-list {
     list-style: none; padding: 0; margin: 0;
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px;
@@ -82,9 +91,7 @@
   .metric-value.blue { color: #185FA5; }
   .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
 
-  .proj-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-  }
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .proj-card {
     border: 0.5px solid #e0ddd6; border-radius: 12px;
     padding: 18px 20px;
@@ -104,10 +111,7 @@
   .ps-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
   .ps-lbl { font-size: 10px; color: #888780; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
 
-  .extras {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
-    margin-top: 16px;
-  }
+  .extras { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
   .extras a {
     background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
     padding: 18px 20px;
@@ -148,55 +152,74 @@
       </div>
       <div>
         <span class="badge">Week 6 · Live</span>
-        <div class="date">10 Jun 2026</div>
+        <div class="date">17 Jun 2026</div>
       </div>
     </div>
   </div>
 
+  <div class="celebrate-banner">
+    <div class="cb-label">New signing this week</div>
+    <div class="cb-title">OPTICmizing · Anxo Coterillo Frias signed as CEO</div>
+    <div class="cb-sub">5th CEO confirmed across the portfolio. From Matchmaking 2 to Team Ready in one cycle.</div>
+  </div>
+
   <div class="update-banner">
     <div class="update-banner-label">Week 6 updates</div>
-    <div class="update-banner-title">What changed this week</div>
+    <div class="update-banner-title">What's new this week</div>
     <ul class="update-list">
-      <li><strong>OPTICmizing surges to 4 matchmaking</strong> · Anxo Coterillo Frias direct to M2, Alejandro Tres moved M1 → M2</li>
-      <li><strong>GridWatch · Caviasca moved M1 → M2</strong> · Plus 70 leads engaged in Dripify campaign</li>
-      <li><strong>OGYX pipeline triples to 11</strong> · James Hugall added as top recommend, Inna Pertsovskaya new in Staff Interview</li>
-      <li><strong>Applicant Insights · pool quality up</strong> · 79 form responses, 85% founders, 89% fundraising experience, 37% matched to pipeline</li>
+      <li><strong>OPTICmizing · Anxo Coterillo Frias signed</strong> · Moved M2 → Team Ready. 5th signed CEO in the portfolio.</li>
+      <li><strong>OGYX adds Christian Maass</strong> · ESQlabs/MPSlabs lead, EUROoCS Board, MIT alumni → Staff Interview.</li>
+      <li><strong>GridWatch · Caviasca in M2</strong> · 70 leads engaged via Dripify, biggest outreach pool of any project.</li>
+      <li><strong>Applicant pool quality up</strong> · 79 form responses · 85% founders · 89% fundraising · 37% in pipeline.</li>
     </ul>
   </div>
 
-  <div class="notice"><strong>Late-stage momentum:</strong> 15 candidates in matchmaking across the portfolio. OPTICmizing leading with 4 in match (2 in M2), GridWatch with 2 (1 in M2). 4 CEOs already signed across Sorbmetrics, UlissesDS, TarGlio, and BraidStent.</div>
+  <div class="notice"><strong>5 CEOs signed across the portfolio</strong> — Sorbmetrics, UlissesDS, TarGlio, BraidStent, and now OPTICmizing. Plus 14 more candidates in active matchmaking. Strong late-stage momentum.</div>
 
   <p class="section-label">Portfolio totals</p>
   <div class="metric-grid">
     <div class="metric-card signature">
       <div class="metric-label">In ATS</div>
-      <div class="metric-value purple">166</div>
+      <div class="metric-value purple">168</div>
       <div class="metric-sub">across 9 projects</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Active</div>
-      <div class="metric-value">89</div>
+      <div class="metric-value">91</div>
       <div class="metric-sub">in evaluation</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">In interviews</div>
-      <div class="metric-value blue">27</div>
+      <div class="metric-value blue">28</div>
       <div class="metric-sub">Staff + META</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Matchmaking</div>
-      <div class="metric-value purple">15</div>
+      <div class="metric-value purple">14</div>
       <div class="metric-sub">closing toward team</div>
     </div>
     <div class="metric-card signed">
       <div class="metric-label">Signed</div>
-      <div class="metric-value green">4</div>
+      <div class="metric-value green">5</div>
       <div class="metric-sub">CEOs in place</div>
     </div>
   </div>
 
   <p class="section-label">All 9 projects · sorted by closing stage</p>
   <div class="proj-grid">
+    <a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>OPTICmizing</h3>
+        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
+      </div>
+      <p class="proj-focus">pHotoYOGURT · real-time pH sensor SaaS</p>
+      <div class="proj-stats">
+        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">3</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
     <a href="collider_sorbmetrics_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>Sorbmetrics</h3>
@@ -249,19 +272,6 @@
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>OPTICmizing</h3>
-        <span class="proj-stage" style="color:#0F6E56;">M2 · 2</span>
-      </div>
-      <p class="proj-focus">pHotoYOGURT · real-time pH sensor SaaS</p>
-      <div class="proj-stats">
-        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
     <a href="collider_gridwatch_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>GridWatch</h3>
@@ -304,12 +314,12 @@
     <a href="collider_ogyx_dashboard.html" class="proj-card" style="background:#f5f9fe;">
       <div class="proj-head">
         <h3>OGYX</h3>
-        <span class="proj-stage" style="color:#185FA5;">3 interview</span>
+        <span class="proj-stage" style="color:#185FA5;">4 interview</span>
       </div>
       <p class="proj-focus">Organ-on-chip · microfluidic well-plate</p>
       <div class="proj-stats">
-        <div><span class="ps-num">11</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">3</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
       </div>
@@ -329,7 +339,7 @@
   </div>
 
   <div class="footer">
-    The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 10 Jun 2026<br>
+    The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 17 Jun 2026<br>
     Live tracking · Manatal ATS · Dripify outreach · Founder &amp; Leadership Questionnaire
   </div>
 

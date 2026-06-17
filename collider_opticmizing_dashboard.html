@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OPTICmizing — The Collider · CEO Search Dashboard</title>
+<title>OPTICmizing — The Collider · CEO Signed!</title>
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -26,20 +26,26 @@
   .header-left .focus { font-size: 12px; color: #888780; margin: 0; }
   .header-left .crumb { font-size: 11px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
   .header-left .crumb a { color: #888780; text-decoration: none; }
-  .header-left .crumb a:hover { color: #1a1a18; }
   .header-right .badge {
-    display: inline-block; background: #EAF3DE; color: #3B6D11;
-    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+    display: inline-block; background: #1D9E75; color: #fff;
+    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
   }
   .header-right .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
 
-  .notice {
-    background: #EAF3DE; border-left: 3px solid #1D9E75;
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px; margin-bottom: 28px;
-    font-size: 12px; color: #3B6D11;
+  /* Celebration banner */
+  .celebrate {
+    background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 28px;
+    color: #fff;
   }
-  .notice strong { color: #1a3a0c; font-weight: 600; }
+  .celebrate-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 8px;
+  }
+  .celebrate-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .celebrate-sub { font-size: 13px; opacity: 0.9; line-height: 1.5; }
 
   .section-label {
     font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
@@ -73,6 +79,7 @@
   }
   .cand-card:hover { background: #fafaf6; }
   .cand-card + .cand-card { margin-top: 4px; }
+  .cand-card.card-signed { border: 1px solid #9FE1CB; background: #f7fdf9; }
   .cand-card.card-match { border: 1px solid #1D9E75; background: #f0fdf6; }
   .cand-card.card-ref { border: 1px solid #A5B4FC; background: #F5F3FF; }
   .avatar {
@@ -91,6 +98,12 @@
     display: inline-block; padding: 3px 9px; border-radius: 4px;
     font-size: 11px; font-weight: 500; letter-spacing: 0.01em;
     white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-signed {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 600;
+    background: #1D9E75; color: #fff;
+    margin-left: 6px;
   }
 
   .footer {
@@ -119,40 +132,44 @@
       <p class="focus">pHotoYOGURT · real-time pH sensor SaaS for dairy fermentation</p>
     </div>
     <div class="header-right">
-      <span class="badge">Week 6 · Closing in</span>
-      <div class="date">10 Jun 2026</div>
+      <span class="badge">SIGNED</span>
+      <div class="date">17 Jun 2026</div>
     </div>
   </div>
 
-  <div class="notice"><strong>4 candidates in matchmaking · 2 in M2.</strong> Strong late-stage pipeline closing toward team confirmation. Dedicated Dripify campaign engaged 53 leads with 68% accept rate.</div>
+  <div class="celebrate">
+    <div class="celebrate-label">CEO Signed</div>
+    <div class="celebrate-title">Anxo Coterillo Frias · Team Ready!</div>
+    <div class="celebrate-sub">From Matchmaking 2 to signed. OPTICmizing now has its CEO &amp; Co-Founder. Plus Alejandro Tres still in M2 and 2 candidates in M1 — strong bench for the next phase.</div>
+  </div>
 
   <div class="metric-grid-4">
+    <div class="metric-card">
+      <div class="metric-label">Signed</div>
+      <div class="metric-value" style="color:#1D9E75;">1</div>
+      <div class="metric-sub">Anxo · CEO confirmed</div>
+    </div>
     <div class="metric-card">
       <div class="metric-label">In ATS</div>
       <div class="metric-value" style="color:#1a1a18;">23</div>
       <div class="metric-sub">13 active · 10 dropped</div>
     </div>
     <div class="metric-card">
+      <div class="metric-label">Matchmaking bench</div>
+      <div class="metric-value" style="color:#534AB7;">3</div>
+      <div class="metric-sub">Strong backup candidates</div>
+    </div>
+    <div class="metric-card">
       <div class="metric-label">Outreach engaged</div>
       <div class="metric-value" style="color:#185FA5;">53</div>
       <div class="metric-sub">via Dripify campaign</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Matchmaking</div>
-      <div class="metric-value" style="color:#534AB7;">4</div>
-      <div class="metric-sub">2 in M1 · 2 in M2</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Interview phase</div>
-      <div class="metric-value" style="color:#BA7517;">4</div>
-      <div class="metric-sub">Staff + META</div>
     </div>
   </div>
 
   <p class="section-label">Dripify outreach campaign · OPTICmizing-specific</p>
   <div class="dripify-card">
-    <h3>Active sourcing campaign</h3>
-    <p style="font-size: 12px; color: #888780; margin: 0 0 16px;">Focused on FoodTech founders/CEOs, dairy industry executives, plant-based and fermentation specialists across Spain, the Netherlands and broader EU food ecosystem.</p>
+    <h3>Sourcing campaign that delivered</h3>
+    <p style="font-size: 12px; color: #888780; margin: 0 0 16px;">Focused on FoodTech founders/CEOs, dairy industry executives, plant-based and fermentation specialists across Spain, the Netherlands and broader EU food ecosystem. Result: 1 CEO signed, with strong bench remaining.</p>
     <div class="dripify-stats">
       <div>
         <div class="ds-num">53</div>
@@ -179,21 +196,23 @@
 
   <p class="section-label">Active candidates · in Manatal pipeline</p>
   <div class="cand-list">
+      <div class="cand-card card-signed">
+        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AF</div>
+        <div class="cand-meta">
+          <div class="cand-name">Anxo Coterillo Frias</div>
+          <div class="cand-sub">COO · CoverManager</div>
+        </div>
+        <span class="pill" style="background:#534AB7; color:#ffffff;">Team Ready!</span>
+        <span class="badge-signed">CEO signed!</span>
+      </div>
       <div class="cand-card card-match">
-        <div class="avatar" style="background:#E6F1FB; color:#185FA5;">AT</div>
+        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AT</div>
         <div class="cand-meta">
           <div class="cand-name">Alejandro Tres</div>
           <div class="cand-sub">Founder & Co-CEO · Domenico, Barcelona, Spain</div>
         </div>
         <span class="pill" style="background:#0F6E56; color:#ffffff;">Matchmaking 2</span>
-      </div>
-      <div class="cand-card card-match">
-        <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">AF</div>
-        <div class="cand-meta">
-          <div class="cand-name">Anxo Coterillo Frias</div>
-          <div class="cand-sub">COO · CoverManager</div>
-        </div>
-        <span class="pill" style="background:#0F6E56; color:#ffffff;">Matchmaking 2</span>
+        
       </div>
       <div class="cand-card card-match">
         <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">FR</div>
@@ -202,6 +221,7 @@
           <div class="cand-sub">Co-Founder & Investor · BootNode</div>
         </div>
         <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        
       </div>
       <div class="cand-card card-match">
         <div class="avatar" style="background:#FEF3C7; color:#92400E;">JS</div>
@@ -210,6 +230,7 @@
           <div class="cand-sub">Co-Founder · Smart Foods Global</div>
         </div>
         <span class="pill" style="background:#1D9E75; color:#ffffff;">Matchmaking 1</span>
+        
       </div>
       <div class="cand-card card-ref">
         <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AC</div>
@@ -218,6 +239,7 @@
           <div class="cand-sub">External Consultant Independent</div>
         </div>
         <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Ref Check</span>
+        
       </div>
       <div class="cand-card card-ref">
         <div class="avatar" style="background:#DEF1E7; color:#0F6E56;">CW</div>
@@ -226,14 +248,16 @@
           <div class="cand-sub">Entrepreneur in Residence (NL) · Fresh Ventures Studio (Food & Agriculture)</div>
         </div>
         <span class="pill" style="background:#EDE9FE; color:#4F46E5;">Ref Check</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#FCE9E0; color:#BA5517;">CP</div>
         <div class="cand-meta">
-          <div class="cand-name">CINZIA PALUMBO</div>
+          <div class="cand-name">Cinzia Palumbo</div>
           <div class="cand-sub">Co-Founder · Genie</div>
         </div>
         <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Disruptive Talent</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#F3E8FF; color:#6B21A8;">DB</div>
@@ -242,6 +266,7 @@
           <div class="cand-sub">Senior Research Scientist · Pack2Earth (Spain)</div>
         </div>
         <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Disruptive Talent</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#E6F1FB; color:#185FA5;">JC</div>
@@ -250,6 +275,7 @@
           <div class="cand-sub">Public Speaker & Consultant · Jamiecrummie.com</div>
         </div>
         <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#EAF3DE; color:#3B6D11;">JM</div>
@@ -258,6 +284,7 @@
           <div class="cand-sub">Corporate Business Manager · Elementa Foods</div>
         </div>
         <span class="pill" style="background:#E6F1FB; color:#185FA5;">Staff Interview</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#EDE9FE; color:#4F46E5;">GO</div>
@@ -266,6 +293,7 @@
           <div class="cand-sub">Co-founder & Chief Researcher in Food Biotechnology · Real Deal Milk / Gleipnir Medical</div>
         </div>
         <span class="pill" style="background:#FEF3C7; color:#92400E;">Full app sent</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#FEF3C7; color:#92400E;">RF</div>
@@ -274,6 +302,7 @@
           <div class="cand-sub">Chief Finance and Operating Officer and Board Member · NEXTI (Acquired through Caatinga Capital, a search fund I co-founded)</div>
         </div>
         <span class="pill" style="background:#FEF3C7; color:#92400E;">Full app sent</span>
+        
       </div>
       <div class="cand-card">
         <div class="avatar" style="background:#FCE7F3; color:#9D174D;">AS</div>
@@ -282,6 +311,7 @@
           <div class="cand-sub">Senior VP Subscription-Marketing · DAZN</div>
         </div>
         <span class="pill" style="background:#f0ede6; color:#5a5a55;">New</span>
+        
       </div>
   </div>
 
@@ -527,7 +557,7 @@
         <div class="avatar" style="background:#FCE9E0; color:#BA5517;">MV</div>
         <div class="cand-meta">
           <div class="cand-name">Marion Vasselle</div>
-          <div class="cand-sub">Executive Coach & Management Consultant | Talent Development & Leadershi...</div>
+          <div class="cand-sub">Executive Coach & Management Consultant | Talent Development & Leadership Exc...</div>
         </div>
         <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
       </div>
@@ -543,7 +573,7 @@
         <div class="avatar" style="background:#E6F1FB; color:#185FA5;">FB</div>
         <div class="cand-meta">
           <div class="cand-name">Francisco Belisario</div>
-          <div class="cand-sub">Global Business Intelligence Leader — Senior BI & Data Integration Consu...</div>
+          <div class="cand-sub">Global Business Intelligence Leader — Senior BI & Data Integration Consultant...</div>
         </div>
         <span class="pill" style="background:#EAF3DE; color:#3B6D11;">Connection sent</span>
       </div>
@@ -627,7 +657,7 @@
         <div class="avatar" style="background:#E6F1FB; color:#185FA5;">DA</div>
         <div class="cand-meta">
           <div class="cand-name">Deh Andre</div>
-          <div class="cand-sub">Founder & Creative Director at Fresca Yogur Helado | Frozen Yogurt & Fre...</div>
+          <div class="cand-sub">Founder & Creative Director at Fresca Yogur Helado | Frozen Yogurt & Fresh Fr...</div>
         </div>
         <span class="pill" style="background:#f0ede6; color:#5a5a55;">Profile viewed</span>
       </div>
@@ -714,7 +744,7 @@
   </div>
 
   <div class="footer">
-    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 10 Jun 2026<br>
+    <div>The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 17 Jun 2026<br>
     Source: Manatal ATS · Dripify outreach campaign</div>
     <div><a href="index.html">← All projects</a></div>
   </div>

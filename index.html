@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Collider — CEO &amp; Co-Founder Searches</title>
+<title>The Collider - CEO & Co-Founder Searches</title>
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -84,6 +84,7 @@
   .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; }
   .metric-card.signature { border-top: 3px solid #534AB7; }
   .metric-card.signed { border-top: 3px solid #1D9E75; }
+  .metric-card.focus { border-top: 3px solid #185FA5; }
   .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
   .metric-value { font-size: 28px; font-weight: 600; line-height: 1; color: #1a1a18; }
   .metric-value.green { color: #1D9E75; }
@@ -97,15 +98,18 @@
     padding: 18px 20px;
     text-decoration: none; color: #1a1a18;
     transition: all 0.15s ease;
+    display: block;
   }
   .proj-card:hover {
     border-color: #1a1a18; transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
-  .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .proj-card.disabled { cursor: default; opacity: 0.92; }
+  .proj-card.disabled:hover { border-color: #e0ddd6; transform: none; box-shadow: none; }
+  .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 12px; }
   .proj-head h3 { font-size: 15px; font-weight: 600; margin: 0; }
-  .proj-stage { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; }
-  .proj-focus { font-size: 11px; color: #888780; margin: 0 0 14px; }
+  .proj-stage { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+  .proj-focus { font-size: 11px; color: #888780; margin: 0 0 14px; min-height: 34px; }
   .proj-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
   .proj-stats div { display: flex; flex-direction: column; }
   .ps-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
@@ -125,6 +129,11 @@
   }
   .extras h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
   .extras p { font-size: 11px; color: #888780; margin: 0; }
+  .pill {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    color: #185FA5; background: #EAF3FF; border-radius: 999px;
+    padding: 3px 8px; margin-bottom: 8px;
+  }
 
   .footer {
     margin-top: 50px; padding-top: 20px;
@@ -148,181 +157,218 @@
     <div class="header-row">
       <div>
         <h1>The Collider · CEO &amp; Co-Founder Searches</h1>
-        <p>Portfolio dashboard — 9 active deep tech projects</p>
+        <p>Portfolio dashboard - 10 projects, including Planaris setup</p>
       </div>
       <div>
-        <span class="badge">Week 6 · Live</span>
-        <div class="date">17 Jun 2026</div>
+        <span class="badge">Updated · Manatal exports</span>
+        <div class="date">13 Aug 2026</div>
       </div>
     </div>
   </div>
 
   <div class="celebrate-banner">
-    <div class="cb-label">New signing this week</div>
-    <div class="cb-title">OPTICmizing · Anxo Coterillo Frias signed as CEO</div>
-    <div class="cb-sub">5th CEO confirmed across the portfolio. From Matchmaking 2 to Team Ready in one cycle.</div>
+    <div class="cb-label">September prep</div>
+    <div class="cb-title">Market maps added for BraidStent CTO and Female Health / MedTech Valencia</div>
+    <div class="cb-sub">First sourcing maps for Consuelo review: technical CTO profiles for BraidStent and ecosystem/candidate leads around Valencia female health.</div>
   </div>
 
   <div class="update-banner">
-    <div class="update-banner-label">Week 6 updates</div>
-    <div class="update-banner-title">What's new this week</div>
+    <div class="update-banner-label">Current focus</div>
+    <div class="update-banner-title">What's new since the previous index</div>
     <ul class="update-list">
-      <li><strong>OPTICmizing · Anxo Coterillo Frias signed</strong> · Moved M2 → Team Ready. 5th signed CEO in the portfolio.</li>
-      <li><strong>OGYX adds Christian Maass</strong> · ESQlabs/MPSlabs lead, EUROoCS Board, MIT alumni → Staff Interview.</li>
-      <li><strong>GridWatch · Caviasca in M2</strong> · 70 leads engaged via Dripify, biggest outreach pool of any project.</li>
-      <li><strong>Applicant pool quality up</strong> · 79 form responses · 85% founders · 89% fundraising · 37% in pipeline.</li>
+      <li><strong>Manatal data refreshed</strong> · 182 records across uploaded project exports, with 105 active records.</li>
+      <li><strong>OGYX focus continues</strong> · 19 active records, 8 in evaluation and 2 in matchmaking.</li>
+      <li><strong>GridWatch momentum</strong> · 14 active records, with Ramon Gallart and Roger Segura as key September profiles.</li>
+      <li><strong>Planaris added</strong> · new September workstream for COO Co-Founder and technical hire. Candidate pipeline not started yet.</li>
     </ul>
   </div>
 
-  <div class="notice"><strong>5 CEOs signed across the portfolio</strong> — Sorbmetrics, UlissesDS, TarGlio, BraidStent, and now OPTICmizing. Plus 14 more candidates in active matchmaking. Strong late-stage momentum.</div>
+  <div class="notice"><strong>5 CEOs signed across the portfolio</strong> - Sorbmetrics, UlissesDS, TarGlio, BraidStent and OPTICmizing. Additional sourcing market maps now added for upcoming September work.</div>
 
   <p class="section-label">Portfolio totals</p>
   <div class="metric-grid">
     <div class="metric-card signature">
       <div class="metric-label">In ATS</div>
-      <div class="metric-value purple">168</div>
-      <div class="metric-sub">across 9 projects</div>
+      <div class="metric-value purple">182</div>
+      <div class="metric-sub">uploaded records</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Active</div>
-      <div class="metric-value">91</div>
+      <div class="metric-value">105</div>
       <div class="metric-sub">in evaluation</div>
     </div>
-    <div class="metric-card">
-      <div class="metric-label">In interviews</div>
-      <div class="metric-value blue">28</div>
-      <div class="metric-sub">Staff + META</div>
+    <div class="metric-card focus">
+      <div class="metric-label">Eval stages</div>
+      <div class="metric-value blue">54</div>
+      <div class="metric-sub">First Call, Staff, META, refs</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Matchmaking</div>
-      <div class="metric-value purple">14</div>
-      <div class="metric-sub">closing toward team</div>
+      <div class="metric-value purple">18</div>
+      <div class="metric-sub">M1 + M2</div>
     </div>
     <div class="metric-card signed">
       <div class="metric-label">Signed</div>
       <div class="metric-value green">5</div>
-      <div class="metric-sub">CEOs in place</div>
+      <div class="metric-sub">Team Ready</div>
     </div>
   </div>
 
-  <p class="section-label">All 9 projects · sorted by closing stage</p>
+  <p class="section-label">Portfolio projects · refreshed from Manatal exports</p>
   <div class="proj-grid">
-    <a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
-        <h3>OPTICmizing</h3>
+        <h3>OpticMizing</h3>
         <span class="proj-stage" style="color:#1D9E75;">Signed</span>
       </div>
-      <p class="proj-focus">pHotoYOGURT · real-time pH sensor SaaS</p>
+      <p class="proj-focus">pHotoYOGURT - real-time pH sensor SaaS</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">6</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">3</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_sorbmetrics_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_sorbmetrics_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>Sorbmetrics</h3>
         <span class="proj-stage" style="color:#1D9E75;">Signed</span>
       </div>
       <p class="proj-focus">MCSD adsorption devices</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">10</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">2</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">4</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_ulissesds_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_ulissesds_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>UlissesDS</h3>
         <span class="proj-stage" style="color:#1D9E75;">Signed</span>
       </div>
-      <p class="proj-focus">AI ultrasound · diagnostics</p>
+      <p class="proj-focus">AI ultrasound - diagnostics</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">3</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_targlio_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_targlio_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>TarGlio</h3>
         <span class="proj-stage" style="color:#1D9E75;">Signed</span>
       </div>
-      <p class="proj-focus">Magnetic nanoparticles · glioblastoma</p>
+      <p class="proj-focus">Magnetic nanoparticles - glioblastoma</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">8</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">3</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">5</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_braidstent_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_braidstent_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>BraidStent</h3>
         <span class="proj-stage" style="color:#1D9E75;">Signed</span>
       </div>
-      <p class="proj-focus">Biodegradable ureteral stent</p>
+      <p class="proj-focus">Biodegradable ureteral stent - CEO signed, CTO map started</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">4</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">3</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_gridwatch_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_gridwatch_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>GridWatch</h3>
         <span class="proj-stage" style="color:#0F6E56;">M2 · 1</span>
       </div>
-      <p class="proj-focus">AI power grid · grid resilience</p>
+      <p class="proj-focus">AI power grid - grid resilience</p>
+      
       <div class="proj-stats">
-        <div><span class="ps-num">8</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">2</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">14</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">9</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">2</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_endomet_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_ogyx_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+      <div class="proj-head">
+        <h3>OGYX</h3>
+        <span class="proj-stage" style="color:#0F6E56;">M1 · 2</span>
+      </div>
+      <p class="proj-focus">Organ-on-chip - microfluidic well-plate</p>
+      
+      <div class="proj-stats">
+        <div><span class="ps-num">19</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">8</span><span class="ps-lbl">Eval</span></div>
+        <div><span class="ps-num">2</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
+      </div>
+    </a>
+<a href="collider_endomet_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>ENDOMET</h3>
-        <span class="proj-stage" style="color:#1D9E75;">M1 · 4</span>
+        <span class="proj-stage" style="color:#0F6E56;">M1 · 4</span>
       </div>
-      <p class="proj-focus">Mitochondrial disease · orphan drugs</p>
+      <p class="proj-focus">Mitochondrial disease - orphan drugs</p>
+      
       <div class="proj-stats">
         <div><span class="ps-num">14</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">7</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">10</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">4</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_onakids_dashboard.html" class="proj-card" style="background:#f0fdf6;">
+<a href="collider_onakids_dashboard.html" class="proj-card" style="background:#f0fdf6;">
       <div class="proj-head">
         <h3>ONAKids</h3>
-        <span class="proj-stage" style="color:#0F6E56;">M2 · 1</span>
+        <span class="proj-stage" style="color:#0F6E56;">M1 · 5</span>
       </div>
-      <p class="proj-focus">Pediatric AI · language delay</p>
+      <p class="proj-focus">Pediatric AI - language delay</p>
+      
       <div class="proj-stats">
-        <div><span class="ps-num">18</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">5</span><span class="ps-lbl">Interview</span></div>
-        <div><span class="ps-num">3</span><span class="ps-lbl">Match</span></div>
+        <div><span class="ps-num">20</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">9</span><span class="ps-lbl">Eval</span></div>
+        <div><span class="ps-num">5</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
       </div>
     </a>
-    <a href="collider_ogyx_dashboard.html" class="proj-card" style="background:#f5f9fe;">
+<div class="proj-card disabled" style="background:#fff7ed;">
       <div class="proj-head">
-        <h3>OGYX</h3>
-        <span class="proj-stage" style="color:#185FA5;">4 interview</span>
+        <h3>Planaris</h3>
+        <span class="proj-stage" style="color:#92400E;">New / setup</span>
       </div>
-      <p class="proj-focus">Organ-on-chip · microfluidic well-plate</p>
+      <p class="proj-focus">Space defense deep tech - COO Co-Founder + technical hire</p>
+      
       <div class="proj-stats">
-        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Interview</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Active</span></div>
+        <div><span class="ps-num">0</span><span class="ps-lbl">Eval</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
         <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
       </div>
+    </div>
+  </div>
+
+  <p class="section-label">Sourcing market maps</p>
+  <div class="extras">
+    <a href="collider_braidstent_technical_market_map.html">
+      <span class="pill">First sourcing market map</span>
+      <h3>BraidStent · Technical / CTO Map</h3>
+      <p>19 profiles · CTO, R&amp;D, regulatory, biomaterials and MedDevice industrialisation leads</p>
+    </a>
+    <a href="collider_female_health_valencia_market_map.html">
+      <span class="pill">Market mapping exercise</span>
+      <h3>Female Health / MedTech Valencia</h3>
+      <p>Female founder, ecosystem, referral and benchmark profiles for Valencia and broader Spain</p>
     </a>
   </div>
 
@@ -330,7 +376,7 @@
   <div class="extras">
     <a href="collider_applicant_insights.html">
       <h3>Applicant Insights</h3>
-      <p>79 form responses · 85% founders · 89% fundraising experience · 37% matched to pipeline</p>
+      <p>Founder &amp; Leadership Questionnaire insights and selected applicant patterns</p>
     </a>
     <a href="collider_endomet_tto_resumen_ES.html">
       <h3>ENDOMET · TTO Retención (ES)</h3>
@@ -339,8 +385,8 @@
   </div>
 
   <div class="footer">
-    The Collider · MWC Barcelona — CEO &amp; Co-Founder Search · 17 Jun 2026<br>
-    Live tracking · Manatal ATS · Dripify outreach · Founder &amp; Leadership Questionnaire
+    The Collider · MWC Barcelona - CEO &amp; Co-Founder Search · updated 13 Aug 2026<br>
+    Live tracking · Manatal ATS · Dripify outreach · Founder &amp; Leadership Questionnaire · September sourcing market maps
   </div>
 
 </div>

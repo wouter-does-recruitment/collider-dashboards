@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BraidStent Technical Market Map - v0.1</title>
+<style>
+  :root {
+    --bg:#f6f4ef; --panel:#fffdf8; --ink:#1f2933; --muted:#6b7280; --line:#e6e0d6;
+    --accent:#244f6b; --accent-2:#a95c3a; --amber:#c9962e; --green:#2f7d5f; --red:#a94848;
+    --shadow:0 18px 45px rgba(31,41,51,.08); --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  a{color:var(--accent);font-weight:800;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1420px;margin:0 auto;padding:34px 28px 60px}
+  .hero{display:grid;grid-template-columns:1.55fr .9fr;gap:22px;align-items:stretch;margin-bottom:24px}
+  .hero-main,.hero-side,.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .hero-main{padding:34px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-size:12px;font-weight:900;margin-bottom:12px}
+  h1{font-size:42px;line-height:1.05;margin:0 0 14px;letter-spacing:-.035em}
+  .subtitle{font-size:17px;color:#4b5563;max-width:940px;margin:0 0 24px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .tag{background:#e8eef2;color:#1e435c;border:1px solid #cbdce7;border-radius:999px;padding:7px 11px;font-weight:800;font-size:12px}
+  .hero-side{padding:28px}
+  .hero-side h2{font-size:17px;margin:0 0 14px}
+  .note{border-left:4px solid var(--accent-2);padding-left:14px;color:#4b5563;margin:0 0 18px}
+  .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .meta{background:#f8f5ec;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .meta strong{display:block;font-size:26px;line-height:1;margin-bottom:6px}
+  .meta span{color:var(--muted);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:0 0 24px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+  .kpi .num{font-size:34px;font-weight:950;line-height:1;margin-bottom:6px;color:var(--accent)}
+  .kpi .label{font-weight:850;color:#374151}
+  .kpi .sub{color:var(--muted);font-size:12px;margin-top:5px}
+  .section{margin-top:28px}
+  .section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:0 0 14px}
+  .section h2{font-size:24px;margin:0;letter-spacing:-.02em}
+  .section p.lead{color:#53606f;margin:4px 0 0;max-width:900px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .panel{padding:20px}
+  .panel h3{margin:0 0 14px;font-size:18px}
+  .bar-row{display:grid;grid-template-columns:190px 1fr 34px;gap:10px;align-items:center;margin:11px 0}
+  .bar-row span{font-weight:750;color:#44515f;font-size:13px}
+  .bar-row strong{text-align:right;color:#374151}
+  .bar-bg{height:12px;background:#eee8dc;border-radius:999px;overflow:hidden}
+  .bar-bg i,.bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+  .bar-bg i.orange{background:var(--accent-2)}
+  .bar-bg i.amber{background:var(--amber)}
+  .short-list{display:flex;flex-direction:column;gap:12px}
+  .mini{border:1px solid var(--line);background:#faf7ef;border-radius:16px;padding:14px}
+  .mini-title{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:4px}
+  .mini h4{margin:0;font-size:15px}
+  .mini p{margin:0 0 3px;color:#4b5563;font-size:13px}
+  .badge{display:inline-flex;align-items:center;justify-content:center;min-width:34px;border-radius:999px;padding:4px 8px;font-weight:950;font-size:11px;letter-spacing:.02em}
+  .priority-a{background:#dceee8;color:#15574e}
+  .priority-b{background:#fbebcf;color:#7c4e09}
+  .priority-c{background:#eeeef0;color:#4b5563}
+  .type-badge{background:#f2eee7;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-weight:850;font-size:11px;color:#59616c;display:inline-block}
+  .profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .profile-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(31,41,51,.06);display:flex;flex-direction:column;min-height:470px}
+  .card-topline{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px;align-items:center}
+  .profile-card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}
+  .role{font-weight:760;color:#354250;margin:0 0 8px}
+  .location{color:var(--muted);margin:0 0 12px;font-size:13px}
+  .tags-mini{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .tag-mini{border-radius:999px;background:#edf1f4;border:1px solid #dbe4ea;color:#274f66;padding:4px 7px;font-size:11px;font-weight:800}
+  .scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px}
+  .scores span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:900}
+  .scores strong{float:right;font-size:12px;color:#374151}
+  .bar{height:9px;background:#eee8dc;border-radius:999px;overflow:hidden;clear:both;margin-top:5px}
+  .why,.risk{font-size:13px;color:#465260;margin:0 0 10px}
+  .risk{color:#6b4f41}
+  .next{margin-top:auto;background:#f7f2e8;border:1px solid #eee3d3;border-radius:14px;padding:11px;font-size:13px;color:#3c4653}
+  .source-row{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:var(--muted);font-size:11px;align-items:center}
+  .source-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}
+  .filters{position:sticky;top:0;z-index:3;background:rgba(246,244,239,.92);backdrop-filter:blur(8px);padding:12px 0;margin:22px 0 10px;border-bottom:1px solid rgba(230,224,214,.8)}
+  .filter-row{display:grid;grid-template-columns:1.4fr .7fr .9fr .5fr;gap:10px;align-items:center}
+  input,select,button{font:inherit;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px 12px;color:var(--ink)}
+  button{background:var(--accent);color:#fff;font-weight:850;cursor:pointer;border:0}
+  button:hover{filter:brightness(.96)}
+  .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:1240px}
+  th,td{border-bottom:1px solid var(--line);padding:12px 13px;text-align:left;vertical-align:top}
+  th{background:#f3efe7;position:sticky;top:0;z-index:2;color:#334155;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+  td{font-size:13px;color:#394654}
+  td span{color:var(--muted);font-size:12px}
+  td.num{font-weight:950;color:var(--accent);font-size:18px}
+  .method{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .method div{background:#faf7ef;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .method b{display:block;margin-bottom:5px;color:#293849}
+  .small{font-size:12px;color:var(--muted)}
+  .footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
+  @media (max-width:1100px){.hero,.grid-3,.grid-2,.profile-grid,.kpis{grid-template-columns:1fr 1fr}.filter-row{grid-template-columns:1fr 1fr}h1{font-size:34px}}
+  @media (max-width:720px){.hero,.grid-3,.grid-2,.profile-grid,.kpis,.method{grid-template-columns:1fr}.filter-row{grid-template-columns:1fr}.wrap{padding:22px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">First sourcing market map · Internal review</div>
+      <h1>BraidStent Technical Profile Market Map</h1>
+      <p class="subtitle">Initial technical / CTO sourcing map for BraidStent, based on the first 19 LinkedIn profile PDFs. This is framed as a market-mapping exercise for Consuelo, not a final shortlist. The goal is to identify direct CTO candidates, technical/regulatory leads, benchmark profiles and referral nodes around implantable MedTech, stents/catheters, MDR and product industrialisation.</p>
+      <div class="tags">
+        <span class="tag">BraidStent</span><span class="tag">Biodegradable ureteral stent</span><span class="tag">CTO / Technical profile</span><span class="tag">MedDevice</span><span class="tag">MDR / ISO 13485</span><span class="tag">First market map</span>
+      </div>
+    </div>
+    <aside class="hero-side">
+      <h2>How to read this dashboard</h2>
+      <p class="note">The strongest matches are not necessarily urology-only. The best first pool is a mix of implantable device, catheter/stent, R&D, product development, MDR, manufacturing and biomaterials profiles.</p>
+      <div class="meta-grid">
+        <div class="meta"><strong>19</strong><span>Profiles reviewed</span></div>
+        <div class="meta"><strong>8</strong><span>A-priority</span></div>
+        <div class="meta"><strong>8</strong><span>Top review names</span></div>
+        <div class="meta"><strong>v0.1</strong><span>Draft market map</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><div class="num">19</div><div class="label">Profiles</div><div class="sub">From first LinkedIn PDF batch</div></div>
+    <div class="kpi"><div class="num">8</div><div class="label">A priority</div><div class="sub">Review first with Consuelo</div></div>
+    <div class="kpi"><div class="num">7</div><div class="label">B priority</div><div class="sub">Relevant, worth checking</div></div>
+    <div class="kpi"><div class="num">4</div><div class="label">C / verify</div><div class="sub">Adjacent or needs validation</div></div>
+    <div class="kpi"><div class="num">5</div><div class="label">Core signals</div><div class="sub">Stent/catheter, MDR, product, manufacturing, startup</div></div>
+  </section>
+
+  <section class="section grid-3">
+    <div class="panel">
+      <h3>Priority mix</h3>
+      <div class="bar-row"><span>A priority</span><div class="bar-bg"><i style="width:42.1%"></i></div><strong>8</strong></div><div class="bar-row"><span>B priority</span><div class="bar-bg"><i class="amber" style="width:36.8%"></i></div><strong>7</strong></div><div class="bar-row"><span>C / verify</span><div class="bar-bg"><i class="orange" style="width:21.1%"></i></div><strong>4</strong></div>
+      <p class="small">A = first review. B = relevant / referral / benchmark. C = adjacent or needs verification.</p>
+    </div>
+    <div class="panel">
+      <h3>Profile type mix</h3>
+      
+    <div class="bar-row"><span>CTO / Technical Co-Founder potential</span><div class="bar-bg"><i style="width:100.0%"></i></div><strong>7</strong></div>
+    
+    <div class="bar-row"><span>Benchmark / Referral profile</span><div class="bar-bg"><i style="width:57.1%"></i></div><strong>4</strong></div>
+    
+    <div class="bar-row"><span>Adjacent / Needs verification</span><div class="bar-bg"><i style="width:42.9%"></i></div><strong>3</strong></div>
+    
+    <div class="bar-row"><span>MedDevice Builder / Operator</span><div class="bar-bg"><i style="width:28.6%"></i></div><strong>2</strong></div>
+    
+    <div class="bar-row"><span>Regulatory / Clinical Translation</span><div class="bar-bg"><i style="width:14.3%"></i></div><strong>1</strong></div>
+    
+    <div class="bar-row"><span>Biomaterials / Microfluidics</span><div class="bar-bg"><i style="width:14.3%"></i></div><strong>1</strong></div>
+    
+    <div class="bar-row"><span>Industrialisation / Manufacturing</span><div class="bar-bg"><i style="width:14.3%"></i></div><strong>1</strong></div>
+    
+    </div>
+    <div class="panel">
+      <h3>Search interpretation</h3>
+      <p>The most relevant technical BraidStent profiles combine <b>regulated physical device development</b> with <b>industrialisation</b> and <b>MDR/ISO 13485</b>.</p>
+      <p>Direct stent/catheter experience is rare, so the dashboard also includes adjacent technical leaders who may provide referrals or benchmark insight.</p>
+    </div>
+  </section>
+
+  <section class="section grid-2">
+    <div class="panel">
+      <div class="section-head"><div><h2>Top review names</h2><p class="lead">First 8 profiles I would put in front of Consuelo.</p></div></div>
+      <div class="short-list">
+    <div class="mini">
+      <div class="mini-title"><h4>Isabel Pérez Serranos</h4><span class="badge priority-a">A</span></div>
+      <p><b>iVascular</b> - CTO / Technical Co-Founder potential</p>
+      <p>Most direct stent/catheter signal in the first batch. Profile explicitly mentions vascular percutaneous systems, catheters, stents, MDR, PMS/PMCF/CER, validation, manufacturing setup, suppliers and serial production.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Ander Menaut Beltran</h4><span class="badge priority-a">A</span></div>
+      <p><b>ABANZA</b> - CTO / Technical Co-Founder potential</p>
+      <p>Strong medical device development profile with design controls, V&amp;V, risk management, manufacturing, ISO 13485, MDR and 510(k) exposure. Also mentions implantable medical devices and surgical instruments.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Hervé Elettro</h4><span class="badge priority-a">A</span></div>
+      <p><b>invoLab / medical device development</b> - CTO / Technical Co-Founder potential</p>
+      <p>Strong early-stage medical device / microfluidics profile. Relevant signals around biomaterials, verification &amp; validation, manufacturing process development and EU MDR Class IIa work.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Jaime Punter-Villagrasa</h4><span class="badge priority-a">A</span></div>
+      <p><b>Onalabs Inno-Hub</b> - CTO / Technical Co-Founder potential</p>
+      <p>Strong CTO + Quality combination. Profile shows ISO 13485, Class IIa/IIb MDR documentation, clinical investigations, manufacturing and product development for lab-on-chip / POC devices.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Jesús García Anguita</h4><span class="badge priority-a">A</span></div>
+      <p><b>eKuore / MedTech founder</b> - MedDevice Builder / Operator</p>
+      <p>Strong medical device builder and operator. Profile mentions 12 medical devices launched, FDA Class II, ISO 13485, IEC 60601, hardware/software and supply chain/manufacturing in 40+ countries.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Sergio Camacho Santiago</h4><span class="badge priority-a">A</span></div>
+      <p><b>Leaseir Technologies / medical &amp; aesthetic devices</b> - Regulatory / Clinical Translation</p>
+      <p>Technical and regulatory powerhouse. 20 years in active devices with FDA 510(k), EU MDR, ANVISA, IEC 60601, technical documentation, testing labs, risk management and compliance management.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Luis Caballero</h4><span class="badge priority-a">A</span></div>
+      <p><b>HYBRIMS / CSIC</b> - CTO / Technical Co-Founder potential</p>
+      <p>Valencia-linked CEO/CTO with CSIC spin-off and medical imaging device experience. Profile mentions R&amp;D, product lines, product management, medical imaging devices, OEM initiatives, CE/FDA and regulatory documentation.</p>
+    </div>
+    
+    <div class="mini">
+      <div class="mini-title"><h4>Susana Amorós Garcia de Valdecasas</h4><span class="badge priority-a">A</span></div>
+      <p><b>NIMBLE Diagnostics</b> - Benchmark / Referral profile</p>
+      <p>Relevant stent adjacency. CTO at NIMBLE Diagnostics, transferring technology to market for stented patients. Good Barcelona deep-tech / stent monitoring signal.</p>
+    </div>
+    </div>
+    </div>
+    <div class="panel">
+      <div class="section-head"><div><h2>Working hypothesis</h2><p class="lead">Where this CTO search should probably go next.</p></div></div>
+      <div class="method">
+        <div><b>1. Stents / catheters</b><span>Start with people around vascular devices, percutaneous systems, urinary devices, implantables and catheter-based products.</span></div>
+        <div><b>2. MDR / ISO 13485</b><span>BraidStent needs someone who understands regulatory file reality, risk management, PMS/PMCF/CER, V&V and clinical validation.</span></div>
+        <div><b>3. Product to manufacturing</b><span>Prioritise profiles who have moved devices from design into manufacturing, validation, suppliers and serial production.</span></div>
+        <div><b>4. Biomaterials</b><span>Use microfluidics / biomaterials / biodegradable polymer people as adjacency, especially if the degradation / material pathway becomes critical.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div><h2>Profile cards</h2><p class="lead">Filter by priority, profile type or search terms such as MDR, stent, catheter, Valencia, ISO 13485, manufacturing.</p></div>
+    </div>
+    <div class="filters">
+      <div class="filter-row">
+        <input id="searchInput" type="search" placeholder="Search profiles, tags, notes...">
+        <select id="priorityFilter"><option value="all">All priorities</option><option value="A">A priority</option><option value="B">B priority</option><option value="C">C / verify</option></select>
+        <select id="typeFilter"><option value="all">All profile types</option><option value="Adjacent / Needs verification">Adjacent / Needs verification</option><option value="Benchmark / Referral profile">Benchmark / Referral profile</option><option value="Biomaterials / Microfluidics">Biomaterials / Microfluidics</option><option value="CTO / Technical Co-Founder potential">CTO / Technical Co-Founder potential</option><option value="Industrialisation / Manufacturing">Industrialisation / Manufacturing</option><option value="MedDevice Builder / Operator">MedDevice Builder / Operator</option><option value="Regulatory / Clinical Translation">Regulatory / Clinical Translation</option></select>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
+    <div id="profileGrid" class="profile-grid">
+      <article class="profile-card" data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="isabel pérez serranos chief technology officer / director técnico, ivascular ivascular barcelona, spain most direct stent/catheter signal in the first batch. profile explicitly mentions vascular percutaneous systems, catheters, stents, mdr, pms/pmcf/cer, validation, manufacturing setup, suppliers and serial production. likely senior and established. need assess mobility, motivation and whether she would engage with an early-stage spin-off. stents catheters mdr pms pmcf manufacturing serial production">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Isabel Pérez Serranos</h3>
+        <p class="role">Chief Technology Officer / Director Técnico, iVascular</p>
+        <p class="location">Barcelona, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">stents</span><span class="tag-mini">catheters</span><span class="tag-mini">MDR</span><span class="tag-mini">PMS</span><span class="tag-mini">PMCF</span><span class="tag-mini">manufacturing</span></div>
+        <div class="scores"><div><span>Overall fit <strong>94</strong></span><div class="bar"><i style="width:94%"></i></div></div><div><span>Direct category <strong>95</strong></span><div class="bar"><i style="width:95%"></i></div></div><div><span>MDR / regulatory <strong>93</strong></span><div class="bar"><i style="width:93%"></i></div></div><div><span>Startup / founder <strong>64</strong></span><div class="bar"><i style="width:64%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Most direct stent/catheter signal in the first batch. Profile explicitly mentions vascular percutaneous systems, catheters, stents, MDR, PMS/PMCF/CER, validation, manufacturing setup, suppliers and serial production.</p>
+        <p class="risk"><b>Main risk / question:</b> Likely senior and established. Need assess mobility, motivation and whether she would engage with an early-stage spin-off.</p>
+        <div class="next"><b>Next action:</b> Top priority. Strongest stent/catheter technical relevance in current pool.</div>
+        <div class="source-row"><span>iVascular</span><a href="https://www.linkedin.com/in/isabel-pérez-serranos-a3710580" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="ander menaut beltran cto / director of r&amp;d&amp;i, abanza abanza donostia-san sebastián, spain strong medical device development profile with design controls, v&amp;v, risk management, manufacturing, iso 13485, mdr and 510(k) exposure. also mentions implantable medical devices and surgical instruments. not specifically urology or ureteral stents. need test appetite for early spin-off / cto co-founder stage and hands-on availability. implantable iso 13485 mdr 510(k) manufacturing design controls">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Ander Menaut Beltran</h3>
+        <p class="role">CTO / Director of R&amp;D&amp;i, ABANZA</p>
+        <p class="location">Donostia-San Sebastián, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">implantable</span><span class="tag-mini">ISO 13485</span><span class="tag-mini">MDR</span><span class="tag-mini">510(k)</span><span class="tag-mini">manufacturing</span><span class="tag-mini">design controls</span></div>
+        <div class="scores"><div><span>Overall fit <strong>93</strong></span><div class="bar"><i style="width:93%"></i></div></div><div><span>Direct category <strong>82</strong></span><div class="bar"><i style="width:82%"></i></div></div><div><span>MDR / regulatory <strong>96</strong></span><div class="bar"><i style="width:96%"></i></div></div><div><span>Startup / founder <strong>76</strong></span><div class="bar"><i style="width:76%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong medical device development profile with design controls, V&amp;V, risk management, manufacturing, ISO 13485, MDR and 510(k) exposure. Also mentions implantable medical devices and surgical instruments.</p>
+        <p class="risk"><b>Main risk / question:</b> Not specifically urology or ureteral stents. Need test appetite for early spin-off / CTO co-founder stage and hands-on availability.</p>
+        <div class="next"><b>Next action:</b> Review first. Strong technical conversation target for BraidStent CTO/technical co-founder track.</div>
+        <div class="source-row"><span>ABANZA</span><a href="https://www.linkedin.com/in/ander-menaut" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="hervé elettro cto / medical device, microfluidics &amp; art/fertility device experience involab / medical device development spain strong early-stage medical device / microfluidics profile. relevant signals around biomaterials, verification &amp; validation, manufacturing process development and eu mdr class iia work. not urology/stent. more art/fertility/microfluidics than implantable ureteral device. still very interesting for technical spin-off build. microfluidics biomaterials v&amp;v mdr class iia manufacturing">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Hervé Elettro</h3>
+        <p class="role">CTO / Medical Device, Microfluidics &amp; ART/Fertility Device Experience</p>
+        <p class="location">Spain</p>
+        <div class="tags-mini"><span class="tag-mini">microfluidics</span><span class="tag-mini">biomaterials</span><span class="tag-mini">V&amp;V</span><span class="tag-mini">MDR</span><span class="tag-mini">Class IIa</span><span class="tag-mini">manufacturing</span></div>
+        <div class="scores"><div><span>Overall fit <strong>88</strong></span><div class="bar"><i style="width:88%"></i></div></div><div><span>Direct category <strong>72</strong></span><div class="bar"><i style="width:72%"></i></div></div><div><span>MDR / regulatory <strong>85</strong></span><div class="bar"><i style="width:85%"></i></div></div><div><span>Startup / founder <strong>82</strong></span><div class="bar"><i style="width:82%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong early-stage medical device / microfluidics profile. Relevant signals around biomaterials, verification &amp; validation, manufacturing process development and EU MDR Class IIa work.</p>
+        <p class="risk"><b>Main risk / question:</b> Not urology/stent. More ART/fertility/microfluidics than implantable ureteral device. Still very interesting for technical spin-off build.</p>
+        <div class="next"><b>Next action:</b> High priority. Good technical founder-type conversation if he is open.</div>
+        <div class="source-row"><span>invoLab / medical device development</span><a href="https://www.linkedin.com/in/herveelettro" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="jaime punter-villagrasa chief technical officer and quality manager, onalabs inno-hub onalabs inno-hub barcelona, spain strong cto + quality combination. profile shows iso 13485, class iia/iib mdr documentation, clinical investigations, manufacturing and product development for lab-on-chip / poc devices. less direct implantable/stent experience. strong regulatory/quality/product signal but braidstent material/implantable fit needs testing. iso 13485 class iia/iib mdr clinical investigations lab-on-chip manufacturing">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Jaime Punter-Villagrasa</h3>
+        <p class="role">Chief Technical Officer and Quality Manager, Onalabs Inno-Hub</p>
+        <p class="location">Barcelona, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">ISO 13485</span><span class="tag-mini">Class IIa/IIb</span><span class="tag-mini">MDR</span><span class="tag-mini">clinical investigations</span><span class="tag-mini">lab-on-chip</span><span class="tag-mini">manufacturing</span></div>
+        <div class="scores"><div><span>Overall fit <strong>86</strong></span><div class="bar"><i style="width:86%"></i></div></div><div><span>Direct category <strong>68</strong></span><div class="bar"><i style="width:68%"></i></div></div><div><span>MDR / regulatory <strong>92</strong></span><div class="bar"><i style="width:92%"></i></div></div><div><span>Startup / founder <strong>76</strong></span><div class="bar"><i style="width:76%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong CTO + Quality combination. Profile shows ISO 13485, Class IIa/IIb MDR documentation, clinical investigations, manufacturing and product development for lab-on-chip / POC devices.</p>
+        <p class="risk"><b>Main risk / question:</b> Less direct implantable/stent experience. Strong regulatory/quality/product signal but BraidStent material/implantable fit needs testing.</p>
+        <div class="next"><b>Next action:</b> Priority technical/regulatory review. Good for CTO or technical/regulatory lead conversation.</div>
+        <div class="source-row"><span>Onalabs Inno-Hub</span><a href="https://www.linkedin.com/in/jaime-punter-villagrasa" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="MedDevice Builder / Operator" data-search="jesús garcía anguita medtech founder, former coo/cto at ekuore ekuore / medtech founder spain strong medical device builder and operator. profile mentions 12 medical devices launched, fda class ii, iso 13485, iec 60601, hardware/software and supply chain/manufacturing in 40+ countries. less direct urology/stent/implantable relevance. more electronic/connected device background. fda class ii iso 13485 iec 60601 hardware supply chain founder">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">MedDevice Builder / Operator</span></div>
+        <h3>Jesús García Anguita</h3>
+        <p class="role">MedTech Founder, former COO/CTO at eKuore</p>
+        <p class="location">Spain</p>
+        <div class="tags-mini"><span class="tag-mini">FDA Class II</span><span class="tag-mini">ISO 13485</span><span class="tag-mini">IEC 60601</span><span class="tag-mini">hardware</span><span class="tag-mini">supply chain</span><span class="tag-mini">founder</span></div>
+        <div class="scores"><div><span>Overall fit <strong>84</strong></span><div class="bar"><i style="width:84%"></i></div></div><div><span>Direct category <strong>62</strong></span><div class="bar"><i style="width:62%"></i></div></div><div><span>MDR / regulatory <strong>86</strong></span><div class="bar"><i style="width:86%"></i></div></div><div><span>Startup / founder <strong>90</strong></span><div class="bar"><i style="width:90%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong medical device builder and operator. Profile mentions 12 medical devices launched, FDA Class II, ISO 13485, IEC 60601, hardware/software and supply chain/manufacturing in 40+ countries.</p>
+        <p class="risk"><b>Main risk / question:</b> Less direct urology/stent/implantable relevance. More electronic/connected device background.</p>
+        <div class="next"><b>Next action:</b> Strong benchmark and possible technical co-founder/operator. Review after top stent/regulatory profiles.</div>
+        <div class="source-row"><span>eKuore / MedTech founder</span><a href="https://www.linkedin.com/in/jesusgarciaanguita" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="Regulatory / Clinical Translation" data-search="sergio camacho santiago senior medical device technical &amp; regulatory expert leaseir technologies / medical &amp; aesthetic devices gijón, spain technical and regulatory powerhouse. 20 years in active devices with fda 510(k), eu mdr, anvisa, iec 60601, technical documentation, testing labs, risk management and compliance management. active devices/lasers rather than implantable urology. more regulatory/technical expert than cto co-founder. fda 510(k) eu mdr anvisa iec 60601 technical documentation risk management">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Regulatory / Clinical Translation</span></div>
+        <h3>Sergio Camacho Santiago</h3>
+        <p class="role">Senior Medical Device Technical &amp; Regulatory Expert</p>
+        <p class="location">Gijón, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">FDA 510(k)</span><span class="tag-mini">EU MDR</span><span class="tag-mini">ANVISA</span><span class="tag-mini">IEC 60601</span><span class="tag-mini">technical documentation</span><span class="tag-mini">risk management</span></div>
+        <div class="scores"><div><span>Overall fit <strong>82</strong></span><div class="bar"><i style="width:82%"></i></div></div><div><span>Direct category <strong>58</strong></span><div class="bar"><i style="width:58%"></i></div></div><div><span>MDR / regulatory <strong>96</strong></span><div class="bar"><i style="width:96%"></i></div></div><div><span>Startup / founder <strong>62</strong></span><div class="bar"><i style="width:62%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Technical and regulatory powerhouse. 20 years in active devices with FDA 510(k), EU MDR, ANVISA, IEC 60601, technical documentation, testing labs, risk management and compliance management.</p>
+        <p class="risk"><b>Main risk / question:</b> Active devices/lasers rather than implantable urology. More regulatory/technical expert than CTO co-founder.</p>
+        <div class="next"><b>Next action:</b> High-value review for MDR/FDA/technical file angle. Could be referral or advisor-type lead too.</div>
+        <div class="source-row"><span>Leaseir Technologies / medical &amp; aesthetic devices</span><a href="https://www.linkedin.com/in/sergio-camacho-santiago-71368890" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="luis caballero ceo &amp; cto, hybrims / senior researcher, csic hybrims / csic greater valencia metropolitan area valencia-linked ceo/cto with csic spin-off and medical imaging device experience. profile mentions r&amp;d, product lines, product management, medical imaging devices, oem initiatives, ce/fda and regulatory documentation. medical imaging rather than implantable/urology. useful local spin-off/technical profile but not stent-specific. valencia csic spin-off medical imaging ce/fda r&amp;d product management">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Luis Caballero</h3>
+        <p class="role">CEO &amp; CTO, HYBRIMS / Senior Researcher, CSIC</p>
+        <p class="location">Greater Valencia Metropolitan Area</p>
+        <div class="tags-mini"><span class="tag-mini">Valencia</span><span class="tag-mini">CSIC spin-off</span><span class="tag-mini">medical imaging</span><span class="tag-mini">CE/FDA</span><span class="tag-mini">R&amp;D</span><span class="tag-mini">product management</span></div>
+        <div class="scores"><div><span>Overall fit <strong>80</strong></span><div class="bar"><i style="width:80%"></i></div></div><div><span>Direct category <strong>60</strong></span><div class="bar"><i style="width:60%"></i></div></div><div><span>MDR / regulatory <strong>78</strong></span><div class="bar"><i style="width:78%"></i></div></div><div><span>Startup / founder <strong>82</strong></span><div class="bar"><i style="width:82%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Valencia-linked CEO/CTO with CSIC spin-off and medical imaging device experience. Profile mentions R&amp;D, product lines, product management, medical imaging devices, OEM initiatives, CE/FDA and regulatory documentation.</p>
+        <p class="risk"><b>Main risk / question:</b> Medical imaging rather than implantable/urology. Useful local spin-off/technical profile but not stent-specific.</p>
+        <div class="next"><b>Next action:</b> Include as A because of Valencia + spin-off + regulated device experience. Review with Consuelo.</div>
+        <div class="source-row"><span>HYBRIMS / CSIC</span><a href="https://www.linkedin.com/in/luis-caballero-in" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="A" data-type="Benchmark / Referral profile" data-search="susana amorós garcia de valdecasas chief technology officer, nimble diagnostics nimble diagnostics sant cugat del vallès / barcelona area relevant stent adjacency. cto at nimble diagnostics, transferring technology to market for stented patients. good barcelona deep-tech / stent monitoring signal. likely early research-transfer profile and more diagnostics/monitoring than implantable device industrialisation. seniority and mdr/manufacturing depth need checking. stented patients technology transfer cto diagnostics barcelona">
+        <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Benchmark / Referral profile</span></div>
+        <h3>Susana Amorós Garcia de Valdecasas</h3>
+        <p class="role">Chief Technology Officer, NIMBLE Diagnostics</p>
+        <p class="location">Sant Cugat del Vallès / Barcelona area</p>
+        <div class="tags-mini"><span class="tag-mini">stented patients</span><span class="tag-mini">technology transfer</span><span class="tag-mini">CTO</span><span class="tag-mini">diagnostics</span><span class="tag-mini">Barcelona</span></div>
+        <div class="scores"><div><span>Overall fit <strong>78</strong></span><div class="bar"><i style="width:78%"></i></div></div><div><span>Direct category <strong>84</strong></span><div class="bar"><i style="width:84%"></i></div></div><div><span>MDR / regulatory <strong>62</strong></span><div class="bar"><i style="width:62%"></i></div></div><div><span>Startup / founder <strong>76</strong></span><div class="bar"><i style="width:76%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Relevant stent adjacency. CTO at NIMBLE Diagnostics, transferring technology to market for stented patients. Good Barcelona deep-tech / stent monitoring signal.</p>
+        <p class="risk"><b>Main risk / question:</b> Likely early research-transfer profile and more diagnostics/monitoring than implantable device industrialisation. Seniority and MDR/manufacturing depth need checking.</p>
+        <div class="next"><b>Next action:</b> Add to top review as benchmark/referral and possible technical profile if stage fits.</div>
+        <div class="source-row"><span>NIMBLE Diagnostics</span><a href="https://www.linkedin.com/in/susana-amoros-gv" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="CTO / Technical Co-Founder potential" data-search="gisela ruiz vega cto, time is brain time is brain barcelona, spain good meddevice cto profile. technical development across hardware, mechanics, firmware/software/ai, clinical validation and iso 13485 / tech-transfer environment. stroke monitoring, not implantable/urology/stents. strong regulated device profile but product category is less close. cto clinical validation iso 13485 hardware firmware tech transfer">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Gisela Ruiz Vega</h3>
+        <p class="role">CTO, Time is Brain</p>
+        <p class="location">Barcelona, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">CTO</span><span class="tag-mini">clinical validation</span><span class="tag-mini">ISO 13485</span><span class="tag-mini">hardware</span><span class="tag-mini">firmware</span><span class="tag-mini">tech transfer</span></div>
+        <div class="scores"><div><span>Overall fit <strong>74</strong></span><div class="bar"><i style="width:74%"></i></div></div><div><span>Direct category <strong>52</strong></span><div class="bar"><i style="width:52%"></i></div></div><div><span>MDR / regulatory <strong>80</strong></span><div class="bar"><i style="width:80%"></i></div></div><div><span>Startup / founder <strong>78</strong></span><div class="bar"><i style="width:78%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Good MedDevice CTO profile. Technical development across hardware, mechanics, firmware/software/AI, clinical validation and ISO 13485 / tech-transfer environment.</p>
+        <p class="risk"><b>Main risk / question:</b> Stroke monitoring, not implantable/urology/stents. Strong regulated device profile but product category is less close.</p>
+        <div class="next"><b>Next action:</b> Worth checking as meddevice CTO benchmark or referral.</div>
+        <div class="source-row"><span>Time is Brain</span><a href="https://www.linkedin.com/in/giselabiomedicalengineer" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="CTO / Technical Co-Founder potential" data-search="víctor alastrué cto, ebers ebers medical greater zaragoza metropolitan area phd mechanical engineering profile with 15+ years in electromechanical device design and 8+ years focused on medical devices for organ preservation. mentions sterilization and ce certification under mdr. organ preservation/electromechanical devices rather than implantable stents. good technical build experience, less direct braidstent match. cto mechanical engineering sterilization ce/mdr medical devices">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">CTO / Technical Co-Founder potential</span></div>
+        <h3>Víctor Alastrué</h3>
+        <p class="role">CTO, EBERS</p>
+        <p class="location">Greater Zaragoza Metropolitan Area</p>
+        <div class="tags-mini"><span class="tag-mini">CTO</span><span class="tag-mini">mechanical engineering</span><span class="tag-mini">sterilization</span><span class="tag-mini">CE/MDR</span><span class="tag-mini">medical devices</span></div>
+        <div class="scores"><div><span>Overall fit <strong>73</strong></span><div class="bar"><i style="width:73%"></i></div></div><div><span>Direct category <strong>54</strong></span><div class="bar"><i style="width:54%"></i></div></div><div><span>MDR / regulatory <strong>79</strong></span><div class="bar"><i style="width:79%"></i></div></div><div><span>Startup / founder <strong>70</strong></span><div class="bar"><i style="width:70%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> PhD mechanical engineering profile with 15+ years in electromechanical device design and 8+ years focused on medical devices for organ preservation. Mentions sterilization and CE certification under MDR.</p>
+        <p class="risk"><b>Main risk / question:</b> Organ preservation/electromechanical devices rather than implantable stents. Good technical build experience, less direct BraidStent match.</p>
+        <div class="next"><b>Next action:</b> Keep in dashboard as relevant meddevice CTO lead / referral.</div>
+        <div class="source-row"><span>EBERS Medical</span><a href="https://www.linkedin.com/in/víctor-alastrué-54797115" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="Benchmark / Referral profile" data-search="daniel rodríguez-martín, phd ceo / co-founder, sense4care; cto &amp; co-founder, life neurotech sense4care / life neurotech barcelona area strong medtech founder profile with mdr, iso 13485, fda 510(k), industrialisation, manufacturing and product certification experience. wearables/neurotech, not implantable urology. may be more ceo/business/founder benchmark than hands-on cto for braidstent. founder mdr iso 13485 fda 510(k) industrialization manufacturing">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Benchmark / Referral profile</span></div>
+        <h3>Daniel Rodríguez-Martín, PhD</h3>
+        <p class="role">CEO / Co-Founder, Sense4Care; CTO &amp; Co-Founder, LIFE Neurotech</p>
+        <p class="location">Barcelona area</p>
+        <div class="tags-mini"><span class="tag-mini">founder</span><span class="tag-mini">MDR</span><span class="tag-mini">ISO 13485</span><span class="tag-mini">FDA 510(k)</span><span class="tag-mini">industrialization</span><span class="tag-mini">manufacturing</span></div>
+        <div class="scores"><div><span>Overall fit <strong>72</strong></span><div class="bar"><i style="width:72%"></i></div></div><div><span>Direct category <strong>48</strong></span><div class="bar"><i style="width:48%"></i></div></div><div><span>MDR / regulatory <strong>86</strong></span><div class="bar"><i style="width:86%"></i></div></div><div><span>Startup / founder <strong>88</strong></span><div class="bar"><i style="width:88%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong medtech founder profile with MDR, ISO 13485, FDA 510(k), industrialisation, manufacturing and product certification experience.</p>
+        <p class="risk"><b>Main risk / question:</b> Wearables/neurotech, not implantable urology. May be more CEO/business/founder benchmark than hands-on CTO for BraidStent.</p>
+        <div class="next"><b>Next action:</b> Use as benchmark/referral. Good person to ask for meddevice CTO network.</div>
+        <div class="source-row"><span>Sense4Care / LIFE Neurotech</span><a href="https://www.linkedin.com/in/daniel-rodriguez-martin" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="MedDevice Builder / Operator" data-search="andrés fernando amarillo espitia cto, cyber surgery / surgical robotics cyber surgery spain complex surgical robotics / hardware engineering profile with ce/fda product clearance development and multidisciplinary technical team leadership. surgical robotics is technically strong but quite far from biodegradable ureteral stents. could be too robotics/platform focused. surgical robotics ce/fda hardware technical leadership">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">MedDevice Builder / Operator</span></div>
+        <h3>Andrés Fernando Amarillo Espitia</h3>
+        <p class="role">CTO, Cyber Surgery / surgical robotics</p>
+        <p class="location">Spain</p>
+        <div class="tags-mini"><span class="tag-mini">surgical robotics</span><span class="tag-mini">CE/FDA</span><span class="tag-mini">hardware</span><span class="tag-mini">technical leadership</span></div>
+        <div class="scores"><div><span>Overall fit <strong>71</strong></span><div class="bar"><i style="width:71%"></i></div></div><div><span>Direct category <strong>50</strong></span><div class="bar"><i style="width:50%"></i></div></div><div><span>MDR / regulatory <strong>76</strong></span><div class="bar"><i style="width:76%"></i></div></div><div><span>Startup / founder <strong>72</strong></span><div class="bar"><i style="width:72%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Complex surgical robotics / hardware engineering profile with CE/FDA product clearance development and multidisciplinary technical team leadership.</p>
+        <p class="risk"><b>Main risk / question:</b> Surgical robotics is technically strong but quite far from biodegradable ureteral stents. Could be too robotics/platform focused.</p>
+        <div class="next"><b>Next action:</b> Relevant benchmark/referral for regulated device builders. Not first call unless strong motivation appears.</div>
+        <div class="source-row"><span>Cyber Surgery</span><a href="https://www.linkedin.com/in/andres-fernando-amarillo-robotics" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="Benchmark / Referral profile" data-search="joan vieyra galí stanford biodesign fellow / cto, loop dx / healthtech startup co-founder loop dx / biodesign barcelona, spain strong medical device innovation and biodesign profile. experience from clinical need finding to early solution development, diagnostics and digital health, plus silicon valley / barcelona ecosystem bridge. more innovation/diagnostics/digital health than implantable product development or mdr industrialisation. biodesign clinical need finding startup co-founder diagnostics barcelona">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Benchmark / Referral profile</span></div>
+        <h3>Joan Vieyra Galí</h3>
+        <p class="role">Stanford Biodesign Fellow / CTO, Loop Dx / Healthtech startup co-founder</p>
+        <p class="location">Barcelona, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">biodesign</span><span class="tag-mini">clinical need finding</span><span class="tag-mini">startup co-founder</span><span class="tag-mini">diagnostics</span><span class="tag-mini">Barcelona</span></div>
+        <div class="scores"><div><span>Overall fit <strong>70</strong></span><div class="bar"><i style="width:70%"></i></div></div><div><span>Direct category <strong>50</strong></span><div class="bar"><i style="width:50%"></i></div></div><div><span>MDR / regulatory <strong>66</strong></span><div class="bar"><i style="width:66%"></i></div></div><div><span>Startup / founder <strong>86</strong></span><div class="bar"><i style="width:86%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Strong medical device innovation and biodesign profile. Experience from clinical need finding to early solution development, diagnostics and digital health, plus Silicon Valley / Barcelona ecosystem bridge.</p>
+        <p class="risk"><b>Main risk / question:</b> More innovation/diagnostics/digital health than implantable product development or MDR industrialisation.</p>
+        <div class="next"><b>Next action:</b> Good ecosystem/referral target and benchmark profile. Lower direct CTO match.</div>
+        <div class="source-row"><span>Loop Dx / Biodesign</span><a href="https://www.linkedin.com/in/joan-vieyra-galí-833861a8" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="Benchmark / Referral profile" data-search="eduardo lage founder / cto / medical imaging entrepreneur plenoptika / 2eyes vision / imaging ventures spain serial medical device founder/cto profile with imaging, ophthalmology and international productisation/funding signals. strong benchmark/referral value. ophthalmic/imaging technology, not urology/stent/implantable. probably more benchmark/referral than candidate. founder cto medical imaging mit 100k productisation">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Benchmark / Referral profile</span></div>
+        <h3>Eduardo Lage</h3>
+        <p class="role">Founder / CTO / medical imaging entrepreneur</p>
+        <p class="location">Spain</p>
+        <div class="tags-mini"><span class="tag-mini">founder</span><span class="tag-mini">CTO</span><span class="tag-mini">medical imaging</span><span class="tag-mini">MIT 100k</span><span class="tag-mini">productisation</span></div>
+        <div class="scores"><div><span>Overall fit <strong>68</strong></span><div class="bar"><i style="width:68%"></i></div></div><div><span>Direct category <strong>44</strong></span><div class="bar"><i style="width:44%"></i></div></div><div><span>MDR / regulatory <strong>68</strong></span><div class="bar"><i style="width:68%"></i></div></div><div><span>Startup / founder <strong>88</strong></span><div class="bar"><i style="width:88%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Serial medical device founder/CTO profile with imaging, ophthalmology and international productisation/funding signals. Strong benchmark/referral value.</p>
+        <p class="risk"><b>Main risk / question:</b> Ophthalmic/imaging technology, not urology/stent/implantable. Probably more benchmark/referral than candidate.</p>
+        <div class="next"><b>Next action:</b> Keep as referral / benchmark. Useful to open meddevice founder CTO network.</div>
+        <div class="source-row"><span>PlenOptika / 2Eyes Vision / imaging ventures</span><a href="https://www.linkedin.com/in/eduardo-lage-321215b" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="B" data-type="Biomaterials / Microfluidics" data-search="jaione etxebarria elezgarai cto, optec4life / microfluidics, biosensors and polymers optec4life spain interesting biomaterials/microfluidics angle. profile mentions microfluidics, biosensors, polymers, biodegradable materials and medical device development/regulation signals. could be research-heavy. need verify seniority, industrialisation and ability to operate as cto in implantable meddevice spin-off. microfluidics biosensors polymers biodegradable materials r&amp;d">
+        <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Biomaterials / Microfluidics</span></div>
+        <h3>Jaione Etxebarria Elezgarai</h3>
+        <p class="role">CTO, Optec4Life / microfluidics, biosensors and polymers</p>
+        <p class="location">Spain</p>
+        <div class="tags-mini"><span class="tag-mini">microfluidics</span><span class="tag-mini">biosensors</span><span class="tag-mini">polymers</span><span class="tag-mini">biodegradable materials</span><span class="tag-mini">R&amp;D</span></div>
+        <div class="scores"><div><span>Overall fit <strong>67</strong></span><div class="bar"><i style="width:67%"></i></div></div><div><span>Direct category <strong>60</strong></span><div class="bar"><i style="width:60%"></i></div></div><div><span>MDR / regulatory <strong>54</strong></span><div class="bar"><i style="width:54%"></i></div></div><div><span>Startup / founder <strong>58</strong></span><div class="bar"><i style="width:58%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Interesting biomaterials/microfluidics angle. Profile mentions microfluidics, biosensors, polymers, biodegradable materials and medical device development/regulation signals.</p>
+        <p class="risk"><b>Main risk / question:</b> Could be research-heavy. Need verify seniority, industrialisation and ability to operate as CTO in implantable meddevice spin-off.</p>
+        <div class="next"><b>Next action:</b> Include as technical biomaterials adjacency. Useful if biodegradable polymer angle becomes the key bottleneck.</div>
+        <div class="source-row"><span>Optec4Life</span><a href="https://www.linkedin.com/in/jaioneetxebarria" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="C" data-type="Adjacent / Needs verification" data-search="julio díaz fernández cto/coo &amp; co-founder, dipneo - air2life dipneo barcelona, spain biomedical engineer and co-founder with medical emergency device, prototype validation, clinical trials, business modelling, product development and iso 13485 dossier work. less senior and less direct braidstent category. emergency device rather than implantable/urology. co-founder clinical validation iso 13485 prototype medical emergency device">
+        <div class="card-topline"><span class="badge priority-c">C</span><span class="type-badge">Adjacent / Needs verification</span></div>
+        <h3>Julio Díaz Fernández</h3>
+        <p class="role">CTO/COO &amp; Co-Founder, DIPNEO - Air2Life</p>
+        <p class="location">Barcelona, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">co-founder</span><span class="tag-mini">clinical validation</span><span class="tag-mini">ISO 13485</span><span class="tag-mini">prototype</span><span class="tag-mini">medical emergency device</span></div>
+        <div class="scores"><div><span>Overall fit <strong>61</strong></span><div class="bar"><i style="width:61%"></i></div></div><div><span>Direct category <strong>42</strong></span><div class="bar"><i style="width:42%"></i></div></div><div><span>MDR / regulatory <strong>64</strong></span><div class="bar"><i style="width:64%"></i></div></div><div><span>Startup / founder <strong>72</strong></span><div class="bar"><i style="width:72%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Biomedical engineer and co-founder with medical emergency device, prototype validation, clinical trials, business modelling, product development and ISO 13485 dossier work.</p>
+        <p class="risk"><b>Main risk / question:</b> Less senior and less direct BraidStent category. Emergency device rather than implantable/urology.</p>
+        <div class="next"><b>Next action:</b> Keep as adjacent. Possibly useful as broader meddevice founder profile, not a top CTO lead.</div>
+        <div class="source-row"><span>DIPNEO</span><a href="https://www.linkedin.com/in/julio-díaz-fernández-9b078412a" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="C" data-type="Industrialisation / Manufacturing" data-search="antonio javier marin alcaina industrial project management / technical coordination industrial project management / icu medical listed alicante area industrial/mechanical project profile with iso 13485, manufacturing, prototyping, supplier management, product development and technical coordination signals. profile feels more industrial project management than meddevice cto. need manual verification of medical-device depth and current role relevance. iso 13485 manufacturing prototyping supplier management mechanical engineering">
+        <div class="card-topline"><span class="badge priority-c">C</span><span class="type-badge">Industrialisation / Manufacturing</span></div>
+        <h3>Antonio Javier Marin Alcaina</h3>
+        <p class="role">Industrial Project Management / Technical Coordination</p>
+        <p class="location">Alicante area</p>
+        <div class="tags-mini"><span class="tag-mini">ISO 13485</span><span class="tag-mini">manufacturing</span><span class="tag-mini">prototyping</span><span class="tag-mini">supplier management</span><span class="tag-mini">mechanical engineering</span></div>
+        <div class="scores"><div><span>Overall fit <strong>58</strong></span><div class="bar"><i style="width:58%"></i></div></div><div><span>Direct category <strong>40</strong></span><div class="bar"><i style="width:40%"></i></div></div><div><span>MDR / regulatory <strong>55</strong></span><div class="bar"><i style="width:55%"></i></div></div><div><span>Startup / founder <strong>42</strong></span><div class="bar"><i style="width:42%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Industrial/mechanical project profile with ISO 13485, manufacturing, prototyping, supplier management, product development and technical coordination signals.</p>
+        <p class="risk"><b>Main risk / question:</b> Profile feels more industrial project management than MedDevice CTO. Need manual verification of medical-device depth and current role relevance.</p>
+        <div class="next"><b>Next action:</b> Keep low priority / verification. Could be manufacturing support angle rather than CTO.</div>
+        <div class="source-row"><span>Industrial project management / ICU Medical listed</span><a href="https://www.linkedin.com/in/antoniojaviermarinalcaina" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="C" data-type="Adjacent / Needs verification" data-search="josé carlos montesinos pérez cto &amp; co-founder, medicsen medicsen madrid, spain cto/co-founder profile at medicsen with 3d design/cad/printing signals. could be relevant as technical healthtech founder. pdf gives limited evidence on regulated device, mdr, manufacturing or clinical validation. may be more digital/hardware healthtech than implantable meddevice. cto co-founder 3d design cad healthtech">
+        <div class="card-topline"><span class="badge priority-c">C</span><span class="type-badge">Adjacent / Needs verification</span></div>
+        <h3>José Carlos Montesinos Pérez</h3>
+        <p class="role">CTO &amp; Co-Founder, Medicsen</p>
+        <p class="location">Madrid, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">CTO</span><span class="tag-mini">co-founder</span><span class="tag-mini">3D design</span><span class="tag-mini">CAD</span><span class="tag-mini">healthtech</span></div>
+        <div class="scores"><div><span>Overall fit <strong>56</strong></span><div class="bar"><i style="width:56%"></i></div></div><div><span>Direct category <strong>34</strong></span><div class="bar"><i style="width:34%"></i></div></div><div><span>MDR / regulatory <strong>45</strong></span><div class="bar"><i style="width:45%"></i></div></div><div><span>Startup / founder <strong>78</strong></span><div class="bar"><i style="width:78%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> CTO/co-founder profile at Medicsen with 3D design/CAD/printing signals. Could be relevant as technical healthtech founder.</p>
+        <p class="risk"><b>Main risk / question:</b> PDF gives limited evidence on regulated device, MDR, manufacturing or clinical validation. May be more digital/hardware healthtech than implantable MedDevice.</p>
+        <div class="next"><b>Next action:</b> Needs verification before showing strongly. Keep as adjacent/startup technical profile.</div>
+        <div class="source-row"><span>Medicsen</span><a href="https://www.linkedin.com/in/jcmontesinos" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    
+      <article class="profile-card" data-priority="C" data-type="Adjacent / Needs verification" data-search="jim smith medical dev operations / ceo, medical devops / cto, v-medical medical devops / v-medical valencia, spain valencia-based profile with medical device design and manufacturing listed. one-page profile is too thin. need verify company substance, actual meddevice/regulatory experience and whether profile is credible for braidstent. valencia medical device design manufacturing needs verification">
+        <div class="card-topline"><span class="badge priority-c">C</span><span class="type-badge">Adjacent / Needs verification</span></div>
+        <h3>Jim Smith</h3>
+        <p class="role">Medical dev operations / CEO, Medical devops / CTO, V-medical</p>
+        <p class="location">Valencia, Spain</p>
+        <div class="tags-mini"><span class="tag-mini">Valencia</span><span class="tag-mini">medical device design</span><span class="tag-mini">manufacturing</span><span class="tag-mini">needs verification</span></div>
+        <div class="scores"><div><span>Overall fit <strong>52</strong></span><div class="bar"><i style="width:52%"></i></div></div><div><span>Direct category <strong>38</strong></span><div class="bar"><i style="width:38%"></i></div></div><div><span>MDR / regulatory <strong>36</strong></span><div class="bar"><i style="width:36%"></i></div></div><div><span>Startup / founder <strong>50</strong></span><div class="bar"><i style="width:50%"></i></div></div></div>
+        <p class="why"><b>Why relevant:</b> Valencia-based profile with medical device design and manufacturing listed.</p>
+        <p class="risk"><b>Main risk / question:</b> One-page profile is too thin. Need verify company substance, actual meddevice/regulatory experience and whether profile is credible for BraidStent.</p>
+        <div class="next"><b>Next action:</b> Keep as low priority verification because of Valencia + device manufacturing signal.</div>
+        <div class="source-row"><span>Medical devops / V-medical</span><a href="https://www.linkedin.com/in/jim-smith-8439a9210" target="_blank" rel="noopener">LinkedIn</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Full table</h2><p class="lead">Use this as the basis for the first Consuelo dashboard review and next LinkedIn sourcing pass.</p></div></div>
+    <div class="table-wrap">
+      <table id="profileTable">
+        <thead><tr><th>Name</th><th>Current role / company</th><th>Priority</th><th>Profile type</th><th>Fit</th><th>Why relevant</th><th>Main risk / question</th><th>Next action</th><th>Source</th></tr></thead>
+        <tbody>
+    <tr data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="isabel pérez serranos chief technology officer / director técnico, ivascular ivascular barcelona, spain most direct stent/catheter signal in the first batch. profile explicitly mentions vascular percutaneous systems, catheters, stents, mdr, pms/pmcf/cer, validation, manufacturing setup, suppliers and serial production. likely senior and established. need assess mobility, motivation and whether she would engage with an early-stage spin-off. stents catheters mdr pms pmcf manufacturing serial production">
+      <td><b>Isabel Pérez Serranos</b><br><span>Barcelona, Spain</span></td>
+      <td>Chief Technology Officer / Director Técnico, iVascular<br><span>iVascular</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">94</td>
+      <td>Most direct stent/catheter signal in the first batch. Profile explicitly mentions vascular percutaneous systems, catheters, stents, MDR, PMS/PMCF/CER, validation, manufacturing setup, suppliers and serial production.</td>
+      <td>Likely senior and established. Need assess mobility, motivation and whether she would engage with an early-stage spin-off.</td>
+      <td>Top priority. Strongest stent/catheter technical relevance in current pool.</td>
+      <td><a href="https://www.linkedin.com/in/isabel-pérez-serranos-a3710580" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="ander menaut beltran cto / director of r&amp;d&amp;i, abanza abanza donostia-san sebastián, spain strong medical device development profile with design controls, v&amp;v, risk management, manufacturing, iso 13485, mdr and 510(k) exposure. also mentions implantable medical devices and surgical instruments. not specifically urology or ureteral stents. need test appetite for early spin-off / cto co-founder stage and hands-on availability. implantable iso 13485 mdr 510(k) manufacturing design controls">
+      <td><b>Ander Menaut Beltran</b><br><span>Donostia-San Sebastián, Spain</span></td>
+      <td>CTO / Director of R&amp;D&amp;i, ABANZA<br><span>ABANZA</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">93</td>
+      <td>Strong medical device development profile with design controls, V&amp;V, risk management, manufacturing, ISO 13485, MDR and 510(k) exposure. Also mentions implantable medical devices and surgical instruments.</td>
+      <td>Not specifically urology or ureteral stents. Need test appetite for early spin-off / CTO co-founder stage and hands-on availability.</td>
+      <td>Review first. Strong technical conversation target for BraidStent CTO/technical co-founder track.</td>
+      <td><a href="https://www.linkedin.com/in/ander-menaut" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="hervé elettro cto / medical device, microfluidics &amp; art/fertility device experience involab / medical device development spain strong early-stage medical device / microfluidics profile. relevant signals around biomaterials, verification &amp; validation, manufacturing process development and eu mdr class iia work. not urology/stent. more art/fertility/microfluidics than implantable ureteral device. still very interesting for technical spin-off build. microfluidics biomaterials v&amp;v mdr class iia manufacturing">
+      <td><b>Hervé Elettro</b><br><span>Spain</span></td>
+      <td>CTO / Medical Device, Microfluidics &amp; ART/Fertility Device Experience<br><span>invoLab / medical device development</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">88</td>
+      <td>Strong early-stage medical device / microfluidics profile. Relevant signals around biomaterials, verification &amp; validation, manufacturing process development and EU MDR Class IIa work.</td>
+      <td>Not urology/stent. More ART/fertility/microfluidics than implantable ureteral device. Still very interesting for technical spin-off build.</td>
+      <td>High priority. Good technical founder-type conversation if he is open.</td>
+      <td><a href="https://www.linkedin.com/in/herveelettro" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="jaime punter-villagrasa chief technical officer and quality manager, onalabs inno-hub onalabs inno-hub barcelona, spain strong cto + quality combination. profile shows iso 13485, class iia/iib mdr documentation, clinical investigations, manufacturing and product development for lab-on-chip / poc devices. less direct implantable/stent experience. strong regulatory/quality/product signal but braidstent material/implantable fit needs testing. iso 13485 class iia/iib mdr clinical investigations lab-on-chip manufacturing">
+      <td><b>Jaime Punter-Villagrasa</b><br><span>Barcelona, Spain</span></td>
+      <td>Chief Technical Officer and Quality Manager, Onalabs Inno-Hub<br><span>Onalabs Inno-Hub</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">86</td>
+      <td>Strong CTO + Quality combination. Profile shows ISO 13485, Class IIa/IIb MDR documentation, clinical investigations, manufacturing and product development for lab-on-chip / POC devices.</td>
+      <td>Less direct implantable/stent experience. Strong regulatory/quality/product signal but BraidStent material/implantable fit needs testing.</td>
+      <td>Priority technical/regulatory review. Good for CTO or technical/regulatory lead conversation.</td>
+      <td><a href="https://www.linkedin.com/in/jaime-punter-villagrasa" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="MedDevice Builder / Operator" data-search="jesús garcía anguita medtech founder, former coo/cto at ekuore ekuore / medtech founder spain strong medical device builder and operator. profile mentions 12 medical devices launched, fda class ii, iso 13485, iec 60601, hardware/software and supply chain/manufacturing in 40+ countries. less direct urology/stent/implantable relevance. more electronic/connected device background. fda class ii iso 13485 iec 60601 hardware supply chain founder">
+      <td><b>Jesús García Anguita</b><br><span>Spain</span></td>
+      <td>MedTech Founder, former COO/CTO at eKuore<br><span>eKuore / MedTech founder</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">MedDevice Builder / Operator</span></td>
+      <td class="num">84</td>
+      <td>Strong medical device builder and operator. Profile mentions 12 medical devices launched, FDA Class II, ISO 13485, IEC 60601, hardware/software and supply chain/manufacturing in 40+ countries.</td>
+      <td>Less direct urology/stent/implantable relevance. More electronic/connected device background.</td>
+      <td>Strong benchmark and possible technical co-founder/operator. Review after top stent/regulatory profiles.</td>
+      <td><a href="https://www.linkedin.com/in/jesusgarciaanguita" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="Regulatory / Clinical Translation" data-search="sergio camacho santiago senior medical device technical &amp; regulatory expert leaseir technologies / medical &amp; aesthetic devices gijón, spain technical and regulatory powerhouse. 20 years in active devices with fda 510(k), eu mdr, anvisa, iec 60601, technical documentation, testing labs, risk management and compliance management. active devices/lasers rather than implantable urology. more regulatory/technical expert than cto co-founder. fda 510(k) eu mdr anvisa iec 60601 technical documentation risk management">
+      <td><b>Sergio Camacho Santiago</b><br><span>Gijón, Spain</span></td>
+      <td>Senior Medical Device Technical &amp; Regulatory Expert<br><span>Leaseir Technologies / medical &amp; aesthetic devices</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">Regulatory / Clinical Translation</span></td>
+      <td class="num">82</td>
+      <td>Technical and regulatory powerhouse. 20 years in active devices with FDA 510(k), EU MDR, ANVISA, IEC 60601, technical documentation, testing labs, risk management and compliance management.</td>
+      <td>Active devices/lasers rather than implantable urology. More regulatory/technical expert than CTO co-founder.</td>
+      <td>High-value review for MDR/FDA/technical file angle. Could be referral or advisor-type lead too.</td>
+      <td><a href="https://www.linkedin.com/in/sergio-camacho-santiago-71368890" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="CTO / Technical Co-Founder potential" data-search="luis caballero ceo &amp; cto, hybrims / senior researcher, csic hybrims / csic greater valencia metropolitan area valencia-linked ceo/cto with csic spin-off and medical imaging device experience. profile mentions r&amp;d, product lines, product management, medical imaging devices, oem initiatives, ce/fda and regulatory documentation. medical imaging rather than implantable/urology. useful local spin-off/technical profile but not stent-specific. valencia csic spin-off medical imaging ce/fda r&amp;d product management">
+      <td><b>Luis Caballero</b><br><span>Greater Valencia Metropolitan Area</span></td>
+      <td>CEO &amp; CTO, HYBRIMS / Senior Researcher, CSIC<br><span>HYBRIMS / CSIC</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">80</td>
+      <td>Valencia-linked CEO/CTO with CSIC spin-off and medical imaging device experience. Profile mentions R&amp;D, product lines, product management, medical imaging devices, OEM initiatives, CE/FDA and regulatory documentation.</td>
+      <td>Medical imaging rather than implantable/urology. Useful local spin-off/technical profile but not stent-specific.</td>
+      <td>Include as A because of Valencia + spin-off + regulated device experience. Review with Consuelo.</td>
+      <td><a href="https://www.linkedin.com/in/luis-caballero-in" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="A" data-type="Benchmark / Referral profile" data-search="susana amorós garcia de valdecasas chief technology officer, nimble diagnostics nimble diagnostics sant cugat del vallès / barcelona area relevant stent adjacency. cto at nimble diagnostics, transferring technology to market for stented patients. good barcelona deep-tech / stent monitoring signal. likely early research-transfer profile and more diagnostics/monitoring than implantable device industrialisation. seniority and mdr/manufacturing depth need checking. stented patients technology transfer cto diagnostics barcelona">
+      <td><b>Susana Amorós Garcia de Valdecasas</b><br><span>Sant Cugat del Vallès / Barcelona area</span></td>
+      <td>Chief Technology Officer, NIMBLE Diagnostics<br><span>NIMBLE Diagnostics</span></td>
+      <td><span class="badge priority-a">A</span></td>
+      <td><span class="type-badge">Benchmark / Referral profile</span></td>
+      <td class="num">78</td>
+      <td>Relevant stent adjacency. CTO at NIMBLE Diagnostics, transferring technology to market for stented patients. Good Barcelona deep-tech / stent monitoring signal.</td>
+      <td>Likely early research-transfer profile and more diagnostics/monitoring than implantable device industrialisation. Seniority and MDR/manufacturing depth need checking.</td>
+      <td>Add to top review as benchmark/referral and possible technical profile if stage fits.</td>
+      <td><a href="https://www.linkedin.com/in/susana-amoros-gv" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="CTO / Technical Co-Founder potential" data-search="gisela ruiz vega cto, time is brain time is brain barcelona, spain good meddevice cto profile. technical development across hardware, mechanics, firmware/software/ai, clinical validation and iso 13485 / tech-transfer environment. stroke monitoring, not implantable/urology/stents. strong regulated device profile but product category is less close. cto clinical validation iso 13485 hardware firmware tech transfer">
+      <td><b>Gisela Ruiz Vega</b><br><span>Barcelona, Spain</span></td>
+      <td>CTO, Time is Brain<br><span>Time is Brain</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">74</td>
+      <td>Good MedDevice CTO profile. Technical development across hardware, mechanics, firmware/software/AI, clinical validation and ISO 13485 / tech-transfer environment.</td>
+      <td>Stroke monitoring, not implantable/urology/stents. Strong regulated device profile but product category is less close.</td>
+      <td>Worth checking as meddevice CTO benchmark or referral.</td>
+      <td><a href="https://www.linkedin.com/in/giselabiomedicalengineer" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="CTO / Technical Co-Founder potential" data-search="víctor alastrué cto, ebers ebers medical greater zaragoza metropolitan area phd mechanical engineering profile with 15+ years in electromechanical device design and 8+ years focused on medical devices for organ preservation. mentions sterilization and ce certification under mdr. organ preservation/electromechanical devices rather than implantable stents. good technical build experience, less direct braidstent match. cto mechanical engineering sterilization ce/mdr medical devices">
+      <td><b>Víctor Alastrué</b><br><span>Greater Zaragoza Metropolitan Area</span></td>
+      <td>CTO, EBERS<br><span>EBERS Medical</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">CTO / Technical Co-Founder potential</span></td>
+      <td class="num">73</td>
+      <td>PhD mechanical engineering profile with 15+ years in electromechanical device design and 8+ years focused on medical devices for organ preservation. Mentions sterilization and CE certification under MDR.</td>
+      <td>Organ preservation/electromechanical devices rather than implantable stents. Good technical build experience, less direct BraidStent match.</td>
+      <td>Keep in dashboard as relevant meddevice CTO lead / referral.</td>
+      <td><a href="https://www.linkedin.com/in/víctor-alastrué-54797115" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="Benchmark / Referral profile" data-search="daniel rodríguez-martín, phd ceo / co-founder, sense4care; cto &amp; co-founder, life neurotech sense4care / life neurotech barcelona area strong medtech founder profile with mdr, iso 13485, fda 510(k), industrialisation, manufacturing and product certification experience. wearables/neurotech, not implantable urology. may be more ceo/business/founder benchmark than hands-on cto for braidstent. founder mdr iso 13485 fda 510(k) industrialization manufacturing">
+      <td><b>Daniel Rodríguez-Martín, PhD</b><br><span>Barcelona area</span></td>
+      <td>CEO / Co-Founder, Sense4Care; CTO &amp; Co-Founder, LIFE Neurotech<br><span>Sense4Care / LIFE Neurotech</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">Benchmark / Referral profile</span></td>
+      <td class="num">72</td>
+      <td>Strong medtech founder profile with MDR, ISO 13485, FDA 510(k), industrialisation, manufacturing and product certification experience.</td>
+      <td>Wearables/neurotech, not implantable urology. May be more CEO/business/founder benchmark than hands-on CTO for BraidStent.</td>
+      <td>Use as benchmark/referral. Good person to ask for meddevice CTO network.</td>
+      <td><a href="https://www.linkedin.com/in/daniel-rodriguez-martin" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="MedDevice Builder / Operator" data-search="andrés fernando amarillo espitia cto, cyber surgery / surgical robotics cyber surgery spain complex surgical robotics / hardware engineering profile with ce/fda product clearance development and multidisciplinary technical team leadership. surgical robotics is technically strong but quite far from biodegradable ureteral stents. could be too robotics/platform focused. surgical robotics ce/fda hardware technical leadership">
+      <td><b>Andrés Fernando Amarillo Espitia</b><br><span>Spain</span></td>
+      <td>CTO, Cyber Surgery / surgical robotics<br><span>Cyber Surgery</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">MedDevice Builder / Operator</span></td>
+      <td class="num">71</td>
+      <td>Complex surgical robotics / hardware engineering profile with CE/FDA product clearance development and multidisciplinary technical team leadership.</td>
+      <td>Surgical robotics is technically strong but quite far from biodegradable ureteral stents. Could be too robotics/platform focused.</td>
+      <td>Relevant benchmark/referral for regulated device builders. Not first call unless strong motivation appears.</td>
+      <td><a href="https://www.linkedin.com/in/andres-fernando-amarillo-robotics" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="Benchmark / Referral profile" data-search="joan vieyra galí stanford biodesign fellow / cto, loop dx / healthtech startup co-founder loop dx / biodesign barcelona, spain strong medical device innovation and biodesign profile. experience from clinical need finding to early solution development, diagnostics and digital health, plus silicon valley / barcelona ecosystem bridge. more innovation/diagnostics/digital health than implantable product development or mdr industrialisation. biodesign clinical need finding startup co-founder diagnostics barcelona">
+      <td><b>Joan Vieyra Galí</b><br><span>Barcelona, Spain</span></td>
+      <td>Stanford Biodesign Fellow / CTO, Loop Dx / Healthtech startup co-founder<br><span>Loop Dx / Biodesign</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">Benchmark / Referral profile</span></td>
+      <td class="num">70</td>
+      <td>Strong medical device innovation and biodesign profile. Experience from clinical need finding to early solution development, diagnostics and digital health, plus Silicon Valley / Barcelona ecosystem bridge.</td>
+      <td>More innovation/diagnostics/digital health than implantable product development or MDR industrialisation.</td>
+      <td>Good ecosystem/referral target and benchmark profile. Lower direct CTO match.</td>
+      <td><a href="https://www.linkedin.com/in/joan-vieyra-galí-833861a8" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="Benchmark / Referral profile" data-search="eduardo lage founder / cto / medical imaging entrepreneur plenoptika / 2eyes vision / imaging ventures spain serial medical device founder/cto profile with imaging, ophthalmology and international productisation/funding signals. strong benchmark/referral value. ophthalmic/imaging technology, not urology/stent/implantable. probably more benchmark/referral than candidate. founder cto medical imaging mit 100k productisation">
+      <td><b>Eduardo Lage</b><br><span>Spain</span></td>
+      <td>Founder / CTO / medical imaging entrepreneur<br><span>PlenOptika / 2Eyes Vision / imaging ventures</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">Benchmark / Referral profile</span></td>
+      <td class="num">68</td>
+      <td>Serial medical device founder/CTO profile with imaging, ophthalmology and international productisation/funding signals. Strong benchmark/referral value.</td>
+      <td>Ophthalmic/imaging technology, not urology/stent/implantable. Probably more benchmark/referral than candidate.</td>
+      <td>Keep as referral / benchmark. Useful to open meddevice founder CTO network.</td>
+      <td><a href="https://www.linkedin.com/in/eduardo-lage-321215b" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="B" data-type="Biomaterials / Microfluidics" data-search="jaione etxebarria elezgarai cto, optec4life / microfluidics, biosensors and polymers optec4life spain interesting biomaterials/microfluidics angle. profile mentions microfluidics, biosensors, polymers, biodegradable materials and medical device development/regulation signals. could be research-heavy. need verify seniority, industrialisation and ability to operate as cto in implantable meddevice spin-off. microfluidics biosensors polymers biodegradable materials r&amp;d">
+      <td><b>Jaione Etxebarria Elezgarai</b><br><span>Spain</span></td>
+      <td>CTO, Optec4Life / microfluidics, biosensors and polymers<br><span>Optec4Life</span></td>
+      <td><span class="badge priority-b">B</span></td>
+      <td><span class="type-badge">Biomaterials / Microfluidics</span></td>
+      <td class="num">67</td>
+      <td>Interesting biomaterials/microfluidics angle. Profile mentions microfluidics, biosensors, polymers, biodegradable materials and medical device development/regulation signals.</td>
+      <td>Could be research-heavy. Need verify seniority, industrialisation and ability to operate as CTO in implantable meddevice spin-off.</td>
+      <td>Include as technical biomaterials adjacency. Useful if biodegradable polymer angle becomes the key bottleneck.</td>
+      <td><a href="https://www.linkedin.com/in/jaioneetxebarria" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="C" data-type="Adjacent / Needs verification" data-search="julio díaz fernández cto/coo &amp; co-founder, dipneo - air2life dipneo barcelona, spain biomedical engineer and co-founder with medical emergency device, prototype validation, clinical trials, business modelling, product development and iso 13485 dossier work. less senior and less direct braidstent category. emergency device rather than implantable/urology. co-founder clinical validation iso 13485 prototype medical emergency device">
+      <td><b>Julio Díaz Fernández</b><br><span>Barcelona, Spain</span></td>
+      <td>CTO/COO &amp; Co-Founder, DIPNEO - Air2Life<br><span>DIPNEO</span></td>
+      <td><span class="badge priority-c">C</span></td>
+      <td><span class="type-badge">Adjacent / Needs verification</span></td>
+      <td class="num">61</td>
+      <td>Biomedical engineer and co-founder with medical emergency device, prototype validation, clinical trials, business modelling, product development and ISO 13485 dossier work.</td>
+      <td>Less senior and less direct BraidStent category. Emergency device rather than implantable/urology.</td>
+      <td>Keep as adjacent. Possibly useful as broader meddevice founder profile, not a top CTO lead.</td>
+      <td><a href="https://www.linkedin.com/in/julio-díaz-fernández-9b078412a" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="C" data-type="Industrialisation / Manufacturing" data-search="antonio javier marin alcaina industrial project management / technical coordination industrial project management / icu medical listed alicante area industrial/mechanical project profile with iso 13485, manufacturing, prototyping, supplier management, product development and technical coordination signals. profile feels more industrial project management than meddevice cto. need manual verification of medical-device depth and current role relevance. iso 13485 manufacturing prototyping supplier management mechanical engineering">
+      <td><b>Antonio Javier Marin Alcaina</b><br><span>Alicante area</span></td>
+      <td>Industrial Project Management / Technical Coordination<br><span>Industrial project management / ICU Medical listed</span></td>
+      <td><span class="badge priority-c">C</span></td>
+      <td><span class="type-badge">Industrialisation / Manufacturing</span></td>
+      <td class="num">58</td>
+      <td>Industrial/mechanical project profile with ISO 13485, manufacturing, prototyping, supplier management, product development and technical coordination signals.</td>
+      <td>Profile feels more industrial project management than MedDevice CTO. Need manual verification of medical-device depth and current role relevance.</td>
+      <td>Keep low priority / verification. Could be manufacturing support angle rather than CTO.</td>
+      <td><a href="https://www.linkedin.com/in/antoniojaviermarinalcaina" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="C" data-type="Adjacent / Needs verification" data-search="josé carlos montesinos pérez cto &amp; co-founder, medicsen medicsen madrid, spain cto/co-founder profile at medicsen with 3d design/cad/printing signals. could be relevant as technical healthtech founder. pdf gives limited evidence on regulated device, mdr, manufacturing or clinical validation. may be more digital/hardware healthtech than implantable meddevice. cto co-founder 3d design cad healthtech">
+      <td><b>José Carlos Montesinos Pérez</b><br><span>Madrid, Spain</span></td>
+      <td>CTO &amp; Co-Founder, Medicsen<br><span>Medicsen</span></td>
+      <td><span class="badge priority-c">C</span></td>
+      <td><span class="type-badge">Adjacent / Needs verification</span></td>
+      <td class="num">56</td>
+      <td>CTO/co-founder profile at Medicsen with 3D design/CAD/printing signals. Could be relevant as technical healthtech founder.</td>
+      <td>PDF gives limited evidence on regulated device, MDR, manufacturing or clinical validation. May be more digital/hardware healthtech than implantable MedDevice.</td>
+      <td>Needs verification before showing strongly. Keep as adjacent/startup technical profile.</td>
+      <td><a href="https://www.linkedin.com/in/jcmontesinos" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    
+    <tr data-priority="C" data-type="Adjacent / Needs verification" data-search="jim smith medical dev operations / ceo, medical devops / cto, v-medical medical devops / v-medical valencia, spain valencia-based profile with medical device design and manufacturing listed. one-page profile is too thin. need verify company substance, actual meddevice/regulatory experience and whether profile is credible for braidstent. valencia medical device design manufacturing needs verification">
+      <td><b>Jim Smith</b><br><span>Valencia, Spain</span></td>
+      <td>Medical dev operations / CEO, Medical devops / CTO, V-medical<br><span>Medical devops / V-medical</span></td>
+      <td><span class="badge priority-c">C</span></td>
+      <td><span class="type-badge">Adjacent / Needs verification</span></td>
+      <td class="num">52</td>
+      <td>Valencia-based profile with medical device design and manufacturing listed.</td>
+      <td>One-page profile is too thin. Need verify company substance, actual meddevice/regulatory experience and whether profile is credible for BraidStent.</td>
+      <td>Keep as low priority verification because of Valencia + device manufacturing signal.</td>
+      <td><a href="https://www.linkedin.com/in/jim-smith-8439a9210" target="_blank" rel="noopener">LI</a></td>
+    </tr>
+    </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section panel">
+    <h2>Notes for Consuelo</h2>
+    <p>This is a <b>first sourcing market map</b> for the BraidStent technical profile. It mixes potential CTO / technical co-founder leads with regulatory/product-development profiles, benchmark profiles and referral nodes. The first batch gives a strong enough base to discuss search direction, but it should be expanded with more focused LinkedIn sourcing around urology, catheters, implantable devices, biomaterials and MDR industrialisation.</p>
+    <p class="small">Source basis: 19 LinkedIn PDF exports supplied by Wouter on 13 Aug 2026. Analysis is based on profile content only; no availability or interest has been confirmed.</p>
+  </section>
+
+  <div class="footer">Generated for Does Recruitment / The Collider internal sourcing review · BraidStent Technical Market Map v0.1</div>
+</div>
+<script>
+const searchInput=document.getElementById('searchInput');
+const priorityFilter=document.getElementById('priorityFilter');
+const typeFilter=document.getElementById('typeFilter');
+const resetBtn=document.getElementById('resetBtn');
+const cards=[...document.querySelectorAll('.profile-card')];
+const rows=[...document.querySelectorAll('#profileTable tbody tr')];
+function applyFilters(){
+  const q=(searchInput.value||'').trim().toLowerCase();
+  const pr=priorityFilter.value;
+  const typ=typeFilter.value;
+  let visible=0;
+  [...cards,...rows].forEach(el=>{
+    const okQ=!q || (el.dataset.search||'').includes(q);
+    const okP=pr==='all' || el.dataset.priority===pr;
+    const okT=typ==='all' || el.dataset.type===typ;
+    const show=okQ && okP && okT;
+    el.style.display=show ? '' : 'none';
+    if(show && el.classList.contains('profile-card')) visible++;
+  });
+}
+[searchInput,priorityFilter,typeFilter].forEach(el=>el.addEventListener('input',applyFilters));
+resetBtn.addEventListener('click',()=>{searchInput.value='';priorityFilter.value='all';typeFilter.value='all';applyFilters();});
+</script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Female Health / MedTech Market Map - Valencia & Spain</title>
+<style>
+  :root {
+    --bg:#f6f4ef; --panel:#fffdf8; --ink:#1f2933; --muted:#6b7280; --line:#e6e0d6;
+    --accent:#1f5b54; --accent-2:#d96c4a; --amber:#c9962e; --green:#2f7d5f; --red:#b45454;
+    --shadow:0 18px 45px rgba(31,41,51,.08); --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  a{color:var(--accent);font-weight:700;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1380px;margin:0 auto;padding:34px 28px 60px}
+  .hero{display:grid;grid-template-columns:1.6fr .9fr;gap:22px;align-items:stretch;margin-bottom:24px}
+  .hero-main,.hero-side,.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .hero-main{padding:34px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-size:12px;font-weight:800;margin-bottom:12px}
+  h1{font-size:42px;line-height:1.05;margin:0 0 14px;letter-spacing:-.03em}
+  .subtitle{font-size:17px;color:#4b5563;max-width:900px;margin:0 0 24px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .tag{background:#e9f1ef;color:#174c46;border:1px solid #d0e3df;border-radius:999px;padding:7px 11px;font-weight:700;font-size:12px}
+  .hero-side{padding:28px}
+  .hero-side h2{font-size:17px;margin:0 0 14px}
+  .note{border-left:4px solid var(--accent-2);padding-left:14px;color:#4b5563;margin:0 0 18px}
+  .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .meta{background:#f8f5ec;border:1px solid var(--line);border-radius:16px;padding:14px}
+  .meta strong{display:block;font-size:26px;line-height:1;margin-bottom:6px}
+  .meta span{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+  .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:0 0 24px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+  .kpi .num{font-size:34px;font-weight:900;line-height:1;margin-bottom:6px;color:var(--accent)}
+  .kpi .label{font-weight:800;color:#374151}
+  .kpi .sub{color:var(--muted);font-size:12px;margin-top:5px}
+  .section{margin-top:28px}
+  .section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:0 0 14px}
+  .section h2{font-size:24px;margin:0;letter-spacing:-.02em}
+  .section p.lead{color:#53606f;margin:4px 0 0;max-width:820px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .panel{padding:20px}
+  .panel h3{margin:0 0 14px;font-size:18px}
+  .bar-row{display:grid;grid-template-columns:130px 1fr 34px;gap:10px;align-items:center;margin:11px 0}
+  .bar-row span{font-weight:700;color:#44515f;font-size:13px}
+  .bar-row strong{text-align:right;color:#374151}
+  .bar-bg{height:12px;background:#eee8dc;border-radius:999px;overflow:hidden}
+  .bar-bg i,.bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+  .bar-bg i.orange{background:var(--accent-2)}
+  .bar-bg i.amber{background:var(--amber)}
+  .short-list{display:flex;flex-direction:column;gap:12px}
+  .mini{border:1px solid var(--line);background:#faf7ef;border-radius:16px;padding:14px}
+  .mini-title{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:4px}
+  .mini h4{margin:0;font-size:15px}
+  .mini p{margin:0;color:#4b5563;font-size:13px}
+  .badge{display:inline-flex;align-items:center;justify-content:center;min-width:38px;border-radius:999px;padding:4px 8px;font-weight:900;font-size:11px;letter-spacing:.02em}
+  .priority-a{background:#dceee8;color:#15574e}
+  .priority-ab{background:#fbebcf;color:#7c4e09}
+  .priority-b{background:#e8eef8;color:#264f91}
+  .priority-c{background:#eeeef0;color:#4b5563}
+  .type-badge{background:#f2eee7;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-weight:800;font-size:11px;color:#59616c}
+  .profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .profile-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(31,41,51,.06);display:flex;flex-direction:column;min-height:390px}
+  .card-topline{display:flex;justify-content:space-between;gap:8px;margin-bottom:10px;align-items:center}
+  .profile-card h3{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}
+  .role{font-weight:700;color:#354250;margin:0 0 8px}
+  .location{color:var(--muted);margin:0 0 12px;font-size:13px}
+  .scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px}
+  .scores span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:900}
+  .scores strong{float:right;font-size:12px;color:#374151}
+  .bar{height:9px;background:#eee8dc;border-radius:999px;overflow:hidden;clear:both;margin-top:5px}
+  .why,.risk{font-size:13px;color:#465260;margin:0 0 10px}
+  .risk{color:#6b4f41}
+  .next{margin-top:auto;background:#f7f2e8;border:1px solid #eee3d3;border-radius:14px;padding:11px;font-size:13px;color:#3c4653}
+  .source-row{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:var(--muted);font-size:11px;align-items:center}
+  .source-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}
+  .filters{position:sticky;top:0;z-index:3;background:rgba(246,244,239,.92);backdrop-filter:blur(8px);padding:12px 0;margin:22px 0 10px;border-bottom:1px solid rgba(230,224,214,.8)}
+  .filter-panel{display:grid;grid-template-columns:1.1fr .8fr .8fr .8fr auto;gap:10px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:12px}
+  input,select,button{font:inherit;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;color:#1f2933}
+  button{cursor:pointer;background:var(--accent);color:white;border-color:var(--accent);font-weight:800}
+  button.secondary{background:#f7f2e8;color:#374151;border-color:var(--line)}
+  .table-wrap{overflow:auto;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--panel)}
+  table{width:100%;border-collapse:collapse;min-width:1260px}
+  th,td{padding:12px 12px;border-bottom:1px solid #eee8dc;text-align:left;vertical-align:top}
+  th{background:#efe7da;color:#374151;font-size:12px;text-transform:uppercase;letter-spacing:.06em;position:sticky;top:0;z-index:1}
+  td{font-size:13px;color:#3f4b59}
+  .name-cell{font-weight:900;color:#1f2933;min-width:160px}
+  td.num{font-weight:900;text-align:center;color:var(--accent)}
+  .table-note{margin:10px 0 0;color:var(--muted);font-size:12px}
+  .hidden{display:none!important}
+  .matrix{position:relative;height:320px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(90deg,rgba(31,91,84,.05),rgba(217,108,74,.08));overflow:hidden}
+  .matrix:before,.matrix:after{content:"";position:absolute;background:rgba(31,41,51,.12)}
+  .matrix:before{left:50%;top:0;bottom:0;width:1px}
+  .matrix:after{top:50%;left:0;right:0;height:1px}
+  .dot{position:absolute;width:12px;height:12px;border-radius:999px;background:var(--accent);border:2px solid white;box-shadow:0 2px 8px rgba(0,0,0,.18);transform:translate(-50%,50%);cursor:help}
+  .dot.a{background:var(--accent-2)}
+  .axis-label{position:absolute;font-size:11px;color:#6b7280;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+  .axis-x{bottom:8px;left:50%;transform:translateX(-50%)}
+  .axis-y{left:8px;top:50%;transform:translateY(-50%) rotate(-90deg)}
+  .method{font-size:13px;color:#4b5563}
+  .footer{margin-top:34px;color:#7b8490;font-size:12px;text-align:center}
+  @media(max-width:1050px){.hero{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.profile-grid,.grid-3,.grid-2{grid-template-columns:1fr}.filter-panel{grid-template-columns:1fr}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Internal market map v0.1</div>
+      <h1>Female Health / MedTech<br>Valencia & Spain</h1>
+      <p class="subtitle">First dashboard draft from 28 downloaded LinkedIn PDF profiles. Built as a mixed market map: potential CEO / Co-Founder leads, referral and ecosystem nodes, and benchmark profiles for Consuelo to review.</p>
+      <div class="tags">
+        <span class="tag">Female founders</span><span class="tag">Female health</span><span class="tag">Medical devices</span><span class="tag">Valencia</span><span class="tag">Referral-led sourcing</span>
+      </div>
+    </div>
+    <aside class="hero-side">
+      <h2>How to read this</h2>
+      <p class="note">This is not a verified availability shortlist yet. It is a market-mapping view to identify direct candidates, referral routes and strong benchmarks.</p>
+      <div class="meta-grid">
+        <div class="meta"><strong>A</strong><span>High priority</span></div>
+        <div class="meta"><strong>A/B</strong><span>Strong, validate</span></div>
+        <div class="meta"><strong>5/5</strong><span>High signal</span></div>
+        <div class="meta"><strong>v0.1</strong><span>First draft</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><div class="num">28</div><div class="label">Profiles mapped</div><div class="sub">from LinkedIn PDFs</div></div>
+    <div class="kpi"><div class="num">15</div><div class="label">A / A-B priorities</div><div class="sub">high-priority review</div></div>
+    <div class="kpi"><div class="num">5</div><div class="label">Candidate score 4-5</div><div class="sub">possible CEO / founder angle</div></div>
+    <div class="kpi"><div class="num">18</div><div class="label">Referral score 4-5</div><div class="sub">strong ecosystem value</div></div>
+    <div class="kpi"><div class="num">20</div><div class="label">Valencia-linked</div><div class="sub">local or regional signal</div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Market-map logic</h2><p class="lead">The pool is intentionally broader than direct candidates only. The exact search niche is small, so the best route is to combine candidate leads with people who can unlock the local Valencia and Spanish female-health ecosystem.</p></div></div>
+    <div class="grid-3">
+      <div class="panel"><h3>Direct candidate potential</h3><p class="method">Could possibly take a CEO / Co-Founder, operator, or venture-building role. Needs validation on founder energy, fundraising appetite, and availability.</p></div>
+      <div class="panel"><h3>Referral / ecosystem nodes</h3><p class="method">May not be candidates, but can point to hidden founders, clinicians, operators, investors, university spin-offs and female-health communities.</p></div>
+      <div class="panel"><h3>Benchmark profiles</h3><p class="method">Strong examples of what “good” looks like in women’s health, diagnostics or MedTech. Useful for calibration and warm-intro routes.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Priority mix</h3>
+        <div class="bar-row"><span>A</span><div class="bar-bg"><i class="orange" style="width:100%"></i></div><strong>9</strong></div><div class="bar-row"><span>A/B</span><div class="bar-bg"><i class="orange" style="width:67%"></i></div><strong>6</strong></div><div class="bar-row"><span>B+</span><div class="bar-bg"><i class="amber" style="width:11%"></i></div><strong>1</strong></div><div class="bar-row"><span>B</span><div class="bar-bg"><i class="amber" style="width:67%"></i></div><strong>6</strong></div><div class="bar-row"><span>B/C</span><div class="bar-bg"><i class="amber" style="width:44%"></i></div><strong>4</strong></div><div class="bar-row"><span>C+</span><div class="bar-bg"><i class="amber" style="width:11%"></i></div><strong>1</strong></div><div class="bar-row"><span>C</span><div class="bar-bg"><i class="amber" style="width:11%"></i></div><strong>1</strong></div>
+      </div>
+      <div class="panel">
+        <h3>Profile type mix</h3>
+        <div class="bar-row"><span>Candidate potential</span><div class="bar-bg"><i class="orange" style="width:62%"></i></div><strong>8</strong></div><div class="bar-row"><span>Referral / ecosystem</span><div class="bar-bg"><i class="" style="width:100%"></i></div><strong>13</strong></div><div class="bar-row"><span>Benchmark</span><div class="bar-bg"><i class="" style="width:46%"></i></div><strong>6</strong></div><div class="bar-row"><span>Adjacent</span><div class="bar-bg"><i class="" style="width:8%"></i></div><strong>1</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Best immediate review list</h2><p class="lead">A small front-page list for Consuelo: direct possible leads, high-signal connectors and benchmark references.</p></div></div>
+    <div class="grid-3">
+      <div class="panel"><h3>Potential CEO / Co-Founder leads</h3><div class="short-list">
+        <div class="mini"><div class="mini-title"><h4>Martine Rooth</h4><span class="badge priority-a">A</span></div><p>Serial entrepreneur, board member, fractional CEO/CCO &amp; founder coach; angel investor<br><b>Next:</b> Approach as high-signal founder/operator and ask for fit/referrals.</p></div><div class="mini"><div class="mini-title"><h4>Marian Garriga</h4><span class="badge priority-a">A</span></div><p>SVP Growth &amp; Strategy, Nexpring Health; ex-CEO Genea Biomedx; ex Global CMO/CCSO IVI RMA<br><b>Next:</b> High-priority review with Consuelo; outreach can be candidate + referral angle.</p></div><div class="mini"><div class="mini-title"><h4>María Sola Gil</h4><span class="badge priority-a">A</span></div><p>Health &amp; biotech innovation leader; founder, European Biotech Venture Builder<br><b>Next:</b> High-priority call for market map and possible CEO/referral fit.</p></div><div class="mini"><div class="mini-title"><h4>Mara Gracia Ondiviela</h4><span class="badge priority-ab">A/B</span></div><p>Director International Business Development, Auxein Medical; ex-GM/CEO at Surgival<br><b>Next:</b> Worth mapping for candidate or referrals into senior MedDevice women.</p></div><div class="mini"><div class="mini-title"><h4>Sonia Ferrandis</h4><span class="badge priority-ab">A/B</span></div><p>Former CEO Winncare Spain; ex-President AFDO medical device sector; currently looking<br><b>Next:</b> Contact as possible MedDevice CEO/operator, ask directly about startup/founder appetite.</p></div>
+      </div></div>
+      <div class="panel"><h3>Referral / ecosystem nodes</h3><div class="short-list">
+        <div class="mini"><div class="mini-title"><h4>Angela Perez</h4><span class="badge priority-a">A</span></div><p>VP Business Development, Health in Code; President BIOVAL; founder/CEO Sistemas Genómicos<br><b>Ask:</b> hidden female-health / MedTech founder names.</p></div><div class="mini"><div class="mini-title"><h4>Lucia Orozco Lopez</h4><span class="badge priority-a">A</span></div><p>Founder &amp; Director, Femtech Spain; femtech consultant and strategic advisor<br><b>Ask:</b> hidden female-health / MedTech founder names.</p></div><div class="mini"><div class="mini-title"><h4>Isabel Holguera Vera</h4><span class="badge priority-a">A</span></div><p>Femtech Portugal &amp; Spain; angel investor; ecosystem builder; EIC Women Leadership mentor<br><b>Ask:</b> hidden female-health / MedTech founder names.</p></div><div class="mini"><div class="mini-title"><h4>Marina Rigau</h4><span class="badge priority-a">A</span></div><p>CEO &amp; Co-founder, MiMARK Diagnostics<br><b>Ask:</b> hidden female-health / MedTech founder names.</p></div><div class="mini"><div class="mini-title"><h4>Mónica Rodriguez de la Vega</h4><span class="badge priority-a">A</span></div><p>CEO &amp; Co-Founder, Manina Medtech<br><b>Ask:</b> hidden female-health / MedTech founder names.</p></div>
+      </div></div>
+      <div class="panel"><h3>Benchmarks / warm intros</h3><div class="short-list">
+        <div class="mini"><div class="mini-title"><h4>Marian Garriga</h4><span class="badge priority-a">A</span></div><p>SVP Growth &amp; Strategy, Nexpring Health; ex-CEO Genea Biomedx; ex Global CMO/CCSO IVI RMA<br><b>Use:</b> benchmark or referral angle.</p></div><div class="mini"><div class="mini-title"><h4>Angela Perez</h4><span class="badge priority-a">A</span></div><p>VP Business Development, Health in Code; President BIOVAL; founder/CEO Sistemas Genómicos<br><b>Use:</b> benchmark or referral angle.</p></div><div class="mini"><div class="mini-title"><h4>Marina Rigau</h4><span class="badge priority-a">A</span></div><p>CEO &amp; Co-founder, MiMARK Diagnostics<br><b>Use:</b> benchmark or referral angle.</p></div><div class="mini"><div class="mini-title"><h4>Mónica Rodriguez de la Vega</h4><span class="badge priority-a">A</span></div><p>CEO &amp; Co-Founder, Manina Medtech<br><b>Use:</b> benchmark or referral angle.</p></div><div class="mini"><div class="mini-title"><h4>Judit Giró Benet</h4><span class="badge priority-a">A</span></div><p>Co-Founder &amp; CEO, The Blue Box<br><b>Use:</b> benchmark or referral angle.</p></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Candidate vs referral signal</h2><p class="lead">A quick visual to separate possible role candidates from profiles that are more valuable as ecosystem connectors.</p></div></div>
+    <div class="panel">
+      <div class="matrix" aria-label="Candidate score versus referral score matrix">
+        <span class="axis-label axis-x">Candidate score →</span><span class="axis-label axis-y">Referral score →</span>
+        <span class="dot a" title="Marian Garriga - Candidate 5/5, Referral 4/5" style="left:90%; bottom:72%"></span><span class="dot a" title="Martine Rooth - Candidate 5/5, Referral 5/5" style="left:90%; bottom:87%"></span><span class="dot a" title="María Sola Gil - Candidate 4/5, Referral 5/5" style="left:74%; bottom:87%"></span><span class="dot " title="Sonia Ferrandis - Candidate 4/5, Referral 3/5" style="left:74%; bottom:57%"></span><span class="dot " title="Mara Gracia Ondiviela - Candidate 4/5, Referral 4/5" style="left:74%; bottom:72%"></span><span class="dot a" title="Lucia Orozco Lopez - Candidate 2/5, Referral 5/5" style="left:42%; bottom:87%"></span><span class="dot a" title="Angela Perez - Candidate 3/5, Referral 5/5" style="left:58%; bottom:87%"></span><span class="dot a" title="Marina Rigau - Candidate 3/5, Referral 4/5" style="left:58%; bottom:72%"></span><span class="dot a" title="Mónica Rodriguez de la Vega - Candidate 3/5, Referral 4/5" style="left:58%; bottom:72%"></span><span class="dot a" title="Judit Giró Benet - Candidate 3/5, Referral 4/5" style="left:58%; bottom:72%"></span><span class="dot " title="María Guillem - Candidate 2/5, Referral 4/5" style="left:42%; bottom:72%"></span><span class="dot " title="Laura Zacarés, PhD - Candidate 1/5, Referral 5/5" style="left:26%; bottom:87%"></span><span class="dot " title="Loreto Crespo Vila - Candidate 3/5, Referral 4/5" style="left:58%; bottom:72%"></span><span class="dot " title="Beatriz Llamusi - Candidate 3/5, Referral 3/5" style="left:58%; bottom:57%"></span><span class="dot " title="Nina Skorytchenko - Candidate 3/5, Referral 4/5" style="left:58%; bottom:72%"></span><span class="dot " title="Olga Carbonell - Candidate 3/5, Referral 3/5" style="left:58%; bottom:57%"></span><span class="dot " title="Ale Wiecek Rojo - Candidate 3/5, Referral 3/5" style="left:58%; bottom:57%"></span><span class="dot " title="Rebecca Rumsey Salava - Candidate 2/5, Referral 3/5" style="left:42%; bottom:57%"></span><span class="dot " title="Mariia Suleiman - Candidate 2/5, Referral 4/5" style="left:42%; bottom:72%"></span><span class="dot " title="Frederike Engel - Candidate 2/5, Referral 4/5" style="left:42%; bottom:72%"></span><span class="dot " title="Giselle Rouvier - Candidate 2/5, Referral 4/5" style="left:42%; bottom:72%"></span><span class="dot " title="Agnieszka Fronia - Candidate 1/5, Referral 3/5" style="left:26%; bottom:57%"></span><span class="dot " title="Angela La Rosa - Candidate 2/5, Referral 3/5" style="left:42%; bottom:57%"></span><span class="dot " title="Elena Ursache - Candidate 2/5, Referral 3/5" style="left:42%; bottom:57%"></span><span class="dot " title="Begoña Ruiz - Candidate 1/5, Referral 4/5" style="left:26%; bottom:72%"></span><span class="dot " title="María Angelica Realpe Velasquez - Candidate 2/5, Referral 3/5" style="left:42%; bottom:57%"></span><span class="dot " title="Maria Vitória Rosetti - Candidate 1/5, Referral 3/5" style="left:26%; bottom:57%"></span><span class="dot a" title="Isabel Holguera Vera - Candidate 1/5, Referral 5/5" style="left:26%; bottom:87%"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Profile cards</h2><p class="lead">Filtered live list. Use search and filters to review by priority or profile type.</p></div><div id="resultCount" class="tag">28 shown</div></div>
+    <div class="filters">
+      <div class="filter-panel">
+        <input id="searchInput" type="search" placeholder="Search name, company, femtech, diagnostics, Valencia...">
+        <select id="typeFilter"><option value="">All profile types</option><option>Candidate potential</option><option>Referral / ecosystem</option><option>Benchmark</option><option>Adjacent</option></select>
+        <select id="priorityFilter"><option value="">All priorities</option><option>A</option><option>A/B</option><option>B+</option><option>B</option><option>B/C</option><option>C+</option><option>C</option></select>
+        <select id="locationFilter"><option value="">All locations</option><option value="valencia">Valencia-linked</option><option value="spain">Spain</option><option value="barcelona">Barcelona</option></select>
+        <button class="secondary" onclick="resetFilters()">Reset</button>
+      </div>
+    </div>
+    <div id="profileGrid" class="profile-grid">
+      
+    <article class="profile-card" data-type="Candidate potential" data-priority="A" data-name="martine rooth" data-location="greater valencia metropolitan area" data-text="serial entrepreneur, board member, fractional ceo/cco &amp; founder coach; angel investor very strong founder/fundraiser/operator energy locally in valencia. could be candidate, advisor or high-quality referral node. medium - digital health and femtech angel interest medium - more digital health than device">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Martine Rooth</h3>
+      <p class="role">Serial entrepreneur, board member, fractional CEO/CCO &amp; founder coach; angel investor</p>
+      <p class="location">Greater Valencia Metropolitan Area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Very strong founder/fundraiser/operator energy locally in Valencia. Could be candidate, advisor or high-quality referral node.</p>
+      <p class="risk"><b>Question:</b> Not clearly MedDevice or female health deep specialist.</p>
+      <div class="next"><b>Next:</b> Approach as high-signal founder/operator and ask for fit/referrals.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/martinerooth" target="_blank" rel="noopener">LinkedIn</a><span>Martine_Rooth_AEMAAAKKOyAB6I2lKfaQAbvRmXBq5CRN7iwkn1I.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="A" data-name="marian garriga" data-location="greater valencia metropolitan area" data-text="svp growth &amp; strategy, nexpring health; ex-ceo genea biomedx; ex global cmo/ccso ivi rma strongest direct intersection of valencia, reproductive health, medical device tech, ceo leadership and global commercial scaling. high - reproductive health / ivf / art high - ivf lab medical device / tech">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Marian Garriga</h3>
+      <p class="role">SVP Growth &amp; Strategy, Nexpring Health; ex-CEO Genea Biomedx; ex Global CMO/CCSO IVI RMA</p>
+      <p class="location">Greater Valencia Metropolitan Area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strongest direct intersection of Valencia, reproductive health, medical device tech, CEO leadership and global commercial scaling.</p>
+      <p class="risk"><b>Question:</b> Likely senior and may be more benchmark/referral than available candidate.</p>
+      <div class="next"><b>Next:</b> High-priority review with Consuelo; outreach can be candidate + referral angle.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/mariangarriga" target="_blank" rel="noopener">LinkedIn</a><span>Marian_Garriga_AEMAAABO4EQBRY_6vTuh5JgIR_v30S2Gs8Z7Hio.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="A" data-name="maría sola gil" data-location="valencia/valència" data-text="health &amp; biotech innovation leader; founder, european biotech venture builder excellent valencia-based science-to-venture profile. strong strategy, execution, capital discipline, operations and funding angle. medium - healthcare/biotech broad high - biotech, toxicology, regulatory affairs, venture building">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Candidate potential</span></div>
+      <h3>María Sola Gil</h3>
+      <p class="role">Health &amp; biotech innovation leader; founder, European Biotech Venture Builder</p>
+      <p class="location">Valencia/València</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Excellent Valencia-based science-to-venture profile. Strong strategy, execution, capital discipline, operations and funding angle.</p>
+      <p class="risk"><b>Question:</b> Not clearly female health or medical device specifically.</p>
+      <div class="next"><b>Next:</b> High-priority call for market map and possible CEO/referral fit.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/mariasola" target="_blank" rel="noopener">LinkedIn</a><span>Mara_SolaGil_AEMAAAQ8OBgBwlxWCZHmJmUroA4MKgTZO3vR60Y.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A" data-name="angela perez" data-location="valencia area" data-text="vp business development, health in code; president bioval; founder/ceo sistemas genómicos very senior valencia biotech/diagnostics founder and ecosystem power node. strong source of referrals. medium - genomics/medical diagnostics, not specifically female health high - genetic diagnostics / biotech">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Benchmark</span></div>
+      <h3>Angela Perez</h3>
+      <p class="role">VP Business Development, Health in Code; President BIOVAL; founder/CEO Sistemas Genómicos</p>
+      <p class="location">Valencia area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Very senior Valencia biotech/diagnostics founder and ecosystem power node. Strong source of referrals.</p>
+      <p class="risk"><b>Question:</b> Probably too senior/busy for the role; may be better as connector/validator.</p>
+      <div class="next"><b>Next:</b> Use for market intelligence, referrals, and validation of Valencia biotech/female founder pool.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/angelap1" target="_blank" rel="noopener">LinkedIn</a><span>Angela_Perez_AEMAAANlIXoBZoFIc4Nfje08cHglYAdev0up_KQ.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A" data-name="judit giró benet" data-location="barcelona / us" data-text="co-founder &amp; ceo, the blue box strong founder/ceo benchmark in female health diagnostics. high - breast cancer screening high - diagnostic medical device / biomedical engineering">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Benchmark</span></div>
+      <h3>Judit Giró Benet</h3>
+      <p class="role">Co-Founder &amp; CEO, The Blue Box</p>
+      <p class="location">Barcelona / US</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong founder/CEO benchmark in female health diagnostics.</p>
+      <p class="risk"><b>Question:</b> Likely not available, not Valencia.</p>
+      <div class="next"><b>Next:</b> Use as benchmark and referral source.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/judit-giro" target="_blank" rel="noopener">LinkedIn</a><span>Judit_GirBenet_AEMAABthoKgBQFaebDqBxhYYfq3weQTzpJ9veHc.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A" data-name="marina rigau" data-location="barcelona area" data-text="ceo &amp; co-founder, mimark diagnostics one of the best spain benchmarks for women’s health diagnostics founder profile. high - gynaecological diagnostics / endometrial cancer high - diagnostics / regulated healthcare">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Benchmark</span></div>
+      <h3>Marina Rigau</h3>
+      <p class="role">CEO &amp; Co-founder, MiMARK Diagnostics</p>
+      <p class="location">Barcelona area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> One of the best Spain benchmarks for women’s health diagnostics founder profile.</p>
+      <p class="risk"><b>Question:</b> Likely not available, not Valencia.</p>
+      <div class="next"><b>Next:</b> Use as benchmark and possible referral source.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/marina-rigau" target="_blank" rel="noopener">LinkedIn</a><span>Marina_Rigau_AEMAAAV_jUkBbZ8AdUo863__uuRmDItGy48P8zM.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A" data-name="mónica rodriguez de la vega" data-location="barcelona" data-text="ceo &amp; co-founder, manina medtech very strong women’s health medical device benchmark. high - ivf / fertility high - medical device for embryo transfer">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Benchmark</span></div>
+      <h3>Mónica Rodriguez de la Vega</h3>
+      <p class="role">CEO &amp; Co-Founder, Manina Medtech</p>
+      <p class="location">Barcelona</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Very strong women’s health medical device benchmark.</p>
+      <p class="risk"><b>Question:</b> Likely committed to Manina, not Valencia.</p>
+      <div class="next"><b>Next:</b> Use as archetype and referral target.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/monicadevega" target="_blank" rel="noopener">LinkedIn</a><span>Monica_RodriguezdelaVega_AEMAAABtqIYBqs1aR2MqifP_iTFNAtOXOFx6vCc.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="A" data-name="lucia orozco lopez" data-location="spain" data-text="founder &amp; director, femtech spain; femtech consultant and strategic advisor probably one of the best spanish femtech mapping entry points. she is literally building the spanish femtech market map. high - core femtech / women’s health medium - may know medtech/femtech founders">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Lucia Orozco Lopez</h3>
+      <p class="role">Founder &amp; Director, Femtech Spain; femtech consultant and strategic advisor</p>
+      <p class="location">Spain</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Probably one of the best Spanish femtech mapping entry points. She is literally building the Spanish femtech market map.</p>
+      <p class="risk"><b>Question:</b> May not be a candidate herself, more likely ecosystem/referral.</p>
+      <div class="next"><b>Next:</b> Ask for top Valencia/Spain female health MedTech founders and hidden names.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/lucia-orozco-lopez" target="_blank" rel="noopener">LinkedIn</a><span>Lucia_OrozcoLopez_AEMAAB_JVQABygLQBIcnCEDYRofyuiVaHf-PcJQ.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="A" data-name="isabel holguera vera" data-location="portugal / spain" data-text="femtech portugal &amp; spain; angel investor; ecosystem builder; eic women leadership mentor strong european women-in-innovation and femtech ecosystem connector with investing/mentoring access. high - femtech spain strategic lead and femtech portugal co-founder low/medium - depends on network">
+      <div class="card-topline"><span class="badge priority-a">A</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Isabel Holguera Vera</h3>
+      <p class="role">Femtech Portugal &amp; Spain; angel investor; ecosystem builder; EIC Women Leadership mentor</p>
+      <p class="location">Portugal / Spain</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>1/5</strong><div class="bar"><i style="width:20%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong European women-in-innovation and femtech ecosystem connector with investing/mentoring access.</p>
+      <p class="risk"><b>Question:</b> Not a Valencia-based candidate; likely referral/market intelligence only.</p>
+      <div class="next"><b>Next:</b> Ask for Spanish female health MedTech founders and Valencia links.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/isabelholguera" target="_blank" rel="noopener">LinkedIn</a><span>Isabel_HolgueraVera_AEMAABhoxK0BB4ISNV6z8BaxCpjXFtoWI3IPs5Q.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="A/B" data-name="mara gracia ondiviela" data-location="valencia area" data-text="director international business development, auxein medical; ex-gm/ceo at surgival strong valencia meddevice operator with long international business development background. low - not female health specific high - medical device / surgical implants / orthopedics">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Mara Gracia Ondiviela</h3>
+      <p class="role">Director International Business Development, Auxein Medical; ex-GM/CEO at Surgival</p>
+      <p class="location">Valencia area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong Valencia MedDevice operator with long international business development background.</p>
+      <p class="risk"><b>Question:</b> Likely more commercial MedDevice operator than founder/fundraiser.</p>
+      <div class="next"><b>Next:</b> Worth mapping for candidate or referrals into senior MedDevice women.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/mara-gracia-ondiviela-30196652" target="_blank" rel="noopener">LinkedIn</a><span>Mara_GraciaOndiviela_AEMAAAstHDEBTGwenNiIgX42xHhvg_c9haVtpq8.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="A/B" data-name="sonia ferrandis" data-location="comunidad valenciana" data-text="former ceo winncare spain; ex-president afdo medical device sector; currently looking very relevant senior meddevice leadership in valencia and seems available/open to next adventure. low - not female health specific high - medical devices / assistive devices / orthopedics sector">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Sonia Ferrandis</h3>
+      <p class="role">Former CEO Winncare Spain; ex-President AFDO medical device sector; currently looking</p>
+      <p class="location">Comunidad Valenciana</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Very relevant senior MedDevice leadership in Valencia and seems available/open to next adventure.</p>
+      <p class="risk"><b>Question:</b> Need to test startup/founder energy and female-health motivation.</p>
+      <div class="next"><b>Next:</b> Contact as possible MedDevice CEO/operator, ask directly about startup/founder appetite.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/soniaferrandis" target="_blank" rel="noopener">LinkedIn</a><span>Sonia_Ferrandis_AEMAAAJSdwEBvoA6xfGUrmEU-kujveI6Gu8O_c0.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="A/B" data-name="loreto crespo vila" data-location="valencia" data-text="ceo &amp; co-founder, genotipia; bioval/ajev/ceaje/lideremos local life sciences founder with strong valencia ecosystem links. medium - genetics/health education, not female health medium - life sciences/genetics">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Loreto Crespo Vila</h3>
+      <p class="role">CEO &amp; Co-founder, Genotipia; BIOVAL/AJEV/CEAJE/Lideremos</p>
+      <p class="location">Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Local life sciences founder with strong Valencia ecosystem links.</p>
+      <p class="risk"><b>Question:</b> Not medical device and probably not female health specific.</p>
+      <div class="next"><b>Next:</b> Map for referrals and possible broader founder-pool conversation.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/loretocrespovila" target="_blank" rel="noopener">LinkedIn</a><span>Loreto_CrespoVila_AEMAAAtAhtMB059xv-Xao_35X14OW63B1Nk9LVM.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A/B" data-name="beatriz llamusi" data-location="paterna / valencia" data-text="cso, arthex biotech; ceo &amp; co-founder arthex biotech strong valencia biotech founder and scientific entrepreneur; useful as benchmark/referral. low - rare disease/rna medicines, not female health medium - biotech/drug development more than device">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Benchmark</span></div>
+      <h3>Beatriz Llamusi</h3>
+      <p class="role">CSO, ARTHEx Biotech; CEO &amp; Co-founder ARTHEx Biotech</p>
+      <p class="location">Paterna / Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong Valencia biotech founder and scientific entrepreneur; useful as benchmark/referral.</p>
+      <p class="risk"><b>Question:</b> Not female health or MedDevice; likely committed to ARTHEx.</p>
+      <div class="next"><b>Next:</b> Keep for broader biotech female-founder map and referrals.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/beatriz-llamusi-6b463a14a" target="_blank" rel="noopener">LinkedIn</a><span>Beatriz_Llamusi_AEMAACQLomgBvcCQiTAztudbyCeWBRV00n9QGCU.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Benchmark" data-priority="A/B" data-name="maría guillem" data-location="comunidad valenciana / valencia" data-text="professor upv; principal researcher itaca; founding member, corify strong valencia medical device/spin-off node from upv and corify. low - not female health high - biomedical engineering / corify medtech spin-off">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Benchmark</span></div>
+      <h3>María Guillem</h3>
+      <p class="role">Professor UPV; Principal Researcher ITACA; Founding Member, Corify</p>
+      <p class="location">Comunidad Valenciana / Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong Valencia medical device/spin-off node from UPV and Corify.</p>
+      <p class="risk"><b>Question:</b> More technical/academic than founder CEO candidate.</p>
+      <div class="next"><b>Next:</b> Use for referrals around technical/clinical MedTech spin-offs in Valencia.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/maría-guillem-060b0225" target="_blank" rel="noopener">LinkedIn</a><span>Mara_Guillem_AEMAAAVTIcgBTHDLNVn5R1aNW-Z1jAT-HU0WIdU.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="A/B" data-name="laura zacarés, phd" data-location="valencia area" data-text="head of technology transfer, ibmcp upv-csic; bioval committee member strong local tech-transfer and bioval connector; likely useful for hidden spin-off/founder names. low - not female health specific medium - biotech / technology transfer">
+      <div class="card-topline"><span class="badge priority-ab">A/B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Laura Zacarés, PhD</h3>
+      <p class="role">Head of Technology Transfer, IBMCP UPV-CSIC; BIOVAL committee member</p>
+      <p class="location">Valencia area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>1/5</strong><div class="bar"><i style="width:20%"></i></div></div>
+        <div><span>Referral</span><strong>5/5</strong><div class="bar"><i style="width:100%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong local tech-transfer and BIOVAL connector; likely useful for hidden spin-off/founder names.</p>
+      <p class="risk"><b>Question:</b> Not candidate profile.</p>
+      <div class="next"><b>Next:</b> Ask for Valencia female founders from biotech/MedTech/spin-off ecosystem.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/laura-zacarés-phd-1441b310" target="_blank" rel="noopener">LinkedIn</a><span>Laura_ZacarsPhD_AEMAAAIqHAQBIZMlewU6cytvkhiOkyU2DjbI2zM.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="B+" data-name="nina skorytchenko" data-location="uk / valencia link" data-text="ceo avenna; founder/ceo wellcode life; healthtech community valencia founder in precision health/biomarkers with healthtech community valencia link. medium - precision/preventive health and wellness medium - biomarkers / translational medicine">
+      <div class="card-topline"><span class="badge priority-b">B+</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Nina Skorytchenko</h3>
+      <p class="role">CEO Avenna; founder/CEO Wellcode Life; HealthTech Community Valencia</p>
+      <p class="location">UK / Valencia link</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Founder in precision health/biomarkers with HealthTech Community Valencia link.</p>
+      <p class="risk"><b>Question:</b> Not clearly Valencia-based candidate; may be more wellness/preventive health than regulated device.</p>
+      <div class="next"><b>Next:</b> Keep as referral/candidate-adjacent; verify Valencia availability and role appetite.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/nina-skorytchenko" target="_blank" rel="noopener">LinkedIn</a><span>Nina_Skorytchenko_AEMAAAH-XsAB8ItL2NhzkbUyLEMkVEadTe3Uc2c.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="B" data-name="ale wiecek rojo" data-location="valencia" data-text="founder, biftsbo; women’s health &amp; longevity advocate local female health founder around menopause/perimenopause. good women’s health signal. high - perimenopause/menopause/longevity low - not meddevice">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Ale Wiecek Rojo</h3>
+      <p class="role">Founder, BIFTSBO; women’s health &amp; longevity advocate</p>
+      <p class="location">Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Local female health founder around menopause/perimenopause. Good women’s health signal.</p>
+      <p class="risk"><b>Question:</b> Likely community/content/workplace rather than regulated device/fundraising CEO.</p>
+      <div class="next"><b>Next:</b> Keep for female-health pool and referrals.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/alewiecek" target="_blank" rel="noopener">LinkedIn</a><span>Ale_WiecekRojo_AEMAAAFkV1wBb-97_nYfOn2XdwsbxnqgfExYgcU.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Candidate potential" data-priority="B" data-name="olga carbonell" data-location="valencia area" data-text="founder &amp; ceo, biotasmart; lanzadera alumnus local founder with health, microbiota and lanzadera signal. medium - microbiota/nutrition, possible female health adjacency low/medium - healthtech/wellness, not meddevice">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Candidate potential</span></div>
+      <h3>Olga Carbonell</h3>
+      <p class="role">Founder &amp; CEO, Biotasmart; Lanzadera alumnus</p>
+      <p class="location">Valencia area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Local founder with health, microbiota and Lanzadera signal.</p>
+      <p class="risk"><b>Question:</b> More nutrition/wellbeing than device or femhealth; early founder stage.</p>
+      <div class="next"><b>Next:</b> Worth adding to map; maybe candidate-adjacent or referral.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/olga-carbonell-biotasmart" target="_blank" rel="noopener">LinkedIn</a><span>Olga_Carbonell_AEMAABfW7L0Bhw_GDCG1K3H0-J_Sy-vyReKqG5k.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B" data-name="frederike engel" data-location="greater valencia area" data-text="co-founder &amp; ceo, phima; workflow automation and ai products local tech founder and possible femtech ecosystem connector. needs verification - previous map linked to femtech ecosystem; pdf mainly ai/workflow low">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Frederike Engel</h3>
+      <p class="role">Co-Founder &amp; CEO, phima; workflow automation and AI products</p>
+      <p class="location">Greater Valencia area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Local tech founder and possible femtech ecosystem connector.</p>
+      <p class="risk"><b>Question:</b> PDF does not show MedDevice/female health; validate FemTech Spain link.</p>
+      <div class="next"><b>Next:</b> Keep as local referral node, not core candidate.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/frederikeengel" target="_blank" rel="noopener">LinkedIn</a><span>Frederike_Engel_AEMAAA8156cBSP_VM9rkRBFRost4VoK751ldTVU.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B" data-name="giselle rouvier" data-location="madrid" data-text="women’s health / femtech / menopause &amp; hormonal health; femtech spain madrid ambassador relevant women&#x27;s health/femtech networker with menopause/hormonal health focus. high - menopause/hormonal health low/medium">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Giselle Rouvier</h3>
+      <p class="role">Women’s Health / Femtech / menopause &amp; hormonal health; Femtech Spain Madrid Ambassador</p>
+      <p class="location">Madrid</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Relevant women&#x27;s health/femtech networker with menopause/hormonal health focus.</p>
+      <p class="risk"><b>Question:</b> Not Valencia and not MedDevice; more partnerships/community.</p>
+      <div class="next"><b>Next:</b> Use for referrals into femtech founders and menopause/women’s health market.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/gisellerouvier" target="_blank" rel="noopener">LinkedIn</a><span>Giselle_Rouvier_AEMAAAAHL28Bbt6od3-ZSZY5H_UQdH23q7hC8VE.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B" data-name="mariia suleiman" data-location="valencia" data-text="program manager in tech; co-founder healthtech community valencia; ex-astrazeneca programs good local healthtech community node with regulated medtech/digital-health program delivery. low/medium high - medtech programs, pharma, surgical robotics, regulation">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Mariia Suleiman</h3>
+      <p class="role">Program Manager in tech; Co-founder HealthTech Community Valencia; ex-AstraZeneca programs</p>
+      <p class="location">Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Good local healthtech community node with regulated MedTech/digital-health program delivery.</p>
+      <p class="risk"><b>Question:</b> Program manager/operator, not clear founder CEO profile.</p>
+      <div class="next"><b>Next:</b> Use for referrals and ecosystem map.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/mariia-suleiman" target="_blank" rel="noopener">LinkedIn</a><span>Mariia_Suleiman_AEMAAARlfk8BkdD9xA9prIjKwRhcAVivtqnDX4I.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B" data-name="rebecca rumsey salava" data-location="valencia" data-text="founder, fertile after 40; women’s wellness &amp; fertility specialist strong women’s health/fertility domain and valencia location. high - fertility, hormones, women over 40 low - coaching/app/wellness, not meddevice">
+      <div class="card-topline"><span class="badge priority-b">B</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Rebecca Rumsey Salava</h3>
+      <p class="role">Founder, Fertile After 40; Women’s wellness &amp; fertility specialist</p>
+      <p class="location">Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong women’s health/fertility domain and Valencia location.</p>
+      <p class="risk"><b>Question:</b> More wellness/coaching/digital education than MedDevice founder CEO.</p>
+      <div class="next"><b>Next:</b> Use as female health ecosystem/referral, possibly candidate-adjacent.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/rebecca-rumsey-salava" target="_blank" rel="noopener">LinkedIn</a><span>Rebecca_RumseySalava_AEMAADfmVs8BrfxFV7QcNj1n9OSZJgwufhnFcTw.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B/C" data-name="angela la rosa" data-location="greater valencia metropolitan area" data-text="founder, woem health; clinical pni &amp; organisational psychology local valencia health/wellbeing founder with human performance angle. medium - health/performance, possibly workplace health low">
+      <div class="card-topline"><span class="badge priority-c">B/C</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Angela La Rosa</h3>
+      <p class="role">Founder, Woem Health; clinical PNI &amp; organisational psychology</p>
+      <p class="location">Greater Valencia Metropolitan Area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Local Valencia health/wellbeing founder with human performance angle.</p>
+      <p class="risk"><b>Question:</b> Not specifically female health in PDF and not MedDevice.</p>
+      <div class="next"><b>Next:</b> Keep in wider ecosystem; verify relevance to female health.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/boeree" target="_blank" rel="noopener">LinkedIn</a><span>Angela_LaRosa_AEMAAADo3NIBSO-3uueKecT-B9-CtceEpld5xYs.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B/C" data-name="elena ursache" data-location="greater valencia metropolitan area" data-text="co-founder, novalins; ai medical translations for pharma, medtech &amp; digital health healthcare-sector founder in valencia with medtech/pharma customer exposure. low medium - supports pharma/medtech/cro customers">
+      <div class="card-topline"><span class="badge priority-c">B/C</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Elena Ursache</h3>
+      <p class="role">Co-founder, Novalins; AI medical translations for pharma, MedTech &amp; digital health</p>
+      <p class="location">Greater Valencia Metropolitan Area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Healthcare-sector founder in Valencia with MedTech/pharma customer exposure.</p>
+      <p class="risk"><b>Question:</b> Service business, not device/female health.</p>
+      <div class="next"><b>Next:</b> Keep as adjacent MedTech network lead.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/eursache" target="_blank" rel="noopener">LinkedIn</a><span>Elena_Ursache_AEMAAAl6LI4BW2xPM3RHFgAc1QKHxz-AH91lTZY.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Adjacent" data-priority="B/C" data-name="maría angelica realpe velasquez" data-location="spain" data-text="senior field clinical &amp; territory manager; independent medtech consultant strong clinical-commercial medtech operator and kol/key stakeholder management. low high - cardiovascular/endovascular medical devices, clinical-commercial strategy">
+      <div class="card-topline"><span class="badge priority-c">B/C</span><span class="type-badge">Adjacent</span></div>
+      <h3>María Angelica Realpe Velasquez</h3>
+      <p class="role">Senior Field Clinical &amp; Territory Manager; independent MedTech consultant</p>
+      <p class="location">Spain</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>2/5</strong><div class="bar"><i style="width:40%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong clinical-commercial MedTech operator and KOL/key stakeholder management.</p>
+      <p class="risk"><b>Question:</b> No founder/CEO signal; not female health.</p>
+      <div class="next"><b>Next:</b> Keep as MedTech network/referral, not first candidate.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/maria-angelica-realpe-velasquez-69513568" target="_blank" rel="noopener">LinkedIn</a><span>MariaAngelica_RealpeVelasquez_AEMAAA5B5JEBL8kmxNS-YAn7OEvSWwto79uMTfI.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="B/C" data-name="begoña ruiz" data-location="paterna / valencia" data-text="director of technologies, ainia; bioval board strong valencia r&amp;d/biotech/preclinical node with bioval board link. low medium - in vitro preclinical, biotech, bioassays">
+      <div class="card-topline"><span class="badge priority-c">B/C</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Begoña Ruiz</h3>
+      <p class="role">Director of Technologies, AINIA; BIOVAL board</p>
+      <p class="location">Paterna / Valencia</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>1/5</strong><div class="bar"><i style="width:20%"></i></div></div>
+        <div><span>Referral</span><strong>4/5</strong><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Strong Valencia R&amp;D/biotech/preclinical node with BIOVAL board link.</p>
+      <p class="risk"><b>Question:</b> Not founder/CEO candidate and not female health.</p>
+      <div class="next"><b>Next:</b> Use for referrals into AINIA/BIOVAL/tech-transfer networks.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/bruizfuertes" target="_blank" rel="noopener">LinkedIn</a><span>Begoa_Ruiz_AEMAAAapnNABDEiqIgf-93hFu8aLNQcxqZxtDAk.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="C+" data-name="agnieszka fronia" data-location="málaga" data-text="founder, psychologist, women’s health &amp; leadership; femtech spain malaga ambassador useful femtech spain regional ecosystem connection. medium/high - women’s health/psychology low">
+      <div class="card-topline"><span class="badge priority-c">C+</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Agnieszka Fronia</h3>
+      <p class="role">Founder, psychologist, women’s health &amp; leadership; Femtech Spain Malaga Ambassador</p>
+      <p class="location">Málaga</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>1/5</strong><div class="bar"><i style="width:20%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Useful Femtech Spain regional ecosystem connection.</p>
+      <p class="risk"><b>Question:</b> Not Valencia, not MedDevice, likely not CEO fit.</p>
+      <div class="next"><b>Next:</b> Low-effort referral touch if expanding beyond Valencia.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/agnieszka-fronia" target="_blank" rel="noopener">LinkedIn</a><span>Agnieszka_Fronia_AEMAAAjnfA8Bo2q8ZVF8fNf-AlD-5utsFbpCAjY.pdf</span></div>
+    </article>
+    
+    <article class="profile-card" data-type="Referral / ecosystem" data-priority="C" data-name="maria vitória rosetti" data-location="greater valencia metropolitan area" data-text="healthtech community valencia organizer; engineer / project &amp; process management useful local healthtech community link, but not target-level ceo profile. low low/medium - healthtech community, engineering/process">
+      <div class="card-topline"><span class="badge priority-c">C</span><span class="type-badge">Referral / ecosystem</span></div>
+      <h3>Maria Vitória Rosetti</h3>
+      <p class="role">HealthTech Community Valencia organizer; engineer / project &amp; process management</p>
+      <p class="location">Greater Valencia Metropolitan Area</p>
+      <div class="scores">
+        <div><span>Candidate</span><strong>1/5</strong><div class="bar"><i style="width:20%"></i></div></div>
+        <div><span>Referral</span><strong>3/5</strong><div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+      <p class="why"><b>Why:</b> Useful local healthtech community link, but not target-level CEO profile.</p>
+      <p class="risk"><b>Question:</b> Not female health, not MedDevice founder.</p>
+      <div class="next"><b>Next:</b> Only use if mapping HealthTech Community Valencia further.</div>
+      <div class="source-row"><a href="https://www.linkedin.com/in/maria-vitoria-m-rosetti" target="_blank" rel="noopener">LinkedIn</a><span>MariaVitria_Rosetti_AEMAAB-MSLsBbtmAKIqTjf-YWjAeus0aFbgjo4w.pdf</span></div>
+    </article>
+    
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>Full market-map table</h2><p class="lead">Same profiles in a compact table for copy/paste and review.</p></div></div>
+    <div class="table-wrap">
+      <table id="profileTable">
+        <thead><tr><th>Priority</th><th>Name</th><th>Current role / company</th><th>Location</th><th>Type</th><th>Candidate</th><th>Referral</th><th>Why relevant</th><th>Main question / risk</th><th>Link</th></tr></thead>
+        <tbody>
+      <tr data-type="Candidate potential" data-priority="A" data-name="martine rooth" data-location="greater valencia metropolitan area" data-text="serial entrepreneur, board member, fractional ceo/cco &amp; founder coach; angel investor very strong founder/fundraiser/operator energy locally in valencia. could be candidate, advisor or high-quality referral node. medium - digital health and femtech angel interest medium - more digital health than device">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Martine Rooth</td>
+        <td>Serial entrepreneur, board member, fractional CEO/CCO &amp; founder coach; angel investor</td>
+        <td>Greater Valencia Metropolitan Area</td>
+        <td>Candidate potential</td>
+        <td class="num">5</td>
+        <td class="num">5</td>
+        <td>Very strong founder/fundraiser/operator energy locally in Valencia. Could be candidate, advisor or high-quality referral node.</td>
+        <td>Not clearly MedDevice or female health deep specialist.</td>
+        <td><a href="https://www.linkedin.com/in/martinerooth" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="A" data-name="marian garriga" data-location="greater valencia metropolitan area" data-text="svp growth &amp; strategy, nexpring health; ex-ceo genea biomedx; ex global cmo/ccso ivi rma strongest direct intersection of valencia, reproductive health, medical device tech, ceo leadership and global commercial scaling. high - reproductive health / ivf / art high - ivf lab medical device / tech">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Marian Garriga</td>
+        <td>SVP Growth &amp; Strategy, Nexpring Health; ex-CEO Genea Biomedx; ex Global CMO/CCSO IVI RMA</td>
+        <td>Greater Valencia Metropolitan Area</td>
+        <td>Candidate potential</td>
+        <td class="num">5</td>
+        <td class="num">4</td>
+        <td>Strongest direct intersection of Valencia, reproductive health, medical device tech, CEO leadership and global commercial scaling.</td>
+        <td>Likely senior and may be more benchmark/referral than available candidate.</td>
+        <td><a href="https://www.linkedin.com/in/mariangarriga" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="A" data-name="maría sola gil" data-location="valencia/valència" data-text="health &amp; biotech innovation leader; founder, european biotech venture builder excellent valencia-based science-to-venture profile. strong strategy, execution, capital discipline, operations and funding angle. medium - healthcare/biotech broad high - biotech, toxicology, regulatory affairs, venture building">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">María Sola Gil</td>
+        <td>Health &amp; biotech innovation leader; founder, European Biotech Venture Builder</td>
+        <td>Valencia/València</td>
+        <td>Candidate potential</td>
+        <td class="num">4</td>
+        <td class="num">5</td>
+        <td>Excellent Valencia-based science-to-venture profile. Strong strategy, execution, capital discipline, operations and funding angle.</td>
+        <td>Not clearly female health or medical device specifically.</td>
+        <td><a href="https://www.linkedin.com/in/mariasola" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A" data-name="angela perez" data-location="valencia area" data-text="vp business development, health in code; president bioval; founder/ceo sistemas genómicos very senior valencia biotech/diagnostics founder and ecosystem power node. strong source of referrals. medium - genomics/medical diagnostics, not specifically female health high - genetic diagnostics / biotech">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Angela Perez</td>
+        <td>VP Business Development, Health in Code; President BIOVAL; founder/CEO Sistemas Genómicos</td>
+        <td>Valencia area</td>
+        <td>Benchmark</td>
+        <td class="num">3</td>
+        <td class="num">5</td>
+        <td>Very senior Valencia biotech/diagnostics founder and ecosystem power node. Strong source of referrals.</td>
+        <td>Probably too senior/busy for the role; may be better as connector/validator.</td>
+        <td><a href="https://www.linkedin.com/in/angelap1" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A" data-name="judit giró benet" data-location="barcelona / us" data-text="co-founder &amp; ceo, the blue box strong founder/ceo benchmark in female health diagnostics. high - breast cancer screening high - diagnostic medical device / biomedical engineering">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Judit Giró Benet</td>
+        <td>Co-Founder &amp; CEO, The Blue Box</td>
+        <td>Barcelona / US</td>
+        <td>Benchmark</td>
+        <td class="num">3</td>
+        <td class="num">4</td>
+        <td>Strong founder/CEO benchmark in female health diagnostics.</td>
+        <td>Likely not available, not Valencia.</td>
+        <td><a href="https://www.linkedin.com/in/judit-giro" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A" data-name="marina rigau" data-location="barcelona area" data-text="ceo &amp; co-founder, mimark diagnostics one of the best spain benchmarks for women’s health diagnostics founder profile. high - gynaecological diagnostics / endometrial cancer high - diagnostics / regulated healthcare">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Marina Rigau</td>
+        <td>CEO &amp; Co-founder, MiMARK Diagnostics</td>
+        <td>Barcelona area</td>
+        <td>Benchmark</td>
+        <td class="num">3</td>
+        <td class="num">4</td>
+        <td>One of the best Spain benchmarks for women’s health diagnostics founder profile.</td>
+        <td>Likely not available, not Valencia.</td>
+        <td><a href="https://www.linkedin.com/in/marina-rigau" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A" data-name="mónica rodriguez de la vega" data-location="barcelona" data-text="ceo &amp; co-founder, manina medtech very strong women’s health medical device benchmark. high - ivf / fertility high - medical device for embryo transfer">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Mónica Rodriguez de la Vega</td>
+        <td>CEO &amp; Co-Founder, Manina Medtech</td>
+        <td>Barcelona</td>
+        <td>Benchmark</td>
+        <td class="num">3</td>
+        <td class="num">4</td>
+        <td>Very strong women’s health medical device benchmark.</td>
+        <td>Likely committed to Manina, not Valencia.</td>
+        <td><a href="https://www.linkedin.com/in/monicadevega" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="A" data-name="lucia orozco lopez" data-location="spain" data-text="founder &amp; director, femtech spain; femtech consultant and strategic advisor probably one of the best spanish femtech mapping entry points. she is literally building the spanish femtech market map. high - core femtech / women’s health medium - may know medtech/femtech founders">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Lucia Orozco Lopez</td>
+        <td>Founder &amp; Director, Femtech Spain; femtech consultant and strategic advisor</td>
+        <td>Spain</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">5</td>
+        <td>Probably one of the best Spanish femtech mapping entry points. She is literally building the Spanish femtech market map.</td>
+        <td>May not be a candidate herself, more likely ecosystem/referral.</td>
+        <td><a href="https://www.linkedin.com/in/lucia-orozco-lopez" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="A" data-name="isabel holguera vera" data-location="portugal / spain" data-text="femtech portugal &amp; spain; angel investor; ecosystem builder; eic women leadership mentor strong european women-in-innovation and femtech ecosystem connector with investing/mentoring access. high - femtech spain strategic lead and femtech portugal co-founder low/medium - depends on network">
+        <td><span class="badge priority-a">A</span></td>
+        <td class="name-cell">Isabel Holguera Vera</td>
+        <td>Femtech Portugal &amp; Spain; angel investor; ecosystem builder; EIC Women Leadership mentor</td>
+        <td>Portugal / Spain</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">1</td>
+        <td class="num">5</td>
+        <td>Strong European women-in-innovation and femtech ecosystem connector with investing/mentoring access.</td>
+        <td>Not a Valencia-based candidate; likely referral/market intelligence only.</td>
+        <td><a href="https://www.linkedin.com/in/isabelholguera" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="A/B" data-name="mara gracia ondiviela" data-location="valencia area" data-text="director international business development, auxein medical; ex-gm/ceo at surgival strong valencia meddevice operator with long international business development background. low - not female health specific high - medical device / surgical implants / orthopedics">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">Mara Gracia Ondiviela</td>
+        <td>Director International Business Development, Auxein Medical; ex-GM/CEO at Surgival</td>
+        <td>Valencia area</td>
+        <td>Candidate potential</td>
+        <td class="num">4</td>
+        <td class="num">4</td>
+        <td>Strong Valencia MedDevice operator with long international business development background.</td>
+        <td>Likely more commercial MedDevice operator than founder/fundraiser.</td>
+        <td><a href="https://www.linkedin.com/in/mara-gracia-ondiviela-30196652" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="A/B" data-name="sonia ferrandis" data-location="comunidad valenciana" data-text="former ceo winncare spain; ex-president afdo medical device sector; currently looking very relevant senior meddevice leadership in valencia and seems available/open to next adventure. low - not female health specific high - medical devices / assistive devices / orthopedics sector">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">Sonia Ferrandis</td>
+        <td>Former CEO Winncare Spain; ex-President AFDO medical device sector; currently looking</td>
+        <td>Comunidad Valenciana</td>
+        <td>Candidate potential</td>
+        <td class="num">4</td>
+        <td class="num">3</td>
+        <td>Very relevant senior MedDevice leadership in Valencia and seems available/open to next adventure.</td>
+        <td>Need to test startup/founder energy and female-health motivation.</td>
+        <td><a href="https://www.linkedin.com/in/soniaferrandis" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="A/B" data-name="loreto crespo vila" data-location="valencia" data-text="ceo &amp; co-founder, genotipia; bioval/ajev/ceaje/lideremos local life sciences founder with strong valencia ecosystem links. medium - genetics/health education, not female health medium - life sciences/genetics">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">Loreto Crespo Vila</td>
+        <td>CEO &amp; Co-founder, Genotipia; BIOVAL/AJEV/CEAJE/Lideremos</td>
+        <td>Valencia</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">3</td>
+        <td class="num">4</td>
+        <td>Local life sciences founder with strong Valencia ecosystem links.</td>
+        <td>Not medical device and probably not female health specific.</td>
+        <td><a href="https://www.linkedin.com/in/loretocrespovila" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A/B" data-name="beatriz llamusi" data-location="paterna / valencia" data-text="cso, arthex biotech; ceo &amp; co-founder arthex biotech strong valencia biotech founder and scientific entrepreneur; useful as benchmark/referral. low - rare disease/rna medicines, not female health medium - biotech/drug development more than device">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">Beatriz Llamusi</td>
+        <td>CSO, ARTHEx Biotech; CEO &amp; Co-founder ARTHEx Biotech</td>
+        <td>Paterna / Valencia</td>
+        <td>Benchmark</td>
+        <td class="num">3</td>
+        <td class="num">3</td>
+        <td>Strong Valencia biotech founder and scientific entrepreneur; useful as benchmark/referral.</td>
+        <td>Not female health or MedDevice; likely committed to ARTHEx.</td>
+        <td><a href="https://www.linkedin.com/in/beatriz-llamusi-6b463a14a" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Benchmark" data-priority="A/B" data-name="maría guillem" data-location="comunidad valenciana / valencia" data-text="professor upv; principal researcher itaca; founding member, corify strong valencia medical device/spin-off node from upv and corify. low - not female health high - biomedical engineering / corify medtech spin-off">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">María Guillem</td>
+        <td>Professor UPV; Principal Researcher ITACA; Founding Member, Corify</td>
+        <td>Comunidad Valenciana / Valencia</td>
+        <td>Benchmark</td>
+        <td class="num">2</td>
+        <td class="num">4</td>
+        <td>Strong Valencia medical device/spin-off node from UPV and Corify.</td>
+        <td>More technical/academic than founder CEO candidate.</td>
+        <td><a href="https://www.linkedin.com/in/maría-guillem-060b0225" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="A/B" data-name="laura zacarés, phd" data-location="valencia area" data-text="head of technology transfer, ibmcp upv-csic; bioval committee member strong local tech-transfer and bioval connector; likely useful for hidden spin-off/founder names. low - not female health specific medium - biotech / technology transfer">
+        <td><span class="badge priority-ab">A/B</span></td>
+        <td class="name-cell">Laura Zacarés, PhD</td>
+        <td>Head of Technology Transfer, IBMCP UPV-CSIC; BIOVAL committee member</td>
+        <td>Valencia area</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">1</td>
+        <td class="num">5</td>
+        <td>Strong local tech-transfer and BIOVAL connector; likely useful for hidden spin-off/founder names.</td>
+        <td>Not candidate profile.</td>
+        <td><a href="https://www.linkedin.com/in/laura-zacarés-phd-1441b310" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="B+" data-name="nina skorytchenko" data-location="uk / valencia link" data-text="ceo avenna; founder/ceo wellcode life; healthtech community valencia founder in precision health/biomarkers with healthtech community valencia link. medium - precision/preventive health and wellness medium - biomarkers / translational medicine">
+        <td><span class="badge priority-b">B+</span></td>
+        <td class="name-cell">Nina Skorytchenko</td>
+        <td>CEO Avenna; founder/CEO Wellcode Life; HealthTech Community Valencia</td>
+        <td>UK / Valencia link</td>
+        <td>Candidate potential</td>
+        <td class="num">3</td>
+        <td class="num">4</td>
+        <td>Founder in precision health/biomarkers with HealthTech Community Valencia link.</td>
+        <td>Not clearly Valencia-based candidate; may be more wellness/preventive health than regulated device.</td>
+        <td><a href="https://www.linkedin.com/in/nina-skorytchenko" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="B" data-name="ale wiecek rojo" data-location="valencia" data-text="founder, biftsbo; women’s health &amp; longevity advocate local female health founder around menopause/perimenopause. good women’s health signal. high - perimenopause/menopause/longevity low - not meddevice">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Ale Wiecek Rojo</td>
+        <td>Founder, BIFTSBO; women’s health &amp; longevity advocate</td>
+        <td>Valencia</td>
+        <td>Candidate potential</td>
+        <td class="num">3</td>
+        <td class="num">3</td>
+        <td>Local female health founder around menopause/perimenopause. Good women’s health signal.</td>
+        <td>Likely community/content/workplace rather than regulated device/fundraising CEO.</td>
+        <td><a href="https://www.linkedin.com/in/alewiecek" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Candidate potential" data-priority="B" data-name="olga carbonell" data-location="valencia area" data-text="founder &amp; ceo, biotasmart; lanzadera alumnus local founder with health, microbiota and lanzadera signal. medium - microbiota/nutrition, possible female health adjacency low/medium - healthtech/wellness, not meddevice">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Olga Carbonell</td>
+        <td>Founder &amp; CEO, Biotasmart; Lanzadera alumnus</td>
+        <td>Valencia area</td>
+        <td>Candidate potential</td>
+        <td class="num">3</td>
+        <td class="num">3</td>
+        <td>Local founder with health, microbiota and Lanzadera signal.</td>
+        <td>More nutrition/wellbeing than device or femhealth; early founder stage.</td>
+        <td><a href="https://www.linkedin.com/in/olga-carbonell-biotasmart" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B" data-name="frederike engel" data-location="greater valencia area" data-text="co-founder &amp; ceo, phima; workflow automation and ai products local tech founder and possible femtech ecosystem connector. needs verification - previous map linked to femtech ecosystem; pdf mainly ai/workflow low">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Frederike Engel</td>
+        <td>Co-Founder &amp; CEO, phima; workflow automation and AI products</td>
+        <td>Greater Valencia area</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">4</td>
+        <td>Local tech founder and possible femtech ecosystem connector.</td>
+        <td>PDF does not show MedDevice/female health; validate FemTech Spain link.</td>
+        <td><a href="https://www.linkedin.com/in/frederikeengel" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B" data-name="giselle rouvier" data-location="madrid" data-text="women’s health / femtech / menopause &amp; hormonal health; femtech spain madrid ambassador relevant women&#x27;s health/femtech networker with menopause/hormonal health focus. high - menopause/hormonal health low/medium">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Giselle Rouvier</td>
+        <td>Women’s Health / Femtech / menopause &amp; hormonal health; Femtech Spain Madrid Ambassador</td>
+        <td>Madrid</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">4</td>
+        <td>Relevant women&#x27;s health/femtech networker with menopause/hormonal health focus.</td>
+        <td>Not Valencia and not MedDevice; more partnerships/community.</td>
+        <td><a href="https://www.linkedin.com/in/gisellerouvier" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B" data-name="mariia suleiman" data-location="valencia" data-text="program manager in tech; co-founder healthtech community valencia; ex-astrazeneca programs good local healthtech community node with regulated medtech/digital-health program delivery. low/medium high - medtech programs, pharma, surgical robotics, regulation">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Mariia Suleiman</td>
+        <td>Program Manager in tech; Co-founder HealthTech Community Valencia; ex-AstraZeneca programs</td>
+        <td>Valencia</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">4</td>
+        <td>Good local healthtech community node with regulated MedTech/digital-health program delivery.</td>
+        <td>Program manager/operator, not clear founder CEO profile.</td>
+        <td><a href="https://www.linkedin.com/in/mariia-suleiman" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B" data-name="rebecca rumsey salava" data-location="valencia" data-text="founder, fertile after 40; women’s wellness &amp; fertility specialist strong women’s health/fertility domain and valencia location. high - fertility, hormones, women over 40 low - coaching/app/wellness, not meddevice">
+        <td><span class="badge priority-b">B</span></td>
+        <td class="name-cell">Rebecca Rumsey Salava</td>
+        <td>Founder, Fertile After 40; Women’s wellness &amp; fertility specialist</td>
+        <td>Valencia</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">3</td>
+        <td>Strong women’s health/fertility domain and Valencia location.</td>
+        <td>More wellness/coaching/digital education than MedDevice founder CEO.</td>
+        <td><a href="https://www.linkedin.com/in/rebecca-rumsey-salava" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B/C" data-name="angela la rosa" data-location="greater valencia metropolitan area" data-text="founder, woem health; clinical pni &amp; organisational psychology local valencia health/wellbeing founder with human performance angle. medium - health/performance, possibly workplace health low">
+        <td><span class="badge priority-c">B/C</span></td>
+        <td class="name-cell">Angela La Rosa</td>
+        <td>Founder, Woem Health; clinical PNI &amp; organisational psychology</td>
+        <td>Greater Valencia Metropolitan Area</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">3</td>
+        <td>Local Valencia health/wellbeing founder with human performance angle.</td>
+        <td>Not specifically female health in PDF and not MedDevice.</td>
+        <td><a href="https://www.linkedin.com/in/boeree" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B/C" data-name="elena ursache" data-location="greater valencia metropolitan area" data-text="co-founder, novalins; ai medical translations for pharma, medtech &amp; digital health healthcare-sector founder in valencia with medtech/pharma customer exposure. low medium - supports pharma/medtech/cro customers">
+        <td><span class="badge priority-c">B/C</span></td>
+        <td class="name-cell">Elena Ursache</td>
+        <td>Co-founder, Novalins; AI medical translations for pharma, MedTech &amp; digital health</td>
+        <td>Greater Valencia Metropolitan Area</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">2</td>
+        <td class="num">3</td>
+        <td>Healthcare-sector founder in Valencia with MedTech/pharma customer exposure.</td>
+        <td>Service business, not device/female health.</td>
+        <td><a href="https://www.linkedin.com/in/eursache" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Adjacent" data-priority="B/C" data-name="maría angelica realpe velasquez" data-location="spain" data-text="senior field clinical &amp; territory manager; independent medtech consultant strong clinical-commercial medtech operator and kol/key stakeholder management. low high - cardiovascular/endovascular medical devices, clinical-commercial strategy">
+        <td><span class="badge priority-c">B/C</span></td>
+        <td class="name-cell">María Angelica Realpe Velasquez</td>
+        <td>Senior Field Clinical &amp; Territory Manager; independent MedTech consultant</td>
+        <td>Spain</td>
+        <td>Adjacent</td>
+        <td class="num">2</td>
+        <td class="num">3</td>
+        <td>Strong clinical-commercial MedTech operator and KOL/key stakeholder management.</td>
+        <td>No founder/CEO signal; not female health.</td>
+        <td><a href="https://www.linkedin.com/in/maria-angelica-realpe-velasquez-69513568" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="B/C" data-name="begoña ruiz" data-location="paterna / valencia" data-text="director of technologies, ainia; bioval board strong valencia r&amp;d/biotech/preclinical node with bioval board link. low medium - in vitro preclinical, biotech, bioassays">
+        <td><span class="badge priority-c">B/C</span></td>
+        <td class="name-cell">Begoña Ruiz</td>
+        <td>Director of Technologies, AINIA; BIOVAL board</td>
+        <td>Paterna / Valencia</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">1</td>
+        <td class="num">4</td>
+        <td>Strong Valencia R&amp;D/biotech/preclinical node with BIOVAL board link.</td>
+        <td>Not founder/CEO candidate and not female health.</td>
+        <td><a href="https://www.linkedin.com/in/bruizfuertes" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="C+" data-name="agnieszka fronia" data-location="málaga" data-text="founder, psychologist, women’s health &amp; leadership; femtech spain malaga ambassador useful femtech spain regional ecosystem connection. medium/high - women’s health/psychology low">
+        <td><span class="badge priority-c">C+</span></td>
+        <td class="name-cell">Agnieszka Fronia</td>
+        <td>Founder, psychologist, women’s health &amp; leadership; Femtech Spain Malaga Ambassador</td>
+        <td>Málaga</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">1</td>
+        <td class="num">3</td>
+        <td>Useful Femtech Spain regional ecosystem connection.</td>
+        <td>Not Valencia, not MedDevice, likely not CEO fit.</td>
+        <td><a href="https://www.linkedin.com/in/agnieszka-fronia" target="_blank" rel="noopener">LI</a></td>
+      </tr>
+      <tr data-type="Referral / ecosystem" data-priority="C" data-name="maria vitória rosetti" data-location="greater valencia metropolitan area" data-text="healthtech community valencia organizer; engineer / project &amp; process management useful local healthtech community link, but not target-level ceo profile. low low/medium - healthtech community, engineering/process">
+        <td><span class="badge priority-c">C</span></td>
+        <td class="name-cell">Maria Vitória Rosetti</td>
+        <td>HealthTech Community Valencia organizer; engineer / project &amp; process management</td>
+        <td>Greater Valencia Metropolitan Area</td>
+        <td>Referral / ecosystem</td>
+        <td class="num">1</td>
+        <td class="num">3</td>
+        <td>Useful local healthtech community link, but not target-level CEO profile.</td>
+        <td>Not female health, not MedDevice founder.</td>
+        <td><a href="https://www.linkedin.com/in/maria-vitoria-m-rosetti" target="_blank" rel="noopener">LI</a></td>
+      </tr></tbody>
+      </table>
+    </div>
+    <p class="table-note">Source: first-pass extraction from downloaded LinkedIn PDF profiles. Availability, interest and fit still need validation.</p>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <h3>Recommended sourcing sequence</h3>
+      <ol class="method">
+        <li>Start with <b>high-signal Valencia candidates</b>: Marian Garriga, Martine Rooth, María Sola Gil, Sonia Ferrandis and Mara Gracia Ondiviela.</li>
+        <li>In parallel, activate <b>referral nodes</b>: Lucia Orozco Lopez, Angela Perez, Isabel Holguera Vera, Laura Zacarés, Mariia Suleiman.</li>
+        <li>Use <b>benchmark profiles</b> to calibrate the ideal archetype and request targeted referrals.</li>
+        <li>After first replies, split the list into: candidate track, referral track, benchmark only, and keep-warm.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="footer">Internal draft dashboard for The Collider market mapping. Generated from Female_Health_MedTech_Valencia_Market_Map_v0_1.xlsx.</div>
+</div>
+<script>
+const profiles = [{"Name": "Marian Garriga", "Current role / company": "SVP Growth & Strategy, Nexpring Health; ex-CEO Genea Biomedx; ex Global CMO/CCSO IVI RMA", "Location": "Greater Valencia Metropolitan Area", "Type": "Candidate potential / benchmark", "Priority": "A", "Candidate score": 5, "Referral score": 4, "Female health relevance": "High - reproductive health / IVF / ART", "MedTech / regulated relevance": "High - IVF lab medical device / tech", "Founder / CEO signal": "CEO + senior growth leader", "Why relevant": "Strongest direct intersection of Valencia, reproductive health, medical device tech, CEO leadership and global commercial scaling.", "Main question / risk": "Likely senior and may be more benchmark/referral than available candidate.", "Suggested next action": "High-priority review with Consuelo; outreach can be candidate + referral angle.", "LinkedIn URL": "https://www.linkedin.com/in/mariangarriga", "Source PDF": "Marian_Garriga_AEMAAABO4EQBRY_6vTuh5JgIR_v30S2Gs8Z7Hio.pdf", "Primary type": "Candidate potential", "Combined score": 9}, {"Name": "Martine Rooth", "Current role / company": "Serial entrepreneur, board member, fractional CEO/CCO & founder coach; angel investor", "Location": "Greater Valencia Metropolitan Area", "Type": "Candidate potential / referral", "Priority": "A", "Candidate score": 5, "Referral score": 5, "Female health relevance": "Medium - digital health and FemTech angel interest", "MedTech / regulated relevance": "Medium - more digital health than device", "Founder / CEO signal": "High - 2 exits, raised 20M+", "Why relevant": "Very strong founder/fundraiser/operator energy locally in Valencia. Could be candidate, advisor or high-quality referral node.", "Main question / risk": "Not clearly MedDevice or female health deep specialist.", "Suggested next action": "Approach as high-signal founder/operator and ask for fit/referrals.", "LinkedIn URL": "https://www.linkedin.com/in/martinerooth", "Source PDF": "Martine_Rooth_AEMAAAKKOyAB6I2lKfaQAbvRmXBq5CRN7iwkn1I.pdf", "Primary type": "Candidate potential", "Combined score": 10}, {"Name": "María Sola Gil", "Current role / company": "Health & biotech innovation leader; founder, European Biotech Venture Builder", "Location": "Valencia/València", "Type": "Candidate potential / referral", "Priority": "A", "Candidate score": 4, "Referral score": 5, "Female health relevance": "Medium - healthcare/biotech broad", "MedTech / regulated relevance": "High - biotech, toxicology, regulatory affairs, venture building", "Founder / CEO signal": "High - venture-builder founder", "Why relevant": "Excellent Valencia-based science-to-venture profile. Strong strategy, execution, capital discipline, operations and funding angle.", "Main question / risk": "Not clearly female health or medical device specifically.", "Suggested next action": "High-priority call for market map and possible CEO/referral fit.", "LinkedIn URL": "https://www.linkedin.com/in/mariasola", "Source PDF": "Mara_SolaGil_AEMAAAQ8OBgBwlxWCZHmJmUroA4MKgTZO3vR60Y.pdf", "Primary type": "Candidate potential", "Combined score": 9}, {"Name": "Sonia Ferrandis", "Current role / company": "Former CEO Winncare Spain; ex-President AFDO medical device sector; currently looking", "Location": "Comunidad Valenciana", "Type": "Candidate potential", "Priority": "A/B", "Candidate score": 4, "Referral score": 3, "Female health relevance": "Low - not female health specific", "MedTech / regulated relevance": "High - medical devices / assistive devices / orthopedics sector", "Founder / CEO signal": "Medium - CEO and founder outside health", "Why relevant": "Very relevant senior MedDevice leadership in Valencia and seems available/open to next adventure.", "Main question / risk": "Need to test startup/founder energy and female-health motivation.", "Suggested next action": "Contact as possible MedDevice CEO/operator, ask directly about startup/founder appetite.", "LinkedIn URL": "https://www.linkedin.com/in/soniaferrandis", "Source PDF": "Sonia_Ferrandis_AEMAAAJSdwEBvoA6xfGUrmEU-kujveI6Gu8O_c0.pdf", "Primary type": "Candidate potential", "Combined score": 7}, {"Name": "Mara Gracia Ondiviela", "Current role / company": "Director International Business Development, Auxein Medical; ex-GM/CEO at Surgival", "Location": "Valencia area", "Type": "Candidate potential / referral", "Priority": "A/B", "Candidate score": 4, "Referral score": 4, "Female health relevance": "Low - not female health specific", "MedTech / regulated relevance": "High - medical device / surgical implants / orthopedics", "Founder / CEO signal": "Medium - senior GM/CEO signal", "Why relevant": "Strong Valencia MedDevice operator with long international business development background.", "Main question / risk": "Likely more commercial MedDevice operator than founder/fundraiser.", "Suggested next action": "Worth mapping for candidate or referrals into senior MedDevice women.", "LinkedIn URL": "https://www.linkedin.com/in/mara-gracia-ondiviela-30196652", "Source PDF": "Mara_GraciaOndiviela_AEMAAAstHDEBTGwenNiIgX42xHhvg_c9haVtpq8.pdf", "Primary type": "Candidate potential", "Combined score": 8}, {"Name": "Lucia Orozco Lopez", "Current role / company": "Founder & Director, Femtech Spain; femtech consultant and strategic advisor", "Location": "Spain", "Type": "Referral / ecosystem node", "Priority": "A", "Candidate score": 2, "Referral score": 5, "Female health relevance": "High - core femtech / women’s health", "MedTech / regulated relevance": "Medium - may know MedTech/femtech founders", "Founder / CEO signal": "Medium - ecosystem founder", "Why relevant": "Probably one of the best Spanish femtech mapping entry points. She is literally building the Spanish femtech market map.", "Main question / risk": "May not be a candidate herself, more likely ecosystem/referral.", "Suggested next action": "Ask for top Valencia/Spain female health MedTech founders and hidden names.", "LinkedIn URL": "https://www.linkedin.com/in/lucia-orozco-lopez", "Source PDF": "Lucia_OrozcoLopez_AEMAAB_JVQABygLQBIcnCEDYRofyuiVaHf-PcJQ.pdf", "Primary type": "Referral / ecosystem", "Combined score": 7}, {"Name": "Angela Perez", "Current role / company": "VP Business Development, Health in Code; President BIOVAL; founder/CEO Sistemas Genómicos", "Location": "Valencia area", "Type": "Referral / benchmark / possible senior advisor", "Priority": "A", "Candidate score": 3, "Referral score": 5, "Female health relevance": "Medium - genomics/medical diagnostics, not specifically female health", "MedTech / regulated relevance": "High - genetic diagnostics / biotech", "Founder / CEO signal": "High - founder, CEO, BIOVAL leadership", "Why relevant": "Very senior Valencia biotech/diagnostics founder and ecosystem power node. Strong source of referrals.", "Main question / risk": "Probably too senior/busy for the role; may be better as connector/validator.", "Suggested next action": "Use for market intelligence, referrals, and validation of Valencia biotech/female founder pool.", "LinkedIn URL": "https://www.linkedin.com/in/angelap1", "Source PDF": "Angela_Perez_AEMAAANlIXoBZoFIc4Nfje08cHglYAdev0up_KQ.pdf", "Primary type": "Benchmark", "Combined score": 8}, {"Name": "Marina Rigau", "Current role / company": "CEO & Co-founder, MiMARK Diagnostics", "Location": "Barcelona area", "Type": "Benchmark / warm intro target", "Priority": "A", "Candidate score": 3, "Referral score": 4, "Female health relevance": "High - gynaecological diagnostics / endometrial cancer", "MedTech / regulated relevance": "High - diagnostics / regulated healthcare", "Founder / CEO signal": "High - CEO/co-founder", "Why relevant": "One of the best Spain benchmarks for women’s health diagnostics founder profile.", "Main question / risk": "Likely not available, not Valencia.", "Suggested next action": "Use as benchmark and possible referral source.", "LinkedIn URL": "https://www.linkedin.com/in/marina-rigau", "Source PDF": "Marina_Rigau_AEMAAAV_jUkBbZ8AdUo863__uuRmDItGy48P8zM.pdf", "Primary type": "Benchmark", "Combined score": 7}, {"Name": "Mónica Rodriguez de la Vega", "Current role / company": "CEO & Co-Founder, Manina Medtech", "Location": "Barcelona", "Type": "Benchmark / warm intro target", "Priority": "A", "Candidate score": 3, "Referral score": 4, "Female health relevance": "High - IVF / fertility", "MedTech / regulated relevance": "High - medical device for embryo transfer", "Founder / CEO signal": "High - co-founder/CEO + biodesign", "Why relevant": "Very strong women’s health medical device benchmark.", "Main question / risk": "Likely committed to Manina, not Valencia.", "Suggested next action": "Use as archetype and referral target.", "LinkedIn URL": "https://www.linkedin.com/in/monicadevega", "Source PDF": "Monica_RodriguezdelaVega_AEMAAABtqIYBqs1aR2MqifP_iTFNAtOXOFx6vCc.pdf", "Primary type": "Benchmark", "Combined score": 7}, {"Name": "Judit Giró Benet", "Current role / company": "Co-Founder & CEO, The Blue Box", "Location": "Barcelona / US", "Type": "Benchmark / warm intro target", "Priority": "A", "Candidate score": 3, "Referral score": 4, "Female health relevance": "High - breast cancer screening", "MedTech / regulated relevance": "High - diagnostic medical device / biomedical engineering", "Founder / CEO signal": "High - co-founder/CEO", "Why relevant": "Strong founder/CEO benchmark in female health diagnostics.", "Main question / risk": "Likely not available, not Valencia.", "Suggested next action": "Use as benchmark and referral source.", "LinkedIn URL": "https://www.linkedin.com/in/judit-giro", "Source PDF": "Judit_GirBenet_AEMAABthoKgBQFaebDqBxhYYfq3weQTzpJ9veHc.pdf", "Primary type": "Benchmark", "Combined score": 7}, {"Name": "María Guillem", "Current role / company": "Professor UPV; Principal Researcher ITACA; Founding Member, Corify", "Location": "Comunidad Valenciana / Valencia", "Type": "Referral / MedTech spin-off benchmark", "Priority": "A/B", "Candidate score": 2, "Referral score": 4, "Female health relevance": "Low - not female health", "MedTech / regulated relevance": "High - biomedical engineering / Corify MedTech spin-off", "Founder / CEO signal": "Medium - founding member", "Why relevant": "Strong Valencia medical device/spin-off node from UPV and Corify.", "Main question / risk": "More technical/academic than founder CEO candidate.", "Suggested next action": "Use for referrals around technical/clinical MedTech spin-offs in Valencia.", "LinkedIn URL": "https://www.linkedin.com/in/maría-guillem-060b0225", "Source PDF": "Mara_Guillem_AEMAAAVTIcgBTHDLNVn5R1aNW-Z1jAT-HU0WIdU.pdf", "Primary type": "Benchmark", "Combined score": 6}, {"Name": "Laura Zacarés, PhD", "Current role / company": "Head of Technology Transfer, IBMCP UPV-CSIC; BIOVAL committee member", "Location": "Valencia area", "Type": "Referral / tech-transfer node", "Priority": "A/B", "Candidate score": 1, "Referral score": 5, "Female health relevance": "Low - not female health specific", "MedTech / regulated relevance": "Medium - biotech / technology transfer", "Founder / CEO signal": "Low/Medium", "Why relevant": "Strong local tech-transfer and BIOVAL connector; likely useful for hidden spin-off/founder names.", "Main question / risk": "Not candidate profile.", "Suggested next action": "Ask for Valencia female founders from biotech/MedTech/spin-off ecosystem.", "LinkedIn URL": "https://www.linkedin.com/in/laura-zacarés-phd-1441b310", "Source PDF": "Laura_ZacarsPhD_AEMAAAIqHAQBIZMlewU6cytvkhiOkyU2DjbI2zM.pdf", "Primary type": "Referral / ecosystem", "Combined score": 6}, {"Name": "Loreto Crespo Vila", "Current role / company": "CEO & Co-founder, Genotipia; BIOVAL/AJEV/CEAJE/Lideremos", "Location": "Valencia", "Type": "Referral / candidate-adjacent", "Priority": "A/B", "Candidate score": 3, "Referral score": 4, "Female health relevance": "Medium - genetics/health education, not female health", "MedTech / regulated relevance": "Medium - life sciences/genetics", "Founder / CEO signal": "High - CEO/co-founder", "Why relevant": "Local life sciences founder with strong Valencia ecosystem links.", "Main question / risk": "Not medical device and probably not female health specific.", "Suggested next action": "Map for referrals and possible broader founder-pool conversation.", "LinkedIn URL": "https://www.linkedin.com/in/loretocrespovila", "Source PDF": "Loreto_CrespoVila_AEMAAAtAhtMB059xv-Xao_35X14OW63B1Nk9LVM.pdf", "Primary type": "Referral / ecosystem", "Combined score": 7}, {"Name": "Beatriz Llamusi", "Current role / company": "CSO, ARTHEx Biotech; CEO & Co-founder ARTHEx Biotech", "Location": "Paterna / Valencia", "Type": "Benchmark / biotech founder", "Priority": "A/B", "Candidate score": 3, "Referral score": 3, "Female health relevance": "Low - rare disease/RNA medicines, not female health", "MedTech / regulated relevance": "Medium - biotech/drug development more than device", "Founder / CEO signal": "High - CEO/co-founder + CSO", "Why relevant": "Strong Valencia biotech founder and scientific entrepreneur; useful as benchmark/referral.", "Main question / risk": "Not female health or MedDevice; likely committed to ARTHEx.", "Suggested next action": "Keep for broader biotech female-founder map and referrals.", "LinkedIn URL": "https://www.linkedin.com/in/beatriz-llamusi-6b463a14a", "Source PDF": "Beatriz_Llamusi_AEMAACQLomgBvcCQiTAztudbyCeWBRV00n9QGCU.pdf", "Primary type": "Benchmark", "Combined score": 6}, {"Name": "Nina Skorytchenko", "Current role / company": "CEO Avenna; founder/CEO Wellcode Life; HealthTech Community Valencia", "Location": "UK / Valencia link", "Type": "Candidate potential / referral", "Priority": "B+", "Candidate score": 3, "Referral score": 4, "Female health relevance": "Medium - precision/preventive health and wellness", "MedTech / regulated relevance": "Medium - biomarkers / translational medicine", "Founder / CEO signal": "High - founder/CEO", "Why relevant": "Founder in precision health/biomarkers with HealthTech Community Valencia link.", "Main question / risk": "Not clearly Valencia-based candidate; may be more wellness/preventive health than regulated device.", "Suggested next action": "Keep as referral/candidate-adjacent; verify Valencia availability and role appetite.", "LinkedIn URL": "https://www.linkedin.com/in/nina-skorytchenko", "Source PDF": "Nina_Skorytchenko_AEMAAAH-XsAB8ItL2NhzkbUyLEMkVEadTe3Uc2c.pdf", "Primary type": "Candidate potential", "Combined score": 7}, {"Name": "Olga Carbonell", "Current role / company": "Founder & CEO, Biotasmart; Lanzadera alumnus", "Location": "Valencia area", "Type": "Candidate potential / local founder", "Priority": "B", "Candidate score": 3, "Referral score": 3, "Female health relevance": "Medium - microbiota/nutrition, possible female health adjacency", "MedTech / regulated relevance": "Low/Medium - healthtech/wellness, not MedDevice", "Founder / CEO signal": "High - founder/CEO", "Why relevant": "Local founder with health, microbiota and Lanzadera signal.", "Main question / risk": "More nutrition/wellbeing than device or femhealth; early founder stage.", "Suggested next action": "Worth adding to map; maybe candidate-adjacent or referral.", "LinkedIn URL": "https://www.linkedin.com/in/olga-carbonell-biotasmart", "Source PDF": "Olga_Carbonell_AEMAABfW7L0Bhw_GDCG1K3H0-J_Sy-vyReKqG5k.pdf", "Primary type": "Candidate potential", "Combined score": 6}, {"Name": "Ale Wiecek Rojo", "Current role / company": "Founder, BIFTSBO; women’s health & longevity advocate", "Location": "Valencia", "Type": "Candidate potential / female health ecosystem", "Priority": "B", "Candidate score": 3, "Referral score": 3, "Female health relevance": "High - perimenopause/menopause/longevity", "MedTech / regulated relevance": "Low - not MedDevice", "Founder / CEO signal": "Medium - founder", "Why relevant": "Local female health founder around menopause/perimenopause. Good women’s health signal.", "Main question / risk": "Likely community/content/workplace rather than regulated device/fundraising CEO.", "Suggested next action": "Keep for female-health pool and referrals.", "LinkedIn URL": "https://www.linkedin.com/in/alewiecek", "Source PDF": "Ale_WiecekRojo_AEMAAAFkV1wBb-97_nYfOn2XdwsbxnqgfExYgcU.pdf", "Primary type": "Candidate potential", "Combined score": 6}, {"Name": "Rebecca Rumsey Salava", "Current role / company": "Founder, Fertile After 40; Women’s wellness & fertility specialist", "Location": "Valencia", "Type": "Candidate-adjacent / female health ecosystem", "Priority": "B", "Candidate score": 2, "Referral score": 3, "Female health relevance": "High - fertility, hormones, women over 40", "MedTech / regulated relevance": "Low - coaching/app/wellness, not MedDevice", "Founder / CEO signal": "Medium - founder/product development", "Why relevant": "Strong women’s health/fertility domain and Valencia location.", "Main question / risk": "More wellness/coaching/digital education than MedDevice founder CEO.", "Suggested next action": "Use as female health ecosystem/referral, possibly candidate-adjacent.", "LinkedIn URL": "https://www.linkedin.com/in/rebecca-rumsey-salava", "Source PDF": "Rebecca_RumseySalava_AEMAADfmVs8BrfxFV7QcNj1n9OSZJgwufhnFcTw.pdf", "Primary type": "Referral / ecosystem", "Combined score": 5}, {"Name": "Mariia Suleiman", "Current role / company": "Program Manager in tech; Co-founder HealthTech Community Valencia; ex-AstraZeneca programs", "Location": "Valencia", "Type": "Referral / ecosystem node", "Priority": "B", "Candidate score": 2, "Referral score": 4, "Female health relevance": "Low/Medium", "MedTech / regulated relevance": "High - MedTech programs, pharma, surgical robotics, regulation", "Founder / CEO signal": "Medium - community co-founder", "Why relevant": "Good local healthtech community node with regulated MedTech/digital-health program delivery.", "Main question / risk": "Program manager/operator, not clear founder CEO profile.", "Suggested next action": "Use for referrals and ecosystem map.", "LinkedIn URL": "https://www.linkedin.com/in/mariia-suleiman", "Source PDF": "Mariia_Suleiman_AEMAAARlfk8BkdD9xA9prIjKwRhcAVivtqnDX4I.pdf", "Primary type": "Referral / ecosystem", "Combined score": 6}, {"Name": "Frederike Engel", "Current role / company": "Co-Founder & CEO, phima; workflow automation and AI products", "Location": "Greater Valencia area", "Type": "Referral / ecosystem node", "Priority": "B", "Candidate score": 2, "Referral score": 4, "Female health relevance": "Needs verification - previous map linked to femtech ecosystem; PDF mainly AI/workflow", "MedTech / regulated relevance": "Low", "Founder / CEO signal": "Medium - startup founder", "Why relevant": "Local tech founder and possible femtech ecosystem connector.", "Main question / risk": "PDF does not show MedDevice/female health; validate FemTech Spain link.", "Suggested next action": "Keep as local referral node, not core candidate.", "LinkedIn URL": "https://www.linkedin.com/in/frederikeengel", "Source PDF": "Frederike_Engel_AEMAAA8156cBSP_VM9rkRBFRost4VoK751ldTVU.pdf", "Primary type": "Referral / ecosystem", "Combined score": 6}, {"Name": "Giselle Rouvier", "Current role / company": "Women’s Health / Femtech / menopause & hormonal health; Femtech Spain Madrid Ambassador", "Location": "Madrid", "Type": "Referral / female health ecosystem", "Priority": "B", "Candidate score": 2, "Referral score": 4, "Female health relevance": "High - menopause/hormonal health", "MedTech / regulated relevance": "Low/Medium", "Founder / CEO signal": "Medium - partnerships/community founder signal", "Why relevant": "Relevant women's health/femtech networker with menopause/hormonal health focus.", "Main question / risk": "Not Valencia and not MedDevice; more partnerships/community.", "Suggested next action": "Use for referrals into femtech founders and menopause/women’s health market.", "LinkedIn URL": "https://www.linkedin.com/in/gisellerouvier", "Source PDF": "Giselle_Rouvier_AEMAAAAHL28Bbt6od3-ZSZY5H_UQdH23q7hC8VE.pdf", "Primary type": "Referral / ecosystem", "Combined score": 6}, {"Name": "Agnieszka Fronia", "Current role / company": "Founder, psychologist, women’s health & leadership; Femtech Spain Malaga Ambassador", "Location": "Málaga", "Type": "Referral / female health ecosystem", "Priority": "C+", "Candidate score": 1, "Referral score": 3, "Female health relevance": "Medium/High - women’s health/psychology", "MedTech / regulated relevance": "Low", "Founder / CEO signal": "Medium - founder/community", "Why relevant": "Useful Femtech Spain regional ecosystem connection.", "Main question / risk": "Not Valencia, not MedDevice, likely not CEO fit.", "Suggested next action": "Low-effort referral touch if expanding beyond Valencia.", "LinkedIn URL": "https://www.linkedin.com/in/agnieszka-fronia", "Source PDF": "Agnieszka_Fronia_AEMAAAjnfA8Bo2q8ZVF8fNf-AlD-5utsFbpCAjY.pdf", "Primary type": "Referral / ecosystem", "Combined score": 4}, {"Name": "Angela La Rosa", "Current role / company": "Founder, Woem Health; clinical PNI & organisational psychology", "Location": "Greater Valencia Metropolitan Area", "Type": "Candidate-adjacent / female health ecosystem", "Priority": "B/C", "Candidate score": 2, "Referral score": 3, "Female health relevance": "Medium - health/performance, possibly workplace health", "MedTech / regulated relevance": "Low", "Founder / CEO signal": "Medium - founder", "Why relevant": "Local Valencia health/wellbeing founder with human performance angle.", "Main question / risk": "Not specifically female health in PDF and not MedDevice.", "Suggested next action": "Keep in wider ecosystem; verify relevance to female health.", "LinkedIn URL": "https://www.linkedin.com/in/boeree", "Source PDF": "Angela_LaRosa_AEMAAADo3NIBSO-3uueKecT-B9-CtceEpld5xYs.pdf", "Primary type": "Referral / ecosystem", "Combined score": 5}, {"Name": "Elena Ursache", "Current role / company": "Co-founder, Novalins; AI medical translations for pharma, MedTech & digital health", "Location": "Greater Valencia Metropolitan Area", "Type": "Referral / adjacent healthcare founder", "Priority": "B/C", "Candidate score": 2, "Referral score": 3, "Female health relevance": "Low", "MedTech / regulated relevance": "Medium - supports pharma/MedTech/CRO customers", "Founder / CEO signal": "High - co-founder since 2011", "Why relevant": "Healthcare-sector founder in Valencia with MedTech/pharma customer exposure.", "Main question / risk": "Service business, not device/female health.", "Suggested next action": "Keep as adjacent MedTech network lead.", "LinkedIn URL": "https://www.linkedin.com/in/eursache", "Source PDF": "Elena_Ursache_AEMAAAl6LI4BW2xPM3RHFgAc1QKHxz-AH91lTZY.pdf", "Primary type": "Referral / ecosystem", "Combined score": 5}, {"Name": "Begoña Ruiz", "Current role / company": "Director of Technologies, AINIA; BIOVAL board", "Location": "Paterna / Valencia", "Type": "Referral / R&D ecosystem node", "Priority": "B/C", "Candidate score": 1, "Referral score": 4, "Female health relevance": "Low", "MedTech / regulated relevance": "Medium - in vitro preclinical, biotech, bioassays", "Founder / CEO signal": "Low", "Why relevant": "Strong Valencia R&D/biotech/preclinical node with BIOVAL board link.", "Main question / risk": "Not founder/CEO candidate and not female health.", "Suggested next action": "Use for referrals into AINIA/BIOVAL/tech-transfer networks.", "LinkedIn URL": "https://www.linkedin.com/in/bruizfuertes", "Source PDF": "Begoa_Ruiz_AEMAAAapnNABDEiqIgf-93hFu8aLNQcxqZxtDAk.pdf", "Primary type": "Referral / ecosystem", "Combined score": 5}, {"Name": "María Angelica Realpe Velasquez", "Current role / company": "Senior Field Clinical & Territory Manager; independent MedTech consultant", "Location": "Spain", "Type": "Adjacent MedTech / KOL network", "Priority": "B/C", "Candidate score": 2, "Referral score": 3, "Female health relevance": "Low", "MedTech / regulated relevance": "High - cardiovascular/endovascular medical devices, clinical-commercial strategy", "Founder / CEO signal": "Low/Medium", "Why relevant": "Strong clinical-commercial MedTech operator and KOL/key stakeholder management.", "Main question / risk": "No founder/CEO signal; not female health.", "Suggested next action": "Keep as MedTech network/referral, not first candidate.", "LinkedIn URL": "https://www.linkedin.com/in/maria-angelica-realpe-velasquez-69513568", "Source PDF": "MariaAngelica_RealpeVelasquez_AEMAAA5B5JEBL8kmxNS-YAn7OEvSWwto79uMTfI.pdf", "Primary type": "Adjacent", "Combined score": 5}, {"Name": "Maria Vitória Rosetti", "Current role / company": "HealthTech Community Valencia organizer; engineer / project & process management", "Location": "Greater Valencia Metropolitan Area", "Type": "Ecosystem node / junior-adjacent", "Priority": "C", "Candidate score": 1, "Referral score": 3, "Female health relevance": "Low", "MedTech / regulated relevance": "Low/Medium - healthtech community, engineering/process", "Founder / CEO signal": "Low", "Why relevant": "Useful local healthtech community link, but not target-level CEO profile.", "Main question / risk": "Not female health, not MedDevice founder.", "Suggested next action": "Only use if mapping HealthTech Community Valencia further.", "LinkedIn URL": "https://www.linkedin.com/in/maria-vitoria-m-rosetti", "Source PDF": "MariaVitria_Rosetti_AEMAAB-MSLsBbtmAKIqTjf-YWjAeus0aFbgjo4w.pdf", "Primary type": "Referral / ecosystem", "Combined score": 4}, {"Name": "Isabel Holguera Vera", "Current role / company": "Femtech Portugal & Spain; angel investor; ecosystem builder; EIC Women Leadership mentor", "Location": "Portugal / Spain", "Type": "Referral / ecosystem node", "Priority": "A", "Candidate score": 1, "Referral score": 5, "Female health relevance": "High - Femtech Spain strategic lead and FemTech Portugal co-founder", "MedTech / regulated relevance": "Low/Medium - depends on network", "Founder / CEO signal": "Medium - ecosystem founder/investor", "Why relevant": "Strong European women-in-innovation and femtech ecosystem connector with investing/mentoring access.", "Main question / risk": "Not a Valencia-based candidate; likely referral/market intelligence only.", "Suggested next action": "Ask for Spanish female health MedTech founders and Valencia links.", "LinkedIn URL": "https://www.linkedin.com/in/isabelholguera", "Source PDF": "Isabel_HolgueraVera_AEMAABhoxK0BB4ISNV6z8BaxCpjXFtoWI3IPs5Q.pdf", "Primary type": "Referral / ecosystem", "Combined score": 6}];
+function matches(el) {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const type = document.getElementById('typeFilter').value;
+  const pr = document.getElementById('priorityFilter').value;
+  const loc = document.getElementById('locationFilter').value;
+  const text = [el.dataset.name, el.dataset.text, el.dataset.location].join(' ');
+  if (q && !text.includes(q)) return false;
+  if (type && el.dataset.type !== type) return false;
+  if (pr && el.dataset.priority !== pr) return false;
+  if (loc && !el.dataset.location.includes(loc)) return false;
+  return true;
+}
+function applyFilters() {
+  const cards = Array.from(document.querySelectorAll('.profile-card'));
+  const rows = Array.from(document.querySelectorAll('#profileTable tbody tr'));
+  let shown = 0;
+  cards.forEach(c => { const ok = matches(c); c.classList.toggle('hidden', !ok); if (ok) shown++; });
+  rows.forEach(r => r.classList.toggle('hidden', !matches(r)));
+  document.getElementById('resultCount').textContent = shown + ' shown';
+}
+function resetFilters() {
+  document.getElementById('searchInput').value='';
+  document.getElementById('typeFilter').value='';
+  document.getElementById('priorityFilter').value='';
+  document.getElementById('locationFilter').value='';
+  applyFilters();
+}
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('typeFilter').addEventListener('change', applyFilters);
+document.getElementById('priorityFilter').addEventListener('change', applyFilters);
+document.getElementById('locationFilter').addEventListener('change', applyFilters);
+</script>
+</body>
+</html>

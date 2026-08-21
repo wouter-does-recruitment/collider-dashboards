@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OGYX · August Status &amp; Longlist</title><style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: #f5f4f0; color: #1a1a18; -webkit-font-smoothing: antialiased; line-height: 1.5; font-size: 14px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
+  .header { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+  .header h1 { font-size: 26px; font-weight: 600; color: #1a1a18; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .header p { font-size: 13px; color: #888780; margin: 0; }
+  .header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .badge { display: inline-block; background: #EAF3DE; color: #3B6D11; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+  .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
+  .back { display:inline-block; color:#185FA5; text-decoration:none; font-size:12px; margin-bottom:18px; }
+  .back:hover { text-decoration: underline; }
+  .celebrate-banner { background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; color: #fff; }
+  .cb-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; margin-bottom: 6px; }
+  .cb-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .cb-sub { font-size: 13px; opacity: 0.92; }
+  .update-banner { background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%); border: 1px solid #F59E0B; border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; }
+  .update-banner-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #92400E; margin-bottom: 10px; }
+  .update-banner-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 12px; }
+  .update-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px; }
+  .update-list li { font-size: 12px; color: #5a2d04; line-height: 1.5; padding-left: 18px; position: relative; }
+  .update-list li::before { content: '→'; position: absolute; left: 0; color: #BA7517; font-weight: 700; }
+  .update-list li strong { color: #1a1a18; font-weight: 600; }
+  .notice { background: #EAF3DE; border-left: 3px solid #1D9E75; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 28px; font-size: 12px; color: #3B6D11; }
+  .notice strong { color: #1a3a0c; font-weight: 600; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #888780; margin: 28px 0 12px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .metric-grid.three { grid-template-columns: repeat(3, 1fr); }
+  .metric-grid.four { grid-template-columns: repeat(4, 1fr); }
+  .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; }
+  .metric-card.signature { border-top: 3px solid #534AB7; }
+  .metric-card.signed { border-top: 3px solid #1D9E75; }
+  .metric-card.focus { border-top: 3px solid #185FA5; }
+  .metric-card.orange { border-top: 3px solid #F59E0B; }
+  .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+  .metric-value { font-size: 28px; font-weight: 600; line-height: 1; color: #1a1a18; }
+  .metric-value.green { color: #1D9E75; }
+  .metric-value.purple { color: #534AB7; }
+  .metric-value.blue { color: #185FA5; }
+  .metric-value.orange { color: #92400E; }
+  .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .proj-card { border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; text-decoration: none; color: #1a1a18; transition: all 0.15s ease; display: block; background: #fff; }
+  .proj-card:hover { border-color: #1a1a18; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 12px; }
+  .proj-head h3 { font-size: 15px; font-weight: 600; margin: 0; }
+  .proj-stage { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+  .proj-focus { font-size: 11px; color: #888780; margin: 0 0 14px; min-height: 34px; }
+  .proj-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .proj-stats div { display: flex; flex-direction: column; }
+  .ps-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
+  .ps-lbl { font-size: 10px; color: #888780; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .extras { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+  .extras a, .panel { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; text-decoration: none; color: #1a1a18; transition: all 0.15s ease; display: block; }
+  .extras a:hover { border-color: #1a1a18; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .extras h3, .panel h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .extras p, .panel p { font-size: 11px; color: #888780; margin: 0; }
+  .pill { display: inline-block; font-size: 10px; font-weight: 600; color: #185FA5; background: #EAF3FF; border-radius: 999px; padding: 3px 8px; margin-bottom: 8px; }
+  .pill.green { color:#0F6E56; background:#EAF3DE; }
+  .pill.orange { color:#92400E; background:#FEF3C7; }
+  .pill.purple { color:#534AB7; background:#EFEAFE; }
+  table { width:100%; border-collapse: separate; border-spacing:0; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; overflow:hidden; font-size:12px; }
+  th { text-align:left; background:#faf9f6; color:#66645e; font-size:10px; text-transform:uppercase; letter-spacing:.06em; padding:12px 12px; border-bottom:0.5px solid #e0ddd6; }
+  td { padding:12px; border-bottom:0.5px solid #eeeae2; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  .rank { font-weight:700; color:#534AB7; }
+  .priority-a { color:#0F6E56; font-weight:700; }
+  .priority-b { color:#185FA5; font-weight:700; }
+  .priority-c { color:#92400E; font-weight:700; }
+  .footer { margin-top: 50px; padding-top: 20px; border-top: 0.5px solid #e0ddd6; font-size: 11px; color: #888780; }
+  @media (max-width: 768px) { .wrap { padding: 24px 16px 60px; } .metric-grid, .metric-grid.three, .metric-grid.four { grid-template-columns: repeat(2, 1fr); } .proj-grid { grid-template-columns: 1fr; } .update-list { grid-template-columns: 1fr; } .extras { grid-template-columns: 1fr; } table { font-size:11px; } th, td { padding:10px 8px; } }
+</style></head><body><div class="wrap">
+  <a class="back" href="index.html">← Back to portfolio dashboard</a>
+  <div class="header"><div class="header-row"><div><h1>OGYX · August Status & Longlist</h1><p>Organ-on-chip CEO & Co-Founder search</p></div><div><span class="badge">Updated · August prep</span><div class="date">21 Aug 2026</div></div></div></div>
+  
+<div class="celebrate-banner"><div class="cb-label">OGYX</div><div class="cb-title">Active search remains candidate-led</div><div class="cb-sub">Francisco is the strongest active profile; Alessandro and Carmen strengthen the longlist/referral layer while extra sourcing continues.</div></div>
+<div class="metric-grid four"><div class="metric-card signature"><div class="metric-label">Profiles in view</div><div class="metric-value purple">5</div><div class="metric-sub">tracked in current update</div></div><div class="metric-card signed"><div class="metric-label">Active candidate</div><div class="metric-value green">1</div><div class="metric-sub">Francisco</div></div><div class="metric-card focus"><div class="metric-label">Warm longlist</div><div class="metric-value blue">2</div><div class="metric-sub">Alessandro + Carmen</div></div><div class="metric-card orange"><div class="metric-label">Still sourcing</div><div class="metric-value orange">3-5</div><div class="metric-sub">backup profiles</div></div></div>
+<p class="section-label">Current profile status</p><table><thead><tr><th>Rank</th><th>Profile</th><th>Status</th><th>Why relevant</th><th>Risk / question</th><th>Next action</th></tr></thead><tbody><tr><td><span class="rank">1</span></td><td><strong>Francisco Morís</strong></td><td><span class="priority-a">Active strong profile</span></td><td>Biotech founder/fundraiser, tech transfer, BD, preclinical development</td><td>Second matchmaking momentum</td><td>Keep active and coordinate next step</td></tr><tr><td><span class="rank">2</span></td><td><strong>Alessandro Scandurra</strong></td><td><span class="priority-b">Warm longlist</span></td><td>Tissue engineering, AI 3D cellular models, drug discovery, biopharma BD</td><td>Timing and commitment; already spoke with Consuelo in April</td><td>Keep for Consuelo review, not yet ready</td></tr><tr><td><span class="rank">3</span></td><td><strong>Carmen Herrero</strong></td><td><span class="priority-b">Contacted / awaiting reply</span></td><td>Co-founder & CEO Kintsugi, pharma R&D, cell biology, ex vivo, translational science</td><td>Already committed as CEO, interest unknown</td><td>Await reply, use as benchmark/referral</td></tr><tr><td><span class="rank">4</span></td><td><strong>Miguel Ramirez</strong></td><td><span class="priority-c">Not CEO fit</span></td><td>Biotech/MedTech/diagnostics commercial knowledge</td><td>Not enough founder/fundraiser energy for this stage</td><td>Keep for future CCO/commercial</td></tr><tr><td><span class="rank">5</span></td><td><strong>Felipe</strong></td><td><span class="priority-c">Declined</span></td><td>Relevant but structure mismatch</td><td>Needs salary from start, stipend/equity setup not suitable</td><td>Close, keep warm for other structures</td></tr></tbody></table>
+<p class="section-label">Message for Consuelo</p><div class="panel"><h3>Framing</h3><p>OGYX remains an active search. The current focus is to keep Francisco moving, keep Alessandro warm while testing commitment, wait for Carmen's response and add a few more Francisco/Alessandro-type profiles around biotech founders, drug discovery, preclinical models, NAMs, tissue models and pharma/CRO partnerships.</p></div>
+<div class="footer">The Collider · OGYX August status · updated 21 Aug 2026</div>
+
+</div></body></html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BraidStent · CTO Live Status</title><style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f5f4f0; color: #1a1a18; -webkit-font-smoothing: antialiased;
+  line-height: 1.5; font-size: 14px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 36px 32px 80px; }
+.header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+.header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+h1 { font-size: 28px; margin:0 0 6px; letter-spacing:-0.02em; line-height:1.1; }
+h2 { font-size: 18px; margin: 0 0 12px; letter-spacing:-0.01em; }
+h3 { font-size: 14px; margin:0 0 6px; }
+p { margin: 0; }
+.sub { font-size: 13px; color:#77756f; }
+.badge { display:inline-block; background:#EAF3DE; color:#3B6D11; font-size:11px; font-weight:600; padding:4px 10px; border-radius:6px; }
+.date { font-size:11px; color:#888780; margin-top:6px; text-align:right; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#888780; margin: 30px 0 12px; }
+.hot-banner {
+  background: linear-gradient(135deg, #111827 0%, #185FA5 100%);
+  border-radius: 14px; padding: 20px 24px; margin: 0 0 18px; color:#fff;
+}
+.hot-banner .label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; opacity:0.75; margin-bottom:8px; }
+.hot-banner .title { font-size:19px; font-weight:700; margin-bottom:4px; }
+.hot-banner .text { font-size:13px; opacity:0.9; max-width:900px; }
+.metric-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin:0 0 24px; }
+.metric-card { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; }
+.metric-card.green { border-top:3px solid #1D9E75; }
+.metric-card.blue { border-top:3px solid #185FA5; }
+.metric-card.purple { border-top:3px solid #534AB7; }
+.metric-card.orange { border-top:3px solid #F59E0B; }
+.metric-label { font-size:10px; color:#888780; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; margin-bottom:6px; }
+.metric-value { font-size:28px; font-weight:700; line-height:1; }
+.metric-sub { color:#888780; font-size:11px; margin-top:6px; }
+.grid-2 { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+.panel { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+.panel.alert { border-left:4px solid #F59E0B; }
+.panel.green { border-left:4px solid #1D9E75; }
+.panel.blue { border-left:4px solid #185FA5; }
+.panel.purple { border-left:4px solid #534AB7; }
+ul.clean { padding:0; margin:0; list-style:none; }
+ul.clean li { position:relative; padding-left:18px; margin-bottom:8px; font-size:13px; }
+ul.clean li:before { content:'→'; position:absolute; left:0; color:#185FA5; font-weight:700; }
+.table-wrap { overflow-x:auto; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; margin-bottom:16px; }
+table.table { border-collapse:collapse; width:100%; font-size:12px; }
+.table th { text-align:left; color:#66645f; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; background:#faf9f6; border-bottom:0.5px solid #e0ddd6; padding:10px 12px; vertical-align:top; }
+.table td { padding:10px 12px; border-bottom:0.5px solid #eeebe4; vertical-align:top; }
+.table tr:last-child td { border-bottom:none; }
+.pill { display:inline-block; font-size:10px; font-weight:700; border-radius:999px; padding:3px 8px; background:#EAF3FF; color:#185FA5; margin-right:4px; margin-bottom:4px; white-space:nowrap; }
+.pill.green { background:#EAF3DE; color:#3B6D11; }
+.pill.orange { background:#FEF3C7; color:#92400E; }
+.pill.purple { background:#EFEAFE; color:#534AB7; }
+.pill.red { background:#FEE2E2; color:#991B1B; }
+.cardlink { display:block; text-decoration:none; color:#1a1a18; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; transition: all 0.15s ease; }
+.cardlink:hover { border-color:#1a1a18; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+.cardlink p { color:#888780; font-size:12px; }
+.footer { margin-top:40px; padding-top:20px; border-top:0.5px solid #e0ddd6; color:#888780; font-size:11px; }
+.small { font-size:11px; color:#888780; }
+.kicker { font-size:11px; color:#888780; margin-bottom:4px; }
+@media (max-width: 900px) {
+  .metric-grid, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { padding:24px 16px 60px; }
+  .metric-grid, .grid-3 { grid-template-columns: 1fr; }
+}
+</style></head><body><div class="wrap">
+<div class="header"><div class="header-row"><div><h1>BraidStent · CTO / Technical Co-Founder</h1><p class="sub">Live outreach status, reply type and next action</p></div><div><span class="badge">Active outreach</span><div class="date">10 Sep 2026</div></div></div></div>
+<div class="hot-banner"><div class="label">Search status</div><div class="title">Outreach started after Consuelo approval</div><div class="text">The first 19 scouted CTO / Technical Co-Founder profiles are in outreach. Five warm signals are currently tracked: three active call leads, one advisor-only / future CTO lead and one inbound profile that needs validation.</div></div>
+<div class="metric-grid">
+  <div class="metric-card blue"><div class="metric-label">Scouted CTO profiles</div><div class="metric-value">19</div><div class="metric-sub">first outreach batch</div></div>
+  <div class="metric-card green"><div class="metric-label">Warm replies / inbound</div><div class="metric-value">5</div><div class="metric-sub">shared so far</div></div>
+  <div class="metric-card green"><div class="metric-label">Call leads</div><div class="metric-value">3</div><div class="metric-sub">Jesús, Gisela, Andres</div></div>
+  <div class="metric-card purple"><div class="metric-label">Advisor / future</div><div class="metric-value">1</div><div class="metric-sub">Joan</div></div>
+  <div class="metric-card orange"><div class="metric-label">Manatal records</div><div class="metric-value">0</div><div class="metric-sub">CTO position export is empty</div></div>
+</div>
+<p class="section-label">Action overview</p>
+<div class="panel alert">
+<ul class="clean">
+<li><strong>Move active leads forward:</strong> schedule first calls with Jesús, Gisela and Andres.</li>
+<li><strong>Advisor decision:</strong> ask Consuelo whether Joan should be introduced to BraidStent as advisor around urology, technology, manufacturing and strategy.</li>
+<li><strong>Inbound validation:</strong> ask Faiz for CV / project examples before deciding if he enters the CTO candidate route.</li>
+<li><strong>Manatal:</strong> decide if the 19 scouted leads should be added to the BraidStent position immediately or only once they reply / book a call.</li>
+</ul>
+</div>
+<p class="section-label">Warm reply tracker</p>
+<div class="table-wrap"><table class="table"><thead><tr><th>Name</th><th>Priority</th><th>Main status</th><th>Reply type</th><th>Fit</th><th>Next action</th><th>Risk / question</th></tr></thead><tbody><tr><td>Jesús García Anguita</td><td>High</td><td>Call link sent</td><td>Interested</td><td>CTO / CPTO, HealthTech &amp; IoT product leader, ISO 13485 / FDA, HW+SW to market in 40+ countries</td><td>Wait for Calendly booking</td><td>Test implantable/stent relevance, founder appetite and availability</td></tr><tr><td>Gisela Ruiz Vega</td><td>High</td><td>Call link sent</td><td>Asked for details / open to meeting</td><td>CTO, biomedical engineer, PhD Electronic Engineering, Medical Devices, R&amp;D</td><td>Wait for Calendly booking</td><td>Assess CTO depth, founder appetite, availability and regulated device experience</td></tr><tr><td>Andres Fernando Amarillo Espitia</td><td>High</td><td>Replied</td><td>Interested</td><td>CTO, PhD, surgical robotics, CE/MDR market launch, R&amp;D leadership</td><td>Schedule first call / send booking link if not yet done</td><td>Strong regulated MedTech; test fit with implantables/biomaterials/stents</td></tr><tr><td>Joan Vieyra Galí</td><td>High as advisor / future</td><td>Replied</td><td>Advisor only / not available full-time</td><td>Biodesign Fellow, HealthTech startup co-founder, urology + CTO experience</td><td>Ask Consuelo/team whether advisory intro is useful</td><td>100% committed to exiting Loop Diagnostics; no full-time availability now</td></tr><tr><td>Faiz Jillani</td><td>Medium-high</td><td>Inbound from LinkedIn post</td><td>Needs qualification</td><td>Claims med device prototypes/products, CE, preclinical, manufacturing, doctors/hospitals</td><td>Request CV / project examples and schedule qualification call</td><td>Validate what he personally led vs contributed to</td></tr></tbody></table></div>
+<p class="section-label">Original 19-profile outreach batch</p>
+<div class="table-wrap"><table class="table"><thead><tr><th>Name</th><th>Shared status</th></tr></thead><tbody><tr><td>Isabel Pérez Serranos</td><td>No shared reply yet</td></tr><tr><td>Ander Menaut Beltran</td><td>No shared reply yet</td></tr><tr><td>Hervé Elettro</td><td>No shared reply yet</td></tr><tr><td>Jaime Punter-Villagrasa</td><td>No shared reply yet</td></tr><tr><td>Jesús García Anguita</td><td>Interested, call link sent</td></tr><tr><td>Sergio Camacho Santiago</td><td>No shared reply yet</td></tr><tr><td>Luis Caballero</td><td>No shared reply yet</td></tr><tr><td>Susana Amorós Garcia de Valdecasas</td><td>No shared reply yet</td></tr><tr><td>Gisela Ruiz Vega</td><td>Asked details, call link sent</td></tr><tr><td>Víctor Alastrué</td><td>No shared reply yet</td></tr><tr><td>Daniel Rodríguez-Martín</td><td>No shared reply yet</td></tr><tr><td>Andrés Fernando Amarillo Espitia</td><td>Interested, schedule call</td></tr><tr><td>Joan Vieyra Galí</td><td>Advisor only / not full-time</td></tr><tr><td>Eduardo Lage</td><td>No shared reply yet</td></tr><tr><td>Jaione Etxebarria Elezgarai</td><td>No shared reply yet</td></tr><tr><td>Julio Díaz Fernández</td><td>No shared reply yet</td></tr><tr><td>Antonio Javier Marin Alcaina</td><td>No shared reply yet</td></tr><tr><td>José Carlos Montesinos Pérez</td><td>No shared reply yet</td></tr><tr><td>Jim Smith</td><td>No shared reply yet</td></tr></tbody></table></div>
+<div class="footer"><a href="index.html">Back to Consuelo dashboard</a> · BraidStent role link: <a href="https://www.careers-page.com/mobile-world-capital/job/W3898Y39">Career page</a></div>
+</div></body></html>

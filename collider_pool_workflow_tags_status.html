@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Founder Pool · Workflow and Tags</title><style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f5f4f0; color: #1a1a18; -webkit-font-smoothing: antialiased;
+  line-height: 1.5; font-size: 14px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 36px 32px 80px; }
+.header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+.header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+h1 { font-size: 28px; margin:0 0 6px; letter-spacing:-0.02em; line-height:1.1; }
+h2 { font-size: 18px; margin: 0 0 12px; letter-spacing:-0.01em; }
+h3 { font-size: 14px; margin:0 0 6px; }
+p { margin: 0; }
+.sub { font-size: 13px; color:#77756f; }
+.badge { display:inline-block; background:#EAF3DE; color:#3B6D11; font-size:11px; font-weight:600; padding:4px 10px; border-radius:6px; }
+.date { font-size:11px; color:#888780; margin-top:6px; text-align:right; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#888780; margin: 30px 0 12px; }
+.hot-banner {
+  background: linear-gradient(135deg, #111827 0%, #185FA5 100%);
+  border-radius: 14px; padding: 20px 24px; margin: 0 0 18px; color:#fff;
+}
+.hot-banner .label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; opacity:0.75; margin-bottom:8px; }
+.hot-banner .title { font-size:19px; font-weight:700; margin-bottom:4px; }
+.hot-banner .text { font-size:13px; opacity:0.9; max-width:900px; }
+.metric-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin:0 0 24px; }
+.metric-card { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; }
+.metric-card.green { border-top:3px solid #1D9E75; }
+.metric-card.blue { border-top:3px solid #185FA5; }
+.metric-card.purple { border-top:3px solid #534AB7; }
+.metric-card.orange { border-top:3px solid #F59E0B; }
+.metric-label { font-size:10px; color:#888780; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; margin-bottom:6px; }
+.metric-value { font-size:28px; font-weight:700; line-height:1; }
+.metric-sub { color:#888780; font-size:11px; margin-top:6px; }
+.grid-2 { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+.panel { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+.panel.alert { border-left:4px solid #F59E0B; }
+.panel.green { border-left:4px solid #1D9E75; }
+.panel.blue { border-left:4px solid #185FA5; }
+.panel.purple { border-left:4px solid #534AB7; }
+ul.clean { padding:0; margin:0; list-style:none; }
+ul.clean li { position:relative; padding-left:18px; margin-bottom:8px; font-size:13px; }
+ul.clean li:before { content:'→'; position:absolute; left:0; color:#185FA5; font-weight:700; }
+.table-wrap { overflow-x:auto; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; margin-bottom:16px; }
+table.table { border-collapse:collapse; width:100%; font-size:12px; }
+.table th { text-align:left; color:#66645f; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; background:#faf9f6; border-bottom:0.5px solid #e0ddd6; padding:10px 12px; vertical-align:top; }
+.table td { padding:10px 12px; border-bottom:0.5px solid #eeebe4; vertical-align:top; }
+.table tr:last-child td { border-bottom:none; }
+.pill { display:inline-block; font-size:10px; font-weight:700; border-radius:999px; padding:3px 8px; background:#EAF3FF; color:#185FA5; margin-right:4px; margin-bottom:4px; white-space:nowrap; }
+.pill.green { background:#EAF3DE; color:#3B6D11; }
+.pill.orange { background:#FEF3C7; color:#92400E; }
+.pill.purple { background:#EFEAFE; color:#534AB7; }
+.pill.red { background:#FEE2E2; color:#991B1B; }
+.cardlink { display:block; text-decoration:none; color:#1a1a18; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; transition: all 0.15s ease; }
+.cardlink:hover { border-color:#1a1a18; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+.cardlink p { color:#888780; font-size:12px; }
+.footer { margin-top:40px; padding-top:20px; border-top:0.5px solid #e0ddd6; color:#888780; font-size:11px; }
+.small { font-size:11px; color:#888780; }
+.kicker { font-size:11px; color:#888780; margin-bottom:4px; }
+@media (max-width: 900px) {
+  .metric-grid, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { padding:24px 16px 60px; }
+  .metric-grid, .grid-3 { grid-template-columns: 1fr; }
+}
+</style></head><body><div class="wrap">
+<div class="header"><div class="header-row"><div><h1>Founder Pool · Workflow and Tag Logic</h1><p class="sub">Draft operating system for DeepTech Founders Radar and Talent Pool Not Founders</p></div><div><span class="badge">Draft</span><div class="date">For Consuelo discussion</div></div></div></div>
+<div class="hot-banner"><div class="label">Principle</div><div class="title">Keep tags durable, keep status in workflow</div><div class="text">Tags should describe stable search information. Temporary things like active, pending, replied, current candidate or follow-up timing belong in Manatal stage, notes, tasks or date fields.</div></div>
+
+<p class="section-label">New pool structure</p>
+<div class="grid-2">
+<div class="panel green"><h2>Talent Pool DeepTech Founders</h2><ul class="clean"><li>1 - Perfil Potencial</li><li>2 - Entrevista Staff</li><li>3 - En espera de Proyecto</li><li>Assigned into project</li></ul></div>
+<div class="panel blue"><h2>Talent Pool Not Founders</h2><ul class="clean"><li>1 - New Candidates</li><li>Registration feedback email, no meeting link</li><li>Kept for future advisor, referral, technical, investor or ecosystem matches</li></ul></div>
+</div>
+
+<p class="section-label">Status model for dashboards</p>
+<div class="grid-3">
+<div class="panel"><h2>Main status</h2><p class="sub">Where are they in the process?</p><p><span class="pill">Outreach sent</span><span class="pill">Replied</span><span class="pill">Call link sent</span><span class="pill">Call scheduled</span><span class="pill">First call done</span><span class="pill">Staff interview</span><span class="pill">Matchmaking</span><span class="pill">Parked</span></p></div>
+<div class="panel"><h2>Reply type</h2><p class="sub">What did the reply actually mean?</p><p><span class="pill green">Interested</span><span class="pill">Asked for details</span><span class="pill purple">Advisor only</span><span class="pill orange">Needs qualification</span><span class="pill">Referral angle</span><span class="pill red">Declined</span></p></div>
+<div class="panel"><h2>Next action</h2><p class="sub">What should happen next?</p><p><span class="pill">Send JD</span><span class="pill">Send Calendly</span><span class="pill">Wait for booking</span><span class="pill">Ask CV</span><span class="pill">Share with Consuelo</span><span class="pill">Park</span></p></div>
+</div>
+
+<p class="section-label">Tag proposal</p>
+<div class="panel"><h2>Fit tags</h2><p class="sub" style="margin-bottom:10px;">Fit = what type of future role/search someone could be relevant for. This is not necessarily what they have already done.</p><span class="pill">Fit - CEO / Co-Founder</span><span class="pill">Fit - Commercial Co-Founder / CBO</span><span class="pill">Fit - COO / Operating Co-Founder</span><span class="pill">Fit - CTO / Technical Co-Founder</span><span class="pill">Fit - CSO / Scientific Co-Founder</span><span class="pill">Fit - Advisor</span><span class="pill">Fit - Referral / Ecosystem</span><span class="pill">Fit - Investor / Fund</span></div>
+<div class="panel"><h2>Sector tags</h2><p class="sub" style="margin-bottom:10px;">Sector = market/domain relevance.</p><span class="pill">Sector - Biotech</span><span class="pill">Sector - MedTech</span><span class="pill">Sector - Medical Devices</span><span class="pill">Sector - Digital Health / SaMD</span><span class="pill">Sector - Female Health</span><span class="pill">Sector - Energy / Grid</span><span class="pill">Sector - SpaceTech</span><span class="pill">Sector - Advanced Materials</span><span class="pill">Sector - AI / Data</span><span class="pill">Sector - FoodTech</span></div>
+<div class="panel"><h2>Signal tags</h2><p class="sub" style="margin-bottom:10px;">Signal = what someone has actually proven.</p><span class="pill">Signal - Founder-CEO experience</span><span class="pill">Signal - Founder experience</span><span class="pill">Signal - CEO / P&amp;L experience</span><span class="pill">Signal - Corporate to founder</span><span class="pill">Signal - Fundraising private</span><span class="pill">Signal - Fundraising public / grants</span><span class="pill">Signal - Tech transfer</span><span class="pill">Signal - IP / licensing</span><span class="pill">Signal - Commercialisation</span><span class="pill">Signal - Venture building</span></div>
+<div class="panel"><h2>History / Outcome tags</h2><p class="sub" style="margin-bottom:10px;">Only durable Collider-specific context. No "current candidate" or nurture timing as tags.</p><span class="pill">Affiliation - Collider founder</span><span class="pill">History - Previous Collider candidate</span><span class="pill">History - Staff interview</span><span class="pill">History - Matchmaking</span><span class="pill">Outcome - Placed founder</span><span class="pill">History - Do not contact</span></div>
+
+<p class="section-label">Example</p>
+<div class="panel alert">
+<h2>Alberto-style profile</h2>
+<p class="sub">Relevant for future CEO / Commercial Co-Founder searches, but not yet founder-proof. He would get Fit and Signal tags that reflect potential and proven experience, but not Founder-CEO experience.</p>
+<p style="margin-top:10px;"><span class="pill">Fit - CEO / Co-Founder</span><span class="pill">Fit - Commercial Co-Founder / CBO</span><span class="pill">Sector - Biotech</span><span class="pill">Sector - MedTech</span><span class="pill">Signal - Tech transfer</span><span class="pill">Signal - Corporate to founder</span><span class="pill">Signal - Commercialisation</span></p>
+</div>
+<div class="footer"><a href="index.html">Back to Consuelo dashboard</a></div>
+</div></body></html>

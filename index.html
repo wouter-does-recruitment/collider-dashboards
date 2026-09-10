@@ -3,418 +3,188 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Collider - CEO & Co-Founder Searches</title>
+<title>The Collider - Consuelo Catch-up Dashboard</title>
 <style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: #f5f4f0;
-    color: #1a1a18;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-    font-size: 14px;
-  }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 36px 32px 80px; }
-
-  .header { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
-  .header h1 { font-size: 26px; font-weight: 600; color: #1a1a18; margin: 0 0 6px; letter-spacing: -0.01em; }
-  .header p { font-size: 13px; color: #888780; margin: 0; }
-  .header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .header .badge {
-    display: inline-block; background: #EAF3DE; color: #3B6D11;
-    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
-  }
-  .header .date { font-size: 11px; color: #888780; margin-top: 6px; text-align: right; }
-
-  .celebrate-banner {
-    background: linear-gradient(135deg, #1D9E75 0%, #0F6E56 100%);
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin-bottom: 24px;
-    color: #fff;
-  }
-  .cb-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    opacity: 0.85; margin-bottom: 6px;
-  }
-  .cb-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-  .cb-sub { font-size: 13px; opacity: 0.92; }
-
-  .update-banner {
-    background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);
-    border: 1px solid #F59E0B;
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin-bottom: 24px;
-  }
-  .update-banner-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: #92400E; margin-bottom: 10px;
-  }
-  .update-banner-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 12px; }
-  .update-list {
-    list-style: none; padding: 0; margin: 0;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px;
-  }
-  .update-list li {
-    font-size: 12px; color: #5a2d04; line-height: 1.5;
-    padding-left: 18px; position: relative;
-  }
-  .update-list li::before {
-    content: '→'; position: absolute; left: 0;
-    color: #BA7517; font-weight: 700;
-  }
-  .update-list li strong { color: #1a1a18; font-weight: 600; }
-
-  .notice {
-    background: #EAF3DE; border-left: 3px solid #1D9E75;
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px; margin-bottom: 28px;
-    font-size: 12px; color: #3B6D11;
-  }
-  .notice strong { color: #1a3a0c; font-weight: 600; }
-
-  .section-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
-    color: #888780; margin: 28px 0 12px;
-  }
-
-  .metric-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
-  .metric-card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px; padding: 18px 20px; }
-  .metric-card.signature { border-top: 3px solid #534AB7; }
-  .metric-card.signed { border-top: 3px solid #1D9E75; }
-  .metric-card.focus { border-top: 3px solid #185FA5; }
-  .metric-label { font-size: 11px; color: #888780; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
-  .metric-value { font-size: 28px; font-weight: 600; line-height: 1; color: #1a1a18; }
-  .metric-value.green { color: #1D9E75; }
-  .metric-value.purple { color: #534AB7; }
-  .metric-value.blue { color: #185FA5; }
-  .metric-sub { font-size: 11px; color: #888780; margin-top: 6px; }
-
-  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .proj-card {
-    border: 0.5px solid #e0ddd6; border-radius: 12px;
-    padding: 18px 20px;
-    text-decoration: none; color: #1a1a18;
-    transition: all 0.15s ease;
-    display: block;
-  }
-  .proj-card:hover {
-    border-color: #1a1a18; transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  }
-  .proj-card.disabled { cursor: default; opacity: 0.92; }
-  .proj-card.disabled:hover { border-color: #e0ddd6; transform: none; box-shadow: none; }
-  .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; gap: 12px; }
-  .proj-head h3 { font-size: 15px; font-weight: 600; margin: 0; }
-  .proj-stage { font-size: 11px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
-  .proj-focus { font-size: 11px; color: #888780; margin: 0 0 14px; min-height: 34px; }
-  .proj-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .proj-stats div { display: flex; flex-direction: column; }
-  .ps-num { font-size: 16px; font-weight: 600; color: #1a1a18; line-height: 1; }
-  .ps-lbl { font-size: 10px; color: #888780; margin-top: 2px; letter-spacing: 0.03em; text-transform: uppercase; }
-
-  .extras { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
-  .extras a {
-    background: #fff; border: 0.5px solid #e0ddd6; border-radius: 12px;
-    padding: 18px 20px;
-    text-decoration: none; color: #1a1a18;
-    transition: all 0.15s ease;
-    display: block;
-  }
-  .extras a:hover {
-    border-color: #1a1a18; transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  }
-  .extras h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
-  .extras p { font-size: 11px; color: #888780; margin: 0; }
-  .pill {
-    display: inline-block; font-size: 10px; font-weight: 600;
-    color: #185FA5; background: #EAF3FF; border-radius: 999px;
-    padding: 3px 8px; margin-bottom: 8px;
-  }
-
-  .footer {
-    margin-top: 50px; padding-top: 20px;
-    border-top: 0.5px solid #e0ddd6;
-    font-size: 11px; color: #888780;
-  }
-
-  @media (max-width: 768px) {
-    .wrap { padding: 24px 16px 60px; }
-    .metric-grid { grid-template-columns: repeat(2, 1fr); }
-    .proj-grid { grid-template-columns: 1fr; }
-    .update-list { grid-template-columns: 1fr; }
-    .extras { grid-template-columns: 1fr; }
-  }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f5f4f0; color: #1a1a18; -webkit-font-smoothing: antialiased;
+  line-height: 1.5; font-size: 14px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 36px 32px 80px; }
+.header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 0.5px solid #e0ddd6; }
+.header-row { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+h1 { font-size: 28px; margin:0 0 6px; letter-spacing:-0.02em; line-height:1.1; }
+h2 { font-size: 18px; margin: 0 0 12px; letter-spacing:-0.01em; }
+h3 { font-size: 14px; margin:0 0 6px; }
+p { margin: 0; }
+.sub { font-size: 13px; color:#77756f; }
+.badge { display:inline-block; background:#EAF3DE; color:#3B6D11; font-size:11px; font-weight:600; padding:4px 10px; border-radius:6px; }
+.date { font-size:11px; color:#888780; margin-top:6px; text-align:right; }
+.section-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#888780; margin: 30px 0 12px; }
+.hot-banner {
+  background: linear-gradient(135deg, #111827 0%, #185FA5 100%);
+  border-radius: 14px; padding: 20px 24px; margin: 0 0 18px; color:#fff;
+}
+.hot-banner .label { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; opacity:0.75; margin-bottom:8px; }
+.hot-banner .title { font-size:19px; font-weight:700; margin-bottom:4px; }
+.hot-banner .text { font-size:13px; opacity:0.9; max-width:900px; }
+.metric-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:10px; margin:0 0 24px; }
+.metric-card { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; }
+.metric-card.green { border-top:3px solid #1D9E75; }
+.metric-card.blue { border-top:3px solid #185FA5; }
+.metric-card.purple { border-top:3px solid #534AB7; }
+.metric-card.orange { border-top:3px solid #F59E0B; }
+.metric-label { font-size:10px; color:#888780; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; margin-bottom:6px; }
+.metric-value { font-size:28px; font-weight:700; line-height:1; }
+.metric-sub { color:#888780; font-size:11px; margin-top:6px; }
+.grid-2 { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+.panel { background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+.panel.alert { border-left:4px solid #F59E0B; }
+.panel.green { border-left:4px solid #1D9E75; }
+.panel.blue { border-left:4px solid #185FA5; }
+.panel.purple { border-left:4px solid #534AB7; }
+ul.clean { padding:0; margin:0; list-style:none; }
+ul.clean li { position:relative; padding-left:18px; margin-bottom:8px; font-size:13px; }
+ul.clean li:before { content:'→'; position:absolute; left:0; color:#185FA5; font-weight:700; }
+.table-wrap { overflow-x:auto; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; margin-bottom:16px; }
+table.table { border-collapse:collapse; width:100%; font-size:12px; }
+.table th { text-align:left; color:#66645f; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; background:#faf9f6; border-bottom:0.5px solid #e0ddd6; padding:10px 12px; vertical-align:top; }
+.table td { padding:10px 12px; border-bottom:0.5px solid #eeebe4; vertical-align:top; }
+.table tr:last-child td { border-bottom:none; }
+.pill { display:inline-block; font-size:10px; font-weight:700; border-radius:999px; padding:3px 8px; background:#EAF3FF; color:#185FA5; margin-right:4px; margin-bottom:4px; white-space:nowrap; }
+.pill.green { background:#EAF3DE; color:#3B6D11; }
+.pill.orange { background:#FEF3C7; color:#92400E; }
+.pill.purple { background:#EFEAFE; color:#534AB7; }
+.pill.red { background:#FEE2E2; color:#991B1B; }
+.cardlink { display:block; text-decoration:none; color:#1a1a18; background:#fff; border:0.5px solid #e0ddd6; border-radius:12px; padding:16px 18px; transition: all 0.15s ease; }
+.cardlink:hover { border-color:#1a1a18; transform:translateY(-1px); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+.cardlink p { color:#888780; font-size:12px; }
+.footer { margin-top:40px; padding-top:20px; border-top:0.5px solid #e0ddd6; color:#888780; font-size:11px; }
+.small { font-size:11px; color:#888780; }
+.kicker { font-size:11px; color:#888780; margin-bottom:4px; }
+@media (max-width: 900px) {
+  .metric-grid, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .wrap { padding:24px 16px 60px; }
+  .metric-grid, .grid-3 { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-
   <div class="header">
     <div class="header-row">
       <div>
-        <h1>The Collider · CEO &amp; Co-Founder Searches</h1>
-        <p>Portfolio dashboard - live index with August sourcing workstreams</p>
+        <h1>The Collider · Consuelo Catch-up Dashboard</h1>
+        <p class="sub">Operational snapshot from Manatal exports + BraidStent CTO outreach replies</p>
       </div>
       <div>
-        <span class="badge">Updated · August prep</span>
-        <div class="date">21 Aug 2026</div>
+        <span class="badge">Updated · 10 Sep 2026</span>
+        <div class="date">For Thursday catch-up</div>
       </div>
     </div>
   </div>
 
-  <div class="celebrate-banner">
-    <div class="cb-label">September prep</div>
-    <div class="cb-title">Consuelo August prep dashboards updated</div>
-    <div class="cb-sub">AUMMIS, BraidStent and Planaris market maps are ready. AUMMIS now includes 7 extra female founder / biotech / IVD leads. OGYX and GridWatch link directly to the latest August status dashboards from the portfolio cards.</div>
+  <div class="hot-banner">
+    <div class="label">Hot overview</div>
+    <div class="title">What needs attention now</div>
+    <div class="text">Quick action layer before diving into project dashboards: BraidStent CTO outreach is active, the new ghost pools are live, and the Manatal exports now show staff interviews / matchmaking that should be reviewed with Consuelo.</div>
   </div>
 
-  <div class="update-banner">
-    <div class="update-banner-label">Current focus</div>
-    <div class="update-banner-title">What's new since the previous index</div>
-    <ul class="update-list">
-      <li><strong>Manatal cleanup ongoing</strong> · Pablo and Ramon done; Roger, Alessandro, Carmen, Miguel and Francisco notes to check.</li>
-      <li><strong>OGYX focus continues</strong> · Francisco active, Alessandro warm longlist, Carmen contacted; extra sourcing still active.</li>
-      <li><strong>GridWatch momentum</strong> · Ramon and Roger in candidate track; Pablo partnership lead; Martin Grinberg added.</li>
-      <li><strong>AUMMIS expanded</strong> · Female Health / MedTech map now includes 35 profiles, including 7 new founder/referral leads.</li><li><strong>Planaris mapped</strong> · 16 COO/operator leads including Oscar, plus 21 RF/Antenna technical profiles.</li>
-    </ul>
-  </div>
-
-  <div class="notice"><strong>5 CEOs signed across the portfolio</strong> - Sorbmetrics, UlissesDS, TarGlio, BraidStent and OPTICmizing. August prep maps are ready for Consuelo review: Planaris COO, Planaris RF/Antenna, AUMMIS Female Health and BraidStent. AUMMIS now includes all 35 names. OGYX and GridWatch point to the latest active-search dashboards only.</div>
-
-  <p class="section-label">Portfolio totals</p>
   <div class="metric-grid">
-    <div class="metric-card signature">
-      <div class="metric-label">In ATS</div>
-      <div class="metric-value purple">182</div>
-      <div class="metric-sub">uploaded records</div>
+    <div class="metric-card blue"><div class="metric-label">Export records</div><div class="metric-value">53</div><div class="metric-sub">across 6 uploaded Manatal exports</div></div>
+    <div class="metric-card green"><div class="metric-label">Active records</div><div class="metric-value">49</div><div class="metric-sub">not marked dropped</div></div>
+    <div class="metric-card orange"><div class="metric-label">New / potential</div><div class="metric-value">22</div><div class="metric-sub">needs review or classification</div></div>
+    <div class="metric-card purple"><div class="metric-label">Staff interviews</div><div class="metric-value">9</div><div class="metric-sub">in staff interview stage</div></div>
+    <div class="metric-card green"><div class="metric-label">BraidStent warm leads</div><div class="metric-value">5</div><div class="metric-sub">4 replies + 1 inbound from post</div></div>
+  </div>
+
+  <p class="section-label">Priority actions</p>
+  <div class="grid-2">
+    <div class="panel alert">
+      <h2>Actions for Consuelo / team</h2>
+      <ul class="clean">
+        <li><strong>BraidStent:</strong> confirm if Joan Vieyra Galí should be introduced as advisor / strategic technical support around urology, technology and manufacturing.</li>
+        <li><strong>BraidStent:</strong> agree when interested CTO leads move from Wouter call to staff interview and whether they need to complete the BraidStent form first.</li>
+        <li><strong>BraidStent Manatal:</strong> current CTO position export is empty. Add active leads or define when scouted leads should enter the position.</li>
+        <li><strong>OGYX:</strong> Francisco is in Matchmaking 2. Decide if sourcing continues or pauses until IP/equity/project conditions are clearer.</li>
+        <li><strong>GridWatch:</strong> align on Ramón, Roger and Pablo: candidate route vs parked vs partnership/ecosystem route.</li>
+        <li><strong>Talent pools:</strong> review new Not Founders pool and DeepTech Founders pool candidates every 1-2 days as planned.</li>
+      </ul>
     </div>
-    <div class="metric-card">
-      <div class="metric-label">Active</div>
-      <div class="metric-value">105</div>
-      <div class="metric-sub">in evaluation</div>
-    </div>
-    <div class="metric-card focus">
-      <div class="metric-label">Eval stages</div>
-      <div class="metric-value blue">54</div>
-      <div class="metric-sub">First Call, Staff, META, refs</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Matchmaking</div>
-      <div class="metric-value purple">18</div>
-      <div class="metric-sub">M1 + M2</div>
-    </div>
-    <div class="metric-card signed">
-      <div class="metric-label">Signed</div>
-      <div class="metric-value green">5</div>
-      <div class="metric-sub">Team Ready</div>
+    <div class="panel green">
+      <h2>Why the status model changes</h2>
+      <p class="sub" style="margin-bottom:10px;">A flat status like "replied" is not enough. Replies now mean different things: interested, open to call, advisor only, referral, not now or needs qualification.</p>
+      <ul class="clean">
+        <li><strong>Main status:</strong> outreach sent, replied, call link sent, call scheduled, staff interview, matchmaking, parked.</li>
+        <li><strong>Reply type:</strong> interested, asked for details, advisor only, needs qualification, referral angle, declined.</li>
+        <li><strong>Next action:</strong> send JD, send Calendly, wait for booking, ask CV, share with Consuelo, park or drop.</li>
+      </ul>
     </div>
   </div>
 
-  <p class="section-label">Portfolio projects · refreshed from Manatal exports</p>
-  <div class="proj-grid">
-<a href="collider_opticmizing_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>OpticMizing</h3>
-        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
-      </div>
-      <p class="proj-focus">pHotoYOGURT - real-time pH sensor SaaS</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">13</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">6</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">3</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_sorbmetrics_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>Sorbmetrics</h3>
-        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
-      </div>
-      <p class="proj-focus">MCSD adsorption devices</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">10</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_ulissesds_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>UlissesDS</h3>
-        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
-      </div>
-      <p class="proj-focus">AI ultrasound - diagnostics</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">3</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_targlio_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>TarGlio</h3>
-        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
-      </div>
-      <p class="proj-focus">Magnetic nanoparticles - glioblastoma</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">8</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">5</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_braidstent_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>BraidStent</h3>
-        <span class="proj-stage" style="color:#1D9E75;">Signed</span>
-      </div>
-      <p class="proj-focus">Biodegradable ureteral stent - CEO signed, CTO map started</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">4</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">3</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_gridwatch_august_status.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>GridWatch</h3>
-        <span class="proj-stage" style="color:#0F6E56;">Active search</span>
-      </div>
-      <p class="proj-focus">AI power grid resilience - latest August status</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">2</span><span class="ps-lbl">Candidate</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">New lead</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Partner</span></div>
-        <div><span class="ps-num">3-5</span><span class="ps-lbl">Source</span></div>
-      </div>
-    </a>
-<a href="collider_ogyx_august_status.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>OGYX</h3>
-        <span class="proj-stage" style="color:#0F6E56;">Active search</span>
-      </div>
-      <p class="proj-focus">Organ-on-chip - latest August longlist</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">16</span><span class="ps-lbl">In view</span></div>
-        <div><span class="ps-num">1</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">11</span><span class="ps-lbl">New</span></div>
-        <div><span class="ps-num">8</span><span class="ps-lbl">Review</span></div>
-      </div>
-    </a>
-<a href="collider_endomet_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>ENDOMET</h3>
-        <span class="proj-stage" style="color:#0F6E56;">M1 · 4</span>
-      </div>
-      <p class="proj-focus">Mitochondrial disease - orphan drugs</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">14</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">10</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">4</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<a href="collider_onakids_dashboard.html" class="proj-card" style="background:#f0fdf6;">
-      <div class="proj-head">
-        <h3>ONAKids</h3>
-        <span class="proj-stage" style="color:#0F6E56;">M1 · 5</span>
-      </div>
-      <p class="proj-focus">Pediatric AI - language delay</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">20</span><span class="ps-lbl">Active</span></div>
-        <div><span class="ps-num">9</span><span class="ps-lbl">Eval</span></div>
-        <div><span class="ps-num">5</span><span class="ps-lbl">Match</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
-      </div>
-    </a>
-<div class="proj-card disabled" style="background:#fff7ed;">
-      <div class="proj-head">
-        <h3>Planaris</h3>
-        <span class="proj-stage" style="color:#92400E;">New / setup</span>
-      </div>
-      <p class="proj-focus">Space defense deep tech - 2 market maps ready</p>
-      
-      <div class="proj-stats">
-        <div><span class="ps-num">37</span><span class="ps-lbl">Mapped</span></div>
-        <div><span class="ps-num">16</span><span class="ps-lbl">COO</span></div>
-        <div><span class="ps-num">21</span><span class="ps-lbl">RF</span></div>
-        <div><span class="ps-num">0</span><span class="ps-lbl">Signed</span></div>
-      </div>
+  <p class="section-label">BraidStent CTO outreach</p>
+  <div class="panel blue">
+    <h2>BraidStent is now an active search</h2>
+    <p class="sub">Consuelo asked to start outreach. The first 19 CTO / Technical Co-Founder profiles are being contacted. Job link: <a href="https://www.careers-page.com/mobile-world-capital/job/W3898Y39">BraidStent CTO / Technical Co-Founder</a>.</p>
+  </div>
+  <div class="table-wrap"><table class="table"><thead><tr><th>Name</th><th>Priority</th><th>Main status</th><th>Reply type</th><th>Fit</th><th>Next action</th><th>Risk / question</th></tr></thead><tbody><tr><td>Jesús García Anguita</td><td>High</td><td>Call link sent</td><td>Interested</td><td>CTO / CPTO, HealthTech &amp; IoT product leader, ISO 13485 / FDA, HW+SW to market in 40+ countries</td><td>Wait for Calendly booking</td><td>Test implantable/stent relevance, founder appetite and availability</td></tr><tr><td>Gisela Ruiz Vega</td><td>High</td><td>Call link sent</td><td>Asked for details / open to meeting</td><td>CTO, biomedical engineer, PhD Electronic Engineering, Medical Devices, R&amp;D</td><td>Wait for Calendly booking</td><td>Assess CTO depth, founder appetite, availability and regulated device experience</td></tr><tr><td>Andres Fernando Amarillo Espitia</td><td>High</td><td>Replied</td><td>Interested</td><td>CTO, PhD, surgical robotics, CE/MDR market launch, R&amp;D leadership</td><td>Schedule first call / send booking link if not yet done</td><td>Strong regulated MedTech; test fit with implantables/biomaterials/stents</td></tr><tr><td>Joan Vieyra Galí</td><td>High as advisor / future</td><td>Replied</td><td>Advisor only / not available full-time</td><td>Biodesign Fellow, HealthTech startup co-founder, urology + CTO experience</td><td>Ask Consuelo/team whether advisory intro is useful</td><td>100% committed to exiting Loop Diagnostics; no full-time availability now</td></tr><tr><td>Faiz Jillani</td><td>Medium-high</td><td>Inbound from LinkedIn post</td><td>Needs qualification</td><td>Claims med device prototypes/products, CE, preclinical, manufacturing, doctors/hospitals</td><td>Request CV / project examples and schedule qualification call</td><td>Validate what he personally led vs contributed to</td></tr></tbody></table></div>
+
+  <p class="section-label">Manatal export snapshot</p>
+  <div class="table-wrap"><table class="table"><thead><tr><th>Workstream</th><th>Records</th><th>Unique</th><th>Active</th><th>New/potential</th><th>First call</th><th>Staff interview</th><th>Matchmaking</th><th>References</th><th>Dropped</th></tr></thead><tbody><tr><td>Talent Pool - Not Founders</td><td>4</td><td>4</td><td>4</td><td>4</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Talent Pool - DeepTech Founders</td><td>5</td><td>5</td><td>5</td><td>2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Planaris RF</td><td>5</td><td>4</td><td>5</td><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>OGYX CEO</td><td>21</td><td>21</td><td>21</td><td>8</td><td>7</td><td>3</td><td>3</td><td>0</td><td>0</td></tr><tr><td>GridWatch CEO</td><td>18</td><td>18</td><td>14</td><td>7</td><td>2</td><td>5</td><td>3</td><td>1</td><td>4</td></tr><tr><td>BraidStent CTO</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></tbody></table></div>
+
+  <div class="grid-3">
+    <a class="cardlink" href="collider_braidstent_cto_live_status.html"><span class="pill green">Live status</span><h3>BraidStent CTO tracker</h3><p>Reply type, next action and scouted CTO list.</p></a>
+    <a class="cardlink" href="collider_pool_workflow_tags_status.html"><span class="pill purple">Workflow</span><h3>Founder pool + tag logic</h3><p>Ghost pools, status model and durable tags.</p></a>
+    <a class="cardlink" href="collider_braidstent_cto_august.html"><span class="pill">Market map</span><h3>BraidStent technical map</h3><p>Original 19-profile CTO / Technical Co-Founder map.</p></a>
+    <a class="cardlink" href="collider_ogyx_august_status.html"><span class="pill">Project</span><h3>OGYX status dashboard</h3><p>CEO / Co-Founder active-search dashboard.</p></a>
+    <a class="cardlink" href="collider_gridwatch_august_status.html"><span class="pill">Project</span><h3>GridWatch status dashboard</h3><p>Energy/Grid CEO candidate status and lead notes.</p></a>
+    <a class="cardlink" href="collider_planaris_rf_antenna_market_map.html"><span class="pill">Project</span><h3>Planaris RF map</h3><p>RF / Antenna Engineer market map and profile list.</p></a>
+  </div>
+
+  <p class="section-label">Staff interview / matchmaking focus</p>
+  <div class="grid-2">
+    <div>
+      <div class="panel"><h2>OGYX - advanced profiles in Manatal</h2><p class="sub">Current export has 3 staff interviews, 2 Matchmaking 1 and 1 Matchmaking 2.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Full name</th><th>Current position</th><th>Current employer</th><th>Stage</th></tr></thead><tbody><tr><td>Spencer Schipper</td><td>International Lead – Commercial Strategy &amp; Launch</td><td>BrainersHub GmbH</td><td>4 - Interview with Staff</td></tr><tr><td>Christian Maass</td><td>Lead Business Unit MPSlabs</td><td>ESQlabs GmbH</td><td>4 - Interview with Staff</td></tr><tr><td>Inna Pertsovskaya Stern, PhD</td><td>Biotech scientific consultant</td><td></td><td>4 - Interview with Staff</td></tr><tr><td>Ingrid lansard</td><td>Strategic Advisor</td><td>Ovul (Women&#x27;s Health Diagnostic)</td><td>8 - Matchmaking 1º Interview (Team Project + P. Staff)</td></tr><tr><td>xian weng jiang</td><td>Director of Product Solutions</td><td>Mytos London, UK</td><td>8 - Matchmaking 1º Interview (Team Project + P. Staff)</td></tr><tr><td>Francisco Morís</td><td>Chief Business Development Officer</td><td>NEUROSTECH</td><td>9 - Matchmaking 2º Interview (Team Project + P. Staff)</td></tr></tbody></table></div>
+    </div>
+    <div>
+      <div class="panel"><h2>GridWatch - advanced profiles in Manatal</h2><p class="sub">Current export has 5 staff interviews, 1 reference/cross-check, 2 Matchmaking 1 and 1 Matchmaking 2.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Full name</th><th>Current position</th><th>Current employer</th><th>Stage</th><th>Is dropped</th></tr></thead><tbody><tr><td>Alexander Euler</td><td>Managing Director, Middle East &amp; South Asia</td><td>Hydraloop</td><td>4 - Interview with Staff</td><td></td></tr><tr><td>Jamie Crummie</td><td>Public Speaker &amp; Consultant</td><td>Jamiecrummie.com</td><td>4 - Interview with Staff</td><td></td></tr><tr><td>Xavi Bou Torrent</td><td>REN Communities Director Innovation &amp; Public funding Director</td><td></td><td>4 - Interview with Staff</td><td></td></tr><tr><td>Garcia Torreiro, Angel</td><td>Owner / Business Development / Self employed</td><td>PowerPEM Solutions SL</td><td>4 - Interview with Staff</td><td></td></tr><tr><td>Alfred Hackett</td><td>Partner</td><td>ACCO Ingeniería</td><td>4 - Interview with Staff</td><td></td></tr><tr><td>Ramon Gallart</td><td>CEO &amp; Co-founder</td><td>Energy in the Cloud</td><td>6 - Cross Check - Professional References</td><td></td></tr><tr><td>David Luis Milia Garrote</td><td>Chairman/CEO &amp; Board Member</td><td>The Canadian Energy &amp; Climate Nexus</td><td>8 - Matchmaking 1º Interview (Team Project + P. Staff)</td><td></td></tr><tr><td>Roger Segura Aguado</td><td>Retail Managing Director</td><td>RDG - Recursos de Galicia</td><td>8 - Matchmaking 1º Interview (Team Project + P. Staff)</td><td></td></tr><tr><td>Alessandro Caviasca</td><td>CEO</td><td>SIARQ Advanced Solar Design</td><td>9 - Matchmaking 2º Interview (Team Project + P. Staff)</td><td></td></tr></tbody></table></div>
     </div>
   </div>
 
-  <p class="section-label">Sourcing market maps</p>
-  <div class="extras">
-    <a href="collider_braidstent_technical_market_map.html">
-      <span class="pill">First sourcing market map</span>
-      <h3>BraidStent · Technical / CTO Map</h3>
-      <p>19 profiles · CTO, R&amp;D, regulatory, biomaterials and MedDevice industrialisation leads</p>
-    </a>
-    <a href="collider_female_health_valencia_market_map.html">
-      <span class="pill">Market mapping exercise</span>
-      <h3>Female Health / MedTech Valencia</h3>
-      <p>35 profiles · all names included · female founder, ecosystem, referral and benchmark profiles for Valencia and broader Spain</p>
-    </a>
+  <p class="section-label">New pool review / data hygiene</p>
+  <div class="grid-2">
+    <div>
+      <div class="panel"><h2>Talent Pool - DeepTech Founders</h2><p class="sub">Ghost pool with potential profiles, staff interview and waiting-for-project stages.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Full name</th><th>Current position</th><th>Current employer</th><th>Stage</th></tr></thead><tbody><tr><td>Cinzia Silvestri</td><td>Board Member</td><td>Nano4Society</td><td>1 - Perfil Potencial</td></tr><tr><td>Lorenzo Campini</td><td>Co-Founder &amp; CEO</td><td>Jungle Roofs</td><td>1 - Perfil Potencial</td></tr><tr><td>Félix</td><td>Chief of xpansion and Alliances</td><td>Air Institute National Computing Research Centre</td><td>2 - Entrevista Staff</td></tr><tr><td>Thomas BAUDIN</td><td>Deep-Tech Venture Builder</td><td>Deeper Pulse</td><td>3 - En espera de Proyecto</td></tr><tr><td>Pablo Javier López Iglesias</td><td>Co-lead business strategy, commercialization and market positioning</td><td>Synnect Technologies</td><td>3 - En espera de Proyecto</td></tr></tbody></table></div>
+    </div>
+    <div>
+      <div class="panel"><h2>Talent Pool - Not Founders</h2><p class="sub">Profiles registered but not founder-track. Current export shows all in New Candidates.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Full name</th><th>Current position</th><th>Current employer</th><th>Stage</th></tr></thead><tbody><tr><td>Magdalena Mbuy Miko Mikue</td><td>R&amp;D Scholarship Holder</td><td>University of Campinas – UNICAMP</td><td>1 - New Candidates</td></tr><tr><td>Hossein Esmaeilizadshali</td><td>PhD student</td><td>KIT (Karlsruhe Institute of Technology)</td><td>1 - New Candidates</td></tr><tr><td>Brayton Noll</td><td>Lead Data Scientist</td><td>Heetch</td><td>1 - New Candidates</td></tr><tr><td>Claudio Silvestrin</td><td>Principal</td><td>Claudio Silvestrin - Healthcare AI Strategy &amp; Advisory</td><td>1 - New Candidates</td></tr></tbody></table></div>
+    </div>
   </div>
 
-
-
-  <p class="section-label">Consuelo August prep dashboards</p>
-  <div class="extras">
-    <a href="collider_planaris_coo_market_map.html">
-      <span class="pill orange">New market map</span>
-      <h3>Planaris · COO Co-Founder Map</h3>
-      <p>16 COO/operator profiles reviewed across space hardware, satellite systems and dual-use execution.</p>
-    </a>
-    <a href="collider_planaris_rf_antenna_market_map.html">
-      <span class="pill orange">New technical map</span>
-      <h3>Planaris · RF & Antenna Engineer Map</h3>
-      <p>21 RF/antenna/satcom profiles reviewed for the first technical hire role.</p>
-    </a>
-    <a href="collider_aummis_female_health_august.html">
-      <span class="pill purple">Ready for review</span>
-      <h3>AUMMIS · Female Health Valencia</h3>
-      <p>Female health, MedTech and Valencia ecosystem map, now expanded with 7 additional profiles and all 35 names visible.</p>
-    </a>
-    <a href="collider_braidstent_cto_august.html">
-      <span class="pill purple">Ready for review</span>
-      <h3>BraidStent · CTO / Technical Map</h3>
-      <p>First technical validation map for MedDevice CTO profiles, lower urgency for now.</p>
-    </a>
-  </div>
-
-  <p class="section-label">Additional dashboards</p>
-  <div class="extras">
-    <a href="collider_applicant_insights.html">
-      <h3>Applicant Insights</h3>
-      <p>Founder &amp; Leadership Questionnaire insights and selected applicant patterns</p>
-    </a>
-    <a href="collider_endomet_tto_resumen_ES.html">
-      <h3>ENDOMET · TTO Retención (ES)</h3>
-      <p>Resumen para Consuelo Rebolledo · proceso ENDOMET en español</p>
-    </a>
+  <div class="grid-2">
+    <div>
+      <div class="panel"><h2>Planaris RF - new candidates</h2><p class="sub">All current export records are in New Candidates. Magdalena appears twice in Planaris RF and also in Not Founders.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Full name</th><th>Current position</th><th>Current employer</th><th>University</th><th>Stage</th></tr></thead><tbody><tr><td>GERMAN GOMEZ BELTRAN</td><td>Profesor interino funcionario de Electrónica y Tecnología</td><td>IES ANGEL CORELLA, COLMENAR VIEJO</td><td>IE</td><td>1 - New Candidates</td></tr><tr><td>Allan G. Dela Cruz</td><td>Senior Technical Support/Team Leader</td><td>RVA TRADING (PHILIPPINES)</td><td>UNIVERSITY OF LA SALETTE</td><td>1 - New Candidates</td></tr><tr><td>Magdalena Mbuy Miko Mikue</td><td>Graduate Research Assistant</td><td>University of Campinas (UNICAMP)</td><td>University of Campinas (UNICAMP)</td><td>1 - New Candidates</td></tr><tr><td>Hossein Esmaeilizadshali</td><td>PhD student</td><td>KIT (Karlsruhe Institute of Technology)</td><td>KIT (Karlsruhe Institute of Technology)</td><td>1 - New Candidates</td></tr><tr><td>Magdalena Mbuy Miko Mikue</td><td>R&amp;D Scholarship Holder</td><td>University of Campinas – UNICAMP</td><td>University of Campinas – UNICAMP</td><td>1 - New Candidates</td></tr></tbody></table></div>
+    </div>
+    <div>
+      <div class="panel alert"><h2>Duplicate / cross-pool watchlist</h2><p class="sub">Useful to clean up before dashboards become misleading.</p></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Name</th><th>Occurrences</th><th>Sources</th><th>Candidate IDs</th></tr></thead><tbody><tr><td>Claudio Silvestrin</td><td>3</td><td>Talent Pool - Not Founders / OGYX CEO / GridWatch CEO</td><td>160069262</td></tr><tr><td>Hossein Esmaeilizadshali</td><td>2</td><td>Talent Pool - Not Founders / Planaris RF</td><td>164540075</td></tr><tr><td>Magdalena Mbuy Miko Mikue</td><td>3</td><td>Talent Pool - Not Founders / Planaris RF</td><td>164580913 / 159970439</td></tr></tbody></table></div>
+    </div>
   </div>
 
   <div class="footer">
-    The Collider · MWC Barcelona - CEO &amp; Co-Founder Search · updated 21 Aug 2026<br>
-    Live tracking · Manatal ATS · Dripify outreach · Founder &amp; Leadership Questionnaire · August sourcing market maps
+    Internal working dashboard for The Collider / Mobile World Capital Barcelona. Built from the latest uploaded Manatal exports and shared LinkedIn reply notes. No email addresses or phone numbers included.
   </div>
-
 </div>
 </body>
 </html>
